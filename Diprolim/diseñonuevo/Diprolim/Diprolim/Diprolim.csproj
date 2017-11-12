@@ -234,6 +234,12 @@
     <Compile Include="CorteSucursal.Designer.cs">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
     </Compile>
+    <Compile Include="DescuentosComision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DescuentosComision.Designer.cs">
+      <DependentUpon>DescuentosComision.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesplegableClientesInactivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -671,6 +677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CorteSucursal.resx">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DescuentosComision.resx">
+      <DependentUpon>DescuentosComision.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesplegableClientesInactivos.resx">
       <DependentUpon>DesplegableClientesInactivos.cs</DependentUpon>

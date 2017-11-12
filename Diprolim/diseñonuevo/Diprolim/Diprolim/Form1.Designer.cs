@@ -91,6 +91,7 @@
             this.btnEntradasInv = new System.Windows.Forms.Button();
             this.btnVentasVendedor = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.descuentoComisiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -224,7 +225,8 @@
             this.productosToolStripMenuItem,
             this.almacenesToolStripMenuItem,
             this.categoriasToolStripMenuItem,
-            this.rutasToolStripMenuItem});
+            this.rutasToolStripMenuItem,
+            this.descuentoComisiónToolStripMenuItem});
             this.catalogosToolStripMenuItem.Name = "catalogosToolStripMenuItem";
             this.catalogosToolStripMenuItem.Size = new System.Drawing.Size(88, 23);
             this.catalogosToolStripMenuItem.Text = "Catálogos";
@@ -233,7 +235,7 @@
             // 
             this.empleadosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("empleadosToolStripMenuItem.Image")));
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.empleadosToolStripMenuItem.Text = "Vendedores";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
@@ -244,7 +246,7 @@
             this.consultarToolStripMenuItem1});
             this.clientesToolStripMenuItem.Image = global::Diprolim.Properties.Resources.clients_32531;
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -270,7 +272,7 @@
             this.valorDeMedidaToolStripMenuItem});
             this.productosToolStripMenuItem.Image = global::Diprolim.Properties.Resources._12605577_surtido_de_productos_de_limpieza_para_el_hogar_de_fondo_blanco;
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.productosToolStripMenuItem.Text = "Productos";
             // 
             // capturarProductosToolStripMenuItem
@@ -301,7 +303,7 @@
             // 
             this.almacenesToolStripMenuItem.Image = global::Diprolim.Properties.Resources.almacen;
             this.almacenesToolStripMenuItem.Name = "almacenesToolStripMenuItem";
-            this.almacenesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.almacenesToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.almacenesToolStripMenuItem.Text = "Almacenes";
             this.almacenesToolStripMenuItem.Click += new System.EventHandler(this.almacenesToolStripMenuItem_Click);
             // 
@@ -309,14 +311,14 @@
             // 
             this.categoriasToolStripMenuItem.Image = global::Diprolim.Properties.Resources.percent_98525;
             this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.categoriasToolStripMenuItem.Text = "Comisiones";
             this.categoriasToolStripMenuItem.Click += new System.EventHandler(this.categoriasToolStripMenuItem_Click);
             // 
             // rutasToolStripMenuItem
             // 
             this.rutasToolStripMenuItem.Name = "rutasToolStripMenuItem";
-            this.rutasToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.rutasToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.rutasToolStripMenuItem.Text = "Rutas";
             this.rutasToolStripMenuItem.Click += new System.EventHandler(this.rutasToolStripMenuItem_Click);
             // 
@@ -685,6 +687,13 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // descuentoComisiónToolStripMenuItem
+            // 
+            this.descuentoComisiónToolStripMenuItem.Name = "descuentoComisiónToolStripMenuItem";
+            this.descuentoComisiónToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.descuentoComisiónToolStripMenuItem.Text = "Descuento comisión";
+            this.descuentoComisiónToolStripMenuItem.Click += new System.EventHandler(this.descuentoComisiónToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -781,6 +790,7 @@
         private System.Windows.Forms.ToolStripMenuItem pedidosSugeridosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesInactivosToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem descuentoComisiónToolStripMenuItem;
     }
 }
 

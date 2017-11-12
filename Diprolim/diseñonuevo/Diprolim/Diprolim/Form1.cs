@@ -609,6 +609,12 @@ namespace Diprolim
             }
         }
 
+        private void descuentoComisiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DescuentosComision objDescuentosComision = new DescuentosComision();
+            objDescuentosComision.ShowDialog();
+        }
+
         }
     }
 

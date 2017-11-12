@@ -1,0 +1,33 @@
+﻿Hecho	1.- Códigos que no se contemplen para pago de comisión $250  REVISAR EN TABLA ABONOS
+N/A 	2.- Al dar de alta nuevo vendedor y querer hacerle un cambio no se aguarda, al querer asignar limite de credito.
+Hecho	3.-Ventas por vendedor, ventas sucursal donde dice facturar que por default se seleccione para que desglose IVA. $100
+Hecho	4.- que no se pueda capturar notas a crédito de un cliente, si tiene una pendiente, Tendrá que pedir autorización, como con el crédito 
+            y las salidas de inventario.
+			Que no se pueda capturar abonos, solo pagos de notas completas, nada más al momento de capturar la venta a crédito se podrá capturar un abono.
+			El resto se deberá pagar completo
+		
+			1 hora invertidos hasta el momento 
+			Se Creó metodo ValidarFoliosCompletos(); para validar folios con abono completo
+			1 hora creando metodo para validar notas a credito pendiente y agregando autorización para ventas con pendiente.
+		
+			$200
+	5.- Agregar cursor en caja de busqueda de todas las opciones, hacer lo mas que se pueda usando solo teclado
+		
+		VentasDLocal.cs
+			Esc con pregunta de venta pendiente
+		Busquedas articulos 4
+			Esc 
+			Posicionar cursor en busqueda
+		BuscarClientes.cs
+			Esc
+			Posicionar cursor en busqueda
+		11:40-12:40 1 hora
+		5:20 - 6:20 1 hora
+		9:20 -10:30 1 hora
+		
+	6.- Que sean uniformes todas las pantallas e impresiones, porque si te das cuenta se activan y se imprimen diferentes, que las impresiones tengan mayor información en el encabezado, fecha, vendedor, cliente, producto, etc.
+
+	7.-Y cuando se capture pagos, que se pueda capturar el método de pago:Efectivo, cheque, transferencia, tarjeta de débito, tarjeta de crédito
+	8.- Y en el reporte de pagos (Historial de cobranza nuevo), que aparezca ese método de pago
+	9.- Para el pago de comisión de notas que tengan ciertos dias descontar porcentaje de comisión de ellas, esto sería por rangos de dias para asignar diferentes
+	    porcentajes por rangos. $ 600

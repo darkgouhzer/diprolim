@@ -16,7 +16,7 @@ namespace Diprolim
 {
     public partial class Conversiones : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         conexion conn = new conexion();
         recuperarCodigo _ui = new recuperarCodigo();
@@ -27,14 +27,14 @@ namespace Diprolim
         double ValordeMedida2 = 0;
         string UsuarioID = "";
 
-        public Conversiones(string id, Inventarios.DBMS_Unico svr)
+        public Conversiones(string id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             UsuarioID = id;
             Conexion = svr;
         }
 
-        public Conversiones(string s, string id, Inventarios.DBMS_Unico svr)
+        public Conversiones(string s, string id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             LIKE=s;

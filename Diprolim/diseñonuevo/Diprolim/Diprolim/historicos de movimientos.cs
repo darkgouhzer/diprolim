@@ -18,9 +18,9 @@ namespace Diprolim
     {
         conexion conn = new conexion();
         String cmd;
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         MySqlCommand comando;
-        public historicos_de_movimientos(Inventarios.DBMS_Unico svr)
+        public historicos_de_movimientos(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             //fecha sobre sucursal

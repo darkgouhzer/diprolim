@@ -17,8 +17,8 @@ namespace Diprolim
 {
     public partial class Clientes_inactivos : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public Clientes_inactivos(Inventarios.DBMS_Unico server)
+        UnicaSQL.DBMS_Unico Conexion;
+        public Clientes_inactivos(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
             Conexion = server;
@@ -542,7 +542,7 @@ namespace Diprolim
                     Pase = true;
                 }
             }
-            Conexion.FinalizarTransaccion(Pase);
+            Conexion.FinTransaccion(Pase);
             Conexion.Desconectarse();
 
             Conexion.Conectarse();

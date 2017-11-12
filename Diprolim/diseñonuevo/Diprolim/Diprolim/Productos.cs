@@ -13,10 +13,10 @@ namespace Diprolim
 {
     public partial class Productos : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd = "";
         int dep = 1;
-        public Productos(Inventarios.DBMS_Unico svr)
+        public Productos(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;

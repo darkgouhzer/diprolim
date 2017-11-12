@@ -19,9 +19,9 @@ namespace Diprolim
         MySqlCommand comando;
         MySqlConnection conectar;
         MySqlDataReader lector;
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
 
-        public Prenomina(Inventarios.DBMS_Unico sConexion)
+        public Prenomina(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             dtpInicio.Value = DateTime.Now.AddDays(-14);

@@ -14,8 +14,8 @@ namespace Diprolim
     public partial class Autorizaciones : Form
     {
         string tipo;
-        Inventarios.DBMS_Unico Conexion;
-        public Autorizaciones(string tipoAutorizacion,Inventarios.DBMS_Unico svr)
+        UnicaSQL.DBMS_Unico Conexion;
+        public Autorizaciones(string tipoAutorizacion, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             tipo = tipoAutorizacion;

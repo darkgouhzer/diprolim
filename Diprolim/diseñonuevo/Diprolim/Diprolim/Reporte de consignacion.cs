@@ -19,10 +19,10 @@ namespace Diprolim
     public partial class Reporte_de_consignacion : Form
     {
         conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         double TotalDComision = 0;
         double TotalPrecioTotal = 0;
-        public Reporte_de_consignacion(Inventarios.DBMS_Unico server)
+        public Reporte_de_consignacion(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
             cbxIm.SelectedIndex = 0;

@@ -13,8 +13,8 @@ namespace Diprolim
     public partial class BuscarProveedores : Form
     {
 
-        Inventarios.DBMS_Unico Conexion;
-        public BuscarProveedores(Inventarios.DBMS_Unico Conexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public BuscarProveedores(UnicaSQL.DBMS_Unico Conexion)
         {
             InitializeComponent();
             this.Conexion = Conexion;

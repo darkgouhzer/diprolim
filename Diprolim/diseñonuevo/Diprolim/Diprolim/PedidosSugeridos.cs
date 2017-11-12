@@ -13,8 +13,8 @@ namespace Diprolim
 {
     public partial class PedidosSugeridos : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public PedidosSugeridos(Inventarios.DBMS_Unico svr)
+        UnicaSQL.DBMS_Unico Conexion;
+        public PedidosSugeridos(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             dtpActual.Value = DateTime.Now.AddDays(1);

@@ -12,12 +12,12 @@ namespace Diprolim
 {
     public partial class DesplegableCreditoDetalle : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         public String ClienteID;
         public String EstadoCredito;
         public String Dias;
         public string sFolio;
-        public DesplegableCreditoDetalle(Inventarios.DBMS_Unico server)
+        public DesplegableCreditoDetalle(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
             Conexion = server;

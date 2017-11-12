@@ -16,14 +16,14 @@ namespace Diprolim
     public partial class DesplegableReporteConsignacion : Form
     {
 
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         public String sPalabra="";
         public Int32 Diass=0;
         public string sIDCliente="";
         public string sNombreCliente = "";
         public DateTime FechaaV;
 
-        public DesplegableReporteConsignacion(Inventarios.DBMS_Unico server)
+        public DesplegableReporteConsignacion(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
 

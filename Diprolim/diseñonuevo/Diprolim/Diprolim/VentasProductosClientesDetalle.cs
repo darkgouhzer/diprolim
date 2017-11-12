@@ -12,11 +12,11 @@ namespace Diprolim
 {
     public partial class VentasProductosClientesDetalle : Form
     {
-        Inventarios.DBMS_Unico Conexion;   
+        UnicaSQL.DBMS_Unico Conexion;   
         DateTimePicker Inicio;
         DateTimePicker Fin;
         string ID = "";
-        public VentasProductosClientesDetalle(Inventarios.DBMS_Unico sConexion, string sID, DateTimePicker Inicio, DateTimePicker Fin)
+        public VentasProductosClientesDetalle(UnicaSQL.DBMS_Unico sConexion, string sID, DateTimePicker Inicio, DateTimePicker Fin)
         {
             InitializeComponent();
             this.Conexion = sConexion;

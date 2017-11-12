@@ -15,7 +15,7 @@ namespace Diprolim
 {
     public partial class Capturar_Entrada : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         conexion conn = new conexion();
         String motivo;
@@ -37,7 +37,7 @@ namespace Diprolim
             motivo = cbxMotivo.Text;
             CargarFolio();
         }
-        public Capturar_Entrada(string usuarioId, Inventarios.DBMS_Unico svr)
+        public Capturar_Entrada(string usuarioId, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
@@ -1204,7 +1204,7 @@ namespace Diprolim
                             }
                         }
                     }
-                    Conexion.FinalizarTransaccion(bAllOk);
+                    Conexion.FinTransaccion(bAllOk);
                     Conexion.Desconectarse();
                    
                         comando = new MySqlCommand("INSERT INTO Folios_Entradas values(null)", conectar);

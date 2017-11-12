@@ -12,11 +12,11 @@ namespace Diprolim
 {
     public partial class CancelacionesClientes : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         String UsuarioID;
         String tipoVenta;
-        public CancelacionesClientes(Inventarios.DBMS_Unico svr, String ClienteID,DateTime Fecha, int id,String tv)
+        public CancelacionesClientes(UnicaSQL.DBMS_Unico svr, String ClienteID, DateTime Fecha, int id, String tv)
         {
             InitializeComponent();
             Conexion = svr;
@@ -276,7 +276,7 @@ namespace Diprolim
                                                 }
                                             }
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         MessageBox.Show("Venta cancelada con éxito.");
                                         #endregion
@@ -300,7 +300,7 @@ namespace Diprolim
                                                 bAllOk = Conexion.Ejecutar(cmd);
                                             }
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         MessageBox.Show("Venta cancelada con éxito.");
                                         #endregion
@@ -384,7 +384,7 @@ namespace Diprolim
                                                         }
                                                     }
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                                 MessageBox.Show("Venta cancelada con éxito.");
                                             }
@@ -405,7 +405,7 @@ namespace Diprolim
                                                         bAllOk = Conexion.Ejecutar(cmd);
                                                     }
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                                 MessageBox.Show("Venta cancelada con éxito.");
                                             }

@@ -17,7 +17,7 @@ namespace Diprolim
 {
     public partial class Form1 : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         conexion conn = new conexion();
         string Privilegio = "";
         string UsuarioID = "";
@@ -29,7 +29,7 @@ namespace Diprolim
         {
             InitializeComponent();
             Leer_txt();
-            Conexion = new Inventarios.DBMS_Unico(Gestor, Servidor, BaseDeDatos, Usuarios, Password, 3306);
+            Conexion = new UnicaSQL.DBMS_Unico(Gestor, Servidor, BaseDeDatos, Usuarios, Password, 3306);
             AjustarInventario();
             AjusteCredito();
             Inactivo();

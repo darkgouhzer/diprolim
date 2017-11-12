@@ -15,9 +15,9 @@ namespace Diprolim
     {
         conexion conn = new conexion();
         MySqlCommand comando;
-        Inventarios.DBMS_Unico Conexion;
-        
-        public Corte_de_Caja(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+
+        public Corte_de_Caja(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Now;

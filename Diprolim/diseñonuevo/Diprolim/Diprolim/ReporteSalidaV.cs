@@ -16,8 +16,8 @@ namespace Diprolim
     public partial class ReporteSalidaV : Form
     {
         conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
-        public ReporteSalidaV(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public ReporteSalidaV(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             dtpInicio.Value = DateTime.Now;

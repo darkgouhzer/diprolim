@@ -12,13 +12,13 @@ namespace Diprolim
 {
     public partial class ConsultaCancelaVentas : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd = "";
         DateTime formato_fecha;
         string EmpleadoID = "";
         String UsuarioID;
         Boolean sucursal = false;
-        public ConsultaCancelaVentas(Inventarios.DBMS_Unico svr)
+        public ConsultaCancelaVentas(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
@@ -27,7 +27,7 @@ namespace Diprolim
             cbxDepto.SelectedIndex = 0;
             cbxTipoVenta.SelectedIndex = 0;
         }
-        public ConsultaCancelaVentas(Inventarios.DBMS_Unico svr, string s, int id)
+        public ConsultaCancelaVentas(UnicaSQL.DBMS_Unico svr, string s, int id)
         {
 
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace Diprolim
             cbxTipoVenta.SelectedIndex = 0;
 
         }
-        public ConsultaCancelaVentas(string s, Boolean suc, Inventarios.DBMS_Unico svr, int id)
+        public ConsultaCancelaVentas(string s, Boolean suc, UnicaSQL.DBMS_Unico svr, int id)
         {
             InitializeComponent();
             Conexion = svr;
@@ -503,7 +503,7 @@ namespace Diprolim
                                                 }
                                             }
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         #endregion
                                     }
@@ -526,7 +526,7 @@ namespace Diprolim
                                                 bAllOk = Conexion.Ejecutar(cmd);
                                             }
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         #endregion
                                     }
@@ -624,7 +624,7 @@ namespace Diprolim
                                             }
 
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         #endregion
                                     }
@@ -661,7 +661,7 @@ namespace Diprolim
                                                 }
                                             }
                                         }
-                                        Conexion.FinalizarTransaccion(bAllOk);
+                                        Conexion.FinTransaccion(bAllOk);
                                         Conexion.Desconectarse();
                                         #endregion
                                     }
@@ -747,7 +747,7 @@ namespace Diprolim
                                                         }
                                                     }
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                             }
                                             else
@@ -768,7 +768,7 @@ namespace Diprolim
                                                         bAllOk = Conexion.Ejecutar(cmd);
                                                     }
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                             }
                                         }
@@ -865,7 +865,7 @@ namespace Diprolim
                                                     }
 
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                                 #endregion
                                             }
@@ -902,7 +902,7 @@ namespace Diprolim
                                                         }
                                                     }
                                                 }
-                                                Conexion.FinalizarTransaccion(bAllOk);
+                                                Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                                 #endregion
                                             }

@@ -22,8 +22,8 @@ namespace Diprolim
         MySqlConnection conectar;
         MySqlDataReader lector;
         Boolean validacion;
-        Inventarios.DBMS_Unico Conexion;
-        public Reportes_de_Ventas(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public Reportes_de_Ventas(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             Conexion = sConexion;

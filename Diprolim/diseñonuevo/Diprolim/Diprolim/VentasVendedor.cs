@@ -13,7 +13,7 @@ namespace Diprolim
 {
     public partial class VentasVendedor : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         conexion conn = new conexion();
         MySqlCommand comando;
@@ -28,10 +28,10 @@ namespace Diprolim
         string Fechaa = "";
         string UsuarioID = "";
         DateTime FFecha;
-    
 
-        
-        public VentasVendedor(Inventarios.DBMS_Unico svr)
+
+
+        public VentasVendedor(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
@@ -39,7 +39,7 @@ namespace Diprolim
             inavilitados();
             cbxCEntradas.SelectedIndex = 0;
         }
-        public VentasVendedor(string Id,Inventarios.DBMS_Unico svr)
+        public VentasVendedor(string Id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
@@ -2116,7 +2116,7 @@ namespace Diprolim
                 }
                 #endregion
             }
-            Conexion.FinalizarTransaccion(Pasar);
+            Conexion.FinTransaccion(Pasar);
             Conexion.Desconectarse();
         }
         double Descuentoo = 0;

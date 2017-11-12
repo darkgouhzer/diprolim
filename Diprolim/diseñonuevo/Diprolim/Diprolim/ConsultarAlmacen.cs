@@ -14,10 +14,10 @@ namespace Diprolim
 {
     public partial class ConsultarAlmacen : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         public String valorCodigo="";
         string cmd="";
-        public ConsultarAlmacen(Inventarios.DBMS_Unico svr)
+        public ConsultarAlmacen(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;

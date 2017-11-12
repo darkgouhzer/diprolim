@@ -15,8 +15,8 @@ namespace Diprolim
     public partial class ModificarAlmacen : Form
     {
         conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
-        public ModificarAlmacen(Inventarios.DBMS_Unico svr)
+        UnicaSQL.DBMS_Unico Conexion;
+        public ModificarAlmacen(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;

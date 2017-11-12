@@ -15,7 +15,7 @@ namespace Diprolim
     public partial class Salidas : Form
     {
         conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         int idProducto = 0;
         DialogResult result;
@@ -32,7 +32,7 @@ namespace Diprolim
             cbxCSalidas.SelectedIndex = 1;
             CargarFolio();
         }
-        public Salidas(string Id,Inventarios.DBMS_Unico svr)
+        public Salidas(string Id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Now;

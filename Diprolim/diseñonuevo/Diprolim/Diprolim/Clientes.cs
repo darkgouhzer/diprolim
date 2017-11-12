@@ -13,11 +13,11 @@ namespace Diprolim
 {
     public partial class Clientes : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         string comando;
         int codigoV = 0;
         DialogResult result;
-        public Clientes(Inventarios.DBMS_Unico svr)
+        public Clientes(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();            
             tbxID.Focus();

@@ -13,8 +13,8 @@ namespace Diprolim
 {
     public partial class Rutas : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public Rutas(Inventarios.DBMS_Unico svr)
+        UnicaSQL.DBMS_Unico Conexion;
+        public Rutas(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;

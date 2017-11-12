@@ -14,8 +14,8 @@ namespace Diprolim
 {
     public partial class AsignarPrivilegios : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public AsignarPrivilegios(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public AsignarPrivilegios(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             Conexion = sConexion;

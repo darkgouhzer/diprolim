@@ -20,8 +20,8 @@ namespace Diprolim
         MySqlCommand comando;
         MySqlConnection conectar;
         MySqlDataReader lector;
-        Inventarios.DBMS_Unico Conexion;
-        public RepCobranzaN(Inventarios.DBMS_Unico server)
+        UnicaSQL.DBMS_Unico Conexion;
+        public RepCobranzaN(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
             cbxDias.SelectedIndex = 0;

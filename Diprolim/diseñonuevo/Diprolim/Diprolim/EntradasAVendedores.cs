@@ -14,9 +14,9 @@ namespace Diprolim
 {
     public partial class EntardasAVendedores : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         public string sIDUsuario="";
-        public EntardasAVendedores(Inventarios.DBMS_Unico server)
+        public EntardasAVendedores(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
             Conexion = server;
@@ -385,7 +385,7 @@ namespace Diprolim
                            bAllOk= Conexion.Ejecutar("INSERT INTO Folios_Entradas values(null)");
                        
                     }
-                    Conexion.FinalizarTransaccion(bAllOk);
+                    Conexion.FinTransaccion(bAllOk);
                     Conexion.Desconectarse();
                     tbxProducto.Clear();
                     tbxVendedor.Clear();

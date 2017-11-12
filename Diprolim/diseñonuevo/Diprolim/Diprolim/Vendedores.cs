@@ -13,8 +13,8 @@ namespace Diprolim
 {
     public partial class ModificarEmpleado : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public ModificarEmpleado(Inventarios.DBMS_Unico svr)
+        UnicaSQL.DBMS_Unico Conexion;
+        public ModificarEmpleado(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;

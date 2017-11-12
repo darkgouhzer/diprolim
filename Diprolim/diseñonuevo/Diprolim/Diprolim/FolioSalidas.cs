@@ -12,9 +12,9 @@ namespace Diprolim
 {
     public partial class FolioSalidas : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         public string ID = "";
-        public FolioSalidas(Inventarios.DBMS_Unico sConexion)
+        public FolioSalidas(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             Conexion = sConexion;

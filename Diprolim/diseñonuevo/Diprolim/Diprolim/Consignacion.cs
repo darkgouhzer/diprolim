@@ -13,12 +13,11 @@ namespace Diprolim
 {
     public partial class Consignacion : Form
     {
-        //conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         double Comision = 0;
         double Preciop = 0;
         String UsuarioID;
-        public Consignacion(Inventarios.DBMS_Unico sConexion, String ID)
+        public Consignacion(UnicaSQL.DBMS_Unico sConexion, String ID)
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Now;
@@ -620,7 +619,7 @@ namespace Diprolim
                         }
                         i++;
                     }
-                    Conexion.FinalizarTransaccion(bAllOk);
+                    Conexion.FinTransaccion(bAllOk);
                     Conexion.Desconectarse();
                     limpiarcampos();
                     refrescarTabla();

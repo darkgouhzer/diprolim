@@ -12,7 +12,7 @@ namespace Diprolim
 {
     public partial class VentasDLocal : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
        
         int codigo = 0;
         int departamento;
@@ -27,13 +27,14 @@ namespace Diprolim
         double costo = 0;
         string UsuarioID = "";
         DialogResult result;
-        public VentasDLocal(Inventarios.DBMS_Unico svr)
+        public VentasDLocal(UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
             fecha.Value = DateTime.Now;           
         }
-        public VentasDLocal(string Id,Inventarios.DBMS_Unico svr)
+
+        public VentasDLocal(string Id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             Conexion = svr;
@@ -791,7 +792,7 @@ namespace Diprolim
             {
                 MessageBox.Show("Ingrese efectivo");
             }
-            Conexion.FinalizarTransaccion(bAllOk);
+            Conexion.FinTransaccion(bAllOk);
             Conexion.Desconectarse();
             aut = false;
         }

@@ -14,14 +14,14 @@ namespace Diprolim
 {
     public partial class transferenciasInventario : Form
     {
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd,UsuarioID,VendedorO,VendedorD;
         conexion conn = new conexion();
         MySqlCommand comando;
         MySqlConnection conectar;
         MySqlDataReader lector;
         Boolean validacion = false;
-        public transferenciasInventario(Inventarios.DBMS_Unico svr, String ID)
+        public transferenciasInventario(UnicaSQL.DBMS_Unico svr, String ID)
         {
             InitializeComponent();
             Conexion = svr;

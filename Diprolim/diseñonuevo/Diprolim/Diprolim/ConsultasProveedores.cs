@@ -14,8 +14,8 @@ namespace Diprolim
 {
     public partial class ConsultasProveedores : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public ConsultasProveedores(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public ConsultasProveedores(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             Conexion = sConexion;

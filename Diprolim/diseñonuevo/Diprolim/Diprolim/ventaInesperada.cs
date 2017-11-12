@@ -15,7 +15,7 @@ namespace Diprolim
     public partial class ventaInesperada : Form
     {
         conexion conn = new conexion();
-        Inventarios.DBMS_Unico Conexion;
+        UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         MySqlConnection conectar;
         MySqlDataReader lector;
@@ -26,7 +26,7 @@ namespace Diprolim
         {
             InitializeComponent();
         }
-        public ventaInesperada(string Codigo,string id,Inventarios.DBMS_Unico svr)
+        public ventaInesperada(string Codigo, string id, UnicaSQL.DBMS_Unico svr)
         {
             InitializeComponent();
             tbxVendedor.Text = Codigo;

@@ -14,8 +14,8 @@ namespace Diprolim
 {
     public partial class Gastos : Form
     {
-        Inventarios.DBMS_Unico Conexion;
-        public Gastos(Inventarios.DBMS_Unico sConexion)
+        UnicaSQL.DBMS_Unico Conexion;
+        public Gastos(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             Conexion = sConexion;

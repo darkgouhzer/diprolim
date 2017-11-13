@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReglasNegocios", "ReglasNeg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{8731BF54-F808-4430-B7AC-C3B4671E562B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identidades", "Identidades\Identidades.csproj", "{7FA531F1-B4EC-4B3E-9DBC-401109F75121}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -243,24 +243,31 @@ namespace Diprolim
 
         private void btnGuardarr_Click(object sender, EventArgs e)
         {
-            cbxCategorias_SelectedIndexChanged(sender, e);
-            DataTable Tabla = new DataTable();
-            Conexion.Conectarse();
-            string comando = "Select * from Clientes WHERE IDClientes=" + tbxID.Text;
-            Conexion.Ejecutar(comando, ref Tabla);
-            Conexion.Desconectarse();
-            if (Tabla.Rows.Count > 0)
+            if (tbxVendedor.Text.Length > 0)
             {
-                Actualizar();
 
+                cbxCategorias_SelectedIndexChanged(sender, e);
+                DataTable Tabla = new DataTable();
+                Conexion.Conectarse();
+                string comando = "Select * from Clientes WHERE IDClientes=" + tbxID.Text;
+                Conexion.Ejecutar(comando, ref Tabla);
+                Conexion.Desconectarse();
+                if (Tabla.Rows.Count > 0)
+                {
+                    Actualizar();
+
+                }
+                else
+                {
+                    Guardar();
+                    Limpiar();
+                    tbxID.Clear();
+                    tbxID.Focus();
+                }
             }
             else
             {
-
-                Guardar();
-                Limpiar();
-                tbxID.Clear();
-                tbxID.Focus();
+                MessageBox.Show("Es necesario ingresar vendedor para el cliente.");
             }
         }
         public void Guardar()
@@ -302,11 +309,13 @@ namespace Diprolim
         }
         public void Actualizar()
         {
+            Boolean bAllOK = false;
             try
             {
                  string DerechoADescuento = "";
                 if (cheDerechoADescuento.Checked == true) { DerechoADescuento = "1"; } else { DerechoADescuento = "0"; }
                         Conexion.Conectarse();
+                        Conexion.IniciarTransaccion();
                         string comando = string.Format("UPDATE Clientes SET " +
                                          "Nombre='{1}', " +
                                          "Empleados_Id_Empleado='{2}', " +
@@ -343,11 +352,17 @@ namespace Diprolim
                                                                 tbxE_Mail.Text,
                                                                 cbxLocalidades.SelectedValue);
                         if (Conexion.Ejecutar(comando))
-                        {
-                            MessageBox.Show("Modificado con éxito");
+                        {                            
+                            comando = String.Format("UPDATE ventas SET empleados_id_empleado={0} WHERE clientes_idclientes={1} AND pendiente>0;", tbxVendedor.Text, tbxID.Text);
+                            if (bAllOK = Conexion.Ejecutar(comando))
+                            {
+                                Conexion.FinTransaccion(bAllOK);
+                                MessageBox.Show("Modificado con éxito");
+                            }                            
                         }
                         else
                         {
+                            Conexion.FinTransaccion(bAllOK);
                             MessageBox.Show("Error!");
                         }
                         Conexion.Desconectarse();
@@ -355,6 +370,8 @@ namespace Diprolim
             }
             catch (Exception Ex)
             {
+                Conexion.FinTransaccion(bAllOK);
+                Conexion.Desconectarse();
                 MessageBox.Show(Ex.Message);
             }
         }

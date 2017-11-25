@@ -739,6 +739,7 @@ namespace Diprolim
         {
             try
             {
+
                 if (tblSalidas.CurrentCell.ColumnIndex == 4)
                 {
                     if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
@@ -751,7 +752,7 @@ namespace Diprolim
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
            
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Prenomina));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,17 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Prenomina));
             this.tblComisiones = new System.Windows.Forms.DataGridView();
-            this.tblCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblVentaContado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblVentaCredito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblConsignacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblAbonos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblEfectivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblTotalCom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
@@ -62,6 +53,15 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.tbxPuesto = new System.Windows.Forms.TextBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.tblCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblVentaContado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblVentaCredito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblConsignacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblAbonos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblEfectivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblTotalCom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblComisiones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,94 +89,6 @@
             this.tblComisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblComisiones.Size = new System.Drawing.Size(856, 210);
             this.tblComisiones.TabIndex = 0;
-            // 
-            // tblCategoria
-            // 
-            this.tblCategoria.HeaderText = "Categoría";
-            this.tblCategoria.Name = "tblCategoria";
-            this.tblCategoria.ReadOnly = true;
-            this.tblCategoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // tblTotal
-            // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.tblTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tblTotal.HeaderText = "Total venta";
-            this.tblTotal.Name = "tblTotal";
-            this.tblTotal.ReadOnly = true;
-            this.tblTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblTotal.Width = 90;
-            // 
-            // tblVentaContado
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.tblVentaContado.DefaultCellStyle = dataGridViewCellStyle3;
-            this.tblVentaContado.HeaderText = "Venta contado";
-            this.tblVentaContado.Name = "tblVentaContado";
-            this.tblVentaContado.ReadOnly = true;
-            this.tblVentaContado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblVentaContado.Width = 90;
-            // 
-            // tblVentaCredito
-            // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.tblVentaCredito.DefaultCellStyle = dataGridViewCellStyle4;
-            this.tblVentaCredito.HeaderText = "Venta crédito";
-            this.tblVentaCredito.Name = "tblVentaCredito";
-            this.tblVentaCredito.ReadOnly = true;
-            this.tblVentaCredito.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblVentaCredito.Width = 90;
-            // 
-            // tblConsignacion
-            // 
-            dataGridViewCellStyle5.Format = "C2";
-            this.tblConsignacion.DefaultCellStyle = dataGridViewCellStyle5;
-            this.tblConsignacion.HeaderText = "Consignación";
-            this.tblConsignacion.Name = "tblConsignacion";
-            this.tblConsignacion.ReadOnly = true;
-            this.tblConsignacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // tblAbonos
-            // 
-            dataGridViewCellStyle6.Format = "C2";
-            this.tblAbonos.DefaultCellStyle = dataGridViewCellStyle6;
-            this.tblAbonos.HeaderText = "Abonos";
-            this.tblAbonos.Name = "tblAbonos";
-            this.tblAbonos.ReadOnly = true;
-            this.tblAbonos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblAbonos.Width = 90;
-            // 
-            // tblEfectivo
-            // 
-            dataGridViewCellStyle7.Format = "C2";
-            this.tblEfectivo.DefaultCellStyle = dataGridViewCellStyle7;
-            this.tblEfectivo.HeaderText = "Total efectivo";
-            this.tblEfectivo.Name = "tblEfectivo";
-            this.tblEfectivo.ReadOnly = true;
-            this.tblEfectivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblEfectivo.Width = 90;
-            // 
-            // tblTotalCom
-            // 
-            dataGridViewCellStyle8.Format = "C2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.tblTotalCom.DefaultCellStyle = dataGridViewCellStyle8;
-            this.tblTotalCom.HeaderText = "Comisión";
-            this.tblTotalCom.Name = "tblTotalCom";
-            this.tblTotalCom.ReadOnly = true;
-            this.tblTotalCom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tblTotalCom.Width = 90;
-            // 
-            // Porcentaje
-            // 
-            this.Porcentaje.HeaderText = "%";
-            this.Porcentaje.Name = "Porcentaje";
-            this.Porcentaje.ReadOnly = true;
-            this.Porcentaje.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Porcentaje.Width = 40;
             // 
             // label3
             // 
@@ -337,6 +249,95 @@
             this.btnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // tblCategoria
+            // 
+            this.tblCategoria.HeaderText = "Categoría";
+            this.tblCategoria.Name = "tblCategoria";
+            this.tblCategoria.ReadOnly = true;
+            this.tblCategoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // tblTotal
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.tblTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tblTotal.HeaderText = "Total venta";
+            this.tblTotal.Name = "tblTotal";
+            this.tblTotal.ReadOnly = true;
+            this.tblTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblTotal.Width = 90;
+            // 
+            // tblVentaContado
+            // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.tblVentaContado.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tblVentaContado.HeaderText = "Venta contado";
+            this.tblVentaContado.Name = "tblVentaContado";
+            this.tblVentaContado.ReadOnly = true;
+            this.tblVentaContado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblVentaContado.Width = 90;
+            // 
+            // tblVentaCredito
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.tblVentaCredito.DefaultCellStyle = dataGridViewCellStyle4;
+            this.tblVentaCredito.HeaderText = "Venta crédito";
+            this.tblVentaCredito.Name = "tblVentaCredito";
+            this.tblVentaCredito.ReadOnly = true;
+            this.tblVentaCredito.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblVentaCredito.Width = 90;
+            // 
+            // tblConsignacion
+            // 
+            dataGridViewCellStyle5.Format = "C2";
+            this.tblConsignacion.DefaultCellStyle = dataGridViewCellStyle5;
+            this.tblConsignacion.HeaderText = "Consignación";
+            this.tblConsignacion.Name = "tblConsignacion";
+            this.tblConsignacion.ReadOnly = true;
+            this.tblConsignacion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // tblAbonos
+            // 
+            dataGridViewCellStyle6.Format = "C2";
+            this.tblAbonos.DefaultCellStyle = dataGridViewCellStyle6;
+            this.tblAbonos.HeaderText = "Abonos";
+            this.tblAbonos.Name = "tblAbonos";
+            this.tblAbonos.ReadOnly = true;
+            this.tblAbonos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblAbonos.Width = 90;
+            // 
+            // tblEfectivo
+            // 
+            dataGridViewCellStyle7.Format = "C2";
+            this.tblEfectivo.DefaultCellStyle = dataGridViewCellStyle7;
+            this.tblEfectivo.HeaderText = "Total efectivo";
+            this.tblEfectivo.Name = "tblEfectivo";
+            this.tblEfectivo.ReadOnly = true;
+            this.tblEfectivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblEfectivo.Width = 90;
+            // 
+            // tblTotalCom
+            // 
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.tblTotalCom.DefaultCellStyle = dataGridViewCellStyle8;
+            this.tblTotalCom.HeaderText = "Comisión";
+            this.tblTotalCom.Name = "tblTotalCom";
+            this.tblTotalCom.ReadOnly = true;
+            this.tblTotalCom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tblTotalCom.Width = 90;
+            // 
+            // Porcentaje
+            // 
+            this.Porcentaje.HeaderText = "%";
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.ReadOnly = true;
+            this.Porcentaje.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Porcentaje.Visible = false;
+            this.Porcentaje.Width = 40;
             // 
             // Prenomina
             // 

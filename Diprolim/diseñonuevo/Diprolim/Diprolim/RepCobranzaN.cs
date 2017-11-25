@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Diprolim
@@ -21,9 +21,12 @@ namespace Diprolim
         MySqlConnection conectar;
         MySqlDataReader lector;
         UnicaSQL.DBMS_Unico Conexion;
+        VentaBO objVentaBO;
         public RepCobranzaN(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
+            objVentaBO = new VentaBO();
+            objVentaBO.ReAsignarDeudas();
             cbxDias.SelectedIndex = 0;
             dtpFin.Value = DateTime.Now;
             dtpInicio.Value = DateTime.Now.AddDays(-30);
@@ -697,7 +700,7 @@ namespace Diprolim
                     if (tbxCliente.Text != "" && tbxVendedor.Text != "")
                     {
                         comando = new MySqlCommand("select b.folio, b.articulos_codigo, a.descripcion, a.valor_medida, u.nombre, b.SaldoAnterior," +
-                            " b.abono, b.SaldoDespues, b.fecha from articulos a, abonos b, unidad_medida u where b.clientes_idclientes=" + tbxCliente.Text +
+                            " b.abono, b.SaldoDespues, b.fecha, b.dias from articulos a, abonos b, unidad_medida u where b.clientes_idclientes=" + tbxCliente.Text +
                             " and b.empleados_id_empleado=" + tbxVendedor.Text + " and a.unidad_medida_id=u.id and b.articulos_codigo=a.codigo" +
                             " and b.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") + " order by b.fecha asc", conectar);
                         dtgHistTotales.Visible = false;
@@ -727,7 +730,8 @@ namespace Diprolim
                         if (tbxCliente.Text != "" && tbxVendedor.Text != "")
                         {
                             dtgHistTabla.Rows.Add(lector.GetInt32(0), lector.GetInt32(1), lector.GetString(2) + " " + lector.GetString(3) +
-                                " " + lector.GetString(4), lector.GetDouble(5), lector.GetDouble(6), lector.GetDouble(7), lector.GetDateTime(8));
+                                " " + lector.GetString(4), lector.GetDouble(5), lector.GetDouble(6), lector.GetDouble(7),
+                                lector.GetDateTime(8), lector.GetInt32(9));
                             abono += lector.GetDouble(6);
                         }
                         else if (tbxCliente.Text == "" && tbxVendedor.Text != "")
@@ -888,7 +892,7 @@ namespace Diprolim
             if (dtgHistTabla.Rows.Count > 0)
             {
                 int height = 0;
-                int an = -10;
+                int an = -5;
                 Font letra = new Font("Arial", 9);
                 int x = 100;
                 int L = 105;
@@ -900,6 +904,7 @@ namespace Diprolim
                 int col5 = dtgHistTabla.Columns[4].Width - an;
                 int col6 = dtgHistTabla.Columns[5].Width - an;
                 int col7 = dtgHistTabla.Columns[6].Width - an;
+                int col8 = dtgHistTabla.Columns[7].Width - an;
                 Pen p = new Pen(Brushes.Black, 1.5f);
 
                 //Logotipo
@@ -984,6 +989,14 @@ namespace Diprolim
                 //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
                 #endregion
 
+                #region dias
+
+                //              e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3 + col4, 100, col5, tblSalidas.Rows[0].Height + 15));
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7, y, col8, dtgHistTabla.Rows[0].Height + 15));
+                e.Graphics.DrawString(dtgHistTabla.Columns[7].HeaderText.ToString(), dtgHistTabla.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7, y, col8, dtgHistTabla.Rows[0].Height + 15));
+                //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
+                #endregion
+
                 height = 155;
 
                 while (i < dtgHistTabla.Rows.Count)
@@ -1015,6 +1028,7 @@ namespace Diprolim
                     e.Graphics.DrawString(dtgHistTabla.Rows[i].Cells[5].FormattedValue.ToString(), dtgHistTabla.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, dtgHistTabla.Columns[5].Width, dtgHistTabla.Rows[0].Height));
                     
                     e.Graphics.DrawString(dtgHistTabla.Rows[i].Cells[6].FormattedValue.ToString(), dtgHistTabla.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6, height, dtgHistTabla.Columns[6].Width, dtgHistTabla.Rows[0].Height));
+                    e.Graphics.DrawString(dtgHistTabla.Rows[i].Cells[7].FormattedValue.ToString(), dtgHistTabla.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7, height, dtgHistTabla.Columns[7].Width, dtgHistTabla.Rows[0].Height));
 
                     i++;
                 }
@@ -1542,9 +1556,6 @@ namespace Diprolim
                 }
             }
         }
-
-       
-
 
     }
 }

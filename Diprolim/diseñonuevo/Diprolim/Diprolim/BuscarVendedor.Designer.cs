@@ -71,9 +71,7 @@
             this.dtgEmpleados.Size = new System.Drawing.Size(784, 251);
             this.dtgEmpleados.TabIndex = 2;
             this.dtgEmpleados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellDoubleClick);
-            this.dtgEmpleados.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgEmpleados_CellEnter);
             this.dtgEmpleados.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtgEmpleados_SortCompare);
-            this.dtgEmpleados.Enter += new System.EventHandler(this.dtgEmpleados_Enter);
             this.dtgEmpleados.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgEmpleados_KeyDown);
             // 
             // Codigo

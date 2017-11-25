@@ -108,7 +108,7 @@ namespace Diprolim
         }
         public Boolean aplicaComision(Int32 codigoPuesto)
         {
-            Boolean aplica = false;
+            Boolean bAllOk = false;
             conectar = conn.ObtenerConexion();
             comando = new MySqlCommand("select aplicacomision,nombre from Puestos where idPuestos=" + codigoPuesto, conectar);
             conectar.Open();
@@ -117,16 +117,16 @@ namespace Diprolim
             {
                 if (lector.GetBoolean(0))
                 {
-                    aplica = true;
+                    bAllOk = true;
                     tipoComision = lector.GetString(1);
                 }
                 else
                 {
-                    aplica = false;
+                    bAllOk = false;
                 }
             }
             conectar.Close();
-            return aplica;
+            return bAllOk;
         }
         double Totales, totalComision;
         private void btnReporte_Click(object sender, EventArgs e)
@@ -276,17 +276,15 @@ namespace Diprolim
                 }
                 conectar.Close();
 
-                //Total Abonos
+                //Total Abonos--Se modificará para obtener abono menos descuento de comisión de la tabla abonos
                 Totales = 0;
-                cmd = string.Format("select c.nombre, a.abono, a.folio  from abonos a, categorias c, ventas v where "+
+                cmd = string.Format("select c.nombre, a.abono, a.folio,a.Comision, a.dias  from abonos a, categorias c, ventas v where " +
                     "" + vendedor + "a.ventas_idventas=v.idventas and v.categorias_idcategorias=c.idcategorias " +
                     "and a.fecha between '" + dtpInicio.Value.ToString("yyyyMMdd000000") + "' AND '" +
                     dtpFin.Value.ToString("yyyyMMdd235959") + "' AND v.articulos_codigo IN "+
                     "(SELECT codigo FROM articulos WHERE aplicacomision=1)");
                 comando = new MySqlCommand(cmd, conectar);
                 conectar.Open();
-                //DataTable Tabla23= new DataTable();
-                //Tabla23.Load(comando.ExecuteReader());
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
@@ -302,8 +300,17 @@ namespace Diprolim
                             {
                                 if (tblComisiones[0, i].Value.ToString() == lector.GetString(0))
                                 {
-                                    double abonoo = lector.GetDouble(1);
+                                  //  double abonoo = lector.GetDouble(1);
                                     tblComisiones[5, i].Value = Convert.ToDouble(tblComisiones[5, i].Value)+ (lector.GetDouble(1)/1.16);
+                                    if (lector.GetDouble(3) == 0 && lector.GetInt32(4)==0)
+                                    {
+                                        tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + (lector.GetDouble(1)/1.16) * (Convert.ToDouble(tblComisiones[8, i].Value) / 100);
+                                    }
+                                    else
+                                    {
+                                        tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + lector.GetDouble(3);
+                                    }
+                                    
                                 }
                             }
                         }
@@ -313,11 +320,20 @@ namespace Diprolim
                             {
                                 if (tblComisiones[0, i].Value.ToString() == lector.GetString(0))
                                 {
-                                    double abonoo = lector.GetDouble(1);
+                                  //  double abonoo = lector.GetDouble(1);
                                     tblComisiones[5, i].Value = Convert.ToDouble(tblComisiones[5, i].Value) + (lector.GetDouble(1));
+                                    if (lector.GetDouble(3) == 0 && lector.GetInt32(4) == 0)
+                                    {
+                                        tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + lector.GetDouble(1) * (Convert.ToDouble(tblComisiones[8, i].Value) / 100);
+                                    }
+                                    else
+                                    {
+                                        tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + lector.GetDouble(3);
+                                    }
                                 }
                             }
                         }
+                       
                     }
                     Totales = 0;
                     for (int i = 0; i < tblComisiones.Rows.Count-1; i++)
@@ -328,14 +344,16 @@ namespace Diprolim
                     tblComisiones[5, tblComisiones.Rows.Count - 1].Value = Totales;
                 }
                 conectar.Close();
-                //Total efectivo
+                //Total efectivo y Comisión
                 Totales = 0;
                 totalComision = 0;
                 for (int i = 0; i < tblComisiones.Rows.Count - 1; i++)
                 {
-                    tblComisiones[6, i].Value = Convert.ToDouble(tblComisiones[2, i].Value) + Convert.ToDouble(tblComisiones[4, i].Value)+ Convert.ToDouble(tblComisiones[5, i].Value);
-                    tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[6, i].Value) * (Convert.ToDouble(tblComisiones[8, i].Value)/100);
+                     // Total efectivo  =  Total contado[2] + Consignación[4] + Abonos[5]
+                    tblComisiones[6, i].Value = Convert.ToDouble(tblComisiones[2, i].Value) + Convert.ToDouble(tblComisiones[4, i].Value);
+                    tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + Convert.ToDouble(tblComisiones[6, i].Value) * (Convert.ToDouble(tblComisiones[8, i].Value) / 100);
                     Totales += Convert.ToDouble(tblComisiones[6, i].Value);
+                    //Convert.ToDouble(tblComisiones[5, i].Value)
                     totalComision += Convert.ToDouble(tblComisiones[7, i].Value);
                 }
                 tblComisiones[6, tblComisiones.Rows.Count - 1].Value = Totales;
@@ -385,7 +403,7 @@ namespace Diprolim
                 //vENDEDOR
                 oSheet.Cells[3, 1] = tbxNVendedor.Text;
                 oSheet.get_Range("A1", "E1").Font.Size = 14;
-                for (int i = 0; i < dgvConsulta.ColumnCount; i++)
+                for (int i = 0; i < dgvConsulta.ColumnCount-1; i++)
                 {
                     oSheet.Cells[4, i + 1] = dgvConsulta.Columns[i].HeaderText;
                 }
@@ -397,7 +415,7 @@ namespace Diprolim
                     Excel.XlVAlign.xlVAlignJustify;
                 // Create an array to multiple values at once.
                 int fila = dgvConsulta.Rows.Count;
-                int colum = dgvConsulta.Columns.Count;
+                int colum = dgvConsulta.Columns.Count-1;
                 string[,] saNames = new string[fila, colum];
 
                 for (int i = 0; i < fila; i++)
@@ -445,7 +463,7 @@ namespace Diprolim
                 printPreviewDialog1.ShowDialog();
             }
         }
-        int col1, col2, col3, col4, col5, col6, col7, col8, col9, y, i = 0, x, L;
+        int col1, col2, col3, col4, col5, col6, col7, col8, y, i = 0, x, L;
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
               if (tblComisiones.Rows.Count > 0)
@@ -468,7 +486,7 @@ namespace Diprolim
                 col6 = tblComisiones.Columns[5].Width - an;
                 col7 = tblComisiones.Columns[6].Width - an;
                 col8 = tblComisiones.Columns[7].Width - an;
-                col9 = tblComisiones.Columns[8].Width - an;
+             //   col9 = tblComisiones.Columns[8].Width - an;
 
                 //Logotipo
                 Image newImage = (Image)global::Diprolim.Properties.Resources.logoImpresiones512;
@@ -552,13 +570,13 @@ namespace Diprolim
                 e.Graphics.DrawString(tblComisiones.Columns[7].HeaderText.ToString(), letra, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7, y, col8, tblComisiones.Rows[0].Height + al));
 
                 #endregion
-                #region Porcentaje
+            /*    #region Porcentaje
 
                 //             e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(60 + col1 + col2 + col3, 100, col4, tblComisiones.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, y, col9, tblComisiones.Rows[0].Height + al));
                 e.Graphics.DrawString(tblComisiones.Columns[8].HeaderText.ToString(), letra, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, y, col9, tblComisiones.Rows[0].Height + al));
 
-                #endregion
+                #endregion*/
                   
                 height = 160;
 
@@ -598,7 +616,7 @@ namespace Diprolim
                     e.Graphics.DrawString(tblComisiones.Rows[i].Cells[7].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7, height, tblComisiones.Columns[7].Width, tblComisiones.Rows[0].Height));
 
                     //                    e.Graphics.DrawRectangle(p, new Rectangle(400 + tblComisiones.Columns[1].Width, height, tblComisiones.Columns[4].Width, tblComisiones.Rows[0].Height));
-                    e.Graphics.DrawString(tblComisiones.Rows[i].Cells[8].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblComisiones.Columns[8].Width, tblComisiones.Rows[0].Height));
+                //    e.Graphics.DrawString(tblComisiones.Rows[i].Cells[8].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblComisiones.Columns[8].Width, tblComisiones.Rows[0].Height));
 
                     i++;
                 }

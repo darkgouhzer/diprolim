@@ -36,13 +36,17 @@ namespace Diprolim
 
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlCommand comando;
-            if (nombre == "")
+            if (nombre == "1")
             {
-                comando = new MySqlCommand("select * from clientes", conectar);
+                comando = new MySqlCommand("select idclientes, nombre from clientes where empleados_id_empleado=" + vendedor, conectar);
+            }
+            else if (vendedor.Length > 0)
+            {
+                comando = new MySqlCommand("select idclientes, nombre from clientes where empleados_id_empleado=" + vendedor, conectar);
             }
             else
             {
-                comando = new MySqlCommand("select * from clientes where empleados_id_empleado=" + vendedor, conectar);
+                comando = new MySqlCommand("select idclientes, nombre from clientes", conectar);
             }
 
             conectar.Open();
@@ -83,7 +87,7 @@ namespace Diprolim
 
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlCommand comando;
-            if (nombre == "")
+            if (nombre == "1" || nombre == "")
             {
                 comando = new MySqlCommand("select idclientes, nombre from clientes where nombre like '%" + tbxFiltro.Text.Trim() + "%'", conectar);
             }
@@ -91,7 +95,6 @@ namespace Diprolim
             {
                 comando = new MySqlCommand("select idclientes, nombre from clientes where empleados_id_empleado='" + nombre + "' and nombre like '%" + tbxFiltro.Text.Trim() + "%'", conectar);
             }
-
             conectar.Open();
 
             MySqlDataReader lector;

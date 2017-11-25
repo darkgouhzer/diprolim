@@ -1450,7 +1450,7 @@ namespace Diprolim
                                 }
                             }
                             #endregion
-                            actImpuestos();
+                           // actImpuestos();
                             sumaTotal();
                         }
                     }
@@ -1734,17 +1734,17 @@ namespace Diprolim
             
             if (tbxVendedor.Text == "" && tbxCCliente.Text == "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito();
+                CobranzaCredito cobcr = new CobranzaCredito(Conexion);
                 cobcr.ShowDialog();
             }
             else if (tbxVendedor.Text != "" && tbxCCliente.Text == "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text);
+                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, Conexion);
                 cobcr.ShowDialog();
             }
             else if (tbxVendedor.Text != "" && tbxCCliente.Text != "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, tbxCCliente.Text);
+                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, tbxCCliente.Text, Conexion);
                 cobcr.ShowDialog();
             }
         }
@@ -2584,17 +2584,17 @@ namespace Diprolim
         {
             if (tbxVendedor.Text == "" && tbxCCliente.Text == "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito();
+                CobranzaCredito cobcr = new CobranzaCredito(Conexion);
                 cobcr.ShowDialog();
             }
             else if (tbxVendedor.Text != "" && tbxCCliente.Text == "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text);
+                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, Conexion);
                 cobcr.ShowDialog();
             }
             else if (tbxVendedor.Text != "" && tbxCCliente.Text != "")
             {
-                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, tbxCCliente.Text);
+                CobranzaCredito cobcr = new CobranzaCredito(tbxVendedor.Text, tbxCCliente.Text, Conexion);
                 cobcr.ShowDialog();
             }
         }

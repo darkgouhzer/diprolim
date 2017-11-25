@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,62 +9,78 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Identidades;
 
 namespace Diprolim
 {
     public partial class CobranzaCredito : Form
     {
+        UnicaSQL.DBMS_Unico Conexion;
+        String cmd;
         conexion conn = new conexion();
         MySqlCommand comando;
         MySqlConnection conectar;
         MySqlDataReader lector;
         DialogResult result;
-        public CobranzaCredito()
+        VentaBO objVentaBO;
+        public CobranzaCredito(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
-        }
-
-        public void verificarAdeudos(string cliente)
-        {
-            conectar = conn.ObtenerConexion();
-            comando = new MySqlCommand("update ventas set pendiente=0 where pendiente<0.01 and clientes_idclientes="+cliente, conectar);
-            conectar.Open();
-            comando.ExecuteNonQuery();
-            conectar.Close();
-        }
-        public CobranzaCredito(string id)
+            Conexion = sConexion;
+            cmd = String.Empty;
+            objVentaBO = new VentaBO();
+            objVentaBO.ReAsignarDeudas();
+        }       
+        public CobranzaCredito(string id, UnicaSQL.DBMS_Unico sConexion)
         {
 
             InitializeComponent();
+            Conexion = sConexion;
+            cmd = String.Empty;
+            objVentaBO = new VentaBO();
+            objVentaBO.ReAsignarDeudas();
+
             tbxVendedor.Text = id;
             if (tbxVendedor.Text != "1")
             {
                 obtenerVendedor();
                 tbxCliente.Focus();
             }
+
         }
-        public CobranzaCredito(string vend, string client)
+        public CobranzaCredito(string vend, string client, UnicaSQL.DBMS_Unico sConexion)
         {
 
             InitializeComponent();
+            Conexion = sConexion;
+            cmd = String.Empty;
+            objVentaBO = new VentaBO();
+            objVentaBO.ReAsignarDeudas();
             tbxVendedor.Text = vend;
             tbxCliente.Text = client;
             verificarAdeudos(client);
             if (tbxVendedor.Text != "1")
             {
                 obtenerVendedor();
-                ObtnerCliente();
+                ObtenerCliente();
             }
         }
+        public void verificarAdeudos(string cliente)
+        {
 
+            cmd = String.Format("UPDATE ventas SET pendiente=0 WHERE pendiente<0.01 AND clientes_idclientes={0}", cliente);
+            Conexion.Conectarse();
+            Conexion.Ejecutar(cmd);
+            Conexion.Desconectarse();
+        }
         private void tbxFolio_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                MetodoFolio();
+                ConsultarPorFolio();
             }
         }
-        public void MetodoFolio()
+        public void ConsultarPorFolio()
         {
             if (tbxFolio.Text.Length > 0)
             {
@@ -84,14 +101,15 @@ namespace Diprolim
                 dtgCredito.Rows.Clear();
                 conectar = conn.ObtenerConexion();
                 comando = new MySqlCommand("select v.folio, v.articulos_codigo,a.descripcion, a.valor_medida, um.nombre, v.cantidad," +
-                    " v.precio_art, v.pendiente, v.idventas,v.clientes_idclientes,v.importe from ventas v, articulos a, unidad_medida um where v.tipo_compra='credito' and " +
+                    " v.precio_art, v.pendiente, v.idventas,v.clientes_idclientes,v.importe, DATEDIFF(now(), v.fecha_venta ) from ventas v, articulos a, unidad_medida um where v.tipo_compra='credito' and " +
                     "v.articulos_codigo=a.codigo and um.id=a.unidad_medida_id and v.folio=" + tbxFolio.Text + pendient, conectar);
                 conectar.Open();
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
                     dtgCredito.Rows.Add(lector.GetString(0), lector.GetString(1), lector.GetString(2) + " " + lector.GetString(3) + lector.GetString(4),
-                        lector.GetString(5), lector.GetDouble(6), lector.GetDouble(7), 0, lector.GetDouble(7), lector.GetString(8), lector.GetDouble(10));
+                        lector.GetString(5), lector.GetDouble(6), lector.GetDouble(7), 0, lector.GetDouble(7), lector.GetString(8), lector.GetDouble(10),
+                        lector.GetDouble(11));
                     tbxCliente.Text = lector.GetString(9);
                     saldo += lector.GetDouble(7);
                     pendiente += lector.GetDouble(7);
@@ -100,7 +118,7 @@ namespace Diprolim
                 dtgCredito.Rows.Add("", "", "", "", "", saldo, 0, pendiente);
                 dtgCredito.Rows[dtgCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
                 //tblCredito[6, tblCredito.Rows.Count - 1].ReadOnly = true;
-                ObtnerCliente2();
+                ObtenerCliente2();
             }
         }
 
@@ -126,7 +144,7 @@ namespace Diprolim
                     tbxCliente.Text = id.regresar.valXn;
                 }
                 tbxCliente.Focus();
-                ObtnerCliente();
+                ObtenerCliente();
             
         }
 
@@ -139,7 +157,7 @@ namespace Diprolim
         }
         public void MetodoVendedor()
         {
-            if (tbxVendedor.Text != "1")
+         //   if (tbxVendedor.Text != "1")
             {
                 obtenerVendedor();
             }
@@ -214,10 +232,10 @@ namespace Diprolim
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                ObtnerCliente();
+                ObtenerCliente();
             }
         }
-        public void ObtnerCliente()
+        public void ObtenerCliente()
         {
             Boolean existe = false;
             string vendedor = "";
@@ -237,9 +255,12 @@ namespace Diprolim
                 conectar.Close();
                 if (existe)
                 {
-                    tbxVendedor.Text = vendedor;
-                    
-                    obtenerVendedor();
+                    if (tbxVendedor.Text != "1")
+                    {
+                        tbxVendedor.Text = vendedor;
+                        obtenerVendedor();
+                    }                   
+
                     desactivarControles();
                     verificarAdeudos(tbxCliente.Text);
                     obtenerCreditos();
@@ -252,7 +273,7 @@ namespace Diprolim
             }
 
         }
-        public void ObtnerCliente2()
+        public void ObtenerCliente2()
         {
             Boolean existe = false;
             string vendedor = "";
@@ -271,8 +292,12 @@ namespace Diprolim
                 conectar.Close();
                 if (existe)
                 {
-                    tbxVendedor.Text = vendedor;
-                    obtenerVendedor2();
+                    if (tbxVendedor.Text != "1")
+                    {
+                        tbxVendedor.Text = vendedor;
+                        obtenerVendedor2();
+                    }
+                    
                     desactivarControles();
                 }
                 else
@@ -319,14 +344,16 @@ namespace Diprolim
             double saldo = 0,pendiente = 0;
             conectar = conn.ObtenerConexion();
             comando = new MySqlCommand("select v.folio, v.articulos_codigo,a.descripcion, a.valor_medida, um.nombre, v.cantidad,"+
-                " v.precio_art, v.pendiente, v.idventas,v.importe from ventas v, articulos a, unidad_medida um where clientes_idclientes="+tbxCliente.Text+" and v.tipo_compra='credito' and " +
-                "v.articulos_codigo=a.codigo and um.id=a.unidad_medida_id"+pendient+" order by folio asc", conectar);
+                " v.precio_art, v.pendiente, v.idventas,v.importe,DATEDIFF(now(), v.fecha_venta ) from ventas v, articulos a, "+
+                "unidad_medida um where clientes_idclientes=" + tbxCliente.Text + " and v.tipo_compra='credito' and " +
+                "v.articulos_codigo=a.codigo and um.id=a.unidad_medida_id" + pendient + " and v.empleados_id_empleado="+tbxVendedor.Text+" order by folio asc", conectar);
             conectar.Open();
             lector = comando.ExecuteReader();
             while (lector.Read())
             {
                 dtgCredito.Rows.Add(lector.GetString(0),lector.GetString(1), lector.GetString(2)+" "+lector.GetString(3)+lector.GetString(4),
-                    lector.GetString(5), lector.GetDouble(6), lector.GetDouble(7), 0, lector.GetDouble(7), lector.GetString(8),lector.GetDouble(9));
+                    lector.GetString(5), lector.GetDouble(6), lector.GetDouble(7), 0, lector.GetDouble(7), lector.GetString(8), lector.GetDouble(9), 
+                    lector.GetDouble(10));
                 saldo += lector.GetDouble(7);
                 pendiente += lector.GetDouble(7);
             }
@@ -379,7 +406,7 @@ namespace Diprolim
                 tbxFolio.Text = id.regresar.valXn;
             }
             tbxFolio.Focus();
-            MetodoFolio();
+            ConsultarPorFolio();
         }
 
         private void tblCredito_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -616,7 +643,6 @@ namespace Diprolim
             string des = "";
             while (lector.Read())
             {
-
                 Depa = lector.GetInt32(0);
 
             }
@@ -632,7 +658,7 @@ namespace Diprolim
             if (Depa == 3) { sTipoCategoria = "Papel"; }
             conectar = conn.ObtenerConexion();
 
-            comando = new MySqlCommand("select Vendedor from categorias where nombre='" + sTipoCategoria + "'", conectar);
+            comando = new MySqlCommand("SELECT Vendedor FROM categorias WHERE nombre='" + sTipoCategoria + "'", conectar);
             conectar.Open();
             lector = comando.ExecuteReader();
 
@@ -644,13 +670,13 @@ namespace Diprolim
         }
         int idCategoria;
         double comisionC;
-        public void ObtnerClienteComision()
+        public void ObtenerClienteComision()
         {
             if (tbxCliente.Text != "")
             {
                 conectar = conn.ObtenerConexion();
                 comando = new MySqlCommand("SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
-                            "FROM clientes a, categorias u WHERE idclientes =" + tbxCliente.Text + " and a.categorias_idcategorias=u.idcategorias", conectar);
+                            "FROM clientes a, categorias u WHERE idclientes =" + tbxCliente.Text + " AND a.categorias_idcategorias=u.idcategorias", conectar);
 
                 conectar.Open();
 
@@ -674,6 +700,9 @@ namespace Diprolim
         }
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            Boolean bAllOK = false;
+            ComisionBO objComisionBO = new ComisionBO();
+            int iDias = 0;
             try
             {
                 
@@ -689,26 +718,38 @@ namespace Diprolim
                             {
                                 if (Convert.ToDouble(dtgCredito[6, i].Value) > 0)
                                 {
+                                    iDias =Convert.ToInt32(dtgCredito[10, i].Value);
                                     obtenerDepartamento(dtgCredito[1, i].Value.ToString());
-                                    ObtnerClienteComision();
+                                    ObtenerClienteComision();
                                     if (Depa != 1)
                                     {
                                         ObtenerComision();
                                         comisionC = ComisionN;
                                     }
                                     double comision = (Convert.ToDouble(dtgCredito[9, i].Value) - Convert.ToDouble(dtgCredito[7, i].Value)) * (comisionC / 100);
-                                    comando = new MySqlCommand("update ventas set comision=" + comision + ", pendiente=" + Convert.ToDouble(dtgCredito[7, i].Value) + " where idventas=" + Convert.ToInt32(dtgCredito[8, i].Value) + "", conectar);
-                                    conectar.Open();
-                                    comando.ExecuteNonQuery();
-                                    long idn = comando.LastInsertedId;//obtiene el id del ultimo registro insertado, que se utiliza en abonos
-                                    conectar.Close();
+                                    
+                                    cmd = String.Format("UPDATE ventas SET comision=" + comision + ", pendiente=" + Convert.ToDouble(dtgCredito[7, i].Value) + 
+                                        " WHERE idventas=" + Convert.ToInt32(dtgCredito[8, i].Value) + "", conectar);
+                                    Conexion.Conectarse();
+                                    Conexion.IniciarTransaccion();
+                                    Conexion.Ejecutar(cmd);
+                                    bAllOK = true;
                                     if (Convert.ToDouble(dtgCredito[6, i].Value) > 0)
                                     {
-                                        comando = new MySqlCommand("INSERT INTO abonos values(null," + Convert.ToDouble(dtgCredito[0, i].Value) + "," + Convert.ToDouble(dtgCredito[1, i].Value) + "," + tbxCliente.Text + "," + tbxVendedor.Text + "," + Convert.ToDouble(dtgCredito[5, i].Value) + "," + Convert.ToDouble(dtgCredito[6, i].Value) + "," + Convert.ToDouble(dtgCredito[7, i].Value) + "," + DateTime.Now.ToString("yyyyMMddHHmmss") + "," + Convert.ToInt32(dtgCredito[8, i].Value) + ")", conectar);
-                                        conectar.Open();
-                                        comando.ExecuteNonQuery();
-                                        conectar.Close();
+                                        comision = objComisionBO.CalcularComisionAbonos(iDias, Convert.ToInt32(tbxVendedor.Text),
+                                            Convert.ToDouble(dtgCredito[6, i].Value), Convert.ToInt32(dtgCredito[1, i].Value),
+                                            Convert.ToInt32(tbxCliente.Text), Convert.ToInt32(dtgCredito[0, i].Value));
+                                        bAllOK = false;
+                                        cmd = String.Format("INSERT INTO abonos values(null," + Convert.ToDouble(dtgCredito[0, i].Value) + "," +
+                                            Convert.ToDouble(dtgCredito[1, i].Value) + "," + tbxCliente.Text + "," + tbxVendedor.Text + ","
+                                            + Convert.ToDouble(dtgCredito[5, i].Value) + "," + Convert.ToDouble(dtgCredito[6, i].Value) + "," +
+                                            Convert.ToDouble(dtgCredito[7, i].Value) + "," + DateTime.Now.ToString("yyyyMMddHHmmss") + "," +
+                                            Convert.ToInt32(dtgCredito[8, i].Value) + "," + comision + "," + iDias + ")", conectar);
+                                        Conexion.Ejecutar(cmd);
+                                        bAllOK = true;
                                     }
+                                    Conexion.FinTransaccion(bAllOK);
+                                    Conexion.Desconectarse();
                                 }
                             }
                             dtgCredito.Rows.Clear();
@@ -969,9 +1010,24 @@ namespace Diprolim
                     tbxCliente.Text = id.regresar.valXn;
                 }
                 tbxCliente.Focus();
-                ObtnerCliente();
+                ObtenerCliente();
             }
         }
+        private Double CalcularComision(int iDias)
+        {
+            Double descuentoComision = 0;
+            DataTable dtDatos = new DataTable();
+            ComisionBO objComisionBO = new ComisionBO();
+            dtDatos = objComisionBO.ObtenerDescuentosComision();
+            CEmpleados objCEmpleados = new CEmpleados();
+            EmpleadoBO objEmpleadoBO = new EmpleadoBO();
+            objCEmpleados=objEmpleadoBO.ObtenerDatosVendedor(12);
+            return descuentoComision;
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CalcularComision(15);
+        }
     }
 }

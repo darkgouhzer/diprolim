@@ -106,19 +106,7 @@ namespace Diprolim
         {
             buscar();
         }
-
-        private void dtgEmpleados_Enter(object sender, EventArgs e)
-        {
-            
-           
-            
-        }
-
-        private void dtgEmpleados_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
+        
         private void dtgEmpleados_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)

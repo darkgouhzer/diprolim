@@ -443,7 +443,7 @@ namespace Diprolim
                         tbxCantidad.Clear();
                 }
                 #endregion
-                actImpuestos();
+            //    actImpuestos();
                 sumaTotal();
             }
         }
@@ -1107,7 +1107,8 @@ namespace Diprolim
             if (tbxCCliente.Text != "")
             {
                 string consulta = "SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
-                            "FROM clientes a, categorias u WHERE a.empleados_id_empleado="+tbxVendedor.Text+" and a.idclientes =" + tbxCCliente.Text + " and a.categorias_idcategorias=u.idcategorias";
+                            "FROM clientes a, categorias u WHERE (a.empleados_id_empleado="+tbxVendedor.Text+" OR "+
+                            tbxVendedor.Text+" = 1 ) AND a.idclientes =" + tbxCCliente.Text + " AND a.categorias_idcategorias=u.idcategorias";
                 Conexion.Ejecutar(consulta,ref tbl);
                 if (tbl.Rows.Count > 0)
                 {
@@ -1561,12 +1562,12 @@ namespace Diprolim
                 {
                     tbxVendedor.Text = id.regresar.valXn;
                     obtenerVendedor();
-                }
-                tbxVendedor.ReadOnly = true;
-                btnSV.Enabled = false;
-                tbxCCliente.ReadOnly = false;
-                tbxCCliente.Focus();
-                btnSC.Enabled = true;
+                    tbxVendedor.ReadOnly = true;
+                    btnSV.Enabled = false;
+                    tbxCCliente.ReadOnly = false;
+                    tbxCCliente.Focus();
+                    btnSC.Enabled = true;
+                }               
             }
         }
 

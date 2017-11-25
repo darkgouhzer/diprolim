@@ -45,6 +45,7 @@
             this.tblCrPendiente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrIdventa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxNCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxCliente = new System.Windows.Forms.TextBox();
@@ -68,6 +69,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCredito)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -88,11 +90,12 @@
             this.tblCrAbono,
             this.tblCrPendiente,
             this.tblCrIdventa,
-            this.tblCrImporte});
+            this.tblCrImporte,
+            this.colDias});
             this.dtgCredito.Location = new System.Drawing.Point(15, 162);
             this.dtgCredito.Margin = new System.Windows.Forms.Padding(4);
             this.dtgCredito.Name = "dtgCredito";
-            this.dtgCredito.Size = new System.Drawing.Size(944, 304);
+            this.dtgCredito.Size = new System.Drawing.Size(993, 304);
             this.dtgCredito.TabIndex = 223;
             this.dtgCredito.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCredito_CellEndEdit);
             this.dtgCredito.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tblCredito_CellValidating);
@@ -184,6 +187,12 @@
             this.tblCrImporte.HeaderText = "Importe";
             this.tblCrImporte.Name = "tblCrImporte";
             this.tblCrImporte.Visible = false;
+            // 
+            // colDias
+            // 
+            this.colDias.HeaderText = "Dias";
+            this.colDias.Name = "colDias";
+            this.colDias.ReadOnly = true;
             // 
             // tbxNCliente
             // 
@@ -455,12 +464,24 @@
             this.groupBox2.TabIndex = 241;
             this.groupBox2.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(342, 496);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 242;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CobranzaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(972, 554);
+            this.ClientSize = new System.Drawing.Size(1021, 554);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.rbtPagados);
             this.Controls.Add(this.rbtPendientes);
@@ -516,6 +537,11 @@
         private System.Windows.Forms.RadioButton rbtTodos;
         private System.Windows.Forms.RadioButton rbtPendientes;
         private System.Windows.Forms.RadioButton rbtPagados;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrFolio;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCodArt;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrDesc;
@@ -526,10 +552,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPendiente;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrIdventa;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblCrImporte;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDias;
+        private System.Windows.Forms.Button button1;
     }
 }

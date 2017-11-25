@@ -62,7 +62,7 @@ namespace Diprolim
                 {
                   
                         ObtenerUsuario();
-                        LenarPrivilegios();
+                        LLenarPrivilegios();
                     
                 }
             }
@@ -79,7 +79,7 @@ namespace Diprolim
             
             if (tbxCodigo.Text != "" && tbxNUsuario.Text != "")
             {
-                string[] C1 = new string[37];
+                string[] C1 = new string[38];
                //Ventas
                 if (cheVentasSucursal.Checked == true) { C1[0] = "1"; } else { C1[0] = "0"; }
                 if (cheSalidasVendedores.Checked == true) { C1[1] = "1"; } else { C1[1] = "0"; }
@@ -123,6 +123,7 @@ namespace Diprolim
                 if (cheAsignarPrivilegios.Checked == true) { C1[34] = "1"; } else { C1[34] = "0"; }
                 if (cheCobranzaCredito.Checked == true) { C1[35] = "1"; } else { C1[35] = "0"; }
                 if (cheAutorizaCredito.Checked == true) { C1[36] = "1"; } else { C1[36] = "0"; }
+                if (chkDescuentoComision.Checked == true) { C1[37] = "1"; } else { C1[37] = "0"; }
 
                 DataTable Tabla = new DataTable();
                 string comando = "DELETE FROM PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + tbxCodigo.Text;
@@ -157,7 +158,7 @@ namespace Diprolim
                 Conexion.Desconectarse();
             }
         }
-        public void LenarPrivilegios()
+        public void LLenarPrivilegios()
         {
             DataTable Tabla = new DataTable();
 
@@ -211,6 +212,7 @@ namespace Diprolim
                 if (row["CrearUsuario"].ToString() == "1") { cheCrearUsuarios.Checked = true; } else { cheCrearUsuarios.Checked = false; }
                 if (row["ModificarUsuario"].ToString() == "1") { cheModificarUsuarios.Checked = true; } else { cheModificarUsuarios.Checked = false; }
                 if (row["AsignarPrivilegios"].ToString() == "1") { cheAsignarPrivilegios.Checked = true; } else { cheAsignarPrivilegios.Checked = false; }
+                if (row["DescuentoComision"].ToString() == "1") { chkDescuentoComision.Checked = true; } else { chkDescuentoComision.Checked = false; }
 
                 if (row["CobranzaCreditos"].ToString() == "1") { cheCobranzaCredito.Checked = true; } else { cheCobranzaCredito.Checked = false; }
 
@@ -239,21 +241,6 @@ namespace Diprolim
             }
         }
 
-        private void che2_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che3_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che4_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
         private void che5_CheckedChanged(object sender, EventArgs e)
         {
             if (cheInventarios.Checked == true)
@@ -275,186 +262,6 @@ namespace Diprolim
             }
         }
 
-        private void che11_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che17_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che21_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che27_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che33_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che38_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che6_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che7_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che8_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che9_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che10_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che12_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che13_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che14_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che15_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che16_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che18_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che19_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che20_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che22_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che23_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che24_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che25_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che26_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che30_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che28_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void che29_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che31_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che32_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che34_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che35_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che36_CheckedChanged(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void che37_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che39_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che40_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void che43_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void tbxCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar))
@@ -463,11 +270,6 @@ namespace Diprolim
                 e.Handled = true;
 
             }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void tbxCodigo_KeyUp(object sender, KeyEventArgs e)

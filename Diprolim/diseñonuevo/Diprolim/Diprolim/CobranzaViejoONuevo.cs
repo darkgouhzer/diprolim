@@ -12,11 +12,13 @@ namespace Diprolim
 {
     public partial class CobranzaViejoONuevo : Form
     {
+        UnicaSQL.DBMS_Unico Conexion;
         string vendedor = "";
         string cliente = "";
-        public CobranzaViejoONuevo()
+        public CobranzaViejoONuevo(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
+            Conexion = sConexion;
         }
         public CobranzaViejoONuevo(string id)
         {
@@ -57,20 +59,20 @@ namespace Diprolim
         {
             if (vendedor == "" && cliente == "")
             {
-                CobranzaCredito cobcre = new CobranzaCredito();
+                CobranzaCredito cobcre = new CobranzaCredito(Conexion);
                 cobcre.ShowDialog();
                 this.Close();
             }
             else if (vendedor != "" && cliente == "")
             {
-                CobranzaCredito cobcre = new CobranzaCredito(vendedor);
+                CobranzaCredito cobcre = new CobranzaCredito(vendedor, Conexion);
                 cobcre.ShowDialog();
                 this.Close();
             }
             else if (vendedor != "" && cliente != "")
             {
                 
-                CobranzaCredito cobcre = new CobranzaCredito(vendedor,cliente);
+                CobranzaCredito cobcre = new CobranzaCredito(vendedor,cliente, Conexion);
                 cobcre.ShowDialog();
                 this.Close();
             }

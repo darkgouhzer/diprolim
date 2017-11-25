@@ -182,51 +182,51 @@ namespace Diprolim
 
         public void Inactivo()
         {
-           capturaDeVentasToolStripMenuItem.Enabled = false; 
-           btnSalidas.Enabled = false;
-           reportesToolStripMenuItem.Enabled = false;
-           entradasToolStripMenuItem.Enabled = false; 
-           btnVentasVendedor.Enabled = false; 
-           consignacionToolStripMenuItem.Enabled = false; 
-           corteDeCajaToolStripMenuItem.Enabled = false; 
+            capturaDeVentasToolStripMenuItem.Enabled = false;
+            btnInvVendedor.Enabled = false;
+            reportesToolStripMenuItem.Enabled = false;
+            entradasToolStripMenuItem.Enabled = false;
+            btnVentasVendedor.Enabled = false;
+            consignacionToolStripMenuItem.Enabled = false;
+            corteDeCajaToolStripMenuItem.Enabled = false;
             //Inventarios
-           capturarToolStripMenuItem.Enabled = false; 
-           conversionesToolStripMenuItem.Enabled = false; 
-           inventarioToolStripMenuItem.Enabled = false; 
-           inventarioToolStripMenuItem1.Enabled = false; 
-           salidasEspecialesToolStripMenuItem.Enabled = false; 
+            capturarToolStripMenuItem.Enabled = false;
+            conversionesToolStripMenuItem.Enabled = false;
+            inventarioToolStripMenuItem.Enabled = false;
+            inventarioToolStripMenuItem1.Enabled = false;
+            salidasEspecialesToolStripMenuItem.Enabled = false;
             //Catalogos
             //if (row["VentasSucursal"].ToString() == "1") { catalogosToolStripMenuItem.Enabled = true; } else { catalogosToolStripMenuItem.Enabled = false; }
-            empleadosToolStripMenuItem.Enabled = false; 
-             clientesToolStripMenuItem.Enabled = false; 
-            capturarProductosToolStripMenuItem.Enabled = false; 
-           consultarToolStripMenuItem.Enabled = false; 
-           valorDeMedidaToolStripMenuItem.Enabled = false; 
-           almacenesToolStripMenuItem.Enabled = false; 
-          categoriasToolStripMenuItem.Enabled = false; 
-           rutasToolStripMenuItem.Enabled = false; 
+            empleadosToolStripMenuItem.Enabled = false;
+            clientesToolStripMenuItem.Enabled = false;
+            capturarProductosToolStripMenuItem.Enabled = false;
+            consultarToolStripMenuItem.Enabled = false;
+            valorDeMedidaToolStripMenuItem.Enabled = false;
+            almacenesToolStripMenuItem.Enabled = false;
+            categoriasToolStripMenuItem.Enabled = false;
+            rutasToolStripMenuItem.Enabled = false;
             //Reportes
             //if (row["VentasSucursal"].ToString() == "1") { reporteDeVentasToolStripMenuItem.Enabled = true; } else { reporteDeVentasToolStripMenuItem.Enabled = false; }
             ventasToolStripMenuItem1.Enabled = false;
-            btnEntradasInv.Enabled = false;
-            ventasCostoToolStripMenuItem1.Enabled = false; 
-           ventasGeneralesToolStripMenuItem.Enabled = false; 
-            entradasToolStripMenuItem2.Enabled = false; 
-           salidasToolStripMenuItem1.Enabled = false; 
-           entradasToolStripMenuItem3.Enabled = false; 
-             salidasToolStripMenuItem2.Enabled = false; 
-             graficoToolStripMenuItem.Enabled = false; 
-             prenominaToolStripMenuItem.Enabled = false; 
-             cobranzaToolStripMenuItem1.Enabled = false; 
-            historicoDeMovimientosToolStripMenuItem.Enabled = false; 
-             consignacionToolStripMenuItem1.Enabled = false; 
-             ingresoDeEfectivoToolStripMenuItem.Enabled = false; 
-             crearUsuarioToolStripMenuItem.Enabled = false; 
-             modificarUsuarioToolStripMenuItem.Enabled = false;
-             btnReportesV.Enabled = false;
-            asignarPrivilegiosToolStripMenuItem.Enabled = false; 
-                
-            
+            btnConsignacion.Enabled = false;
+            ventasCostoToolStripMenuItem1.Enabled = false;
+            ventasGeneralesToolStripMenuItem.Enabled = false;
+            entradasToolStripMenuItem2.Enabled = false;
+            salidasToolStripMenuItem1.Enabled = false;
+            entradasToolStripMenuItem3.Enabled = false;
+            salidasToolStripMenuItem2.Enabled = false;
+            graficoToolStripMenuItem.Enabled = false;
+            prenominaToolStripMenuItem.Enabled = false;
+            cobranzaToolStripMenuItem1.Enabled = false;
+            historicoDeMovimientosToolStripMenuItem.Enabled = false;
+            consignacionToolStripMenuItem1.Enabled = false;
+            ingresoDeEfectivoToolStripMenuItem.Enabled = false;
+            crearUsuarioToolStripMenuItem.Enabled = false;
+            modificarUsuarioToolStripMenuItem.Enabled = false;
+            btnCobranzaCredito.Enabled = false;
+            asignarPrivilegiosToolStripMenuItem.Enabled = false;
+            descuentoComisiónToolStripMenuItem.Enabled = false;
+
         }
 
         public void Usuario()
@@ -243,9 +243,9 @@ namespace Diprolim
                 //Ventas
                 //if (row["Nombre"].ToString() == "1") { ventasToolStripMenuItem.Enabled = true; } else { ventasToolStripMenuItem.Enabled = false; }
                 if (row["VentasSucursal"].ToString() == "1") { capturaDeVentasToolStripMenuItem.Enabled = true; } else { capturaDeVentasToolStripMenuItem.Enabled = false; }
-                if (row["SalidasEmpleados"].ToString() == "1") { reportesToolStripMenuItem.Enabled = true; btnSalidas.Enabled = true; } else { reportesToolStripMenuItem.Enabled = false; btnSalidas.Enabled = false; }
+                if (row["SalidasEmpleados"].ToString() == "1") { reportesToolStripMenuItem.Enabled = true; btnInvVendedor.Enabled = true; } else { reportesToolStripMenuItem.Enabled = false; btnInvVendedor.Enabled = false; }
                 if (row["EntradasEmpleados"].ToString() == "1") { entradasToolStripMenuItem.Enabled = true; btnVentasVendedor.Enabled = true; } else { entradasToolStripMenuItem.Enabled = false; btnVentasVendedor.Enabled = false; }
-                if (row["Consignacion"].ToString() == "1") { consignacionToolStripMenuItem.Enabled = true; btnEntradasInv.Enabled = true; } else { consignacionToolStripMenuItem.Enabled = false; btnEntradasInv.Enabled = false; }
+                if (row["Consignacion"].ToString() == "1") { consignacionToolStripMenuItem.Enabled = true; btnConsignacion.Enabled = true; } else { consignacionToolStripMenuItem.Enabled = false; btnConsignacion.Enabled = false; }
                 if (row["CorteDeCaja"].ToString() == "1") { corteDeCajaToolStripMenuItem.Enabled = true; } else { corteDeCajaToolStripMenuItem.Enabled = false; }
                 //Inventarios
                 if (row["EntradasDeInventario"].ToString() == "1") { capturarToolStripMenuItem.Enabled = true; } else { capturarToolStripMenuItem.Enabled = false; }
@@ -282,7 +282,8 @@ namespace Diprolim
                 if (row["ModificarUsuario"].ToString() == "1") { modificarUsuarioToolStripMenuItem.Enabled = true; } else { modificarUsuarioToolStripMenuItem.Enabled = false; }
                 if (row["AsignarPrivilegios"].ToString() == "1") { asignarPrivilegiosToolStripMenuItem.Enabled = true; } else { asignarPrivilegiosToolStripMenuItem.Enabled = false; }
 
-                if (row["CobranzaCreditos"].ToString() == "1") { btnReportesV.Enabled = true; } else { btnReportesV.Enabled = false; }
+                if (row["CobranzaCreditos"].ToString() == "1") { btnCobranzaCredito.Enabled = true; } else { btnCobranzaCredito.Enabled = false; }
+                if (row["DescuentoComision"].ToString() == "1") { descuentoComisiónToolStripMenuItem.Enabled = true; } else { descuentoComisiónToolStripMenuItem.Enabled = false; }
                 
             }
         }
@@ -349,21 +350,21 @@ namespace Diprolim
             objVentasVendedor.ShowDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnInvVendedor_Click(object sender, EventArgs e)
         {
             Salidas ssal = new Salidas(UsuarioID,Conexion);
             ssal.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnConsignacion_Click(object sender, EventArgs e)
         {
             Consignacion Consig = new Consignacion(Conexion,UsuarioID);
             Consig.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnCobranzaCredito_Click(object sender, EventArgs e)
         {
-            CobranzaCredito Cobcred = new CobranzaCredito();
+            CobranzaCredito Cobcred = new CobranzaCredito(Conexion);
             Cobcred.ShowDialog();
         }
 
@@ -485,7 +486,7 @@ namespace Diprolim
         {
             try
             {
-                CobranzaCredito CC = new CobranzaCredito();
+                CobranzaCredito CC = new CobranzaCredito(Conexion);
                 CC.ShowDialog();
             }
             catch (Exception ex)
@@ -597,14 +598,15 @@ namespace Diprolim
                 }
                 else if (e.KeyCode == Keys.F2)
                 {
-
+                    btnInvVendedor_Click(sender, e);
                 }
                 else if (e.KeyCode == Keys.F3)
                 {
-
+                    btnConsignacion_Click(sender, e);
                 }
                 else if (e.KeyCode == Keys.F4)
                 {
+                    btnCobranzaCredito_Click(sender, e);
                 }
             }
         }
@@ -613,6 +615,12 @@ namespace Diprolim
         {
             DescuentosComision objDescuentosComision = new DescuentosComision();
             objDescuentosComision.ShowDialog();
+        }
+
+        private void cobranzaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            RepCobranzaN repcn = new RepCobranzaN(Conexion);
+            repcn.ShowDialog();
         }
 
         }

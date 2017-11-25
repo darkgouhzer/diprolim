@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepCobranzaN));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepCobranzaN));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tbxDias = new System.Windows.Forms.TextBox();
@@ -65,6 +65,14 @@
             this.btnCrRCliente = new System.Windows.Forms.Button();
             this.btnSPCrC = new System.Windows.Forms.Button();
             this.dtgCrTabla = new System.Windows.Forms.DataGridView();
+            this.tblFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCredito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
@@ -82,13 +90,6 @@
             this.totabono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgHistTabla = new System.Windows.Forms.DataGridView();
-            this.HistFolios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistCodArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistSaldoAn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistAbonos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistSaldoDesp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnImprimirHistorial = new System.Windows.Forms.Button();
             this.btnSP = new System.Windows.Forms.Button();
             this.btnReporteHistorial = new System.Windows.Forms.Button();
@@ -102,14 +103,14 @@
             this.printPreviewCreditos = new System.Windows.Forms.PrintPreviewDialog();
             this.printPreviewTotales = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocTotales = new System.Drawing.Printing.PrintDocument();
-            this.tblFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCredito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistFolios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistCodArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistSaldoAn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistAbonos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistSaldoDesp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HistFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCrTabla)).BeginInit();
@@ -421,6 +422,70 @@
             this.dtgCrTabla.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtgCrTabla_SortCompare);
             this.dtgCrTabla.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dtgCrTabla_MouseDoubleClick);
             // 
+            // tblFolio
+            // 
+            this.tblFolio.HeaderText = "Folio";
+            this.tblFolio.Name = "tblFolio";
+            this.tblFolio.ReadOnly = true;
+            this.tblFolio.Width = 80;
+            // 
+            // tblFecha
+            // 
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.tblFecha.DefaultCellStyle = dataGridViewCellStyle1;
+            this.tblFecha.HeaderText = "Fecha";
+            this.tblFecha.Name = "tblFecha";
+            this.tblFecha.ReadOnly = true;
+            // 
+            // tblDescripcion
+            // 
+            this.tblDescripcion.HeaderText = "Descripción";
+            this.tblDescripcion.Name = "tblDescripcion";
+            this.tblDescripcion.ReadOnly = true;
+            this.tblDescripcion.Width = 300;
+            // 
+            // tblCredito
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.tblCredito.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tblCredito.HeaderText = "Credito";
+            this.tblCredito.Name = "tblCredito";
+            this.tblCredito.ReadOnly = true;
+            // 
+            // tblAbono
+            // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.tblAbono.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tblAbono.HeaderText = "Abonado";
+            this.tblAbono.Name = "tblAbono";
+            this.tblAbono.ReadOnly = true;
+            // 
+            // tblSaldo
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.tblSaldo.DefaultCellStyle = dataGridViewCellStyle4;
+            this.tblSaldo.HeaderText = "Saldo";
+            this.tblSaldo.Name = "tblSaldo";
+            this.tblSaldo.ReadOnly = true;
+            // 
+            // tblDias
+            // 
+            this.tblDias.HeaderText = "Días";
+            this.tblDias.Name = "tblDias";
+            this.tblDias.ReadOnly = true;
+            this.tblDias.Width = 60;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dtpInicio);
@@ -628,7 +693,8 @@
             this.HistSaldoAn,
             this.HistAbonos,
             this.HistSaldoDesp,
-            this.HistFecha});
+            this.HistFecha,
+            this.colDias});
             this.dtgHistTabla.Location = new System.Drawing.Point(26, 114);
             this.dtgHistTabla.Margin = new System.Windows.Forms.Padding(4);
             this.dtgHistTabla.Name = "dtgHistTabla";
@@ -637,67 +703,6 @@
             this.dtgHistTabla.Size = new System.Drawing.Size(976, 399);
             this.dtgHistTabla.TabIndex = 247;
             this.dtgHistTabla.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtgHistTabla_SortCompare);
-            // 
-            // HistFolios
-            // 
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.HistFolios.DefaultCellStyle = dataGridViewCellStyle8;
-            this.HistFolios.HeaderText = "Folios";
-            this.HistFolios.Name = "HistFolios";
-            this.HistFolios.ReadOnly = true;
-            // 
-            // HistCodArt
-            // 
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.HistCodArt.DefaultCellStyle = dataGridViewCellStyle9;
-            this.HistCodArt.HeaderText = "Código articulo";
-            this.HistCodArt.Name = "HistCodArt";
-            this.HistCodArt.ReadOnly = true;
-            // 
-            // HistDescripcion
-            // 
-            this.HistDescripcion.HeaderText = "Descripción";
-            this.HistDescripcion.Name = "HistDescripcion";
-            this.HistDescripcion.ReadOnly = true;
-            this.HistDescripcion.Width = 280;
-            // 
-            // HistSaldoAn
-            // 
-            dataGridViewCellStyle10.Format = "C2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.HistSaldoAn.DefaultCellStyle = dataGridViewCellStyle10;
-            this.HistSaldoAn.HeaderText = "Saldo anterior";
-            this.HistSaldoAn.Name = "HistSaldoAn";
-            this.HistSaldoAn.ReadOnly = true;
-            // 
-            // HistAbonos
-            // 
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.HistAbonos.DefaultCellStyle = dataGridViewCellStyle11;
-            this.HistAbonos.HeaderText = "Abono";
-            this.HistAbonos.Name = "HistAbonos";
-            this.HistAbonos.ReadOnly = true;
-            // 
-            // HistSaldoDesp
-            // 
-            dataGridViewCellStyle12.Format = "C2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.HistSaldoDesp.DefaultCellStyle = dataGridViewCellStyle12;
-            this.HistSaldoDesp.HeaderText = "Pendiente";
-            this.HistSaldoDesp.Name = "HistSaldoDesp";
-            this.HistSaldoDesp.ReadOnly = true;
-            // 
-            // HistFecha
-            // 
-            dataGridViewCellStyle13.Format = "d";
-            dataGridViewCellStyle13.NullValue = null;
-            this.HistFecha.DefaultCellStyle = dataGridViewCellStyle13;
-            this.HistFecha.HeaderText = "Fecha";
-            this.HistFecha.Name = "HistFecha";
-            this.HistFecha.ReadOnly = true;
             // 
             // btnImprimirHistorial
             // 
@@ -840,69 +845,78 @@
             // 
             this.printDocTotales.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocTotales_PrintPage);
             // 
-            // tblFolio
+            // HistFolios
             // 
-            this.tblFolio.HeaderText = "Folio";
-            this.tblFolio.Name = "tblFolio";
-            this.tblFolio.ReadOnly = true;
-            this.tblFolio.Width = 80;
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.HistFolios.DefaultCellStyle = dataGridViewCellStyle8;
+            this.HistFolios.HeaderText = "Folios";
+            this.HistFolios.Name = "HistFolios";
+            this.HistFolios.ReadOnly = true;
+            this.HistFolios.Width = 80;
             // 
-            // tblFecha
+            // HistCodArt
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.tblFecha.DefaultCellStyle = dataGridViewCellStyle1;
-            this.tblFecha.HeaderText = "Fecha";
-            this.tblFecha.Name = "tblFecha";
-            this.tblFecha.ReadOnly = true;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            this.HistCodArt.DefaultCellStyle = dataGridViewCellStyle9;
+            this.HistCodArt.HeaderText = "Código articulo";
+            this.HistCodArt.Name = "HistCodArt";
+            this.HistCodArt.ReadOnly = true;
             // 
-            // tblDescripcion
+            // HistDescripcion
             // 
-            this.tblDescripcion.HeaderText = "Descripción";
-            this.tblDescripcion.Name = "tblDescripcion";
-            this.tblDescripcion.ReadOnly = true;
-            this.tblDescripcion.Width = 300;
+            this.HistDescripcion.HeaderText = "Descripción";
+            this.HistDescripcion.Name = "HistDescripcion";
+            this.HistDescripcion.ReadOnly = true;
+            this.HistDescripcion.Width = 280;
             // 
-            // tblCredito
+            // HistSaldoAn
             // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.tblCredito.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tblCredito.HeaderText = "Credito";
-            this.tblCredito.Name = "tblCredito";
-            this.tblCredito.ReadOnly = true;
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.HistSaldoAn.DefaultCellStyle = dataGridViewCellStyle10;
+            this.HistSaldoAn.HeaderText = "Saldo anterior";
+            this.HistSaldoAn.Name = "HistSaldoAn";
+            this.HistSaldoAn.ReadOnly = true;
+            this.HistSaldoAn.Width = 95;
             // 
-            // tblAbono
+            // HistAbonos
             // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.tblAbono.DefaultCellStyle = dataGridViewCellStyle3;
-            this.tblAbono.HeaderText = "Abonado";
-            this.tblAbono.Name = "tblAbono";
-            this.tblAbono.ReadOnly = true;
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.HistAbonos.DefaultCellStyle = dataGridViewCellStyle11;
+            this.HistAbonos.HeaderText = "Abono";
+            this.HistAbonos.Name = "HistAbonos";
+            this.HistAbonos.ReadOnly = true;
+            this.HistAbonos.Width = 95;
             // 
-            // tblSaldo
+            // HistSaldoDesp
             // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.tblSaldo.DefaultCellStyle = dataGridViewCellStyle4;
-            this.tblSaldo.HeaderText = "Saldo";
-            this.tblSaldo.Name = "tblSaldo";
-            this.tblSaldo.ReadOnly = true;
+            dataGridViewCellStyle12.Format = "C2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.HistSaldoDesp.DefaultCellStyle = dataGridViewCellStyle12;
+            this.HistSaldoDesp.HeaderText = "Pendiente";
+            this.HistSaldoDesp.Name = "HistSaldoDesp";
+            this.HistSaldoDesp.ReadOnly = true;
+            this.HistSaldoDesp.Width = 95;
             // 
-            // tblDias
+            // HistFecha
             // 
-            this.tblDias.HeaderText = "Días";
-            this.tblDias.Name = "tblDias";
-            this.tblDias.ReadOnly = true;
-            this.tblDias.Width = 60;
+            dataGridViewCellStyle13.Format = "d";
+            dataGridViewCellStyle13.NullValue = null;
+            this.HistFecha.DefaultCellStyle = dataGridViewCellStyle13;
+            this.HistFecha.HeaderText = "Fecha";
+            this.HistFecha.Name = "HistFecha";
+            this.HistFecha.ReadOnly = true;
+            this.HistFecha.Width = 95;
             // 
-            // id
+            // colDias
             // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
+            this.colDias.HeaderText = "Dias";
+            this.colDias.Name = "colDias";
+            this.colDias.ReadOnly = true;
+            this.colDias.Width = 50;
             // 
             // RepCobranzaN
             // 
@@ -978,13 +992,6 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewHistorial;
         private System.Drawing.Printing.PrintDocument printDocCreditos;
         private System.Windows.Forms.PrintPreviewDialog printPreviewCreditos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistFolios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistCodArt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistDescripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistSaldoAn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistAbonos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistSaldoDesp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistFecha;
         private System.Windows.Forms.DataGridView dtgHistTotales;
         private System.Windows.Forms.PrintPreviewDialog printPreviewTotales;
         private System.Drawing.Printing.PrintDocument printDocTotales;
@@ -1000,5 +1007,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tblSaldo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblDias;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistFolios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistCodArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistDescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistSaldoAn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistAbonos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistSaldoDesp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HistFecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDias;
     }
 }

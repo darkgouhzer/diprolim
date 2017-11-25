@@ -12,25 +12,25 @@ namespace Diprolim
 {
     public partial class DescuentosComision : Form
     {
-        DescuentoComisionBO objDescuentoComisionBO;
+        ComisionBO objComisionBO;
         public DescuentosComision()
         {            
             InitializeComponent();
-            objDescuentoComisionBO = new DescuentoComisionBO();
+            objComisionBO = new ComisionBO();
             llenarGrid();
         }
         public void llenarGrid()
         {
             dtgDescuentoComision.Rows.Clear();
-            foreach(DataRow row in objDescuentoComisionBO.ObtenerDescuentosComision().Rows)
+            foreach(DataRow row in objComisionBO.ObtenerDescuentosComision().Rows)
             {
                 dtgDescuentoComision.Rows.Add(row[0], row[1], row[2]);
             }
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            objDescuentoComisionBO = new DescuentoComisionBO();
-            if(objDescuentoComisionBO.Guardar(dtgDescuentoComision))
+            objComisionBO = new ComisionBO();
+            if(objComisionBO.Guardar(dtgDescuentoComision))
             {
                 MessageBox.Show("Datos guardados con éxito");
                 llenarGrid();

@@ -61,8 +61,9 @@ namespace ReglasNegocios
             CArticulos objCArticulos = new CArticulos();
             CClientes objCClientes = new CClientes();
             CEmpleados objCEmpleados=new CEmpleados();
+            CComision objCComision = new CComision();
             Double dComision = 0, dPorcentajeComision = 0;
-            Double dPorcentajeDescuento = objComisionDAL.ObtenerPorcentajeDescuento(iDias);
+            objCComision = objComisionDAL.ObtenerPorcentajeDescuento(iDias);
             objCArticulos = objArticuloBO.ObtenerDatosArticulo(iArticulo);
             int IDCategoria=0;
             if (objCArticulos.Departamento == 1)
@@ -78,18 +79,31 @@ namespace ReglasNegocios
             {
                 IDCategoria = 10;
             }
+
             objCEmpleados = objEmpleadoBO.ObtenerDatosVendedor(iVendedor);
-            dPorcentajeComision = ObtenerPorcentajeComision(objCEmpleados.TipoVendedor, IDCategoria);
-            if(objVentaDAL.aplicaIVA(iFolioVenta))
+            if (objCComision.Dias > 0 && objCComision.IdDescuentoComision > 0)
             {
-                dComision = (dAbono/1.16) * dPorcentajeComision / 100;
+                if (objVentaDAL.aplicaIVA(iFolioVenta))
+                {
+                    dComision = (dAbono / 1.16) * objCComision.Porcentaje / 100;
+                }
+                else
+                {
+                    dComision = dAbono * objCComision.Porcentaje / 100;
+                }
             }
             else
             {
-                dComision = dAbono * dPorcentajeComision / 100;
+                dPorcentajeComision = ObtenerPorcentajeComision(objCEmpleados.TipoVendedor, IDCategoria);
+                if (objVentaDAL.aplicaIVA(iFolioVenta))
+                {
+                    dComision = (dAbono / 1.16) * dPorcentajeComision / 100;
+                }
+                else
+                {
+                    dComision = dAbono * dPorcentajeComision / 100;
+                }
             }
-            
-            dComision = dComision - (dComision * dPorcentajeDescuento / 100);
             return dComision;
         }
     }

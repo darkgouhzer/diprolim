@@ -28,13 +28,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccesoDatos">
-      <HintPath>..\AccesoDatos\bin\Debug\AccesoDatos.dll</HintPath>
+    <Reference Include="AccesoDatos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AccesoDatos\bin\Release\AccesoDatos.dll</HintPath>
     </Reference>
-    <Reference Include="Identidades">
-      <HintPath>..\Identidades\bin\Debug\Identidades.dll</HintPath>
+    <Reference Include="Identidades, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Identidades\bin\Release\Identidades.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

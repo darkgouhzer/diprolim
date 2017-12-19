@@ -28,13 +28,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClaseUnica">
-      <HintPath>..\Diprolim\bin\Debug\ClaseUnica.dll</HintPath>
+    <Reference Include="ClaseUnica, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Diprolim\Libreria\ClaseUnica.dll</HintPath>
     </Reference>
-    <Reference Include="Identidades">
-      <HintPath>..\Identidades\bin\Debug\Identidades.dll</HintPath>
+    <Reference Include="Identidades, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Identidades\bin\Release\Identidades.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

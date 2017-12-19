@@ -84,7 +84,7 @@
             this.cbxPuestos.Location = new System.Drawing.Point(154, 219);
             this.cbxPuestos.Name = "cbxPuestos";
             this.cbxPuestos.Size = new System.Drawing.Size(161, 24);
-            this.cbxPuestos.TabIndex = 20;
+            this.cbxPuestos.TabIndex = 7;
             // 
             // tbxID
             // 
@@ -92,7 +92,7 @@
             this.tbxID.MaxLength = 20;
             this.tbxID.Name = "tbxID";
             this.tbxID.Size = new System.Drawing.Size(113, 23);
-            this.tbxID.TabIndex = 1;
+            this.tbxID.TabIndex = 0;
             this.tbxID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxID_KeyDown);
             this.tbxID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxID_KeyPress);
             this.tbxID.Leave += new System.EventHandler(this.tbxID_Leave);
@@ -114,7 +114,7 @@
             this.tbxAPaterno.MaxLength = 20;
             this.tbxAPaterno.Name = "tbxAPaterno";
             this.tbxAPaterno.Size = new System.Drawing.Size(314, 23);
-            this.tbxAPaterno.TabIndex = 3;
+            this.tbxAPaterno.TabIndex = 2;
             this.tbxAPaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxAPaterno_KeyDown);
             // 
             // label1
@@ -134,7 +134,7 @@
             this.tbxNombre.MaxLength = 40;
             this.tbxNombre.Name = "tbxNombre";
             this.tbxNombre.Size = new System.Drawing.Size(314, 23);
-            this.tbxNombre.TabIndex = 2;
+            this.tbxNombre.TabIndex = 1;
             this.tbxNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNombre_KeyDown);
             // 
             // label6
@@ -166,7 +166,7 @@
             this.dtpFNacimiento.Location = new System.Drawing.Point(154, 160);
             this.dtpFNacimiento.Name = "dtpFNacimiento";
             this.dtpFNacimiento.Size = new System.Drawing.Size(158, 23);
-            this.dtpFNacimiento.TabIndex = 7;
+            this.dtpFNacimiento.TabIndex = 5;
             this.dtpFNacimiento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpFNacimiento_KeyDown);
             // 
             // cbxSexo
@@ -200,7 +200,7 @@
             this.tbxAMaterno.MaxLength = 20;
             this.tbxAMaterno.Name = "tbxAMaterno";
             this.tbxAMaterno.Size = new System.Drawing.Size(314, 23);
-            this.tbxAMaterno.TabIndex = 4;
+            this.tbxAMaterno.TabIndex = 3;
             this.tbxAMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxAMaterno_KeyDown);
             // 
             // btnCambiarVendedor
@@ -233,7 +233,7 @@
             this.tbxLimite.MaxLength = 20;
             this.tbxLimite.Name = "tbxLimite";
             this.tbxLimite.Size = new System.Drawing.Size(217, 23);
-            this.tbxLimite.TabIndex = 9;
+            this.tbxLimite.TabIndex = 17;
             this.tbxLimite.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxLimite_KeyDown);
             this.tbxLimite.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxLimite_KeyPress);
             // 
@@ -255,7 +255,7 @@
             this.btnNPuesto.Location = new System.Drawing.Point(321, 215);
             this.btnNPuesto.Name = "btnNPuesto";
             this.btnNPuesto.Size = new System.Drawing.Size(30, 30);
-            this.btnNPuesto.TabIndex = 100;
+            this.btnNPuesto.TabIndex = 8;
             this.btnNPuesto.UseVisualStyleBackColor = true;
             this.btnNPuesto.Click += new System.EventHandler(this.btnNPuesto_Click);
             // 
@@ -265,7 +265,7 @@
             this.tbxLimiteCredito.MaxLength = 20;
             this.tbxLimiteCredito.Name = "tbxLimiteCredito";
             this.tbxLimiteCredito.Size = new System.Drawing.Size(217, 23);
-            this.tbxLimiteCredito.TabIndex = 101;
+            this.tbxLimiteCredito.TabIndex = 18;
             this.tbxLimiteCredito.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxLimiteCredito_KeyDown);
             this.tbxLimiteCredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxLimiteCredito_KeyPress);
             // 
@@ -296,7 +296,7 @@
             this.tbxE_Mail.Location = new System.Drawing.Point(154, 423);
             this.tbxE_Mail.Name = "tbxE_Mail";
             this.tbxE_Mail.Size = new System.Drawing.Size(217, 23);
-            this.tbxE_Mail.TabIndex = 126;
+            this.tbxE_Mail.TabIndex = 16;
             // 
             // label11
             // 
@@ -314,7 +314,7 @@
             this.tbxTelefono.Location = new System.Drawing.Point(154, 394);
             this.tbxTelefono.Name = "tbxTelefono";
             this.tbxTelefono.Size = new System.Drawing.Size(217, 23);
-            this.tbxTelefono.TabIndex = 124;
+            this.tbxTelefono.TabIndex = 15;
             // 
             // label15
             // 
@@ -332,7 +332,7 @@
             this.tbxEstado.Location = new System.Drawing.Point(154, 365);
             this.tbxEstado.Name = "tbxEstado";
             this.tbxEstado.Size = new System.Drawing.Size(217, 23);
-            this.tbxEstado.TabIndex = 118;
+            this.tbxEstado.TabIndex = 14;
             // 
             // label16
             // 
@@ -350,14 +350,14 @@
             this.tbxMunicipio.Location = new System.Drawing.Point(154, 336);
             this.tbxMunicipio.Name = "tbxMunicipio";
             this.tbxMunicipio.Size = new System.Drawing.Size(217, 23);
-            this.tbxMunicipio.TabIndex = 116;
+            this.tbxMunicipio.TabIndex = 13;
             // 
             // btnBorar
             // 
             this.btnBorar.Location = new System.Drawing.Point(296, 552);
             this.btnBorar.Name = "btnBorar";
             this.btnBorar.Size = new System.Drawing.Size(75, 31);
-            this.btnBorar.TabIndex = 114;
+            this.btnBorar.TabIndex = 21;
             this.btnBorar.Text = "Borrar";
             this.btnBorar.UseVisualStyleBackColor = true;
             this.btnBorar.Click += new System.EventHandler(this.btnBorar_Click);
@@ -367,7 +367,7 @@
             this.btnGuardarr.Location = new System.Drawing.Point(215, 552);
             this.btnGuardarr.Name = "btnGuardarr";
             this.btnGuardarr.Size = new System.Drawing.Size(75, 31);
-            this.btnGuardarr.TabIndex = 113;
+            this.btnGuardarr.TabIndex = 20;
             this.btnGuardarr.Text = "Guardar";
             this.btnGuardarr.UseVisualStyleBackColor = true;
             this.btnGuardarr.Click += new System.EventHandler(this.btnGuardarr_Click);
@@ -388,7 +388,7 @@
             this.tbxLocalidad.Location = new System.Drawing.Point(154, 307);
             this.tbxLocalidad.Name = "tbxLocalidad";
             this.tbxLocalidad.Size = new System.Drawing.Size(217, 23);
-            this.tbxLocalidad.TabIndex = 111;
+            this.tbxLocalidad.TabIndex = 12;
             // 
             // label18
             // 
@@ -406,7 +406,7 @@
             this.tbxNumInterior.Location = new System.Drawing.Point(368, 278);
             this.tbxNumInterior.Name = "tbxNumInterior";
             this.tbxNumInterior.Size = new System.Drawing.Size(100, 23);
-            this.tbxNumInterior.TabIndex = 109;
+            this.tbxNumInterior.TabIndex = 11;
             // 
             // label19
             // 
@@ -424,7 +424,7 @@
             this.tbxNumExterior.Location = new System.Drawing.Point(154, 278);
             this.tbxNumExterior.Name = "tbxNumExterior";
             this.tbxNumExterior.Size = new System.Drawing.Size(100, 23);
-            this.tbxNumExterior.TabIndex = 107;
+            this.tbxNumExterior.TabIndex = 10;
             // 
             // label20
             // 
@@ -441,7 +441,7 @@
             this.tbxCalle.Location = new System.Drawing.Point(154, 249);
             this.tbxCalle.Name = "tbxCalle";
             this.tbxCalle.Size = new System.Drawing.Size(314, 23);
-            this.tbxCalle.TabIndex = 105;
+            this.tbxCalle.TabIndex = 9;
             // 
             // label2
             // 
@@ -472,7 +472,7 @@
             this.dtpFechaIngreso.Location = new System.Drawing.Point(154, 131);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Size = new System.Drawing.Size(158, 23);
-            this.dtpFechaIngreso.TabIndex = 130;
+            this.dtpFechaIngreso.TabIndex = 4;
             // 
             // label8
             // 
@@ -507,7 +507,7 @@
             this.cbxStatus.Location = new System.Drawing.Point(154, 510);
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(161, 24);
-            this.cbxStatus.TabIndex = 132;
+            this.cbxStatus.TabIndex = 19;
             // 
             // ModificarEmpleado
             // 

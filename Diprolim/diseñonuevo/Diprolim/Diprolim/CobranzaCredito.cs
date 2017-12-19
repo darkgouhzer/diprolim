@@ -28,8 +28,8 @@ namespace Diprolim
             InitializeComponent();
             Conexion = sConexion;
             cmd = String.Empty;
-            objVentaBO = new VentaBO();
-            objVentaBO.ReAsignarDeudas();
+            //objVentaBO = new VentaBO();
+            //objVentaBO.ReAsignarDeudas();
         }       
         public CobranzaCredito(string id, UnicaSQL.DBMS_Unico sConexion)
         {
@@ -37,8 +37,8 @@ namespace Diprolim
             InitializeComponent();
             Conexion = sConexion;
             cmd = String.Empty;
-            objVentaBO = new VentaBO();
-            objVentaBO.ReAsignarDeudas();
+            //objVentaBO = new VentaBO();
+            //objVentaBO.ReAsignarDeudas();
 
             tbxVendedor.Text = id;
             if (tbxVendedor.Text != "1")
@@ -54,8 +54,8 @@ namespace Diprolim
             InitializeComponent();
             Conexion = sConexion;
             cmd = String.Empty;
-            objVentaBO = new VentaBO();
-            objVentaBO.ReAsignarDeudas();
+            //objVentaBO = new VentaBO();
+            //objVentaBO.ReAsignarDeudas();
             tbxVendedor.Text = vend;
             tbxCliente.Text = client;
             verificarAdeudos(client);
@@ -738,7 +738,7 @@ namespace Diprolim
                                     {
                                         comision = objComisionBO.CalcularComisionAbonos(iDias, Convert.ToInt32(tbxVendedor.Text),
                                             Convert.ToDouble(dtgCredito[6, i].Value), Convert.ToInt32(dtgCredito[1, i].Value),
-                                            Convert.ToInt32(tbxCliente.Text), Convert.ToInt32(dtgCredito[0, i].Value));
+                                            Convert.ToInt32(tbxCliente.Text), Convert.ToInt32(dtgCredito[8, i].Value));
                                         bAllOK = false;
                                         cmd = String.Format("INSERT INTO abonos values(null," + Convert.ToDouble(dtgCredito[0, i].Value) + "," +
                                             Convert.ToDouble(dtgCredito[1, i].Value) + "," + tbxCliente.Text + "," + tbxVendedor.Text + ","

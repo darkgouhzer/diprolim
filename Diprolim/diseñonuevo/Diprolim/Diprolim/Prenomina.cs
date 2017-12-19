@@ -161,7 +161,7 @@ namespace Diprolim
 
                 //Total venta
                 Totales = 0;
-                cmd = string.Format("select c.nombre, sum(v.importe) from ventas v, categorias c where c.idcategorias="+
+                cmd = string.Format("select c.nombre, sum(if(v.iva>0, v.importe/1.16, v.importe)) from ventas v, categorias c where c.idcategorias=" +
                     "v.categorias_idcategorias and "+vendedor+"v.fecha_venta between  '" + dtpInicio.Value.ToString("yyyyMMdd000000") +
                     "' AND '" + dtpFin.Value.ToString("yyyyMMdd235959") + "' AND v.articulos_codigo IN "+
                     "(SELECT codigo FROM articulos WHERE aplicacomision=1) GROUP BY c.nombre;");
@@ -232,7 +232,7 @@ namespace Diprolim
 
                 //Total Credito
                 Totales = 0;
-                cmd = string.Format("select c.nombre, sum(v.importe) from ventas v, categorias c where v.tipo_compra='credito' and "+
+                cmd = string.Format("select c.nombre, sum(v.importe),v.iva from ventas v, categorias c where v.tipo_compra='credito' and "+
                     "c.idcategorias=v.categorias_idcategorias and " + vendedor + "v.fecha_venta between  '" +
                     dtpInicio.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFin.Value.ToString("yyyyMMdd235959") +
                     "' AND v.articulos_codigo IN (SELECT codigo FROM articulos WHERE aplicacomision=1) group by c.nombre;");
@@ -241,14 +241,23 @@ namespace Diprolim
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
+                    ConIva = 0;
+                    if(lector.GetDouble(2)>0)
+                    {
+                        ConIva = lector.GetDouble(1) / 1.16;
+                    }
+                    else
+                    {
+                        ConIva = lector.GetDouble(1);
+                    }
                     for (int i = 0; i < tblComisiones.Rows.Count; i++)
                     {
                         if (tblComisiones[0, i].Value.ToString() == lector.GetString(0))
                         {
-                            tblComisiones[3, i].Value = lector.GetDouble(1);
+                            tblComisiones[3, i].Value = ConIva;
                         }
                     }
-                    Totales += lector.GetDouble(1);
+                    Totales += ConIva;
                     tblComisiones[3, tblComisiones.Rows.Count - 1].Value = Totales;
                 }
                 conectar.Close();
@@ -352,6 +361,7 @@ namespace Diprolim
                      // Total efectivo  =  Total contado[2] + Consignación[4] + Abonos[5]
                     tblComisiones[6, i].Value = Convert.ToDouble(tblComisiones[2, i].Value) + Convert.ToDouble(tblComisiones[4, i].Value);
                     tblComisiones[7, i].Value = Convert.ToDouble(tblComisiones[7, i].Value) + Convert.ToDouble(tblComisiones[6, i].Value) * (Convert.ToDouble(tblComisiones[8, i].Value) / 100);
+                    tblComisiones[6, i].Value = Convert.ToDouble(tblComisiones[6, i].Value) + Convert.ToDouble(tblComisiones[5, i].Value);
                     Totales += Convert.ToDouble(tblComisiones[6, i].Value);
                     //Convert.ToDouble(tblComisiones[5, i].Value)
                     totalComision += Convert.ToDouble(tblComisiones[7, i].Value);

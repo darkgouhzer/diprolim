@@ -469,7 +469,7 @@ namespace Diprolim
                                         if (bAllOk)
                                         {
                                             cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                            bAllOk = Conexion.Ejecutar(cmd);
+                                            Conexion.Ejecutar(cmd);
                                             if (bAllOk)
                                             {
                                                 //eliminación de ventas
@@ -479,7 +479,7 @@ namespace Diprolim
                                                 {
                                                     //Eliminación de entrada
                                                     cmd = "delete from entradas where articulos_codigo='" + cod_art + "' and empleados_id_empleado='" + cod_emp + "' and fecha='" + fecha + "'";
-                                                    bAllOk = Conexion.Ejecutar(cmd);
+                                                    Conexion.Ejecutar(cmd);
                                                     if (bAllOk)
                                                     {
                                                         DataTable tbl = new DataTable();
@@ -513,7 +513,7 @@ namespace Diprolim
                                         bAllOk = Conexion.Conectarse();
                                         Conexion.IniciarTransaccion();
                                         cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                        bAllOk = Conexion.Ejecutar(cmd);
+                                        Conexion.Ejecutar(cmd);
                                         if (bAllOk)
                                         {
                                             //eliminación de ventas
@@ -588,7 +588,7 @@ namespace Diprolim
                                                 id_ventas = rows["idventas"].ToString();
 
                                                 cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                                bAllOk = Conexion.Ejecutar(cmd);
+                                                Conexion.Ejecutar(cmd);
                                                 if (bAllOk)
                                                 {
                                                     //eliminación de ventas
@@ -598,7 +598,7 @@ namespace Diprolim
                                                     {
                                                         //Eliminación de entrada
                                                         cmd = "delete from entradas where articulos_codigo='" + cod_art + "' and empleados_id_empleado='" + cod_emp + "' and date(fecha)='" + fecha + "'";
-                                                        bAllOk = Conexion.Ejecutar(cmd);
+                                                        Conexion.Ejecutar(cmd);
                                                         if (bAllOk)
                                                         {
                                                             DataTable tbl2 = new DataTable();
@@ -647,7 +647,7 @@ namespace Diprolim
                                             cantidad = rows["cantidad"].ToString();
                                             id_ventas = rows["idventas"].ToString();
                                             cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                            bAllOk = Conexion.Ejecutar(cmd);
+                                            Conexion.Ejecutar(cmd);
                                             if (bAllOk)
                                             {
                                                 //eliminación de ventas
@@ -714,7 +714,7 @@ namespace Diprolim
                                                 bAllOk = Conexion.Conectarse();
                                                 Conexion.IniciarTransaccion();
                                                 cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                                bAllOk = Conexion.Ejecutar(cmd);
+                                                Conexion.Ejecutar(cmd);
                                                 if (bAllOk)
                                                 {
                                                     //eliminación de ventas
@@ -724,7 +724,7 @@ namespace Diprolim
                                                     {
                                                         //Eliminación de entrada
                                                         cmd = "delete from entradas where articulos_codigo='" + cod_art + "' and empleados_id_empleado='" + cod_emp + "' and fecha='" + fecha + "'";
-                                                        bAllOk = Conexion.Ejecutar(cmd);
+                                                        Conexion.Ejecutar(cmd);
                                                         if (bAllOk)
                                                         {
                                                             DataTable tbl2 = new DataTable();
@@ -755,7 +755,7 @@ namespace Diprolim
                                                 bAllOk = Conexion.Conectarse();
                                                 Conexion.IniciarTransaccion();
                                                 cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                                bAllOk = Conexion.Ejecutar(cmd);
+                                                Conexion.Ejecutar(cmd);
                                                 if (bAllOk)
                                                 {
 
@@ -829,7 +829,7 @@ namespace Diprolim
                                                         id_ventas = rows["idventas"].ToString();
 
                                                         cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                                        bAllOk = Conexion.Ejecutar(cmd);
+                                                        Conexion.Ejecutar(cmd);
                                                         if (bAllOk)
                                                         {
                                                             //eliminación de ventas
@@ -839,7 +839,7 @@ namespace Diprolim
                                                             {
                                                                 //Eliminación de entrada
                                                                 cmd = "delete from entradas where articulos_codigo='" + cod_art + "' and empleados_id_empleado='" + cod_emp + "' and date(fecha)='" + fecha + "'";
-                                                                bAllOk = Conexion.Ejecutar(cmd);
+                                                                Conexion.Ejecutar(cmd);
                                                                 if (bAllOk)
                                                                 {
                                                                     DataTable tbl2 = new DataTable();
@@ -888,7 +888,7 @@ namespace Diprolim
                                                     cantidad = rows["cantidad"].ToString();
                                                     id_ventas = rows["idventas"].ToString();
                                                     cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
-                                                    bAllOk = Conexion.Ejecutar(cmd);
+                                                    Conexion.Ejecutar(cmd);
                                                     if (bAllOk)
                                                     {
                                                         //eliminación de ventas

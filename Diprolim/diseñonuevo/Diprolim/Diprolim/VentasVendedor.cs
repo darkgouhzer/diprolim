@@ -1326,40 +1326,8 @@ namespace Diprolim
                     }
                     else if (rbtCredito.Checked)
                     {
-                        Boolean bAllOk = false;
-                        bAllOk = CreditoPendiente();
-                        if (bAllOk)
-                        {
-                            string S = "", Respuesta="";
-                            inicioSesion id = new inicioSesion(S);
-                            DialogResult dr = id.ShowDialog();
-                            if (dr == DialogResult.OK)
-                            {
-                                Respuesta = id.regresar.valXn;
-                            }
-                            if (Respuesta != "")
-                            {
-                                DataTable Tabla = new DataTable();
-                                string comando = "Select * from PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + Respuesta;
-                                Conexion.Conectarse();
-                                Conexion.Ejecutar(comando, ref Tabla);
-                                if (Tabla.Rows.Count > 0)
-                                {
-                                    DataRow row = Tabla.Rows[0];
-                                    if (row["AutorizarCredito"].ToString() == "1")
-                                    {
-                                        bAllOk = false;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("El usuario no tiene permiso necesario para autorizar venta a crédito.");
-                                    }
-                                }
-                                Conexion.Desconectarse();
-                            }
-                        }
-                        if (!bAllOk)
-                        {
+                       
+                       
                             #region credito
                             if (tblCredito.Rows.Count > 0)
                             {
@@ -1452,7 +1420,7 @@ namespace Diprolim
                             #endregion
                            // actImpuestos();
                             sumaTotal();
-                        }
+                        
                     }
                 }
 
@@ -1593,6 +1561,7 @@ namespace Diprolim
             obtenerVendedor();
             sumaTotal();
             panel1.Enabled = false;
+            tbxCCliente.Focus();
         }
 
         private void tbxCCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -1795,7 +1764,7 @@ namespace Diprolim
         {
             Conexion.Conectarse();
             Conexion.IniciarTransaccion();
-            Boolean Pasar = false;
+            Boolean bAllOK = false;
             if (rbtContado.Checked)
             {
                 #region RegistroContado
@@ -1806,7 +1775,6 @@ namespace Diprolim
                     {
                         Fechaa = dtpFecha.Value.ToString("yyyyMMddHHmmss");
                         nuevoFolio = foliosCredito();
-                       // conectar = conn.ObtenerConexion();
                         for (int i = 0; i < tblEntradas.Rows.Count-1; i++)
                         {
                             cod_empleado = tbxVendedor.Text;
@@ -1818,44 +1786,31 @@ namespace Diprolim
                             descuento = Convert.ToDouble(tblEntradas[8, i].Value.ToString());
                             importe = tblEntradas[9, i].Value.ToString();
                             costoP = Convert.ToDouble(tblEntradas[11, i].Value);
-                            //Descuento();
                             verificarYEliminar();
-                          Pasar=  Conexion.Ejecutar("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")");
-                            //comando = new MySqlCommand("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")", conectar);
-                            //conectar.Open();
-                            //comando.ExecuteNonQuery();
-                            //conectar.Close();
-
+                          bAllOK=  Conexion.Ejecutar("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")");
+                         
                             if (Convert.ToDouble(n_venta) > 0)
                             {
                                 if (tbxVendedor.Text != "1")
                                 {
-                                   Pasar= Conexion.Ejecutar("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art);
-                                   // comando = new MySqlCommand("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art, conectar);
-                                    //conectar.Open();
-                                    //comando.ExecuteNonQuery();
-                                    //conectar.Close();
-
+                                   bAllOK= Conexion.Ejecutar("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art);
+                                  
                                     cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
                                       " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) " +
                                       " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
                                       cod_art, n_venta, "Ventas", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
                                       inv_anterior, Convert.ToDouble(inv_anterior)-Convert.ToDouble(n_venta), tbxVendedor.Text, UsuarioID);
-                                   Pasar= Conexion.Ejecutar(cmd);
+                                   bAllOK= Conexion.Ejecutar(cmd);
                                 }
                                 else
                                 {
-                                  Pasar=  Conexion.Ejecutar("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art);
-                                    //comando = new MySqlCommand("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art, conectar);
-                                    //conectar.Open();
-                                    //comando.ExecuteNonQuery();
-                                    //conectar.Close();
+                                  bAllOK=  Conexion.Ejecutar("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art);
                                 }
 
 
                                 //obtenerProducto2();
                                 DataTable DepaT=new DataTable();
-                                Pasar=Conexion.Ejecutar("SELECT departamento FROM articulos WHERE codigo =" + cod_art, ref DepaT);
+                                bAllOK=Conexion.Ejecutar("SELECT departamento FROM articulos WHERE codigo =" + cod_art, ref DepaT);
 
 
                                 Depa = Convert.ToInt32(DepaT.Rows[0][0]);
@@ -1867,7 +1822,7 @@ namespace Diprolim
                                     idCliente = 1;
 
                                     DataTable ClientDefau = new DataTable();
-                                    Pasar = Conexion.Ejecutar("SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
+                                    bAllOK = Conexion.Ejecutar("SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
                                                 "FROM clientes a, categorias u WHERE idclientes =" + idCliente + " and a.categorias_idcategorias=u.idcategorias", ref ClientDefau);
 
                                     if (ClientDefau.Rows.Count>0)
@@ -1904,7 +1859,7 @@ namespace Diprolim
                                     if (Depa == 2) { LOKO = "Accesorios"; }
                                     if (Depa == 3) { LOKO = "Papel"; }
                                     DataTable Com = new DataTable();
-                                    Pasar=Conexion.Ejecutar("select Vendedor from categorias where nombre='" + LOKO + "'",ref Com);
+                                    bAllOK=Conexion.Ejecutar("select Vendedor from categorias where nombre='" + LOKO + "'",ref Com);
                                     if(Com.Rows.Count>0)
                                     {
                                         ComisionN = Convert.ToDouble(Com.Rows[0][0]);
@@ -1916,33 +1871,26 @@ namespace Diprolim
                                 double iva = 0;
                                 if (chbxIVa.Checked)
                                 {
-                                    iva = 0.16 * Convert.ToDouble(importe);
+                                    iva = Convert.ToDouble(importe) - Convert.ToDouble(importe) / 1.16; 
                                 }
-                               Pasar= Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblEntradas[12, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'contado'," + nuevoFolio + ",0," + descuento + ")");
-                                //comando = new MySqlCommand("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblEntradas[12,i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'contado'," + nuevoFolio + ",0," + descuento + ")", conectar);
-                                //conectar.Open();
-                                //comando.ExecuteNonQuery();
-                                //conectar.Close();
+                               bAllOK= Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblEntradas[12, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'contado'," + nuevoFolio + ",0," + descuento + ")");                          
                             }
 
                         }
-                        chbxIVa.Checked = false;
-                        MessageBox.Show("La entrada ha sido registrada exitosamente");
-
+                        //chbxIVa.Checked = false;
+                        MessageBox.Show("La entrada ha sido registrada exitosamente");                        
                         tblEntradas.Rows.Clear();
                         tbxSubtotal.Clear();
                         tbxIVA.Clear();
                         tbxTotal.Clear();
-                        //tblEntradas.Rows.Add(false, "-", "-", "-", "-", "-", "Total", 0, "-", "-");
-                        //tblEntradas[0, tblEntradas.Rows.Count - 1].ReadOnly = true;
-                        //tblEntradas.Rows[tblEntradas.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                        button5_Click(sender, e);
                     }
                 }
                 else
                 {
                     MessageBox.Show("No hay nada para registrar");
                 }
-                #endregion
+                #endregion RegistroContado
             }
             else if(rbtCredito.Checked)
             {
@@ -1956,7 +1904,6 @@ namespace Diprolim
                         {
                             Fechaa = dtpFecha.Value.ToString("yyyyMMddHHmmss");
                             nuevoFolio = foliosCredito();
-                            conectar = conn.ObtenerConexion();
                             for (int i = 0; i < tblCredito.Rows.Count - 1; i++)
                             {
                                 cod_empleado = tbxVendedor.Text;
@@ -1971,42 +1918,27 @@ namespace Diprolim
                                 pendiente = tblCredito[7, i].Value.ToString();
 
                                 verificarYEliminar();
-                               Pasar= Conexion.Ejecutar("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")");
-                                //comando = new MySqlCommand("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")", conectar);
-                                //conectar.Open();
-                                //comando.ExecuteNonQuery();
-                                //conectar.Close();
-
+                               bAllOK= Conexion.Ejecutar("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")");
+                       
                                 if (Convert.ToDouble(n_venta) > 0)
                                 {
                                     if (tbxVendedor.Text != "1")
                                     {
-                                      Pasar=  Conexion.Ejecutar("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art);
-                                        //comando = new MySqlCommand("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art, conectar);
-                                        //conectar.Open();
-                                        //comando.ExecuteNonQuery();
-                                        //conectar.Close();
-                                        cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
+                                      bAllOK=  Conexion.Ejecutar("UPDATE inv_vendedor SET cantidad=cantidad-" + n_venta + " WHERE empleados_id_empleado=" + cod_empleado + " AND articulos_codigo=" + cod_art);
+                                      cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
                                           " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) " +
                                           " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
                                           cod_art, n_venta, "Ventas", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
                                           inv_anterior, Convert.ToDouble(inv_anterior) - Convert.ToDouble(n_venta), tbxVendedor.Text, UsuarioID);
-                                       Pasar= Conexion.Ejecutar(cmd);
+                                       bAllOK= Conexion.Ejecutar(cmd);
                                     }
                                     else
                                     {
-                                        Pasar=Conexion.Ejecutar("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art);
-                                        //comando = new MySqlCommand("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art, conectar);
-                                        //conectar.Open();
-                                        //comando.ExecuteNonQuery();
-                                        //conectar.Close();
+                                        bAllOK=Conexion.Ejecutar("UPDATE articulos SET cantidad=cantidad-" + n_venta + " WHERE codigo=" + cod_art);                                       
                                     }
 
-
-                                   // obtenerProducto2();//Metodo para obtener el departamento al que pertenece el producto
-
                                     DataTable DepaT = new DataTable();
-                                    Pasar = Conexion.Ejecutar("SELECT departamento FROM articulos WHERE codigo =" + cod_art, ref DepaT);
+                                    bAllOK = Conexion.Ejecutar("SELECT departamento FROM articulos WHERE codigo =" + cod_art, ref DepaT);
 
 
                                     Depa = Convert.ToInt32(DepaT.Rows[0][0]);
@@ -2017,7 +1949,7 @@ namespace Diprolim
                                         idCliente = 1;
 
                                         DataTable ClientDefau = new DataTable();
-                                        Pasar = Conexion.Ejecutar("SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
+                                        bAllOK = Conexion.Ejecutar("SELECT a.idclientes, a.nombre, a.categorias_idcategorias, u.Vendedor " +
                                                     "FROM clientes a, categorias u WHERE idclientes =" + idCliente + " and a.categorias_idcategorias=u.idcategorias", ref ClientDefau);
 
                                         if (ClientDefau.Rows.Count > 0)
@@ -2044,7 +1976,6 @@ namespace Diprolim
                                         }
                                         ClientDefau.Rows.Clear();
 
-                                        //ObtnerClienteDefaut();
                                     }
 
                                     if (Depa != 1)
@@ -2055,7 +1986,7 @@ namespace Diprolim
                                         if (Depa == 2) { LOKO = "Accesorios"; }
                                         if (Depa == 3) { LOKO = "Papel"; }
                                         DataTable Com = new DataTable();
-                                        Pasar = Conexion.Ejecutar("select Vendedor from categorias where nombre='" + LOKO + "'", ref Com);
+                                        bAllOK = Conexion.Ejecutar("select Vendedor from categorias where nombre='" + LOKO + "'", ref Com);
                                         if (Com.Rows.Count > 0)
                                         {
                                             ComisionN = Convert.ToDouble(Com.Rows[0][0]);
@@ -2067,33 +1998,23 @@ namespace Diprolim
                                     double iva = 0;
                                     if (chbxIVa.Checked)
                                     {
-                                        iva = 0.16 * Convert.ToDouble(importe);
+                                        iva = Convert.ToDouble(importe) -  Convert.ToDouble(importe) / 1.16;
                                     }
                                     else
                                     {
                                         iva = 0;
                                     }
-                                    Pasar=Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + ",0)");
-                                    //comando = new MySqlCommand("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + ",0)", conectar);
-                                    //conectar.Open();
-                                    //comando.ExecuteNonQuery();
-                                    DataTable tabla1 = new DataTable();
-                                    Pasar = Conexion.Ejecutar("Select idventas From Ventas",ref tabla1);
-                                      string idn= tabla1.Rows[tabla1.Rows.Count-1][0].ToString();
-                                    //long idn = comando.LastInsertedId;//obtiene el id del ultimo registro insertado, que se utiliza en abonos
-                                    conectar.Close();
+                                    bAllOK=Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + ",0)");
+
                                     if (Convert.ToDouble(abono) > 0)
                                     {
-                                    Pasar=    Conexion.Ejecutar("INSERT INTO abonos values(null," + nuevoFolio + "," + cod_art + "," + idCliente + "," + cod_empleado + "," + importe + "," + Convert.ToDouble(abono) + "," + pendiente + "," + Fechaa + "," + idn + ")");
-                                        //comando = new MySqlCommand("INSERT INTO abonos values(null," + nuevoFolio + "," + cod_art + "," + idCliente + "," + cod_empleado + "," + importe + "," + Convert.ToDouble(abono) + "," + pendiente + "," + Fechaa + "," + idn + ")", conectar);
-                                        //conectar.Open();
-                                        //comando.ExecuteNonQuery();
-                                        //conectar.Close();
+                                        bAllOK = Conexion.Ejecutar("INSERT INTO abonos values(null," + nuevoFolio + "," + cod_art + "," + idCliente + "," + cod_empleado + "," + importe + "," + Convert.ToDouble(abono) + "," + pendiente + "," + Fechaa + ",LAST_INSERT_ID(),0,0)");
+
                                     }
                                 }
 
                             }
-                            chbxIVa.Checked = false;
+                            //chbxIVa.Checked = false;
                             MessageBox.Show("La venta a crédito ha sido registrada exitosamente");
 
                             tblCredito.Rows.Clear();
@@ -2103,6 +2024,7 @@ namespace Diprolim
                             tbxSubtotal.Clear();
                             tbxIVA.Clear();
                             tbxTotal.Clear();
+                            button5_Click(sender, e);
                         }
                     }
                     else
@@ -2116,7 +2038,7 @@ namespace Diprolim
                 }
                 #endregion
             }
-            Conexion.FinTransaccion(Pasar);
+            Conexion.FinTransaccion(bAllOK);
             Conexion.Desconectarse();
         }
         double Descuentoo = 0;
@@ -2152,19 +2074,64 @@ namespace Diprolim
 
         private void rbtCredito_CheckedChanged(object sender, EventArgs e)
         {
-            tblCredito.Rows.Clear();
-            tblEntradas.Rows.Clear();
-            tbxSubtotal.Clear();
-            tbxIVA.Clear();
-            tbxTotal.Clear();
 
-            //rbtnDistribuidor.Enabled = false;
-            //rbtnGeneral.Checked = true;
-            tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
-            tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
-            tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
-            tblCredito.Visible = true;
-            tblEntradas.Visible = false;
+            Boolean bAllOk = false;
+            if(rbtCredito.Checked)
+            {
+                bAllOk = CreditoPendiente();
+                if (bAllOk)
+                {                    
+                    string S = "", Respuesta = "";
+                    inicioSesion id = new inicioSesion(S, "Autorización");
+                    DialogResult dr = id.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        Respuesta = id.regresar.valXn;
+                    }
+                    if (Respuesta != "")
+                    {
+                        DataTable Tabla = new DataTable();
+                        string comando = "Select * from PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + Respuesta;
+                        Conexion.Conectarse();
+                        Conexion.Ejecutar(comando, ref Tabla);
+                        if (Tabla.Rows.Count > 0)
+                        {
+                            DataRow row = Tabla.Rows[0];
+                            if (row["AutorizarCredito"].ToString() == "1")
+                            {
+                                bAllOk = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("El usuario no tiene permiso necesario para autorizar venta a crédito.");
+                            }
+                        }
+                        Conexion.Desconectarse();
+                    }
+                }
+            }
+           
+            if (!bAllOk)
+            {
+                tblCredito.Rows.Clear();
+                tblEntradas.Rows.Clear();
+                tbxSubtotal.Clear();
+                tbxIVA.Clear();
+                tbxTotal.Clear();
+
+                //rbtnDistribuidor.Enabled = false;
+                //rbtnGeneral.Checked = true;
+                tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
+                tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
+                tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                tblCredito.Visible = true;
+                tblEntradas.Visible = false;
+            }
+            else
+            {
+                rbtContado.Checked = true;
+            }
+            
         }
 
         private void tblCredito_KeyPress(object sender, KeyPressEventArgs e)
@@ -2270,7 +2237,7 @@ namespace Diprolim
                                 {
                                     if (chbxIVa.Checked)
                                     {
-                                        tblCredito[5, e.RowIndex].Value = (Convert.ToDouble(tblCredito[3, e.RowIndex].Value) * Convert.ToDouble(tblCredito[4, e.RowIndex].Value)) * 1.16;
+                                        tblCredito[5, e.RowIndex].Value = (Convert.ToDouble(tblCredito[3, e.RowIndex].Value) * Convert.ToDouble(tblCredito[4, e.RowIndex].Value));
                                     }
                                     else
                                     {

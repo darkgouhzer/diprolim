@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasVendedor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbxNVendedor = new System.Windows.Forms.TextBox();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -199,10 +199,10 @@
             // 
             // seleccionar
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.NullValue = "false";
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
-            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.NullValue = "false";
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle13;
             this.seleccionar.HeaderText = "";
             this.seleccionar.Name = "seleccionar";
             this.seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -231,9 +231,9 @@
             // 
             // n_Entrada
             // 
-            dataGridViewCellStyle26.Format = "N0";
-            dataGridViewCellStyle26.NullValue = null;
-            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle14.Format = "N0";
+            dataGridViewCellStyle14.NullValue = null;
+            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle14;
             this.n_Entrada.HeaderText = "Entradas";
             this.n_Entrada.MaxInputLength = 9;
             this.n_Entrada.Name = "n_Entrada";
@@ -242,8 +242,8 @@
             // 
             // EVendidas
             // 
-            dataGridViewCellStyle27.NullValue = null;
-            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle15.NullValue = null;
+            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle15;
             this.EVendidas.HeaderText = "Cantidad Vendida";
             this.EVendidas.MaxInputLength = 9;
             this.EVendidas.Name = "EVendidas";
@@ -252,9 +252,9 @@
             // 
             // EPrecio
             // 
-            dataGridViewCellStyle28.Format = "C2";
-            dataGridViewCellStyle28.NullValue = null;
-            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle16.Format = "C2";
+            dataGridViewCellStyle16.NullValue = null;
+            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle16;
             this.EPrecio.HeaderText = "Precio";
             this.EPrecio.Name = "EPrecio";
             this.EPrecio.ReadOnly = true;
@@ -262,18 +262,18 @@
             // 
             // Sub
             // 
-            dataGridViewCellStyle29.Format = "C2";
-            dataGridViewCellStyle29.NullValue = null;
-            this.Sub.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle17.Format = "C2";
+            dataGridViewCellStyle17.NullValue = null;
+            this.Sub.DefaultCellStyle = dataGridViewCellStyle17;
             this.Sub.HeaderText = "SubTotal";
             this.Sub.Name = "Sub";
             this.Sub.ReadOnly = true;
             // 
             // EDescuento
             // 
-            dataGridViewCellStyle30.Format = "C2";
-            dataGridViewCellStyle30.NullValue = null;
-            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle18.Format = "C2";
+            dataGridViewCellStyle18.NullValue = null;
+            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle18;
             this.EDescuento.HeaderText = "Descuento";
             this.EDescuento.Name = "EDescuento";
             this.EDescuento.ReadOnly = true;
@@ -281,9 +281,9 @@
             // 
             // ETotal
             // 
-            dataGridViewCellStyle31.Format = "C2";
-            dataGridViewCellStyle31.NullValue = null;
-            this.ETotal.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle19.Format = "C2";
+            dataGridViewCellStyle19.NullValue = null;
+            this.ETotal.DefaultCellStyle = dataGridViewCellStyle19;
             this.ETotal.HeaderText = "Total";
             this.ETotal.Name = "ETotal";
             this.ETotal.ReadOnly = true;
@@ -549,7 +549,7 @@
             "Todas",
             "Con entradas",
             "Con vendidas"});
-            this.cbxCEntradas.Location = new System.Drawing.Point(459, 46);
+            this.cbxCEntradas.Location = new System.Drawing.Point(458, 19);
             this.cbxCEntradas.Name = "cbxCEntradas";
             this.cbxCEntradas.Size = new System.Drawing.Size(121, 24);
             this.cbxCEntradas.TabIndex = 219;
@@ -558,7 +558,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(381, 47);
+            this.label5.Location = new System.Drawing.Point(380, 20);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 17);
@@ -569,7 +569,7 @@
             // 
             this.btnImprimir.BackgroundImage = global::Diprolim.Properties.Resources.print;
             this.btnImprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnImprimir.Location = new System.Drawing.Point(587, 46);
+            this.btnImprimir.Location = new System.Drawing.Point(586, 19);
             this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(55, 55);
@@ -652,12 +652,13 @@
             this.chbxIVa.Checked = true;
             this.chbxIVa.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbxIVa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbxIVa.Location = new System.Drawing.Point(558, 19);
+            this.chbxIVa.Location = new System.Drawing.Point(119, 78);
             this.chbxIVa.Name = "chbxIVa";
             this.chbxIVa.Size = new System.Drawing.Size(84, 20);
             this.chbxIVa.TabIndex = 221;
             this.chbxIVa.Text = "Facturar";
             this.chbxIVa.UseVisualStyleBackColor = true;
+            this.chbxIVa.Visible = false;
             this.chbxIVa.CheckedChanged += new System.EventHandler(this.chbxIVa_CheckedChanged);
             // 
             // tblCredito
@@ -694,10 +695,10 @@
             // 
             // dataGridViewCheckBoxColumn1
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle32.NullValue = "false";
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.NullValue = "false";
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridViewCheckBoxColumn1.HeaderText = "";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Width = 30;
@@ -725,9 +726,9 @@
             // 
             // tblCrPrecio
             // 
-            dataGridViewCellStyle33.Format = "C2";
-            dataGridViewCellStyle33.NullValue = null;
-            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle21.Format = "C2";
+            dataGridViewCellStyle21.NullValue = null;
+            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle21;
             this.tblCrPrecio.HeaderText = "Precio";
             this.tblCrPrecio.MaxInputLength = 9;
             this.tblCrPrecio.Name = "tblCrPrecio";
@@ -736,9 +737,9 @@
             // 
             // tblCrTotal
             // 
-            dataGridViewCellStyle34.Format = "C2";
-            dataGridViewCellStyle34.NullValue = null;
-            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle22.Format = "C2";
+            dataGridViewCellStyle22.NullValue = null;
+            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle22;
             this.tblCrTotal.HeaderText = "Total";
             this.tblCrTotal.MaxInputLength = 9;
             this.tblCrTotal.Name = "tblCrTotal";
@@ -747,9 +748,9 @@
             // 
             // tblCrAbono
             // 
-            dataGridViewCellStyle35.Format = "C2";
-            dataGridViewCellStyle35.NullValue = null;
-            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle23.Format = "C2";
+            dataGridViewCellStyle23.NullValue = null;
+            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle23;
             this.tblCrAbono.HeaderText = "Abono";
             this.tblCrAbono.MaxInputLength = 8;
             this.tblCrAbono.Name = "tblCrAbono";
@@ -757,9 +758,9 @@
             // 
             // tblCrPendiente
             // 
-            dataGridViewCellStyle36.Format = "C2";
-            dataGridViewCellStyle36.NullValue = null;
-            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle24.Format = "C2";
+            dataGridViewCellStyle24.NullValue = null;
+            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle24;
             this.tblCrPendiente.HeaderText = "Pendiente";
             this.tblCrPendiente.Name = "tblCrPendiente";
             this.tblCrPendiente.ReadOnly = true;
@@ -1001,7 +1002,7 @@
             this.groupBox1.Controls.Add(this.btnImprimir);
             this.groupBox1.Controls.Add(this.tbxSubtotal);
             this.groupBox1.Controls.Add(this.btnRegistrarS);
-            this.groupBox1.Location = new System.Drawing.Point(12, 509);
+            this.groupBox1.Location = new System.Drawing.Point(22, 509);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(946, 119);
             this.groupBox1.TabIndex = 244;

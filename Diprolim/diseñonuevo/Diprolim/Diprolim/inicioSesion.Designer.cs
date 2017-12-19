@@ -137,7 +137,7 @@
             this.MinimizeBox = false;
             this.Name = "inicioSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "inicior sesión";
+            this.Text = "inicio de sesión";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

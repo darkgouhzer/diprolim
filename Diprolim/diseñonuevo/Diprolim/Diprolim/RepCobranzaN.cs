@@ -25,8 +25,8 @@ namespace Diprolim
         public RepCobranzaN(UnicaSQL.DBMS_Unico server)
         {
             InitializeComponent();
-            objVentaBO = new VentaBO();
-            objVentaBO.ReAsignarDeudas();
+            //objVentaBO = new VentaBO();
+            //objVentaBO.ReAsignarDeudas();
             cbxDias.SelectedIndex = 0;
             dtpFin.Value = DateTime.Now;
             dtpInicio.Value = DateTime.Now.AddDays(-30);

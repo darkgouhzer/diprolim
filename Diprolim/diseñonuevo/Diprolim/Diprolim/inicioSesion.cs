@@ -25,6 +25,13 @@ namespace Diprolim
             InitializeComponent();
             s = S;
         }
+
+        public inicioSesion(string S, string sAutorizacion)
+        {
+            InitializeComponent();
+            s = S;
+            this.Text = sAutorizacion;
+        }
         recuperarCodigo _ui = new recuperarCodigo();
         public recuperarCodigo regresar
         {

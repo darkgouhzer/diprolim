@@ -688,6 +688,7 @@
             this.chbxIVa.TabIndex = 222;
             this.chbxIVa.Text = "Facturar";
             this.chbxIVa.UseVisualStyleBackColor = true;
+            this.chbxIVa.Visible = false;
             this.chbxIVa.CheckedChanged += new System.EventHandler(this.chbxIVa_CheckedChanged);
             // 
             // btnReporteDiario

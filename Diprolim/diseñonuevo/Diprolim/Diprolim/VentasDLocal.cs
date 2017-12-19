@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReglasNegocios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -517,6 +518,26 @@ namespace Diprolim
             }
             return aceptado;
         }
+        public Boolean CreditoPendiente()
+        {
+            Boolean bAllOk = false;
+            double pendiente = 0;
+            DataTable Tabla = new DataTable();
+            string cmd = String.Format("select COALESCE(sum(pendiente),0) as pendiente from ventas where clientes_idclientes = {0} and pendiente>0", tbxCCliente.Text);
+            Conexion.Conectarse();
+            Conexion.Ejecutar(cmd, ref Tabla);
+            Conexion.Desconectarse();
+            if (Tabla.Rows.Count > 0)
+            {
+                DataRow row = Tabla.Rows[0];
+                pendiente = Convert.ToDouble(row["pendiente"]);
+            }
+            if (pendiente > 0)
+            {
+                bAllOk = true;
+            }
+            return bAllOk;
+        }
         int cod_art = 0;
         double CCantidad = 0, existenciaA = 0, exitencia=0,descuento=0;
         string Operacion = "";
@@ -550,7 +571,7 @@ namespace Diprolim
                                 total2 = Convert.ToDouble(Tabla[6, i].Value.ToString());
                                 if (chbxIVa.Checked)
                                 {
-                                    iva = 0.16 * total2;
+                                    iva = total2 - total2 / 1.16;
                                 }
                                 consulta = "INSERT INTO ventas (categorias_idcategorias,clientes_idclientes,empleados_id_empleado,articulos_codigo,precio_art,cantidad,importe,fecha_venta,costo_produccion,iva,Descuento)" +
                                                                 " VALUES(" + Tabla[9, i].Value.ToString() + "," + 1 + "," + 1 + "," + Tabla[1, i].Value.ToString() + "," +
@@ -570,7 +591,7 @@ namespace Diprolim
                                 i++;
                             }
                             MessageBox.Show("Venta registrada con éxito.");
-                            chbxIVa.Checked = false;
+                            //chbxIVa.Checked = false;
                             tbxExistencia.Clear();
                             tbxNombre.Clear();
                             tbxProducto.Clear();
@@ -612,7 +633,7 @@ namespace Diprolim
 
                                     if (chbxIVa.Checked)
                                     {
-                                        iva = 0.16 * total2;
+                                        iva = total2 - total2 / 1.16;
                                     }
                                     consulta = "INSERT INTO ventas (categorias_idcategorias,clientes_idclientes,empleados_id_empleado,articulos_codigo,precio_art,cantidad,importe,fecha_venta,costo_produccion,comision,iva,Descuento)" +
                                                                     " VALUES(" + Tabla[9, i].Value.ToString() + "," + tbxCCliente.Text + "," + tbxVendedor.Text + "," + Tabla[1, i].Value.ToString() + "," + Precio2 + "," + Cantidad + "," + total2 + ",'" + DateTime.Now.ToString("yyyyMMddHHmmss") + "'," + Tabla[7, i].Value.ToString() + "," + Tabla[8, i].Value.ToString() + "," + iva + "," + descuento + ")";
@@ -631,7 +652,7 @@ namespace Diprolim
                                     i++;
                                 }                               
                                 MessageBox.Show("Venta registrada con éxito.");
-                                chbxIVa.Checked = false;
+//                                chbxIVa.Checked = false;
                                 tbxExistencia.Clear();
                                 tbxNombre.Clear();
                                 tbxProducto.Clear();
@@ -641,6 +662,7 @@ namespace Diprolim
                                 tbxEfectivo.Clear();
                                 tbxCambio.Clear();
                                 Tabla.Rows.Clear();
+                                LimpiarCampos();
                             }
                         }
                         else
@@ -686,6 +708,8 @@ namespace Diprolim
                                         string pendiente = tblCredito[7, i].Value.ToString();
                                         existenciaA = (Convert.ToDouble(tblCredito[10, i].Value) - Convert.ToDouble(n_venta));
                                         double existencia = Convert.ToDouble(tblCredito[10, i].Value);
+                                        //double dComision = 0;
+                                        //ComisionBO objComisionBO = new ComisionBO();
 
                                         if (Convert.ToDouble(n_venta) > 0)
                                         {
@@ -720,30 +744,20 @@ namespace Diprolim
                                                 double ivac = 0;
                                                 if (chbxIVa.Checked)
                                                 {
-                                                    ivac = 0.16 * Convert.ToDouble(importe);
+                                                    ivac = Convert.ToDouble(importe) - Convert.ToDouble(importe) / 1.16;
                                                 }
-                                                consulta = string.Format("INSERT INTO ventas values(null,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},'credito',{11},{12},{13})", tbxVendedor.Text,
-                                                                                                                                                                                idCliente,
-                                                                                                                                                                                tblCredito[11, i].Value,
-                                                                                                                                                                                cod_arti,
-                                                                                                                                                                                precio_A,
-                                                                                                                                                                                n_venta,
-                                                                                                                                                                                importe,
-                                                                                                                                                                                Fechaa,
-                                                                                                                                                                                comision,
-                                                                                                                                                                                costoP,
-                                                                                                                                                                                ivac, 
-                                                                                                                                                                                nuevoFolio,
-                                                                                                                                                                                pendiente,
-                                                                                                                                                                                0);
-
-                                                //consulta = "INSERT INTO ventas values(null," + tbxVendedor.Text + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_arti + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + ivac + ",'credito'," + nuevoFolio + "," + pendiente + ",0)";
+                                                consulta = string.Format("INSERT INTO ventas values(null,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},'credito',{11},{12},{13})",
+                                                    tbxVendedor.Text,idCliente,tblCredito[11, i].Value,cod_arti,precio_A,n_venta,importe,Fechaa,comision,costoP,ivac,nuevoFolio,pendiente,0);                                                
                                                 bAllOk = Conexion.Ejecutar(consulta);
                                                 if (bAllOk)
                                                 {
                                                     if (Convert.ToDouble(abono) > 0)
                                                     {
-                                                        consulta = "INSERT INTO abonos values(null," + nuevoFolio + "," + cod_arti + "," + idCliente + "," + tbxVendedor.Text + "," + tblCredito[5, i].Value + "," + Convert.ToDouble(abono) + "," + pendiente + "," + Fechaa + ",LAST_INSERT_ID())";
+                                            //            dComision = objComisionBO.CalcularComisionAbonos(0, Convert.ToInt32(tbxVendedor.Text),
+                                            //Convert.ToDouble(abono), Convert.ToInt32(cod_arti), idCliente, 
+                                            //Convert.ToInt32(dtgCredito[0, i].Value));
+                                                        consulta = String.Format("INSERT INTO abonos values(null, {0},{1},{2},{3},{4},{5},{6},{7},LAST_INSERT_ID(), {8},{9});",
+                                                            nuevoFolio, cod_arti, idCliente, tbxVendedor.Text, tblCredito[5, i].Value, Convert.ToDouble(abono), pendiente, Fechaa, 0, 0);
                                                         bAllOk = Conexion.Ejecutar(consulta);
                                                     }
                                                     if (bAllOk)
@@ -758,7 +772,7 @@ namespace Diprolim
 
                                         i++;
                                     }
-                                    chbxIVa.Checked = false;
+                                    //chbxIVa.Checked = false;
 
                                     MessageBox.Show("La venta a crédito ha sido registrada exitosamente");
                                     tbxExistencia.Clear();
@@ -773,6 +787,7 @@ namespace Diprolim
                                     tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
                                     tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
                                     tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                                    LimpiarCampos();
                                 }
                             }
                             else
@@ -1169,7 +1184,31 @@ namespace Diprolim
                 
             }
         }
-
+        public void LimpiarCampos()
+        {
+            tbxCCliente.Enabled = true;
+            tbxCCliente.ReadOnly = false;
+            tbxNCliente.Enabled = true;
+            tbxNCliente.Enabled = true;
+            tbxNVendedor.Enabled = true;
+            tbxCCliente.Clear();
+            tbxNCliente.Clear();
+            tbxNCliente.Clear();
+            tbxProducto.Clear();
+            tbxNombre.Clear();
+            tbxCantidad.Clear();
+            tbxExistencia.Clear();
+            Tabla.Rows.Clear();
+            tbxSubtotal.Clear();
+            tbxEfectivo.Clear();
+            tbxCambio.Clear();
+            btnSC.Enabled = true;
+            btnCambiarVendedor.Enabled = true;
+            tbxProducto.ReadOnly = true;
+            btnSP.Enabled = false;
+            tbxCantidad.ReadOnly = true;
+            tbxCCliente.Focus();
+        }
         private void btnCambiarC_Click(object sender, EventArgs e)
         {
             if (tbxVendedor.Text.Length > 0)
@@ -1198,6 +1237,7 @@ namespace Diprolim
                     tbxProducto.ReadOnly = true;
                     btnSP.Enabled = false;
                     tbxCantidad.ReadOnly = true;
+                    tbxCCliente.Focus();
                 }
             }
             else
@@ -1313,20 +1353,64 @@ namespace Diprolim
 
         private void rbtCredito_CheckedChanged(object sender, EventArgs e)
         {
-            tblCredito.Rows.Clear();
-            tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
-            tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
-            tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
-            Tabla.Rows.Clear();            
-            tblCredito.Visible = true;
-            Tabla.Visible = false;
-            //rbtnDistribuidor.Enabled = false;
-            //rbtnGeneral.Checked = true;
-            tbxIVA.Clear();
-            tbxSubtotal.Clear();
-            tbxTotal.Clear();
-            tbxEfectivo.Clear();
-            tbxCambio.Clear();
+
+            Boolean bAllOk = false;
+            if (rbtCredito.Checked && tbxCCliente.Text.Length > 0)
+            {
+                bAllOk = CreditoPendiente();
+                if (bAllOk)
+                {
+                    string S = "", Respuesta = "";
+                    inicioSesion id = new inicioSesion(S, "Autorización");
+                    DialogResult dr = id.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        Respuesta = id.regresar.valXn;
+                    }
+                    if (Respuesta != "")
+                    {
+                        DataTable Tabla = new DataTable();
+                        string comando = "Select * from PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + Respuesta;
+                        Conexion.Conectarse();
+                        Conexion.Ejecutar(comando, ref Tabla);
+                        if (Tabla.Rows.Count > 0)
+                        {
+                            DataRow row = Tabla.Rows[0];
+                            if (row["AutorizarCredito"].ToString() == "1")
+                            {
+                                bAllOk = false;
+                            }
+                            else
+                            {
+                                MessageBox.Show("El usuario no tiene permiso necesario para autorizar venta a crédito.");
+                            }
+                        }
+                        Conexion.Desconectarse();
+                    }
+                }
+            }
+
+            if (!bAllOk)
+            {
+                tblCredito.Rows.Clear();
+                tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
+                tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
+                tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
+                Tabla.Rows.Clear();
+                tblCredito.Visible = true;
+                Tabla.Visible = false;
+                //rbtnDistribuidor.Enabled = false;
+                //rbtnGeneral.Checked = true;
+                tbxIVA.Clear();
+                tbxSubtotal.Clear();
+                tbxTotal.Clear();
+                tbxEfectivo.Clear();
+                tbxCambio.Clear();
+            }
+            else
+            {
+                rbtContado.Checked = true;
+            }
         }
 
         private void tblCredito_CellEndEdit(object sender, DataGridViewCellEventArgs e)

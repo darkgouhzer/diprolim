@@ -309,7 +309,7 @@ namespace Diprolim
         }
         public void Actualizar()
         {
-            Boolean bAllOK = false;
+            Boolean bAllOK = true;
             try
             {
                  string DerechoADescuento = "";
@@ -354,14 +354,13 @@ namespace Diprolim
                         if (Conexion.Ejecutar(comando))
                         {                            
                             comando = String.Format("UPDATE ventas SET empleados_id_empleado={0} WHERE clientes_idclientes={1} AND pendiente>0;", tbxVendedor.Text, tbxID.Text);
-                            if (bAllOK = Conexion.Ejecutar(comando))
-                            {
-                                Conexion.FinTransaccion(bAllOK);
-                                MessageBox.Show("Modificado con éxito");
-                            }                            
+                            Conexion.Ejecutar(comando);
+                            Conexion.FinTransaccion(bAllOK);
+                            MessageBox.Show("Modificado con éxito");  
                         }
                         else
                         {
+                            bAllOK = false;
                             Conexion.FinTransaccion(bAllOK);
                             MessageBox.Show("Error!");
                         }

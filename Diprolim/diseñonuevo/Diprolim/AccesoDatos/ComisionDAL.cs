@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Identidades;
 namespace AccesoDatos
 {
     public class ComisionDAL
@@ -27,21 +27,23 @@ namespace AccesoDatos
             objConexion.Desconectarse();
             return objDataTable;
         }
-        public Double ObtenerPorcentajeDescuento(int iDias)
+        public CComision ObtenerPorcentajeDescuento(int iDias)
         {
             DataTable objDataTable = new DataTable();
-            Double dPorcentaje = 0;
+            CComision objCComision = new CComision();
             cmd = String.Format("SELECT idDescuentoComision, Dias, Porcentaje FROM DescuentoComision WHERE Dias <= {0} ORDER BY Dias desc limit 1", iDias);
             objConexion.Conectarse();
             objConexion.Ejecutar(cmd, ref objDataTable);
             objConexion.Desconectarse();
-            if(objDataTable.Rows.Count>0)
+            if (objDataTable.Rows.Count > 0)
             {
-                DataRow row= objDataTable.Rows[0];
-                dPorcentaje = Convert.ToInt32(row["Porcentaje"]);
+                DataRow row = objDataTable.Rows[0];
+                objCComision.IdDescuentoComision = Convert.ToInt32(row["idDescuentoComision"]);
+                objCComision.Dias = Convert.ToInt32(row["Dias"]);
+                objCComision.Porcentaje = Convert.ToInt32(row["Porcentaje"]);
             }
-            
-            return dPorcentaje;
+
+            return objCComision;
         }
         public Double ObtenerPorcentajeComision(string sTipoComision, int IDCategoria)
         {

@@ -150,15 +150,15 @@ namespace Diprolim
             }
             else if (cbxDepto.Text == "Productos")
             {
-                str_depto = " and a.departamento=1";
+                str_depto = " and articulos_codigo in (select codigo from articulos where departamento=1) ";
             }
             else if (cbxDepto.Text == "Accesorios")
             {
-                str_depto = " and a.departamento=2";
+                str_depto = " and articulos_codigo in (select codigo from articulos where departamento=2) ";
             }
             else if (cbxDepto.Text == "Papel")
             {
-                str_depto = " and a.departamento=3";
+                str_depto = " and articulos_codigo in (select codigo from articulos where departamento=3) ";
             }
 
             if (cbxUnMedida.Text == "Todos")
@@ -333,8 +333,9 @@ namespace Diprolim
             MySqlConnection conectar = conn.ObtenerConexion();
             comando = new MySqlCommand("SELECT e.nombre,c.idclientes, c.nombre, v.importe " +
                 "FROM ventas v,clientes c, empleados e WHERE v.clientes_idclientes=" + Cod_Empleado + " AND " +
-                "v.clientes_idclientes = c.idclientes AND v.empleados_id_empleado=e.id_empleado  AND v.fecha_venta BETWEEN '" +
-                dtpInicio.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFin.Value.ToString("yyyyMMdd235959") + "' " + str_depto + vendedor + cliente + productos + tipocliente + unime + str_tipventa + "  ORDER BY v.fecha_venta ASC;", conectar);
+                "v.clientes_idclientes = c.idclientes AND v.empleados_id_empleado=e.id_empleado "+
+                " AND  v.fecha_venta BETWEEN '" + dtpInicio.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFin.Value.ToString("yyyyMMdd235959") + "' "+
+                    str_depto + vendedor + cliente + productos + tipocliente + unime + str_tipventa + "  ORDER BY v.fecha_venta ASC;", conectar);
 
             conectar.Open();
             int Pase = 0;

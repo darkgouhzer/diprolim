@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbonosBO.cs" />
     <Compile Include="ArticuloBO.cs" />
     <Compile Include="ClienteBO.cs" />
     <Compile Include="ComisionBO.cs" />

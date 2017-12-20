@@ -177,6 +177,12 @@
     <Compile Include="CancelacionesClientes.Designer.cs">
       <DependentUpon>CancelacionesClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="CancelarAbonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelarAbonos.Designer.cs">
+      <DependentUpon>CancelarAbonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes inactivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -653,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CancelacionesClientes.resx">
       <DependentUpon>CancelacionesClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CancelarAbonos.resx">
+      <DependentUpon>CancelarAbonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes inactivos.resx">
       <DependentUpon>Clientes inactivos.cs</DependentUpon>

@@ -1360,7 +1360,7 @@ namespace Diprolim
                 bAllOk = CreditoPendiente();
                 if (bAllOk)
                 {
-                    string S = "", Respuesta = "";
+                    string S = ".", Respuesta = "";
                     inicioSesion id = new inicioSesion(S, "Autorización");
                     DialogResult dr = id.ShowDialog();
                     if (dr == DialogResult.OK)

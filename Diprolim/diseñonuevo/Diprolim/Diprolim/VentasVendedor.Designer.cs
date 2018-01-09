@@ -124,6 +124,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cancelaAbonoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCredito)).BeginInit();
@@ -919,7 +920,8 @@
             this.transferenciasToolStripMenuItem,
             this.invInesperadoToolStripMenuItem,
             this.cobranzaCréditoToolStripMenuItem,
-            this.cancelacionesToolStripMenuItem});
+            this.cancelacionesToolStripMenuItem,
+            this.cancelaAbonoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1082, 24);
@@ -971,8 +973,8 @@
             // cancelacionesToolStripMenuItem
             // 
             this.cancelacionesToolStripMenuItem.Name = "cancelacionesToolStripMenuItem";
-            this.cancelacionesToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.cancelacionesToolStripMenuItem.Text = "Cancelaciones";
+            this.cancelacionesToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.cancelacionesToolStripMenuItem.Text = "Cancelar venta";
             this.cancelacionesToolStripMenuItem.Click += new System.EventHandler(this.cancelacionesToolStripMenuItem_Click);
             // 
             // label7
@@ -1021,6 +1023,13 @@
             this.groupBox2.TabIndex = 245;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos:";
+            // 
+            // cancelaAbonoToolStripMenuItem
+            // 
+            this.cancelaAbonoToolStripMenuItem.Name = "cancelaAbonoToolStripMenuItem";
+            this.cancelaAbonoToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.cancelaAbonoToolStripMenuItem.Text = "Cancelar abono";
+            this.cancelaAbonoToolStripMenuItem.Click += new System.EventHandler(this.cancelaAbonoToolStripMenuItem_Click);
             // 
             // VentasVendedor
             // 
@@ -1165,5 +1174,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
+        private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
     }
 }

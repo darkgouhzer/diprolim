@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CArticulos.cs" />
+    <Compile Include="CCancelaAbonos.cs" />
     <Compile Include="CClientes.cs" />
     <Compile Include="CComision.cs" />
     <Compile Include="CEmpleados.cs" />

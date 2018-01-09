@@ -673,18 +673,7 @@ namespace Diprolim
               MessageBox.Show(ex.Message);
             }
         }
-        //public void SumaTotal()
-        //{
-        //    double sumatoria = 0;
-        //    foreach (DataGridViewRow row in tblEntradas.Rows)
-        //    {
-        //        sumatoria += Convert.ToDouble(row.Cells["ETotal"].Value);
-        //    }
-        //    //tbxTotal.Text = sumatoria.ToString();
-        //    tblEntradas[7, tblEntradas.Rows.Count-1].Value = sumatoria;
-            
-            
-        //}
+
         private void tblEntradas_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             e.Control.KeyPress += new KeyPressEventHandler(tblEntradas_KeyPress);
@@ -707,9 +696,6 @@ namespace Diprolim
             {
                 MessageBox.Show(ex.Message);
             }
-
-
-
         }
         int i, col1, col2, col3, col4, col5, col6, col7, col8, col9, x, y, L;
         //double suma = 0;
@@ -2610,6 +2596,19 @@ namespace Diprolim
                 {
                     this.Close();
                 }
+            }
+        }
+
+        private void cancelaAbonoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tbxVendedor.Text != "" && tbxNVendedor.Text != "")
+            {
+                CancelarAbonos rdv = new CancelarAbonos(tbxVendedor.Text, Convert.ToInt32(UsuarioID));
+                rdv.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Primero es necesario ingresar un vendedor.");
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using AccesoDatos;
+using Identidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,19 +16,29 @@ namespace ReglasNegocios
         {
 
         }
-        public DataTable ConsultarAbonos()
+        public DataTable ConsultarAbonos(DateTime dFecha, String sIDVendedor, String sIDCliente)
         {
             DataTable dt = new DataTable();
             objAbonosDAL = new AbonosDAL();
-            dt = objAbonosDAL.ConsultarAbonos();
+            dt = objAbonosDAL.ConsultarAbonos(dFecha, sIDVendedor, sIDCliente);
             return dt;
         }
 
-        public Boolean CancelarAbono()
+        public Boolean CancelarAbono(List<CCancelaAbonos> lsCCancelaAbonos)
         {
             Boolean bAllOK = false;
             objAbonosDAL = new AbonosDAL();
-            bAllOK = objAbonosDAL.CancelarAbono();
+            foreach(CCancelaAbonos obj in lsCCancelaAbonos)
+            {
+                if(obj.IDAbonos>0)
+                {
+                    bAllOK = objAbonosDAL.CancelarAbono(obj.IDAbonos);
+                }
+                else
+                {
+                    bAllOK = objAbonosDAL.CancelarAbono(obj.ClienteID, obj.Fecha);
+                }               
+            }            
             return bAllOK;
         }
     }

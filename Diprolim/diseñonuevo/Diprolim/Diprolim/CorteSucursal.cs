@@ -21,11 +21,10 @@ namespace Diprolim
         public CorteSucursal()
         {
             InitializeComponent();
-            dtpFecha.Value = DateTime.Now;
-            cargarCorteVendedores();
+            dtpFecha.Value = DateTime.Now;           
            
         }
-        public void suma()
+        public void SumarDatosGrid()
         {
             try
             {
@@ -56,22 +55,19 @@ namespace Diprolim
                    }
                    Tabla.Rows.Add("TOTAL", ventasT, iva, RecupT, fiadoT, gastosT, efectivoaentregar, "", true);
                }
-               Tabla[5, 0].ReadOnly = false;
-               Tabla[7, 0].ReadOnly = false;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        public void cargarCorteVendedores()
+        }   
+        public void CargarCorteVendedores()
         {
             try
             {
                 DataTable tabla = new DataTable();
                 conectar = conn.ObtenerConexion();
-                comando = new MySqlCommand("select id_empleado from empleados where id_empleado<>1", conectar);
+                comando = new MySqlCommand("SELECT id_empleado FROM empleados WHERE id_empleado<>1", conectar);
                 conectar.Open();
                 MySqlDataAdapter adap = new MySqlDataAdapter();
 
@@ -96,8 +92,8 @@ namespace Diprolim
                     double sumaAbono = 0;
 
                     conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("Select importe,iva from ventas where empleados_id_empleado=" + idempleado + " and fecha_venta BETWEEN '" +
-                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
+                    comando = new MySqlCommand("SELECT importe,iva FROM ventas WHERE empleados_id_empleado=" + idempleado + " AND fecha_venta BETWEEN '" +
+                                                 dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
                     conectar.Open();
                     lector = comando.ExecuteReader();
 
@@ -117,8 +113,9 @@ namespace Diprolim
                     conectar.Close();
 
                     conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("Select importe, pendiente,Iva from  ventas  where empleados_id_empleado=" + idempleado + " and tipo_compra='credito' and fecha_venta BETWEEN '" +
-                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
+                    comando = new MySqlCommand("SELECT importe, pendiente,Iva FROM  ventas  WHERE empleados_id_empleado=" + idempleado + 
+                                                " AND tipo_compra='credito' AND fecha_venta BETWEEN '" + dtpFecha.Value.ToString("yyyyMMdd000000") + 
+                                                "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
                     conectar.Open();
                     lector = comando.ExecuteReader();
                     while (lector.Read())
@@ -127,7 +124,7 @@ namespace Diprolim
                     }
                     conectar.Close();
 
-                    comando = new MySqlCommand("Select abono FROM  abonos  WHERE empleados_id_empleado=" + idempleado + "  and fecha BETWEEN '" +
+                    comando = new MySqlCommand("SELECT abono FROM  abonos  WHERE empleados_id_empleado=" + idempleado + "  AND fecha BETWEEN '" +
                 dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
                     conectar.Open();
                     lector = comando.ExecuteReader();
@@ -138,7 +135,8 @@ namespace Diprolim
                     conectar.Close();
 
                     conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("SELECT count(*) FROM cortedcaja where empleados_id_empleado=" + idempleado + " and Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
+                    comando = new MySqlCommand("SELECT count(*) FROM cortedcaja WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + 
+                                            dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
                     conectar.Open();
                     lector = comando.ExecuteReader();
                     int cont = 0;
@@ -154,30 +152,33 @@ namespace Diprolim
                         if (cont == 0)
                         {
 
-                            comando = new MySqlCommand("INSERT INTO cortedcaja values(null," + idempleado + "," + sumaVentaTotal + "," + sumaAbono + "," + sumaVentaCredito + ",0,''," + efectivoEntregado + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + sumaIva + ")", conectar);
+                            comando = new MySqlCommand("INSERT INTO cortedcaja VALUES(null," + idempleado + "," + sumaVentaTotal + "," + sumaAbono + "," + 
+                                                        sumaVentaCredito + ",0,''," + efectivoEntregado + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + 
+                                                        sumaIva + ")", conectar);
                             conectar.Open();
                             comando.ExecuteNonQuery();
                             conectar.Close();
                         }
                         else
                         {
-                            comando = new MySqlCommand("SELECT Gastos FROM cortedcaja where empleados_id_empleado=" + idempleado + " and Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
+                            comando = new MySqlCommand("SELECT Gastos FROM cortedcaja WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + 
+                                                        dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
                             conectar.Open();
                             lector = comando.ExecuteReader();
                             while (lector.Read())
                             {
                                 efectivoEntregado -= lector.GetDouble(0);
-
                             }
                             conectar.Close();
-                            comando = new MySqlCommand("UPDATE cortedcaja SET Ventas_Totales=" + sumaVentaTotal + ",iva=" + sumaIva + " ,Recuperado=" + sumaAbono + ", Fiado=" + sumaVentaCredito + ", EfectivoAEntregar=" + efectivoEntregado + " WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
+                            comando = new MySqlCommand("UPDATE cortedcaja SET Ventas_Totales=" + sumaVentaTotal + ",iva=" + sumaIva + " ,Recuperado=" + 
+                                                        sumaAbono + ", Fiado=" + sumaVentaCredito + ", EfectivoAEntregar=" + efectivoEntregado + 
+                                                        " WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", 
+                                                        conectar);
                             conectar.Open();
                             comando.ExecuteNonQuery();
                             conectar.Close();
-
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -186,17 +187,16 @@ namespace Diprolim
             }
         }
         private void btnImprimirCr_Click(object sender, EventArgs e)
-        {
-
+        {           
             printDocument1.DefaultPageSettings.Landscape = true;
             printPreviewDialog1.ShowDialog();
         }
-        public void GV()
+        public void VentasdeSucursal()
         {
 
             MySqlConnection conectar = conn.ObtenerConexion();
-            comando = new MySqlCommand("Select importe, iva from ventas where empleados_id_empleado=1 and fecha_venta BETWEEN '" +
-        dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
+            comando = new MySqlCommand("SELECT importe, iva FROM ventas WHERE empleados_id_empleado=1 AND fecha_venta BETWEEN '" +
+                                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
             conectar.Open();
             MySqlDataReader lector = comando.ExecuteReader();
             double sumaVentaTotal = 0;
@@ -213,31 +213,13 @@ namespace Diprolim
                 {
                     sumaVentaTotal += lector.GetDouble(0);
                 }
-
             }
-            //tbxVT.Text = Math.Round(sumaVentaTotal, 2).ToString();
-            //tbxGastos.Focus();
-            //      conectar.Close();
-            //      comando = new MySqlCommand("Select iva from ventas where tipo_compra='contado' and empleados_id_empleado=" + tbxVendedor.Text + " and fecha_venta BETWEEN '" +
-            //dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-            //      conectar.Open();
-            //      lector = comando.ExecuteReader();
-
-            //      double sumaIva = 0;
-            //      while (lector.Read())
-            //      {
-            //          sumaIva += lector.GetDouble(0);
-            //      }
-            //tbxIva.Text = Math.Round(sumaIva, 2).ToString();
-            //tbxGastos.Focus();
             conectar.Close();
         }
-
-
-        public void CargarTodo()
+        public void VentasSucursalCredito()
         {
             MySqlConnection conectar = conn.ObtenerConexion();
-            comando = new MySqlCommand("Select importe, Iva from  ventas  where empleados_id_empleado=1 and tipo_compra='credito' and fecha_venta BETWEEN '" +
+            comando = new MySqlCommand("SELECT importe, Iva FROM VENTAS where empleados_id_empleado=1 AND tipo_compra='credito' AND fecha_venta BETWEEN '" +
         dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
             conectar.Open();
             MySqlDataReader lector = comando.ExecuteReader();
@@ -247,40 +229,25 @@ namespace Diprolim
                 sumaVentaCredito += lector.GetDouble(0);
             }
 
-            //tbxFiado.Text = Math.Round(sumaVentaCredito, 2).ToString();
             conectar.Close();
 
             double sumaAbono = 0;
-            //---------------------
-            //Total Abonos
-
-            comando = new MySqlCommand("select abono  from abonos where " +
-                " empleados_id_empleado=1 AND fecha between '" + dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
+            comando = new MySqlCommand("SELECT abono FROM abonos WHERE empleados_id_empleado=1 AND fecha BETWEEN '" + 
+                            dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
             conectar.Open();
-            //DataTable Tabla23= new DataTable();
-            //Tabla23.Load(comando.ExecuteReader());
             lector = comando.ExecuteReader();
             while (lector.Read())
             {
                 sumaAbono += lector.GetDouble(0);
             }
-
             conectar.Close();
-            //tbxRecuperado.Text = Math.Round(sumaAbono, 2).ToString();
-            //---------------------
-
-        }
-        private void CorteSucursal_Load(object sender, EventArgs e)
-        {
-            LLenarDataGrid();
-           
         }
         public void LLenarDataGrid()
         {
             Tabla.Rows.Clear();
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlDataReader lector;
-            comando = new MySqlCommand("Select count(*) from cortedcaja where empleados_id_empleado=1 and Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
+            comando = new MySqlCommand("SELECT count(*) FROM cortedcaja WHERE empleados_id_empleado=1 AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
             conectar.Open();
             lector = comando.ExecuteReader();
             int i = 0;
@@ -291,16 +258,19 @@ namespace Diprolim
             conectar.Close();
             if (i == 0)
             {
-                CargarTodo();
-                GV();
-                //Tabla.Rows.Add("Sucursal", VentasTotales, iva, RecuperadoActual, FiadoActual, 0, VentasTotales + iva + RecuperadoActual - FiadoActual, "");
-                comando = new MySqlCommand("INSERT INTO cortedcaja values(null,1," + VentasTotales + "," + RecuperadoActual + "," + FiadoActual + "," + 0 + ",''," + (VentasTotales + iva + RecuperadoActual - FiadoActual) + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + iva + ")", conectar);
+                VentasSucursalCredito();
+                VentasdeSucursal();
+                
+                comando = new MySqlCommand("INSERT INTO cortedcaja VALUES(null,1," + VentasTotales + "," + RecuperadoActual + "," + FiadoActual + "," + 0 + 
+                                            ",''," + (VentasTotales + iva + RecuperadoActual - FiadoActual) + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + 
+                                            iva + ")", conectar);
                 conectar.Open();
                 comando.ExecuteNonQuery();
                 conectar.Close();
 
             }
-                comando = new MySqlCommand("SELECT e.nombre,a.ventas_totales,a.iva,a.recuperado,a.fiado,a.gastos,a.concepto,a.efectivoaentregar FROM CorteDCaja a, empleados e where a.Empleados_id_empleado=e.id_empleado and fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
+                comando = new MySqlCommand("SELECT e.nombre,a.ventas_totales,a.iva,a.recuperado,a.fiado,a.gastos,a.concepto,a.efectivoaentregar "+
+                    " FROM CorteDCaja a, empleados e WHERE a.Empleados_id_empleado=e.id_empleado AND fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
                 conectar.Open();
                 lector = comando.ExecuteReader();
                 while (lector.Read())
@@ -311,86 +281,18 @@ namespace Diprolim
                     }
                 }
                 conectar.Close();
-                suma();
+                SumarDatosGrid();
         }
         double FiadoActual = 0, RecuperadoActual = 0, VentasTotales = 0, iva = 0;
-      //  public void CargarTodo()
-      //  {
-
-      //      MySqlConnection conectar = conn.ObtenerConexion();
-      //      comando = new MySqlCommand("Select importe, pendiente,Iva from  ventas  where empleados_id_empleado=1 and tipo_compra='credito' and fecha_venta BETWEEN '" +
-      //  dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-      //      conectar.Open();
-      //      MySqlDataReader lector = comando.ExecuteReader();
-      //      FiadoActual = 0;
-      //      while (lector.Read()) 
-      //      {
-      //          FiadoActual += lector.GetDouble(0);
-      //      }
-      //      conectar.Close();
-      //      comando = new MySqlCommand("Select abono FROM  abonos  WHERE empleados_id_empleado=1  and fecha BETWEEN '" +
-      //  dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-      //      conectar.Open();
-      //      lector = comando.ExecuteReader();
-      //      RecuperadoActual = 0;
-      //      while (lector.Read())
-      //      {
-      //          RecuperadoActual += lector.GetDouble(0);
-      //      }
-      //      conectar.Close();
-
-      //      comando = new MySqlCommand("Select abono FROM  cobranza  WHERE empleados_id_empleado=1  and fecha BETWEEN '" +
-      //     dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-      //      conectar.Open();
-      //      lector = comando.ExecuteReader();
-
-      //      while (lector.Read())
-      //      {
-      //          RecuperadoActual += lector.GetDouble(0);
-      //      }
-      //      conectar.Close();
-
-      //  }
-      //  public void GV()
-      //  {
-
-      //      MySqlConnection conectar = conn.ObtenerConexion();
-      //      comando = new MySqlCommand("Select importe from ventas where empleados_id_empleado=1 and fecha_venta BETWEEN '" +
-      //  dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-      //      conectar.Open();
-      //      MySqlDataReader lector = comando.ExecuteReader();
-      //      VentasTotales = 0;
-
-      //      while (lector.Read())
-      //      {
-      //          VentasTotales += lector.GetDouble(0);
-      //      }
-      //      conectar.Close();
-      //      comando = new MySqlCommand("Select iva from ventas where tipo_compra='contado' and empleados_id_empleado=1 and fecha_venta BETWEEN '" +
-      //dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-      //      conectar.Open();
-      //      lector = comando.ExecuteReader();
-
-      //      iva = 0;
-      //      while (lector.Read())
-      //      {
-      //          iva += lector.GetDouble(0);
-      //      }
-      //      conectar.Close();
-
-      //  }
+    
         private void dtpFecha_Leave(object sender, EventArgs e)
         {
             LLenarDataGrid();
         }
-
-       
-
         private void dtpFecha_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-               
                 LLenarDataGrid();
             }
         }
@@ -401,9 +303,7 @@ namespace Diprolim
             {
                 if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
                 {
-
                     e.Handled = true;
-
                 }
             }
         }
@@ -416,14 +316,12 @@ namespace Diprolim
                 n = 0;
                 if (Tabla.Rows.Count > 0)
                 {
-
                     for (int i = 0; i < Tabla[5, e.RowIndex].Value.ToString().Length; i++)
                     {
                         if (Tabla[5, e.RowIndex].Value.ToString().Substring(i, 1) == ".")
                         {
                             n++;
                         }
-
                     }
                     if (n < 2)
                     {
@@ -432,16 +330,12 @@ namespace Diprolim
                         {
                             Tabla[5, e.RowIndex].Value = Convert.ToDouble(0.00);
                         }
-                       
-                      
-                       
                     }
                     else
                     {
                         MessageBox.Show("Solo puede agregar 1 punto decimal");
                         Tabla[5, e.RowIndex].Value = Convert.ToDouble(0.00);
-                    }
-                  
+                    }                  
                 }
             }
              catch (Exception ex)
@@ -456,7 +350,7 @@ namespace Diprolim
             {
                 MySqlConnection conectar = conn.ObtenerConexion();
                 MySqlCommand comando;
-                comando = new MySqlCommand("SELECT idcortedcaja FROM cortedcaja WHERE  empleados_id_empleado=1 and Fecha BETWEEN '" +
+                comando = new MySqlCommand("SELECT idcortedcaja FROM cortedcaja WHERE empleados_id_empleado=1 AND Fecha BETWEEN '" +
                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
                 conectar.Open();
                 lector = comando.ExecuteReader();
@@ -466,12 +360,11 @@ namespace Diprolim
                     i = lector.GetInt32(0);
                 }
                 conectar.Close();
-
-                comando = new MySqlCommand("UPDATE cortedcaja SET gastos=" + Tabla[5, 0].Value + ", Concepto='" + Tabla[7, 0].Value + "',EfectivoAentregar="+Tabla[6,0].Value+" WHERE idcortedcaja=" + i, conectar);
+                comando = new MySqlCommand("UPDATE cortedcaja SET gastos=" + Tabla[5, 0].Value + ", Concepto='" + Tabla[7, 0].Value + "',EfectivoAentregar=" +
+                                            Tabla[6, 0].Value + " WHERE idcortedcaja=" + i, conectar);
                 conectar.Open();
                 comando.ExecuteNonQuery();
                 conectar.Close();
-
             }
         }
         private void Tabla_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -480,15 +373,14 @@ namespace Diprolim
             try
             {
                 double C = Convert.ToDouble(Tabla[5, 0].Value);
-                double T = Convert.ToDouble(Tabla[9, 0].Value);
-               
+                double T = Convert.ToDouble(Tabla[9, 0].Value);               
                 Tabla[6, 0].Value = T - C;
             }
             catch
             {
 
             }
-            suma();
+            SumarDatosGrid();
             Guardar();
         }
         int col1, col2, col3, col4, col5, col6, col7, col8, x, y, L, i;
@@ -629,6 +521,20 @@ namespace Diprolim
         private void Tabla_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             e.Control.KeyPress += new KeyPressEventHandler(Tabla_KeyPress);
+        }
+
+        private void CorteSucursal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void btnRealizarCorte_Click(object sender, EventArgs e)
+        {
+            CargarCorteVendedores();
+            LLenarDataGrid();
         }
     }
 }

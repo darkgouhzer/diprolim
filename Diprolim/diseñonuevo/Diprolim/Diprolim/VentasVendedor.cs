@@ -2608,7 +2608,8 @@ namespace Diprolim
             }
             else
             {
-                MessageBox.Show("Primero es necesario ingresar un vendedor.");
+                CancelarAbonos rdv = new CancelarAbonos("1", Convert.ToInt32(UsuarioID));
+                rdv.ShowDialog();
             }
         }
 

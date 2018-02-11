@@ -677,8 +677,10 @@ namespace Diprolim
                         #endregion
                     }
                     else
-                    {
+                    {                       
                         #region EliminacionDiasAnteriores
+
+                        Boolean bContado = false;
                         string Respuesta = "";
                         string S = ".";
                         inicioSesion id = new inicioSesion(S);
@@ -695,12 +697,12 @@ namespace Diprolim
                                 {
                                     #region EliminaPProductos
                                     List<DataGridViewRow> list = new List<DataGridViewRow>();
-                                    List<String> list2 = new List<string>();
                                     foreach (DataGridViewRow row in dtgPProductos.Rows)
                                     {
                                         DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
+                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[4] as DataGridViewTextBoxCell;
 
-                                        if (Convert.ToBoolean(celdaseleccionada.Value))
+                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower()=="credito")
                                         {
                                             list.Add(row);
                                             cod_art = row.Cells[1].Value.ToString();
@@ -772,6 +774,10 @@ namespace Diprolim
                                                 Conexion.Desconectarse();
                                             }
                                         }
+                                        else
+                                        {
+                                            bContado = true;
+                                        }
                                     }
 
                                     foreach (DataGridViewRow row in list)
@@ -788,8 +794,9 @@ namespace Diprolim
                                     foreach (DataGridViewRow row in dtgPClientes.Rows)
                                     {
                                         DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
+                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[4] as DataGridViewTextBoxCell;
 
-                                        if (Convert.ToBoolean(celdaseleccionada.Value))
+                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower() == "credito")
                                         {
                                             listaPCliente.Add(row);
                                             if (row.Cells[5].Value.ToString() == "Consignación")
@@ -907,6 +914,10 @@ namespace Diprolim
                                                 #endregion
                                             }
                                         }
+                                        else
+                                        {
+                                            bContado = true;
+                                        }
                                     }
 
                                     foreach (DataGridViewRow row in listaPCliente)
@@ -923,8 +934,12 @@ namespace Diprolim
                                 MessageBox.Show("El usuario no tiene permiso necesario para cancelar la venta.");
                             }
                         }
-                        //MessageBox.Show("No puede cancelar ventas de dias anteriores.");
+                        
                         #endregion
+                        if (bContado)
+                        {
+                            MessageBox.Show("No puede cancelar ventas a contado de dias anteriores.");
+                        }
                     }
                 }
             }

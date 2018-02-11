@@ -89,6 +89,7 @@
             this.tbxVendedor.TabIndex = 0;
             this.tbxVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxVendedor_KeyDown);
             this.tbxVendedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxVendedor_KeyPress);
+            this.tbxVendedor.Leave += new System.EventHandler(this.tbxVendedor_Leave);
             // 
             // tbxVT
             // 
@@ -384,6 +385,7 @@
             this.Controls.Add(this.label7);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -391,6 +393,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Corte de caja";
             this.Load += new System.EventHandler(this.Corte_de_Caja_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Corte_de_Caja_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

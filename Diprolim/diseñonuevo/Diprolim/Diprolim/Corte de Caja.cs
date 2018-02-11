@@ -40,7 +40,7 @@ namespace Diprolim
                 }
                 tbxGastos.Focus();
                 conectar.Close();
-                checar();
+                ChecarCorteDelDiaEmpleado();
                 if(i>0)
                 {
                     comando = new MySqlCommand("Select Gastos,Concepto from cortedcaja where empleados_id_empleado=" + tbxVendedor.Text + " and Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
@@ -283,7 +283,7 @@ namespace Diprolim
                     MySqlConnection conectar = conn.ObtenerConexion();
                     MySqlCommand comando;
 
-                    checar();
+                    ChecarCorteDelDiaEmpleado();
                     double gastos = 0;
                     if (tbxGastos.Text != "")
                     {
@@ -314,7 +314,7 @@ namespace Diprolim
               
             }
         }
-        public void checar()
+        public void ChecarCorteDelDiaEmpleado()
         {
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlCommand comando;
@@ -333,19 +333,12 @@ namespace Diprolim
         }
 
         private void tbxGastos_Leave(object sender, EventArgs e)
-        {
-            if (tbxGastos.Text == ".")
+        {            
+            if (tbxGastos.Text.Trim() == "" || tbxGastos.Text.Trim() == ".")
             {
-                MessageBox.Show("Verifica la cantidad de gastos");
-                tbxGastos.Focus();
+                tbxGastos.Text = "0";
             }
-            else
-            {
-                if (tbxGastos.Text != "")
-                {
-                    sumar();
-                }
-            }
+            sumar();
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -411,6 +404,25 @@ namespace Diprolim
         private void btnImprimirCr_Click(object sender, EventArgs e)
         {
             printPreviewDialog1.ShowDialog();
+        }
+
+        private void tbxVendedor_Leave(object sender, EventArgs e)
+        {
+            if (tbxVendedor.Text.Length > 0)
+            {
+                obtenerVendedor();
+
+                tbxVendedor.ReadOnly = true;
+                btnB.Enabled = false;
+            }
+        }
+
+        private void Corte_de_Caja_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

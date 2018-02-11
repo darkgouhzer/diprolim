@@ -22,12 +22,19 @@ namespace Diprolim
         public CancelarAbonos(String sIDVendedor, Int32 iUsuaarioID)
         {
             InitializeComponent();
+            dtpFecha.Value = DateTime.Now;
             tbxVendedor.Text = sIDVendedor;
-            objCEmpleados = objEmpleadoBO.ObtenerDatosVendedor(Convert.ToInt32(tbxVendedor.Text));
-            tbxNVendedor.Text = String.Format("{0} {1} {2}", objCEmpleados.Nombre, objCEmpleados.ApellidoPaterno,
-                objCEmpleados.ApellidoMaterno);
+            ObtenerVendedor();
         }
-
+        public void ObtenerVendedor()
+        {
+            if (tbxVendedor.Text.Length > 0)
+            {
+                objCEmpleados = objEmpleadoBO.ObtenerDatosVendedor(Convert.ToInt32(tbxVendedor.Text));
+                tbxNVendedor.Text = String.Format("{0} {1} {2}", objCEmpleados.Nombre, objCEmpleados.ApellidoPaterno,
+                    objCEmpleados.ApellidoMaterno);
+            }         
+        }
         private void btnReporte_Click(object sender, EventArgs e)
         {
             DataTable dtDatos=new DataTable();
@@ -90,6 +97,7 @@ namespace Diprolim
                         else if (row.DataGridView.ColumnCount == 7)
                         {
                             objCCancelaAbonos.IDAbonos = Convert.ToInt32(row.Cells["IDAbonos"].Value);
+                            objCCancelaAbonos.Fecha = Convert.ToDateTime(row.Cells["Fecha"].Value);
                         }
                         lsCCancelaAbonos.Add(objCCancelaAbonos);
                         lsGridEliminar.Add(row);
@@ -100,7 +108,14 @@ namespace Diprolim
                 {
                     dtgResultados.Rows.Remove(row);
                 }
-                objAbonosBO.CancelarAbono(lsCCancelaAbonos);
+                if (lsCCancelaAbonos[0].Fecha.Date == DateTime.Now.Date)
+                {
+                    objAbonosBO.CancelarAbono(lsCCancelaAbonos);
+                }
+                else
+                {
+                    MessageBox.Show("No es posible eliminar abonos de días anteriores.");
+                }
             }
         }
 
@@ -114,8 +129,6 @@ namespace Diprolim
             {
                 if (e.KeyCode == Keys.F1)
                 {
-
-
                     BuscarClientes id = new BuscarClientes(tbxVendedor.Text);
                     DialogResult dr = id.ShowDialog();
                     if (dr == DialogResult.OK)
@@ -135,9 +148,9 @@ namespace Diprolim
                     {
                         tbxVendedor.Text = id.regresar.valXn;
                     }
+                    ObtenerVendedor();
                     tbxVendedor.Focus();
                 }
-
             }
         }
 

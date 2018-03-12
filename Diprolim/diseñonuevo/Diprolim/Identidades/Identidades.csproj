@@ -44,6 +44,7 @@
     <Compile Include="CCancelaAbonos.cs" />
     <Compile Include="CClientes.cs" />
     <Compile Include="CComision.cs" />
+    <Compile Include="CCorteIndividual.cs" />
     <Compile Include="CEmpleados.cs" />
     <Compile Include="CVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

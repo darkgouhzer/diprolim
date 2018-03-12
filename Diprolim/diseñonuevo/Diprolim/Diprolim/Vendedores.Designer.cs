@@ -561,6 +561,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -568,6 +569,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Altas, bajas y modificaciones de vendedores";
             this.Load += new System.EventHandler(this.ModificarEmpleado_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModificarEmpleado_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

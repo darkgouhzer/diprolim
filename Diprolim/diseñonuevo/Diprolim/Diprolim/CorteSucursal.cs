@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ReglasNegocios;
 
 namespace Diprolim
 {
@@ -61,227 +62,26 @@ namespace Diprolim
                 MessageBox.Show(ex.Message);
             }
         }   
-        public void CargarCorteVendedores()
-        {
-            try
-            {
-                DataTable tabla = new DataTable();
-                conectar = conn.ObtenerConexion();
-                comando = new MySqlCommand("SELECT id_empleado FROM empleados WHERE id_empleado<>1", conectar);
-                conectar.Open();
-                MySqlDataAdapter adap = new MySqlDataAdapter();
-
-                DataSet ds = new DataSet();
-                    
-                adap.SelectCommand = comando;
-                int n = adap.Fill(ds);
-                
-                if (n > 0)
-                {
-                    tabla = ds.Tables[0];
-                }
-                conectar.Close();
-
-                for (int i = 0; i < tabla.Rows.Count; i++)
-                {
-                    
-                    string idempleado = tabla.Rows[i]["id_empleado"].ToString();
-                    double sumaVentaTotal = 0;
-                    double sumaIva = 0;
-                    double sumaVentaCredito = 0;
-                    double sumaAbono = 0;
-
-                    conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("SELECT importe,iva FROM ventas WHERE empleados_id_empleado=" + idempleado + " AND fecha_venta BETWEEN '" +
-                                                 dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                    conectar.Open();
-                    lector = comando.ExecuteReader();
-
-                    while (lector.Read())
-                    {
-                        if (Convert.ToDouble(lector.GetDouble(1)) > 0)
-                        {
-                            sumaVentaTotal += lector.GetDouble(0) / 1.16;
-                            sumaIva += lector.GetDouble(0) - (lector.GetDouble(0) / 1.16);
-                        }
-                        else
-                        {
-                            sumaVentaTotal += lector.GetDouble(0);
-                        }
-                       
-                    }
-                    conectar.Close();
-
-                    conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("SELECT importe, pendiente,Iva FROM  ventas  WHERE empleados_id_empleado=" + idempleado + 
-                                                " AND tipo_compra='credito' AND fecha_venta BETWEEN '" + dtpFecha.Value.ToString("yyyyMMdd000000") + 
-                                                "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                    conectar.Open();
-                    lector = comando.ExecuteReader();
-                    while (lector.Read())
-                    {
-                        sumaVentaCredito += lector.GetDouble(0);
-                    }
-                    conectar.Close();
-
-                    comando = new MySqlCommand("SELECT abono FROM  abonos  WHERE empleados_id_empleado=" + idempleado + "  AND fecha BETWEEN '" +
-                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                    conectar.Open();
-                    lector = comando.ExecuteReader();
-                    while (lector.Read())
-                    {
-                        sumaAbono += lector.GetDouble(0);
-                    }
-                    conectar.Close();
-
-                    conectar = conn.ObtenerConexion();
-                    comando = new MySqlCommand("SELECT count(*) FROM cortedcaja WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + 
-                                            dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-                    conectar.Open();
-                    lector = comando.ExecuteReader();
-                    int cont = 0;
-                    while (lector.Read())
-                    {
-                        cont= lector.GetInt32(0);
-
-                    }
-                    conectar.Close();
-                    double efectivoEntregado = sumaVentaTotal + sumaIva - sumaVentaCredito + sumaAbono;
-                    if (sumaVentaTotal > 0 || sumaIva > 0 || sumaVentaCredito > 0 || sumaAbono > 0)
-                    {
-                        if (cont == 0)
-                        {
-
-                            comando = new MySqlCommand("INSERT INTO cortedcaja VALUES(null," + idempleado + "," + sumaVentaTotal + "," + sumaAbono + "," + 
-                                                        sumaVentaCredito + ",0,''," + efectivoEntregado + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + 
-                                                        sumaIva + ")", conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
-                        }
-                        else
-                        {
-                            comando = new MySqlCommand("SELECT Gastos FROM cortedcaja WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + 
-                                                        dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-                            conectar.Open();
-                            lector = comando.ExecuteReader();
-                            while (lector.Read())
-                            {
-                                efectivoEntregado -= lector.GetDouble(0);
-                            }
-                            conectar.Close();
-                            comando = new MySqlCommand("UPDATE cortedcaja SET Ventas_Totales=" + sumaVentaTotal + ",iva=" + sumaIva + " ,Recuperado=" + 
-                                                        sumaAbono + ", Fiado=" + sumaVentaCredito + ", EfectivoAEntregar=" + efectivoEntregado + 
-                                                        " WHERE empleados_id_empleado=" + idempleado + " AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", 
-                                                        conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void btnImprimirCr_Click(object sender, EventArgs e)
         {           
             printDocument1.DefaultPageSettings.Landscape = true;
             printPreviewDialog1.ShowDialog();
         }
-        public void VentasdeSucursal()
-        {
-
-            MySqlConnection conectar = conn.ObtenerConexion();
-            comando = new MySqlCommand("SELECT importe, iva FROM ventas WHERE empleados_id_empleado=1 AND fecha_venta BETWEEN '" +
-                                dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-            conectar.Open();
-            MySqlDataReader lector = comando.ExecuteReader();
-            double sumaVentaTotal = 0;
-            double sumaIva = 0;
-
-            while (lector.Read())
-            {
-                if (Convert.ToDouble(lector.GetDouble(1)) > 0)
-                {
-                    sumaVentaTotal += lector.GetDouble(0) / 1.16;
-                    sumaIva += lector.GetDouble(0) - (lector.GetDouble(0) / 1.16);
-                }
-                else
-                {
-                    sumaVentaTotal += lector.GetDouble(0);
-                }
-            }
-            conectar.Close();
-        }
-        public void VentasSucursalCredito()
-        {
-            MySqlConnection conectar = conn.ObtenerConexion();
-            comando = new MySqlCommand("SELECT importe, Iva FROM VENTAS where empleados_id_empleado=1 AND tipo_compra='credito' AND fecha_venta BETWEEN '" +
-        dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-            conectar.Open();
-            MySqlDataReader lector = comando.ExecuteReader();
-            double sumaVentaCredito = 0;
-            while (lector.Read())
-            {
-                sumaVentaCredito += lector.GetDouble(0);
-            }
-
-            conectar.Close();
-
-            double sumaAbono = 0;
-            comando = new MySqlCommand("SELECT abono FROM abonos WHERE empleados_id_empleado=1 AND fecha BETWEEN '" + 
-                            dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-            conectar.Open();
-            lector = comando.ExecuteReader();
-            while (lector.Read())
-            {
-                sumaAbono += lector.GetDouble(0);
-            }
-            conectar.Close();
-        }
         public void LLenarDataGrid()
         {
             Tabla.Rows.Clear();
-            MySqlConnection conectar = conn.ObtenerConexion();
-            MySqlDataReader lector;
-            comando = new MySqlCommand("SELECT count(*) FROM cortedcaja WHERE empleados_id_empleado=1 AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-            conectar.Open();
-            lector = comando.ExecuteReader();
-            int i = 0;
-            while (lector.Read())
+            DataTable tblCorteSucursal = new DataTable();
+            CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+            tblCorteSucursal = objCorteCajaBO.GenerarCorteGeneral(dtpFecha.Value);
+            foreach(DataRow row in tblCorteSucursal.Rows)
             {
-                i = lector.GetInt32(0);
+                //row = row; c.empleados_id_empleado, e.nombre, c.Ventas_Totales, c.Recuperado, c.Fiado, c.Gastos, c.Concepto, 	c.EfectivoAEntregar, c.Fecha, c.Iva
+                Tabla.Rows.Add(row["nombre"].ToString(), Convert.ToDouble(row["Ventas_Totales"]), Convert.ToDouble(row["Iva"]), Convert.ToDouble(row["Recuperado"]),
+                               Convert.ToDouble(row["Fiado"]), Convert.ToDouble(row["Gastos"]), Convert.ToDouble(row["EfectivoAEntregar"]),
+                               row["Concepto"].ToString(), false, Convert.ToInt32(row["empleados_id_empleado"]));
             }
-            conectar.Close();
-            if (i == 0)
-            {
-                VentasSucursalCredito();
-                VentasdeSucursal();
-                
-                comando = new MySqlCommand("INSERT INTO cortedcaja VALUES(null,1," + VentasTotales + "," + RecuperadoActual + "," + FiadoActual + "," + 0 + 
-                                            ",''," + (VentasTotales + iva + RecuperadoActual - FiadoActual) + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + 
-                                            iva + ")", conectar);
-                conectar.Open();
-                comando.ExecuteNonQuery();
-                conectar.Close();
-
-            }
-                comando = new MySqlCommand("SELECT e.nombre,a.ventas_totales,a.iva,a.recuperado,a.fiado,a.gastos,a.concepto,a.efectivoaentregar "+
-                    " FROM CorteDCaja a, empleados e WHERE a.Empleados_id_empleado=e.id_empleado AND fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-                conectar.Open();
-                lector = comando.ExecuteReader();
-                while (lector.Read())
-                {
-                    if (lector.GetString(7) != "1")
-                    {
-                        Tabla.Rows.Add(lector.GetString(0), lector.GetDouble(1), lector.GetDouble(2), lector.GetDouble(3), lector.GetDouble(4), lector.GetDouble(5), lector.GetDouble(7), lector.GetString(6), false, lector.GetDouble(7) + lector.GetDouble(5));
-                    }
-                }
-                conectar.Close();
-                SumarDatosGrid();
+           
+            SumarDatosGrid();
         }
         double FiadoActual = 0, RecuperadoActual = 0, VentasTotales = 0, iva = 0;
     
@@ -533,7 +333,6 @@ namespace Diprolim
 
         private void btnRealizarCorte_Click(object sender, EventArgs e)
         {
-            CargarCorteVendedores();
             LLenarDataGrid();
         }
     }

@@ -53,6 +53,7 @@
     <Compile Include="ArticuloBO.cs" />
     <Compile Include="ClienteBO.cs" />
     <Compile Include="ComisionBO.cs" />
+    <Compile Include="CorteCajaBO.cs" />
     <Compile Include="EmpleadoBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentaBO.cs" />

@@ -60,6 +60,7 @@
       <DependentUpon>Conexion.settings</DependentUpon>
     </Compile>
     <Compile Include="ComisionDAL.cs" />
+    <Compile Include="CortesCajaDAL.cs" />
     <Compile Include="EmpleadoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentaDAL.cs" />

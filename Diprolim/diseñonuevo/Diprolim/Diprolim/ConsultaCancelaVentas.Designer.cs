@@ -29,27 +29,15 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.dtgPProductos = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tblCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbltipoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblTipoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblComision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idventas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbxNCliente = new System.Windows.Forms.TextBox();
@@ -84,6 +72,19 @@
             this.btnSC = new System.Windows.Forms.Button();
             this.btnSP = new System.Windows.Forms.Button();
             this.btnSV = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tblCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbltipoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblTipoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblComision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblfecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idventas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPClientes)).BeginInit();
             this.SuspendLayout();
@@ -124,105 +125,9 @@
             this.dtgPProductos.Margin = new System.Windows.Forms.Padding(4);
             this.dtgPProductos.Name = "dtgPProductos";
             this.dtgPProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPProductos.Size = new System.Drawing.Size(1161, 342);
+            this.dtgPProductos.Size = new System.Drawing.Size(1106, 342);
             this.dtgPProductos.TabIndex = 132;
             this.dtgPProductos.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.tblReporteV_SortCompare);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 40;
-            // 
-            // tblCodigo
-            // 
-            this.tblCodigo.HeaderText = "Código articulo";
-            this.tblCodigo.Name = "tblCodigo";
-            this.tblCodigo.ReadOnly = true;
-            this.tblCodigo.Width = 80;
-            // 
-            // tblVendedor
-            // 
-            this.tblVendedor.HeaderText = "Vendedor";
-            this.tblVendedor.Name = "tblVendedor";
-            this.tblVendedor.ReadOnly = true;
-            this.tblVendedor.Width = 90;
-            // 
-            // tbltipoCliente
-            // 
-            this.tbltipoCliente.HeaderText = "Tipo cliente";
-            this.tbltipoCliente.Name = "tbltipoCliente";
-            this.tbltipoCliente.ReadOnly = true;
-            this.tbltipoCliente.Width = 90;
-            // 
-            // tblTipoVenta
-            // 
-            this.tblTipoVenta.HeaderText = "Tipo venta";
-            this.tblTipoVenta.Name = "tblTipoVenta";
-            this.tblTipoVenta.ReadOnly = true;
-            this.tblTipoVenta.Width = 80;
-            // 
-            // tblProducto
-            // 
-            this.tblProducto.HeaderText = "Producto";
-            this.tblProducto.Name = "tblProducto";
-            this.tblProducto.ReadOnly = true;
-            this.tblProducto.Width = 300;
-            // 
-            // tblPrecio
-            // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.tblPrecio.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tblPrecio.HeaderText = "Precio venta";
-            this.tblPrecio.Name = "tblPrecio";
-            this.tblPrecio.ReadOnly = true;
-            this.tblPrecio.Width = 90;
-            // 
-            // tblCantidad
-            // 
-            this.tblCantidad.HeaderText = "Unidades vendidas";
-            this.tblCantidad.Name = "tblCantidad";
-            this.tblCantidad.ReadOnly = true;
-            // 
-            // tblTotal
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.tblTotal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.tblTotal.HeaderText = "Total";
-            this.tblTotal.Name = "tblTotal";
-            this.tblTotal.ReadOnly = true;
-            this.tblTotal.Width = 110;
-            // 
-            // tblComision
-            // 
-            dataGridViewCellStyle4.Format = "C2";
-            this.tblComision.DefaultCellStyle = dataGridViewCellStyle4;
-            this.tblComision.HeaderText = "Comisión";
-            this.tblComision.Name = "tblComision";
-            this.tblComision.ReadOnly = true;
-            this.tblComision.Width = 90;
-            // 
-            // id_empleado
-            // 
-            this.id_empleado.HeaderText = "id_empleado";
-            this.id_empleado.Name = "id_empleado";
-            this.id_empleado.Visible = false;
-            this.id_empleado.Width = 50;
-            // 
-            // tblfecha
-            // 
-            this.tblfecha.HeaderText = "fecha";
-            this.tblfecha.Name = "tblfecha";
-            this.tblfecha.Visible = false;
-            this.tblfecha.Width = 50;
-            // 
-            // idventas
-            // 
-            this.idventas.HeaderText = "idventas";
-            this.idventas.Name = "idventas";
-            this.idventas.Visible = false;
             // 
             // cbxCategoria
             // 
@@ -434,8 +339,8 @@
             // 
             this.dtgPClientes.AllowUserToAddRows = false;
             this.dtgPClientes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dtgPClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dtgPClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgPClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
@@ -451,7 +356,7 @@
             this.dtgPClientes.Margin = new System.Windows.Forms.Padding(4);
             this.dtgPClientes.Name = "dtgPClientes";
             this.dtgPClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPClientes.Size = new System.Drawing.Size(1161, 342);
+            this.dtgPClientes.Size = new System.Drawing.Size(1106, 342);
             this.dtgPClientes.TabIndex = 159;
             this.dtgPClientes.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtgPClientes_SortCompare);
             this.dtgPClientes.DoubleClick += new System.EventHandler(this.dtgPClientes_DoubleClick);
@@ -485,9 +390,9 @@
             // 
             // colTotal
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.colTotal.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.colTotal.DefaultCellStyle = dataGridViewCellStyle7;
             this.colTotal.HeaderText = "Total";
             this.colTotal.Name = "colTotal";
             this.colTotal.ReadOnly = true;
@@ -502,9 +407,9 @@
             // 
             // dataGridViewTextBoxColumn11
             // 
-            dataGridViewCellStyle7.Format = "G";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Format = "G";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn11.HeaderText = "Fecha";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Width = 180;
@@ -586,12 +491,112 @@
             this.btnSV.UseVisualStyleBackColor = true;
             this.btnSV.Click += new System.EventHandler(this.btnSV_Click);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 40;
+            // 
+            // tblCodigo
+            // 
+            this.tblCodigo.HeaderText = "Código articulo";
+            this.tblCodigo.Name = "tblCodigo";
+            this.tblCodigo.ReadOnly = true;
+            this.tblCodigo.Width = 80;
+            // 
+            // tblVendedor
+            // 
+            this.tblVendedor.HeaderText = "Vendedor";
+            this.tblVendedor.Name = "tblVendedor";
+            this.tblVendedor.ReadOnly = true;
+            this.tblVendedor.Width = 90;
+            // 
+            // tbltipoCliente
+            // 
+            this.tbltipoCliente.HeaderText = "Tipo cliente";
+            this.tbltipoCliente.Name = "tbltipoCliente";
+            this.tbltipoCliente.ReadOnly = true;
+            this.tbltipoCliente.Width = 90;
+            // 
+            // tblTipoVenta
+            // 
+            this.tblTipoVenta.HeaderText = "Tipo venta";
+            this.tblTipoVenta.Name = "tblTipoVenta";
+            this.tblTipoVenta.ReadOnly = true;
+            this.tblTipoVenta.Width = 80;
+            // 
+            // tblProducto
+            // 
+            this.tblProducto.HeaderText = "Producto";
+            this.tblProducto.Name = "tblProducto";
+            this.tblProducto.ReadOnly = true;
+            this.tblProducto.Width = 300;
+            // 
+            // tblPrecio
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.tblPrecio.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tblPrecio.HeaderText = "Precio venta";
+            this.tblPrecio.Name = "tblPrecio";
+            this.tblPrecio.ReadOnly = true;
+            this.tblPrecio.Width = 90;
+            // 
+            // tblCantidad
+            // 
+            this.tblCantidad.HeaderText = "Unidades vendidas";
+            this.tblCantidad.Name = "tblCantidad";
+            this.tblCantidad.ReadOnly = true;
+            // 
+            // tblTotal
+            // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.tblTotal.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tblTotal.HeaderText = "Total";
+            this.tblTotal.Name = "tblTotal";
+            this.tblTotal.ReadOnly = true;
+            this.tblTotal.Width = 110;
+            // 
+            // tblComision
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            this.tblComision.DefaultCellStyle = dataGridViewCellStyle4;
+            this.tblComision.HeaderText = "Comisión";
+            this.tblComision.Name = "tblComision";
+            this.tblComision.ReadOnly = true;
+            this.tblComision.Visible = false;
+            this.tblComision.Width = 90;
+            // 
+            // id_empleado
+            // 
+            this.id_empleado.HeaderText = "id_empleado";
+            this.id_empleado.Name = "id_empleado";
+            this.id_empleado.Visible = false;
+            this.id_empleado.Width = 50;
+            // 
+            // tblfecha
+            // 
+            dataGridViewCellStyle5.Format = "G";
+            dataGridViewCellStyle5.NullValue = null;
+            this.tblfecha.DefaultCellStyle = dataGridViewCellStyle5;
+            this.tblfecha.HeaderText = "fecha";
+            this.tblfecha.Name = "tblfecha";
+            this.tblfecha.Visible = false;
+            this.tblfecha.Width = 50;
+            // 
+            // idventas
+            // 
+            this.idventas.HeaderText = "idventas";
+            this.idventas.Name = "idventas";
+            this.idventas.Visible = false;
+            // 
             // ConsultaCancelaVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1187, 523);
+            this.ClientSize = new System.Drawing.Size(1138, 523);
             this.Controls.Add(this.rbtnClientes);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.rbtnProductos);

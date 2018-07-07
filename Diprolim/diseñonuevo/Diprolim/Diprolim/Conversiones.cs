@@ -205,16 +205,13 @@ namespace Diprolim
 
                 }
                 conectar.Close();
-                if (des == "")
+                if (des == "" || tbxNombre.Text.Length == 0)
                 {
-                    MessageBox.Show("Código de producto no existente");
+                    MessageBox.Show("Favor de verificar artículo a convertir.");
                     tbxProducto.Clear();
                     tbxNombre.Clear();
                     tbxProducto.Focus();
-
                 }
-                
-
             }
         }
         private void tbxProducto_KeyDown(object sender, KeyEventArgs e)
@@ -892,6 +889,14 @@ namespace Diprolim
                 MetodoProducto2();
             }
         }
+
+        private void Conversiones_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
+}
 

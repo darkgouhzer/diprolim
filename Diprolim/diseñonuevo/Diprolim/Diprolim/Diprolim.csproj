@@ -96,6 +96,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MySqlBackup.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="ReglasNegocios, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReglasNegocios\bin\Release\ReglasNegocios.dll</HintPath>
@@ -115,6 +117,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsignarPrivilegios.cs">
@@ -183,6 +186,12 @@
     <Compile Include="CancelarAbonos.Designer.cs">
       <DependentUpon>CancelarAbonos.cs</DependentUpon>
     </Compile>
+    <Compile Include="CancelarVentasCajaRapida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelarVentasCajaRapida.Designer.cs">
+      <DependentUpon>CancelarVentasCajaRapida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes inactivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +215,12 @@
     </Compile>
     <Compile Include="CobranzaViejoONuevo.Designer.cs">
       <DependentUpon>CobranzaViejoONuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cobrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cobrar.Designer.cs">
+      <DependentUpon>Cobrar.cs</DependentUpon>
     </Compile>
     <Compile Include="Consignacion.cs">
       <SubType>Form</SubType>
@@ -248,6 +263,12 @@
     </Compile>
     <Compile Include="CorteSucursal.Designer.cs">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DescuentoCambioEnvase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DescuentoCambioEnvase.Designer.cs">
+      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
     </Compile>
     <Compile Include="DescuentosComision.cs">
       <SubType>Form</SubType>
@@ -308,6 +329,12 @@
     </Compile>
     <Compile Include="historicos de movimientos.Designer.cs">
       <DependentUpon>historicos de movimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Impresoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impresoras.Designer.cs">
+      <DependentUpon>Impresoras.cs</DependentUpon>
     </Compile>
     <Compile Include="Ingreso de Efectivo.cs">
       <SubType>Form</SubType>
@@ -452,6 +479,12 @@
     </Compile>
     <Compile Include="ReporteDClientesInactivos.Designer.cs">
       <DependentUpon>ReporteDClientesInactivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaCajaRapida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaCajaRapida.Designer.cs">
+      <DependentUpon>VentaCajaRapida.cs</DependentUpon>
     </Compile>
     <Compile Include="VentasVendedor.cs">
       <SubType>Form</SubType>
@@ -663,6 +696,9 @@
     <EmbeddedResource Include="CancelarAbonos.resx">
       <DependentUpon>CancelarAbonos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CancelarVentasCajaRapida.resx">
+      <DependentUpon>CancelarVentasCajaRapida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Clientes inactivos.resx">
       <DependentUpon>Clientes inactivos.cs</DependentUpon>
     </EmbeddedResource>
@@ -674,6 +710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CobranzaViejoONuevo.resx">
       <DependentUpon>CobranzaViejoONuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cobrar.resx">
+      <DependentUpon>Cobrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consignacion.resx">
       <DependentUpon>Consignacion.cs</DependentUpon>
@@ -695,6 +734,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CorteSucursal.resx">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DescuentoCambioEnvase.resx">
+      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DescuentosComision.resx">
       <DependentUpon>DescuentosComision.cs</DependentUpon>
@@ -725,6 +767,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="historicos de movimientos.resx">
       <DependentUpon>historicos de movimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impresoras.resx">
+      <DependentUpon>Impresoras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ingreso de Efectivo.resx">
       <DependentUpon>Ingreso de Efectivo.cs</DependentUpon>
@@ -795,6 +840,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteDClientesInactivos.resx">
       <DependentUpon>ReporteDClientesInactivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentaCajaRapida.resx">
+      <DependentUpon>VentaCajaRapida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentasVendedor.resx">
       <DependentUpon>VentasVendedor.cs</DependentUpon>
@@ -917,6 +965,11 @@
     <Content Include="configc.txt" />
     <None Include="Imagenes\camino-recto-en-perspectiva-hacia-adelante.png" />
     <None Include="Imagenes\descuentocomision.png" />
+    <None Include="Imagenes\printer.png" />
+    <None Include="Imagenes\efectivo-128.png" />
+    <None Include="Imagenes\efectivo42.png" />
+    <None Include="Imagenes\scissors.png" />
+    <None Include="Imagenes\scissors24.png" />
     <Content Include="ParaConsignacion.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

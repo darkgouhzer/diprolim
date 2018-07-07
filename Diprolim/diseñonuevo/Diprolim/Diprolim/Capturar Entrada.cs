@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Identidades;
+using MySql.Data.MySqlClient;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,8 @@ namespace Diprolim
 {
     public partial class Capturar_Entrada : Form
     {
+        ArticuloBO objArticuloBO = new ArticuloBO();
+        CArticulos objCArticulos = new CArticulos();
         UnicaSQL.DBMS_Unico Conexion;
         String cmd;
         conexion conn = new conexion();
@@ -301,18 +305,26 @@ namespace Diprolim
                         else
                         {
                             DataTable tbl = new DataTable();
-                            cmd = String.Format("SELECT Cantidad FROM inv_vendedor WHERE"+
-                                " empleados_id_empleado={0} AND articulos_codigo={1}",
-                                tbxVendedor.Text,tbxProducto.Text);
+                            cmd = String.Format("SELECT i.Cantidad as cantidad_vendedor, a.cantidad FROM inv_vendedor i" +
+                                   " inner join articulos a on i.articulos_codigo = a.codigo "+
+                                   " WHERE empleados_id_empleado={0} AND articulos_codigo={1};", tbxVendedor.Text,tbxProducto.Text);
                             Conexion.Conectarse();
                             Conexion.Ejecutar(cmd, ref tbl);
                             Conexion.Desconectarse();
                             if (tbl.Rows.Count > 0)
-                            {
+                            {                                
                                 DataRow row = tbl.Rows[0];
-                                Tabla.Rows.Add(false, tbxProducto.Text, tbxNProducto.Text, tbxCantidad.Text,
-                                    Convert.ToDouble(row["Cantidad"]) + Convert.ToDouble(tbxCantidad.Text), row["Cantidad"],
-                                    dtpFecha.Value);
+                                if (Convert.ToDouble(row["cantidad"]) >= Convert.ToDouble(tbxCantidad.Text))
+                                {
+                                    Tabla.Rows.Add(false, tbxProducto.Text, tbxNProducto.Text, tbxCantidad.Text,
+                                   Convert.ToDouble(row["cantidad_vendedor"]) + Convert.ToDouble(tbxCantidad.Text), row["Cantidad"],
+                                   dtpFecha.Value);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("La sucursal no tiene suficiente inventario.");
+                                }
+                               
                             }
                             else
                             {
@@ -1077,25 +1089,43 @@ namespace Diprolim
 
                         if (cbxMotivo.Text != "Entradas a vendedores")
                         {
-                            comando = new MySqlCommand("UPDATE articulos SET cantidad=cantidad+" + cantidad + " where codigo=" + codigo, conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
+                            cmd = String.Format("UPDATE articulos SET cantidad=cantidad+" + cantidad + " where codigo=" + codigo);
+                            bAllOk = Conexion.Ejecutar(cmd);
+                            if (bAllOk)
+                            {
+                                cmd = String.Format("INSERT INTO entradasDP (fecha,cantidad,articulos_codigo,Motivo,Comentarios,empleados_id_empleado,folio)" +
+                                                 "VALUES('" + dtpFecha.Value.ToString("yyyyMMddHHmmss") + "'," + cantidad + "," + codigo + ",'" + cbxMotivo.Text + "','" + tbxComentarios.Text + "'," + vendedor + ",'" + tbxFolioDE.Text + "') ");
 
-                            comando = new MySqlCommand("INSERT INTO entradasDP (fecha,cantidad,articulos_codigo,Motivo,Comentarios,empleados_id_empleado,folio)" +
-                                                    "VALUES('" + dtpFecha.Value.ToString("yyyyMMddHHmmss") + "'," + cantidad + "," + codigo + ",'" + cbxMotivo.Text + "','" + tbxComentarios.Text + "'," + vendedor + ",'" + tbxFolioDE.Text + "') ", conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
+                                bAllOk = Conexion.Ejecutar(cmd);
+                            }
+                      
                         }
                         else
                         {
+                           objCArticulos = objArticuloBO.ObtenerDatosArticulo(codigo);
+                           if (objCArticulos.Cantidad >= cantidad)
+                           {
+
+                          
                             cmd = String.Format("UPDATE inv_vendedor SET Cantidad=Cantidad+{0} WHERE "+
                                 " empleados_id_empleado={1} AND articulos_codigo={2}", 
                                 cantidad, 
                                 tbxVendedor.Text,
                                 codigo);
                             bAllOk = Conexion.Ejecutar(cmd);
+                            if (bAllOk)
+                            {
+                                cmd = String.Format("UPDATE articulos SET cantidad=cantidad-" + cantidad + " WHERE codigo=" + codigo);
+                                bAllOk = Conexion.Ejecutar(cmd);
+                            }
+                         
+                           }
+                           else
+                           {
+                               MessageBox.Show(String.Format("El código {0} no tiene suficiente inventario en sucursal.",codigo));
+                               bAllOk = false;
+                               break;
+                           }
                             
                         }
 
@@ -1170,28 +1200,27 @@ namespace Diprolim
 
                         if (cbxMotivo.Text == "Entradas a vendedores")
                         {
+
                             cmd =String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha,"+
                                 " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) "+
                                 " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
                                 codigo, cantidad, "Entrada a vendedores", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
                                 CantidadInicial,total2,tbxVendedor.Text,UsuarioID);
                             bAllOk = Conexion.Ejecutar(cmd);
-                            comando = new MySqlCommand("INSERT INTO salidas values(null," + cantidad + "," +
-                                dtpFecha.Value.ToString("yyyyMMdd") + "," + tbxVendedor.Text + "," + codigo + "," +
-                                total2 + ",'Entrada a vendedor','"+tbxComentarios.Text+"','"+tbxFolioDE.Text+"')", conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
-
+                            if (bAllOk)
+                            {
+                                cmd = String.Format("INSERT INTO salidas (n_salida, fecha, empleados_id_empleado, articulos_codigo, inventario_total, Motivo, Comentarios,Folio) "+
+                                    " values(" + cantidad + "," + dtpFecha.Value.ToString("yyyyMMdd") + "," + tbxVendedor.Text + "," + codigo + "," +
+                                total2 + ",'Entrada a vendedor','" + tbxComentarios.Text + "','" + tbxFolioDE.Text + "')");
+                                bAllOk = Conexion.Ejecutar(cmd);
+                            }
                         }
                         else
                         {
-                            comando = new MySqlCommand("INSERT INTO HistoricoDMovimientos  VALUES(null," + codigo + "," + 
+                            cmd = String.Format("INSERT INTO HistoricoDMovimientos  VALUES(null," + codigo + "," + 
                                 cantidad + "," + total2 + ",'" + Operacion + "'," + UsuarioID + ",now()," + CantidadInicial + 
-                                ")", conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
+                                ")");
+                            bAllOk = Conexion.Ejecutar(cmd);
                             if (cbxMotivo.Text == "Devolución de Vendedor")
                             {
 
@@ -1204,33 +1233,32 @@ namespace Diprolim
                             }
                         }
                     }
+                    cmd = String.Format("INSERT INTO Folios_Entradas values(null)");
+                    bAllOk = Conexion.Ejecutar(cmd);
                     Conexion.FinTransaccion(bAllOk);
                     Conexion.Desconectarse();
+                    if (bAllOk)
+                    {
+                        tbxProducto.Clear();
+
+                        tbxVendedor.Clear();
+                        tbxCantidad.Clear();
+                        tbxExistencias.Clear();
+                        tbxNProducto.Clear();
+                        tbxComentarios.Clear();
+                        tbxVendedor.ReadOnly = false;
+                        btnSV.Enabled = true;
+
+                        (printPreviewDialog1 as Form).WindowState = FormWindowState.Maximized;
+                        printPreviewDialog1.PrintPreviewControl.Zoom = 1.5;
+                        printPreviewDialog1.ShowDialog();
+                        tbxFolioDE.Text = Prefijo + "-" + CargarFolio().ToString();
+                        Tabla.Rows.Clear();
+
+                        tbxNVendedor.Clear();
+                        MessageBox.Show("Entrada guardada con éxito.");
+                    }
                    
-                        comando = new MySqlCommand("INSERT INTO Folios_Entradas values(null)", conectar);
-                        conectar.Open();
-                        comando.ExecuteNonQuery();
-                        conectar.Close();
-                    
-
-                    tbxProducto.Clear();
-                    
-                    tbxVendedor.Clear();
-                    tbxCantidad.Clear();
-                    tbxExistencias.Clear();
-                    tbxNProducto.Clear();
-                    tbxComentarios.Clear();
-                    tbxVendedor.ReadOnly = false;
-                    btnSV.Enabled = true;
-
-                    (printPreviewDialog1 as Form).WindowState = FormWindowState.Maximized;
-                    printPreviewDialog1.PrintPreviewControl.Zoom = 1.5;
-                    printPreviewDialog1.ShowDialog();
-                    tbxFolioDE.Text = Prefijo + "-" + CargarFolio().ToString();
-                    Tabla.Rows.Clear();
-                    
-                    tbxNVendedor.Clear();
-                    MessageBox.Show("Entrada guardada con éxito.");
                 }
             } 
         }

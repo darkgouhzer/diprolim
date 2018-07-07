@@ -612,7 +612,7 @@ namespace Diprolim
                                             + "," + Convert.ToDouble(dtgConsignacion[4, i].Value) + "," +
                                             Convert.ToDouble(dtgConsignacion[8, i].Value) + "," +
                                             DateTime.Now.ToString("yyyyMMddHHmmss") + ",0," +
-                                            Convert.ToDouble(dtgConsignacion[14, i].Value) + ",0,'consignacion',0,0,0)");
+                                            Convert.ToDouble(dtgConsignacion[14, i].Value) + ",0,'consignacion',0,0,0,0)");
                                     }
                                 }
                             }

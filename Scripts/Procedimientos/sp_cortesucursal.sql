@@ -32,7 +32,7 @@ BEGIN
 		OPEN cursorEmpleados;
 		WHILE _ContEmpleados > 0 DO
 		FETCH cursorEmpleados INTO _idEmpleado;	
-		SET _dEfectivoEntrega = _dVentasTotales = _dIva = _dFiado = _dRecuperado = _dGastos = 0;
+
 		-- Obtener fecha del último corte de caja del empleado
 		SELECT if( CAST(fecha AS TIME) > CAST('00:00:00' AS TIME), fecha, CAST(CAST(dfecha AS DATE) AS DATETIME))
 		FROM cortedcaja WHERE empleados_id_empleado =_idEmpleado AND CAST(fecha AS DATE) < CAST(dfecha AS DATE)	
@@ -58,12 +58,12 @@ BEGIN
 			_dFechaInicial AND dfecha INTO _dRecuperado;
 
 		-- Verificar si ha habido cortes de caja del día actual y obtener gastos.
-		SELECT COUNT(idCorteDCaja), COALESCE(Gastos,0), COALESCE(concepto, '') FROM cortedcaja 
+		SELECT COUNT(idCorteDCaja), COALESCE(SUM(Gastos),0), COALESCE(concepto, '') FROM cortedcaja 
 		WHERE empleados_id_empleado=_idEmpleado AND CAST(Fecha AS date)=CAST(dfecha AS date) 
 		INTO _iContCaja, _dGastos, _sConcepto;
 
-		SET _dEfectivoEntrega = _dVentasTotales + _dIva - _dFiado + _dRecuperado - _dGastos;
-		IF _dVentasTotales > 0 OR _dRecuperado > 0 OR _dFiado > 0 OR _dGastos > 0 THEN
+		SET _dEfectivoEntrega = _dVentasTotales + _dIva - _dFiado + _dRecuperado;
+		IF _dVentasTotales > 0 OR _dRecuperado > 0 OR _dFiado > 0 OR _dGastos THEN
 			IF _iContCaja = 0 THEN
 				INSERT INTO cortedcaja (empleados_id_empleado,Ventas_Totales,Recuperado,Fiado,Gastos,Concepto,
 									EfectivoAEntregar,Fecha,Iva)

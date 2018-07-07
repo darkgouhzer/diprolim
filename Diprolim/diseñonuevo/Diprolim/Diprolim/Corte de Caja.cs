@@ -16,13 +16,25 @@ namespace Diprolim
     public partial class Corte_de_Caja : Form
     {
         conexion conn = new conexion();
-        int iExistenCortesRealizados = 0;
         CorteCajaBO objCorteCajaBO;
+        String ImpresoraTicket = "";
         public Corte_de_Caja(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Now;
-        }        
+            CargarDatosTicket();
+        }
+        public Corte_de_Caja(UnicaSQL.DBMS_Unico sConexion, String sVendedor)
+        {
+            InitializeComponent();
+            dtpFecha.Value = DateTime.Now;
+            tbxVendedor.Text = sVendedor;
+            btnCambiarVendedor.Enabled = false;
+            btnBuscar.Enabled = false;
+            tbxVendedor.ReadOnly = true;
+            obtenerVendedor();
+            CargarDatosTicket();
+        }  
         public void obtenerVendedor()
         {
             if (tbxVendedor.Text != "")
@@ -73,12 +85,12 @@ namespace Diprolim
             if (id.regresar.valXn != "1" && tbxVendedor.Text != "")
             {
                 tbxVendedor.ReadOnly = true;
-                btnB.Enabled = false;
+                btnBuscar.Enabled = false;
             }
             else
             {
                 tbxVendedor.ReadOnly = false;
-                btnB.Enabled = true;
+                btnBuscar.Enabled = true;
             }
         }
 
@@ -87,7 +99,7 @@ namespace Diprolim
             tbxVendedor.Clear();
             tbxVendedor.ReadOnly = false;
             tbxNVendedor.Clear();
-            btnB.Enabled = true;
+            btnBuscar.Enabled = true;
             tbxVT.Clear();
             tbxIva.Clear();
             tbxRecuperado.Clear();            
@@ -103,7 +115,7 @@ namespace Diprolim
                 obtenerVendedor();
                 
                 tbxVendedor.ReadOnly = true;
-                btnB.Enabled = false;
+                btnBuscar.Enabled = false;
             }
         }
         
@@ -202,72 +214,142 @@ namespace Diprolim
             }
             sumar();
         }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Font letra = new Font("Arial", 12);
-            Font letra2 = new Font("Arial", 12,FontStyle.Bold);
-            int x = 120;
-            //int L = 105;
-            int y = 25;
+            Font letraTi = new Font("Arial", 11, FontStyle.Bold);
+            Font letraTi2 = new Font("Arial", 8, FontStyle.Bold);
+            Font letra = new Font("Arial", 8);
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+
+            int y = 2;
+            int x = 2;
 
             #region titulo
-            e.Graphics.DrawString("CORTE DE CAJA POR VENDEDOR", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 5*2, 50, 500, tbxNVendedor.Height + 15));
+            e.Graphics.DrawString("CORTE DE CAJA INDIVIDUAL", letraTi, Brushes.Black, new Rectangle(0, y, 290, 50), stringFormat);
             #endregion
+            y += 38;
             #region Fecha
-            e.Graphics.DrawString(dtpFecha.Value.ToString("dd/MMMM/yyyy"), letra2, Brushes.Black, new Rectangle(e.MarginBounds.Width/10*9, y * 4, 500, tbxNVendedor.Height + 15));
-       #endregion
-
-            #region NombreVendedor
-            e.Graphics.DrawString("Vendedor: ", letra2, Brushes.Black, new Rectangle(x, y * 4, 500, tbxNVendedor.Height + 15));
-            e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x+100, y * 4, 500, tbxNVendedor.Height + 15));
+            e.Graphics.DrawString("Fecha: " + dtpFecha.Value.ToString("dd/MMMM/yyyy"), letraTi2, Brushes.Black, new Rectangle(x, y, 290, 50));
             #endregion
-
+            y += 25;
+            e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x, y, 290, 75));
+            y += 40;
             #region VentasTotales
 
             Pen p = new Pen(Brushes.Black, 1.5f);
 
-            e.Graphics.DrawString("Ventas totales: ", letra2, Brushes.Black, new Rectangle(x, y*5, 500, tbxVT.Height + 15));
-            e.Graphics.DrawString("$ "+tbxVT.Text, letra, Brushes.Black, new Rectangle(x+160, y * 5, 500, tbxVT.Height + 15));
+            e.Graphics.DrawString("Ventas totales: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxVT.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
+            #endregion
+            #region Recuperado
 
+            e.Graphics.DrawString("IVA: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxIva.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Recuperado
 
-            e.Graphics.DrawString("Recuperado: ", letra2, Brushes.Black, new Rectangle(x, y*6, 500, tbxRecuperado.Height + 15));
-            e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 6, 500, tbxRecuperado.Height + 15));
-
+            e.Graphics.DrawString("Recuperado: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Fiado
-                
-            e.Graphics.DrawString("Fiado:", letra2, Brushes.Black, new Rectangle(x, y*7, 500, tbxFiado.Height + 15));
-            e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 7, 500, tbxFiado.Height + 15));
-                
+
+            e.Graphics.DrawString("Fiado:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Gastos
-                
-            e.Graphics.DrawString("Gastos:", letra2, Brushes.Black, new Rectangle(x, y*8, 500, tbxConcepto.Height + 15));
-            e.Graphics.DrawString("$ " + tbxGastos.Text + "          " + tbxConcepto.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 8, 500, tbxConcepto.Height + 15));
 
+            e.Graphics.DrawString("Gastos:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxGastos.Text , letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Efectivo
-            Pen pl = new Pen(Brushes.Black, 2.0f);
-            e.Graphics.DrawLine(pl, 210.0f, 220.0f,350.0f, 220.0f);
-            e.Graphics.DrawString("Efectivo a entregar:", letra2, Brushes.Black, new Rectangle(x , y*9, 500, tbxConcepto.Height + 15));
-            e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(x+160, y * 9, 500, tbxConcepto.Height + 15));
-
-            #endregion             
-            
+            e.Graphics.DrawString("Efectivo a entregar:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
+            #endregion
         }
+
+       // private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+       // {
+       //     Font letra = new Font("Arial", 12);
+       //     Font letra2 = new Font("Arial", 12,FontStyle.Bold);
+       //     int x = 120;
+       //     //int L = 105;
+       //     int y = 25;
+
+       //     #region titulo
+       //     e.Graphics.DrawString("CORTE DE CAJA POR VENDEDOR", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 5*2, 50, 500, tbxNVendedor.Height + 15));
+       //     #endregion
+       //     #region Fecha
+       //     e.Graphics.DrawString(dtpFecha.Value.ToString("dd/MMMM/yyyy"), letra2, Brushes.Black, new Rectangle(e.MarginBounds.Width/10*9, y * 4, 500, tbxNVendedor.Height + 15));
+       //#endregion
+
+       //     #region NombreVendedor
+       //     e.Graphics.DrawString("Vendedor: ", letra2, Brushes.Black, new Rectangle(x, y * 4, 500, tbxNVendedor.Height + 15));
+       //     e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x+100, y * 4, 500, tbxNVendedor.Height + 15));
+       //     #endregion
+
+       //     #region VentasTotales
+
+       //     Pen p = new Pen(Brushes.Black, 1.5f);
+
+       //     e.Graphics.DrawString("Ventas totales: ", letra2, Brushes.Black, new Rectangle(x, y*5, 500, tbxVT.Height + 15));
+       //     e.Graphics.DrawString("$ "+tbxVT.Text, letra, Brushes.Black, new Rectangle(x+160, y * 5, 500, tbxVT.Height + 15));
+
+       //     #endregion
+
+       //     #region Recuperado
+
+       //     e.Graphics.DrawString("Recuperado: ", letra2, Brushes.Black, new Rectangle(x, y*6, 500, tbxRecuperado.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 6, 500, tbxRecuperado.Height + 15));
+
+       //     #endregion
+
+       //     #region Fiado
+                
+       //     e.Graphics.DrawString("Fiado:", letra2, Brushes.Black, new Rectangle(x, y*7, 500, tbxFiado.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 7, 500, tbxFiado.Height + 15));
+                
+       //     #endregion
+
+       //     #region Gastos
+                
+       //     e.Graphics.DrawString("Gastos:", letra2, Brushes.Black, new Rectangle(x, y*8, 500, tbxConcepto.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxGastos.Text + "          " + tbxConcepto.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 8, 500, tbxConcepto.Height + 15));
+
+       //     #endregion
+
+       //     #region Efectivo
+       //     Pen pl = new Pen(Brushes.Black, 2.0f);
+       //     e.Graphics.DrawLine(pl, 210.0f, 220.0f,350.0f, 220.0f);
+       //     e.Graphics.DrawString("Efectivo a entregar:", letra2, Brushes.Black, new Rectangle(x , y*9, 500, tbxConcepto.Height + 15));
+       //     e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(x+160, y * 9, 500, tbxConcepto.Height + 15));
+
+       //     #endregion             
+            
+       // }
 
         private void btnImprimirCr_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.ShowDialog();
+            printDocument1.PrinterSettings.PrinterName = ImpresoraTicket;
+            printDocument1.Print();
         }
-
+        public void CargarDatosTicket()
+        {
+            CImpresora objCImpresora = new CImpresora();
+            ImpresoraBO objImpresoraBO = new ImpresoraBO();
+            objCImpresora = objImpresoraBO.ObtenerDatosImpresora();
+            ImpresoraTicket = objCImpresora.Impresora;
+        }
         private void tbxVendedor_Leave(object sender, EventArgs e)
         {
             if (tbxVendedor.Text.Length > 0)
@@ -275,7 +357,7 @@ namespace Diprolim
                 obtenerVendedor();
 
                 tbxVendedor.ReadOnly = true;
-                btnB.Enabled = false;
+                btnBuscar.Enabled = false;
             }
         }
 
@@ -285,6 +367,11 @@ namespace Diprolim
             {
                 this.Close();
             }
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

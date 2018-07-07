@@ -46,6 +46,7 @@
     <Compile Include="CComision.cs" />
     <Compile Include="CCorteIndividual.cs" />
     <Compile Include="CEmpleados.cs" />
+    <Compile Include="CImpresora.cs" />
     <Compile Include="CVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

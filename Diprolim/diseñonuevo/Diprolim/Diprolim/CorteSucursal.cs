@@ -22,7 +22,8 @@ namespace Diprolim
         public CorteSucursal()
         {
             InitializeComponent();
-            dtpFecha.Value = DateTime.Now;           
+            dtpFecha.Value = DateTime.Now;
+            PrevisualizarCorteGeneral();
            
         }
         public void SumarDatosGrid()
@@ -63,9 +64,27 @@ namespace Diprolim
             }
         }   
         private void btnImprimirCr_Click(object sender, EventArgs e)
-        {           
+        {
+            LLenarDataGrid();
             printDocument1.DefaultPageSettings.Landscape = true;
             printPreviewDialog1.ShowDialog();
+        }
+
+        public void PrevisualizarCorteGeneral()
+        {
+            Tabla.Rows.Clear();
+            DataTable tblCorteSucursal = new DataTable();
+            CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+            tblCorteSucursal = objCorteCajaBO.PreGenerarCorteGeneral(dtpFecha.Value);
+            foreach (DataRow row in tblCorteSucursal.Rows)
+            {
+                //row = row; c.empleados_id_empleado, e.nombre, c.Ventas_Totales, c.Recuperado, c.Fiado, c.Gastos, c.Concepto, 	c.EfectivoAEntregar, c.Fecha, c.Iva
+                Tabla.Rows.Add(row["nombre"].ToString(), Convert.ToDouble(row["Ventas_Totales"]), Convert.ToDouble(row["Iva"]), Convert.ToDouble(row["Recuperado"]),
+                               Convert.ToDouble(row["Fiado"]), Convert.ToDouble(row["Gastos"]), Convert.ToDouble(row["EfectivoAEntregar"]),
+                               row["Concepto"].ToString(), false, Convert.ToInt32(row["empleados_id_empleado"]));
+            }
+
+            SumarDatosGrid();
         }
         public void LLenarDataGrid()
         {

@@ -19,6 +19,11 @@ namespace ReglasNegocios
             CortesCajaDAL objCortesCajaDAL = new CortesCajaDAL();
             return objCortesCajaDAL.GenerarCorteGeneral(dFecha);
         }
+        public DataTable PreGenerarCorteGeneral(DateTime dFecha)
+        {
+            CortesCajaDAL objCortesCajaDAL = new CortesCajaDAL();
+            return objCortesCajaDAL.PreGenerarCorteGeneral(dFecha);
+        }
 
         public Boolean GenerarCorteIndividual(CCorteIndividual objCCorteIndividual)
         {
@@ -45,6 +50,11 @@ namespace ReglasNegocios
                 objCCorteIndividual.NombreVendedor = row["_NombreEmpleado"].ToString();
             }
             return objCCorteIndividual;
+        }
+
+        public DateTime ObtenerFechaUltimoCorte()
+        {
+            return new CortesCajaDAL().ObtenerFechaUltimoCorte();
         }
     }
 }

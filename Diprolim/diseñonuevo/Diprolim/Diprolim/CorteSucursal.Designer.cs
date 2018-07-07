@@ -36,12 +36,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.btnImprimirCr = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Tabla = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnRealizarCorte = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.E = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +49,9 @@
             this.Comentarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRealizarCorte = new System.Windows.Forms.Button();
+            this.btnImprimirCr = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,18 +67,6 @@
             this.dtpFecha.Value = new System.DateTime(2014, 4, 4, 0, 0, 0, 0);
             this.dtpFecha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpFecha_KeyDown);
             this.dtpFecha.Leave += new System.EventHandler(this.dtpFecha_Leave);
-            // 
-            // btnImprimirCr
-            // 
-            this.btnImprimirCr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnImprimirCr.Image = global::Diprolim.Properties.Resources.print;
-            this.btnImprimirCr.Location = new System.Drawing.Point(954, 335);
-            this.btnImprimirCr.Margin = new System.Windows.Forms.Padding(5);
-            this.btnImprimirCr.Name = "btnImprimirCr";
-            this.btnImprimirCr.Size = new System.Drawing.Size(66, 62);
-            this.btnImprimirCr.TabIndex = 2;
-            this.btnImprimirCr.UseVisualStyleBackColor = true;
-            this.btnImprimirCr.Click += new System.EventHandler(this.btnImprimirCr_Click);
             // 
             // printDocument1
             // 
@@ -119,28 +107,6 @@
             this.Tabla.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.Tabla_CellValueChanged);
             this.Tabla.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Tabla_EditingControlShowing);
             this.Tabla.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tabla_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(304, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(433, 31);
-            this.label1.TabIndex = 292;
-            this.label1.Text = "CORTE DE CAJA DE SUCURSAL";
-            // 
-            // btnRealizarCorte
-            // 
-            this.btnRealizarCorte.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRealizarCorte.Location = new System.Drawing.Point(807, 335);
-            this.btnRealizarCorte.Margin = new System.Windows.Forms.Padding(5);
-            this.btnRealizarCorte.Name = "btnRealizarCorte";
-            this.btnRealizarCorte.Size = new System.Drawing.Size(137, 62);
-            this.btnRealizarCorte.TabIndex = 293;
-            this.btnRealizarCorte.Text = "Generar corte";
-            this.btnRealizarCorte.UseVisualStyleBackColor = true;
-            this.btnRealizarCorte.Click += new System.EventHandler(this.btnRealizarCorte_Click);
             // 
             // Column1
             // 
@@ -231,6 +197,43 @@
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(304, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(433, 31);
+            this.label1.TabIndex = 292;
+            this.label1.Text = "CORTE DE CAJA DE SUCURSAL";
+            // 
+            // btnRealizarCorte
+            // 
+            this.btnRealizarCorte.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRealizarCorte.Image = global::Diprolim.Properties.Resources.scissors24;
+            this.btnRealizarCorte.Location = new System.Drawing.Point(783, 335);
+            this.btnRealizarCorte.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRealizarCorte.Name = "btnRealizarCorte";
+            this.btnRealizarCorte.Size = new System.Drawing.Size(161, 62);
+            this.btnRealizarCorte.TabIndex = 293;
+            this.btnRealizarCorte.Text = "Generar corte";
+            this.btnRealizarCorte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRealizarCorte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRealizarCorte.UseVisualStyleBackColor = true;
+            this.btnRealizarCorte.Click += new System.EventHandler(this.btnRealizarCorte_Click);
+            // 
+            // btnImprimirCr
+            // 
+            this.btnImprimirCr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnImprimirCr.Image = global::Diprolim.Properties.Resources.print;
+            this.btnImprimirCr.Location = new System.Drawing.Point(954, 335);
+            this.btnImprimirCr.Margin = new System.Windows.Forms.Padding(5);
+            this.btnImprimirCr.Name = "btnImprimirCr";
+            this.btnImprimirCr.Size = new System.Drawing.Size(66, 62);
+            this.btnImprimirCr.TabIndex = 2;
+            this.btnImprimirCr.UseVisualStyleBackColor = true;
+            this.btnImprimirCr.Click += new System.EventHandler(this.btnImprimirCr_Click);
             // 
             // CorteSucursal
             // 

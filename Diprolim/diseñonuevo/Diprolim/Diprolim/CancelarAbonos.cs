@@ -79,6 +79,9 @@ namespace Diprolim
         {
             if (dtgResultados.Rows.Count > 0)
             {
+                CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+                DateTime objDTUltimoCorte = objCorteCajaBO.ObtenerFechaUltimoCorte();
+                Boolean bAllOK = true;
                 CCancelaAbonos objCCancelaAbonos;
                 List<CCancelaAbonos> lsCCancelaAbonos = new List<CCancelaAbonos>();
                 List<DataGridViewRow> lsGridEliminar = new List<DataGridViewRow>();
@@ -101,21 +104,38 @@ namespace Diprolim
                         }
                         lsCCancelaAbonos.Add(objCCancelaAbonos);
                         lsGridEliminar.Add(row);
+
+                        //if (objDTUltimoCorte > objCCancelaAbonos.Fecha)
+                        //{
+                        //    bAllOK = false;
+                        //    break;
+                        //}
                     }
                    
                 }
+                //if (bAllOK)
+                //{
                 foreach (DataGridViewRow row in lsGridEliminar)
                 {
                     dtgResultados.Rows.Remove(row);
                 }
-                if (lsCCancelaAbonos[0].Fecha.Date == DateTime.Now.Date)
+                if (lsCCancelaAbonos.Count > 0)
                 {
-                    objAbonosBO.CancelarAbono(lsCCancelaAbonos);
-                }
-                else
-                {
-                    MessageBox.Show("No es posible eliminar abonos de días anteriores.");
-                }
+                    if (lsCCancelaAbonos[0].Fecha.Date == DateTime.Now.Date)
+                    {
+                        objAbonosBO.CancelarAbono(lsCCancelaAbonos);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No es posible eliminar abonos de días anteriores.");
+                    }
+                }                   
+                //}
+                //else
+                //{
+                //    MessageBox.Show("No es posible eliminar abonos hechos antes del último corte.");
+                //}
+                
             }
         }
 

@@ -19,7 +19,15 @@ namespace AccesoDatos
                             Conexion.Default.BaseDatos, Conexion.Default.Usuario, Conexion.Default.Password,
                             Conexion.Default.Puerto);
         }
-
+        public DataTable PreGenerarCorteGeneral(DateTime dFecha)
+        {
+            DataTable dt = new DataTable();
+            cmd = String.Format("call sp_obtenercortesucursaltemporal( CAST('{0}' AS DATETIME));", dFecha.ToString("yyyyMMddHHmmss"));
+            objConexion.Conectarse();
+            objConexion.Ejecutar(cmd, ref dt);
+            objConexion.Desconectarse();
+            return dt;
+        }
         public DataTable GenerarCorteGeneral(DateTime dFecha)
         {
             DataTable dt = new DataTable();
@@ -55,5 +63,27 @@ namespace AccesoDatos
             return bAllOK;
         }
 
+        public DateTime ObtenerFechaUltimoCorte()
+        {
+            Boolean bAllOK = false;
+            DateTime dtUltimoCorte = new DateTime();
+            DataTable dtResultados = new DataTable();
+
+            objConexion.Conectarse();
+            objConexion.IniciarTransaccion();
+            cmd = String.Format("call sp_obtenerfechaultimocorte();");
+            objConexion.Ejecutar(cmd, ref dtResultados);
+            if (dtResultados.Rows.Count > 0)
+            {
+                DataRow row = dtResultados.Rows[0];
+                dtUltimoCorte = Convert.ToDateTime(row[0]);
+                bAllOK = true;
+               
+            }
+            objConexion.FinTransaccion(bAllOK);
+            objConexion.Desconectarse();
+
+            return dtUltimoCorte;
+        }
     }
 }

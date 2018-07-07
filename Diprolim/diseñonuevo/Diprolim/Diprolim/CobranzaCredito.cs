@@ -1029,5 +1029,17 @@ namespace Diprolim
         {
             CalcularComision(15);
         }
+
+        private void CobranzaCredito_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult result = MessageBox.Show("¿Está seguro que desea salir?", "Saliendo de Cobranza crédito", MessageBoxButtons.YesNo);
+                if (DialogResult.Yes == result)
+                {
+                    this.Close();
+                }
+            }
+        }
     }
 }

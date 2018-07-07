@@ -27,7 +27,8 @@ namespace ReglasNegocios
         public Boolean CancelarAbono(List<CCancelaAbonos> lsCCancelaAbonos)
         {
             Boolean bAllOK = false;
-            objAbonosDAL = new AbonosDAL();
+            CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+
             foreach(CCancelaAbonos obj in lsCCancelaAbonos)
             {
                 if(obj.IDAbonos>0)

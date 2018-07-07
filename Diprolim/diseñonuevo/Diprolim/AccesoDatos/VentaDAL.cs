@@ -45,5 +45,57 @@ namespace AccesoDatos
             objConexion.Ejecutar(cmd);
             objConexion.Desconectarse();
         }
+        public int RegistrarVenta(DataTable dtDatos)
+        {
+            int iFolioTicket = 0;
+            DataTable dtRespuesta = new DataTable();
+            Boolean bAllOk = false;
+            if (dtDatos.Rows.Count > 0)
+            {
+                objConexion.Conectarse();
+                objConexion.IniciarTransaccion();
+                foreach (DataRow row in dtDatos.Rows)
+                {
+                    cmd = String.Format("call sp_registrarventa({0}, {1}, {2}, {3}, {4}, {5})",
+                        row[0], row[2], row[3], row[4], row[5],  iFolioTicket);
+                    objConexion.Ejecutar(cmd, ref dtRespuesta);
+                  iFolioTicket =  Convert.ToInt32(dtRespuesta.Rows[0][0]);
+                }
+                bAllOk = true;
+                objConexion.FinTransaccion(bAllOk);
+                objConexion.Desconectarse();
+            }
+            return iFolioTicket;
+
+        }
+
+        public DataTable ObtenerVentasPorTicket(int iFolioTicket)
+        {
+            DataTable dtRespuesta = new DataTable();
+            if (iFolioTicket > 0)
+            {
+                objConexion.Conectarse();
+
+                cmd = String.Format("call sp_obtenerventasticket({0});",iFolioTicket);
+                objConexion.Ejecutar(cmd, ref dtRespuesta);
+                objConexion.Desconectarse();
+            }
+            return dtRespuesta;
+        }
+
+        public Boolean CancelarTicket(int iFolioTicket)
+        {
+            DataTable dtRespuesta = new DataTable();
+            Boolean bAllOk = false;
+            if (iFolioTicket > 0)
+            {
+                objConexion.Conectarse();
+                cmd = String.Format("call sp_eliminarventaporticket({0})", iFolioTicket);
+                bAllOk = objConexion.Ejecutar(cmd);   
+                objConexion.Desconectarse();
+            }
+
+            return bAllOk;
+        }
     }
 }

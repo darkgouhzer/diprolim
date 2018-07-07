@@ -232,7 +232,6 @@
             this.cbxMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMotivo.FormattingEnabled = true;
             this.cbxMotivo.Items.AddRange(new object[] {
-            "Normal",
             "Transferencia",
             "Devolución de Vendedor",
             "Devolución por consignación",

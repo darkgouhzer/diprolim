@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Usuario" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root</Value>
+      <Value Profile="(Default)">dipjuan</Value>
     </Setting>
     <Setting Name="GestorBD" Type="System.String" Scope="User">
       <Value Profile="(Default)">MySQL</Value>
     </Setting>
     <Setting Name="Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">localhost</Value>
+      <Value Profile="(Default)">192.168.1.140</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">clave</Value>

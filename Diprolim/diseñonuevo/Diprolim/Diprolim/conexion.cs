@@ -13,7 +13,7 @@ namespace Diprolim
         public MySqlConnection ObtenerConexion()
         {
             Leer_txt();
-            MySqlConnection conectar = new MySqlConnection("server=" + Servidor + "; database=" + BaseDeDatos + "; Uid=" + Usuarios + "; pwd=" + Password + ";connectiontimeout=30;");
+            MySqlConnection conectar = new MySqlConnection("server=" + Servidor + "; database=" + BaseDeDatos + "; Uid=" + Usuarios + "; pwd=" + Password + ";connectiontimeout=30;SslMode=none");
             return conectar;
         }
         int Cont = 0;

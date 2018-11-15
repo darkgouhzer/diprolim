@@ -676,7 +676,7 @@ namespace Diprolim
                     {                       
                         #region EliminacionDiasAnteriores
 
-                        Boolean bContado = false;
+                        Boolean bContador = false;
                         string Respuesta = "";
                         string S = ".";
                         inicioSesion id = new inicioSesion(S);
@@ -764,15 +764,12 @@ namespace Diprolim
                                                     {
                                                         cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
                                                         bAllOk = Conexion.Ejecutar(cmd);
+                                                        bContador = true;
                                                     }
                                                 }
                                                 Conexion.FinTransaccion(bAllOk);
                                                 Conexion.Desconectarse();
                                             }
-                                        }
-                                        else
-                                        {
-                                            bContado = true;
                                         }
                                     }
 
@@ -790,9 +787,9 @@ namespace Diprolim
                                     foreach (DataGridViewRow row in dtgPClientes.Rows)
                                     {
                                         DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
-                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[4] as DataGridViewTextBoxCell;
+                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[5] as DataGridViewTextBoxCell;
 
-                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower() == "credito")
+                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower() == "crédito")
                                         {
                                             listaPCliente.Add(row);
                                             if (row.Cells[5].Value.ToString() == "Consignación")
@@ -862,6 +859,7 @@ namespace Diprolim
                                                                     //actualización inventario de vendedor
                                                                     cmd = "UPDATE inv_vendedor SET cantidad=cantidad+" + cantidad + " WHERE empleados_id_empleado=" + cod_emp + " AND articulos_codigo=" + cod_art;
                                                                     bAllOk = Conexion.Ejecutar(cmd);
+                                                                    bContador = true;
                                                                 }
                                                             }
                                                         }
@@ -902,6 +900,7 @@ namespace Diprolim
                                                             //actualización inventario de vendedor
                                                             cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
                                                             bAllOk = Conexion.Ejecutar(cmd);
+                                                            bContador = true;
                                                         }
                                                     }
                                                 }
@@ -909,10 +908,6 @@ namespace Diprolim
                                                 Conexion.Desconectarse();
                                                 #endregion
                                             }
-                                        }
-                                        else
-                                        {
-                                            bContado = true;
                                         }
                                     }
 
@@ -923,7 +918,10 @@ namespace Diprolim
                                     #endregion
                                 }
                                 dtgPClientes.Rows.Clear();
-                                MessageBox.Show("Venta eliminada con éxito.");
+                                if (bContador)
+                                {
+                                    MessageBox.Show("Venta eliminada con éxito.");
+                                }
                             }
                             else
                             {
@@ -932,10 +930,6 @@ namespace Diprolim
                         }
                         
                         #endregion
-                        if (bContado)
-                        {
-                            MessageBox.Show("No puede cancelar ventas a contado de dias anteriores.");
-                        }
                     }
                 }
             }

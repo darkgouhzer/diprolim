@@ -403,11 +403,11 @@ namespace Diprolim
                         {
                             DataRow row = Tabla.Rows[0];
                             tbxNombre.Text = row["Nombre"].ToString();
-                            tbxNombre.ReadOnly = true;
+                            //tbxNombre.ReadOnly = true;
                             tbxAPaterno.Text = row["Apellido_Paterno"].ToString();
-                            tbxAPaterno.ReadOnly = true;
+                            //tbxAPaterno.ReadOnly = true;
                             tbxAMaterno.Text = row["Apellido_Materno"].ToString();
-                            tbxAMaterno.ReadOnly = true;
+                            //tbxAMaterno.ReadOnly = true;
                             cbxSexo.SelectedIndex = Convert.ToInt32(row["Sexo"]);
                             cbxSexo.Enabled = false;
                             dtpFNacimiento.Value = Convert.ToDateTime(row["Fecha_Nacimiento"]);

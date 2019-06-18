@@ -35,7 +35,7 @@ namespace Diprolim
             Inactivo();
             ComprobarPrivilegios();
         }
-        
+
         public void AjusteCredito()
         {
             try
@@ -105,7 +105,7 @@ namespace Diprolim
             DataTable Tablaa = new DataTable();
             Conexion.Conectarse();
             Comando = "SELECT * FROM USUARIOS";
-            Conexion.Ejecutar(Comando,ref tabla);
+            Conexion.Ejecutar(Comando, ref tabla);
             if (tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
@@ -123,12 +123,12 @@ namespace Diprolim
                 }
 
             }
-            
+
             Conexion.Desconectarse();
         }
         private void capturaDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VentasDLocal VDL = new VentasDLocal(UsuarioID,Conexion);
+            VentasDLocal VDL = new VentasDLocal(UsuarioID, Conexion);
             VDL.ShowDialog();
         }
 
@@ -140,7 +140,7 @@ namespace Diprolim
 
         private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Salidas S = new Salidas(UsuarioID,Conexion);
+            Salidas S = new Salidas(UsuarioID, Conexion);
             S.ShowDialog();
         }
 
@@ -168,7 +168,7 @@ namespace Diprolim
         }
         private void entradasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VentasVendedor E = new VentasVendedor(UsuarioID,Conexion);
+            VentasVendedor E = new VentasVendedor(UsuarioID, Conexion);
             E.ShowDialog();
 
         }
@@ -226,16 +226,18 @@ namespace Diprolim
             btnCobranzaCredito.Enabled = false;
             asignarPrivilegiosToolStripMenuItem.Enabled = false;
             descuentoComisiónToolStripMenuItem.Enabled = false;
+            btnVentaRapida.Enabled = false;
+            cajaRapidaToolStripMenuItem.Enabled = false;
 
         }
 
         public void Usuario()
         {
             DataTable Tabla = new DataTable();
-           
+
             string comando = "Select * from PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + UsuarioID;
             Conexion.Ejecutar(comando, ref Tabla);
-           
+
             if (Tabla.Rows.Count > 0)
             {
                 DataRow row = Tabla.Rows[0];
@@ -274,7 +276,7 @@ namespace Diprolim
                 if (row["Vendedores-Salidas"].ToString() == "1") { salidasToolStripMenuItem2.Enabled = true; } else { salidasToolStripMenuItem2.Enabled = false; }
                 if (row["Grafico"].ToString() == "1") { graficoToolStripMenuItem.Enabled = true; } else { graficoToolStripMenuItem.Enabled = false; }
                 if (row["Prenomina"].ToString() == "1") { prenominaToolStripMenuItem.Enabled = true; } else { prenominaToolStripMenuItem.Enabled = false; }
-                if (row["Cobranza"].ToString() == "1") { cobranzaToolStripMenuItem1.Enabled = true;  } else { cobranzaToolStripMenuItem1.Enabled = false;  }
+                if (row["Cobranza"].ToString() == "1") { cobranzaToolStripMenuItem1.Enabled = true; } else { cobranzaToolStripMenuItem1.Enabled = false; }
                 if (row["historicoDeMovimientos"].ToString() == "1") { historicoDeMovimientosToolStripMenuItem.Enabled = true; } else { historicoDeMovimientosToolStripMenuItem.Enabled = false; }
                 if (row["Reporte-Consignacion"].ToString() == "1") { consignacionToolStripMenuItem1.Enabled = true; } else { consignacionToolStripMenuItem1.Enabled = false; }
                 if (row["IngresoDeEfectivo"].ToString() == "1") { ingresoDeEfectivoToolStripMenuItem.Enabled = true; } else { ingresoDeEfectivoToolStripMenuItem.Enabled = false; }
@@ -284,7 +286,8 @@ namespace Diprolim
 
                 if (row["CobranzaCreditos"].ToString() == "1") { btnCobranzaCredito.Enabled = true; } else { btnCobranzaCredito.Enabled = false; }
                 if (row["DescuentoComision"].ToString() == "1") { descuentoComisiónToolStripMenuItem.Enabled = true; } else { descuentoComisiónToolStripMenuItem.Enabled = false; }
-                
+                if (row["CajaRapida"].ToString() == "1") { btnVentaRapida.Enabled = true; cajaRapidaToolStripMenuItem.Enabled = true;
+                                                        } else { btnVentaRapida.Enabled = false; cajaRapidaToolStripMenuItem.Enabled = false; }
             }
         }
 
@@ -292,7 +295,7 @@ namespace Diprolim
         {
             CreacionUsuarios CU = new CreacionUsuarios();
             CU.ShowDialog();
-        }    
+        }
 
 
         private void consultarToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -334,7 +337,7 @@ namespace Diprolim
 
         private void capturarToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Capturar_Entrada capE = new Capturar_Entrada(UsuarioID,Conexion);
+            Capturar_Entrada capE = new Capturar_Entrada(UsuarioID, Conexion);
             capE.ShowDialog();
         }
 
@@ -352,13 +355,13 @@ namespace Diprolim
 
         private void btnInvVendedor_Click(object sender, EventArgs e)
         {
-            Salidas ssal = new Salidas(UsuarioID,Conexion);
+            Salidas ssal = new Salidas(UsuarioID, Conexion);
             ssal.ShowDialog();
         }
 
         private void btnConsignacion_Click(object sender, EventArgs e)
         {
-            Consignacion Consig = new Consignacion(Conexion,UsuarioID);
+            Consignacion Consig = new Consignacion(Conexion, UsuarioID);
             Consig.ShowDialog();
         }
 
@@ -370,7 +373,7 @@ namespace Diprolim
 
         private void conversionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Conversiones C = new Conversiones(UsuarioID,Conexion);
+            Conversiones C = new Conversiones(UsuarioID, Conexion);
             C.ShowDialog();
         }
 
@@ -412,7 +415,7 @@ namespace Diprolim
                 Conexion.Desconectarse();
             }
         }
-        
+
 
         private void modificarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -463,7 +466,7 @@ namespace Diprolim
             CC.ShowDialog();
         }
 
-      
+
         private void historicoDeMovimientosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             historicos_de_movimientos HDM = new historicos_de_movimientos(Conexion);
@@ -472,7 +475,7 @@ namespace Diprolim
 
         private void consignacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Consignacion C = new Consignacion(Conexion,UsuarioID);
+            Consignacion C = new Consignacion(Conexion, UsuarioID);
             C.ShowDialog();
         }
 
@@ -582,10 +585,10 @@ namespace Diprolim
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
-                DialogResult result = MessageBox.Show("¿Está seguro que desea salir?","Saliendo del sistema.",MessageBoxButtons.OKCancel);
-                if(result==DialogResult.OK)
+                DialogResult result = MessageBox.Show("¿Está seguro que desea salir?", "Saliendo del sistema.", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -608,6 +611,10 @@ namespace Diprolim
                 {
                     btnCobranzaCredito_Click(sender, e);
                 }
+                else if (e.KeyCode == Keys.F5)
+                {
+                    btnVentaRapida_Click(sender, e);
+                }
             }
         }
 
@@ -623,6 +630,45 @@ namespace Diprolim
             repcn.ShowDialog();
         }
 
+        private void btnVentaRapida_Click(object sender, EventArgs e)
+        {
+            if (btnVentaRapida.Enabled)
+            {
+                VentaCajaRapida objVentaCajaRapida = new VentaCajaRapida(Conexion, UsuarioID);
+                objVentaCajaRapida.ShowDialog();
+            }
+            
         }
+
+        private void impresoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Impresoras objImpresoras = new Impresoras();
+            objImpresoras.ShowDialog();
+        }
+
+
+
+        private void descuentoComisiónToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+            DescuentosComision objDescuentosComision = new DescuentosComision();
+            objDescuentosComision.ShowDialog();
+        }
+
+        private void descuentoCambioEnvasesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DescuentoCambioEnvase objDescuentoCambioEnvase = new DescuentoCambioEnvase();
+            objDescuentoCambioEnvase.ShowDialog();
+        }
+
+        private void cajaRapidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VentaCajaRapida objVentaCajaRapida = new VentaCajaRapida(Conexion, UsuarioID);
+            objVentaCajaRapida.ShowDialog();
+        }
+
+
+
     }
+}
 

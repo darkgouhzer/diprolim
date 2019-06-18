@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,7 +45,9 @@
     <Compile Include="CCancelaAbonos.cs" />
     <Compile Include="CClientes.cs" />
     <Compile Include="CComision.cs" />
+    <Compile Include="CCorteIndividual.cs" />
     <Compile Include="CEmpleados.cs" />
+    <Compile Include="CImpresora.cs" />
     <Compile Include="CVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

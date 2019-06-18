@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CobranzaCredito));
             this.dtgCredito = new System.Windows.Forms.DataGridView();
             this.tblCrFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,9 +133,9 @@
             // 
             // tblCrPrecio
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle1;
             this.tblCrPrecio.HeaderText = "Precio";
             this.tblCrPrecio.MaxInputLength = 9;
             this.tblCrPrecio.Name = "tblCrPrecio";
@@ -144,9 +144,9 @@
             // 
             // tblCrSaldo
             // 
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.tblCrSaldo.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.tblCrSaldo.DefaultCellStyle = dataGridViewCellStyle2;
             this.tblCrSaldo.HeaderText = "Saldo";
             this.tblCrSaldo.MaxInputLength = 9;
             this.tblCrSaldo.Name = "tblCrSaldo";
@@ -155,9 +155,9 @@
             // 
             // tblCrAbono
             // 
-            dataGridViewCellStyle8.Format = "C2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle3;
             this.tblCrAbono.HeaderText = "Abono";
             this.tblCrAbono.MaxInputLength = 8;
             this.tblCrAbono.Name = "tblCrAbono";
@@ -165,9 +165,9 @@
             // 
             // tblCrPendiente
             // 
-            dataGridViewCellStyle9.Format = "C2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle4;
             this.tblCrPendiente.HeaderText = "Pendiente";
             this.tblCrPendiente.Name = "tblCrPendiente";
             this.tblCrPendiente.ReadOnly = true;
@@ -181,9 +181,9 @@
             // 
             // tblCrImporte
             // 
-            dataGridViewCellStyle10.Format = "C2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.tblCrImporte.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.tblCrImporte.DefaultCellStyle = dataGridViewCellStyle5;
             this.tblCrImporte.HeaderText = "Importe";
             this.tblCrImporte.Name = "tblCrImporte";
             this.tblCrImporte.Visible = false;
@@ -503,12 +503,14 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CobranzaCredito";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cobranza Crédito";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CobranzaCredito_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dtgCredito)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

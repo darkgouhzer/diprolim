@@ -34,7 +34,6 @@
             this.consignacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catalogosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.descuentoComisiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pedidosSugeridosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesInactivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.modificarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnVentaRapida = new System.Windows.Forms.Button();
             this.btnCobranzaCredito = new System.Windows.Forms.Button();
             this.btnInvVendedor = new System.Windows.Forms.Button();
             this.btnConsignacion = new System.Windows.Forms.Button();
@@ -69,6 +69,10 @@
             this.almacenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impresoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentoComisiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentoComisiónToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentoCambioEnvasesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasCostoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +96,7 @@
             this.crearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarPrivilegiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cajaRapidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -109,7 +114,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(781, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1020, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -120,7 +125,8 @@
             this.reportesToolStripMenuItem,
             this.entradasToolStripMenuItem,
             this.consignacionToolStripMenuItem,
-            this.corteDeCajaToolStripMenuItem});
+            this.corteDeCajaToolStripMenuItem,
+            this.cajaRapidaToolStripMenuItem});
             this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
             this.ventasToolStripMenuItem.Size = new System.Drawing.Size(64, 23);
             this.ventasToolStripMenuItem.Text = "Ventas";
@@ -154,18 +160,11 @@
             this.almacenesToolStripMenuItem,
             this.categoriasToolStripMenuItem,
             this.rutasToolStripMenuItem,
+            this.impresoraToolStripMenuItem,
             this.descuentoComisiónToolStripMenuItem});
             this.catalogosToolStripMenuItem.Name = "catalogosToolStripMenuItem";
             this.catalogosToolStripMenuItem.Size = new System.Drawing.Size(88, 23);
             this.catalogosToolStripMenuItem.Text = "Catálogos";
-            // 
-            // descuentoComisiónToolStripMenuItem
-            // 
-            this.descuentoComisiónToolStripMenuItem.Image = global::Diprolim.Properties.Resources.descuentocomision;
-            this.descuentoComisiónToolStripMenuItem.Name = "descuentoComisiónToolStripMenuItem";
-            this.descuentoComisiónToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.descuentoComisiónToolStripMenuItem.Text = "Descuento comisión";
-            this.descuentoComisiónToolStripMenuItem.Click += new System.EventHandler(this.descuentoComisiónToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem1
             // 
@@ -249,29 +248,46 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.btnVentaRapida, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCobranzaCredito, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnInvVendedor, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnConsignacion, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnVentasVendedor, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 396);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(120, 396);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(781, 99);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
+            // btnVentaRapida
+            // 
+            this.btnVentaRapida.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnVentaRapida.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentaRapida.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
+            this.btnVentaRapida.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnVentaRapida.Location = new System.Drawing.Point(634, 3);
+            this.btnVentaRapida.Name = "btnVentaRapida";
+            this.btnVentaRapida.Size = new System.Drawing.Size(136, 93);
+            this.btnVentaRapida.TabIndex = 8;
+            this.btnVentaRapida.Text = "Caja Rápida [F5]";
+            this.btnVentaRapida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVentaRapida.UseVisualStyleBackColor = true;
+            this.btnVentaRapida.Click += new System.EventHandler(this.btnVentaRapida_Click);
+            // 
             // btnCobranzaCredito
             // 
             this.btnCobranzaCredito.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCobranzaCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCobranzaCredito.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
+            this.btnCobranzaCredito.Image = global::Diprolim.Properties.Resources.efectivo42;
             this.btnCobranzaCredito.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCobranzaCredito.Location = new System.Drawing.Point(615, 3);
+            this.btnCobranzaCredito.Location = new System.Drawing.Point(478, 3);
             this.btnCobranzaCredito.Name = "btnCobranzaCredito";
             this.btnCobranzaCredito.Size = new System.Drawing.Size(136, 93);
             this.btnCobranzaCredito.TabIndex = 7;
@@ -286,7 +302,7 @@
             this.btnInvVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvVendedor.Image = global::Diprolim.Properties.Resources.back32;
             this.btnInvVendedor.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInvVendedor.Location = new System.Drawing.Point(220, 3);
+            this.btnInvVendedor.Location = new System.Drawing.Point(162, 3);
             this.btnInvVendedor.Name = "btnInvVendedor";
             this.btnInvVendedor.Size = new System.Drawing.Size(144, 93);
             this.btnInvVendedor.TabIndex = 5;
@@ -301,7 +317,7 @@
             this.btnConsignacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsignacion.Image = global::Diprolim.Properties.Resources.acuerdo42;
             this.btnConsignacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConsignacion.Location = new System.Drawing.Point(419, 3);
+            this.btnConsignacion.Location = new System.Drawing.Point(322, 3);
             this.btnConsignacion.Name = "btnConsignacion";
             this.btnConsignacion.Size = new System.Drawing.Size(136, 93);
             this.btnConsignacion.TabIndex = 6;
@@ -316,7 +332,7 @@
             this.btnVentasVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVentasVendedor.ForeColor = System.Drawing.Color.Black;
             this.btnVentasVendedor.Image = global::Diprolim.Properties.Resources.next32;
-            this.btnVentasVendedor.Location = new System.Drawing.Point(29, 3);
+            this.btnVentasVendedor.Location = new System.Drawing.Point(10, 3);
             this.btnVentasVendedor.Name = "btnVentasVendedor";
             this.btnVentasVendedor.Size = new System.Drawing.Size(136, 93);
             this.btnVentasVendedor.TabIndex = 4;
@@ -334,7 +350,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 32);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(781, 361);
+            this.pictureBox1.Size = new System.Drawing.Size(1020, 361);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -345,6 +361,7 @@
             this.capturaDeVentasToolStripMenuItem.Name = "capturaDeVentasToolStripMenuItem";
             this.capturaDeVentasToolStripMenuItem.Size = new System.Drawing.Size(215, 24);
             this.capturaDeVentasToolStripMenuItem.Text = "Ventas-Sucursal";
+            this.capturaDeVentasToolStripMenuItem.Visible = false;
             this.capturaDeVentasToolStripMenuItem.Click += new System.EventHandler(this.capturaDeVentasToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
@@ -415,7 +432,7 @@
             // 
             this.empleadosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("empleadosToolStripMenuItem.Image")));
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.empleadosToolStripMenuItem.Text = "Vendedores";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
@@ -426,7 +443,7 @@
             this.consultarToolStripMenuItem1});
             this.clientesToolStripMenuItem.Image = global::Diprolim.Properties.Resources.clients_32531;
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -452,7 +469,7 @@
             this.valorDeMedidaToolStripMenuItem});
             this.productosToolStripMenuItem.Image = global::Diprolim.Properties.Resources._12605577_surtido_de_productos_de_limpieza_para_el_hogar_de_fondo_blanco;
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.productosToolStripMenuItem.Text = "Productos";
             // 
             // capturarProductosToolStripMenuItem
@@ -483,7 +500,7 @@
             // 
             this.almacenesToolStripMenuItem.Image = global::Diprolim.Properties.Resources.almacen;
             this.almacenesToolStripMenuItem.Name = "almacenesToolStripMenuItem";
-            this.almacenesToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.almacenesToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.almacenesToolStripMenuItem.Text = "Almacenes";
             this.almacenesToolStripMenuItem.Click += new System.EventHandler(this.almacenesToolStripMenuItem_Click);
             // 
@@ -491,7 +508,7 @@
             // 
             this.categoriasToolStripMenuItem.Image = global::Diprolim.Properties.Resources.percent_98525;
             this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.categoriasToolStripMenuItem.Text = "Comisiones";
             this.categoriasToolStripMenuItem.Click += new System.EventHandler(this.categoriasToolStripMenuItem_Click);
             // 
@@ -499,9 +516,44 @@
             // 
             this.rutasToolStripMenuItem.Image = global::Diprolim.Properties.Resources.camino_recto_en_perspectiva_hacia_adelante;
             this.rutasToolStripMenuItem.Name = "rutasToolStripMenuItem";
-            this.rutasToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.rutasToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.rutasToolStripMenuItem.Text = "Rutas";
             this.rutasToolStripMenuItem.Click += new System.EventHandler(this.rutasToolStripMenuItem_Click);
+            // 
+            // impresoraToolStripMenuItem
+            // 
+            this.impresoraToolStripMenuItem.Image = global::Diprolim.Properties.Resources.printer;
+            this.impresoraToolStripMenuItem.Name = "impresoraToolStripMenuItem";
+            this.impresoraToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.impresoraToolStripMenuItem.Text = "Impresora";
+            this.impresoraToolStripMenuItem.Click += new System.EventHandler(this.impresoraToolStripMenuItem_Click);
+            // 
+            // descuentoComisiónToolStripMenuItem
+            // 
+            this.descuentoComisiónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.descuentoComisiónToolStripMenuItem2,
+            this.descuentoCambioEnvasesToolStripMenuItem1});
+            this.descuentoComisiónToolStripMenuItem.Image = global::Diprolim.Properties.Resources.descuentocomision;
+            this.descuentoComisiónToolStripMenuItem.Name = "descuentoComisiónToolStripMenuItem";
+            this.descuentoComisiónToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.descuentoComisiónToolStripMenuItem.Text = "Descuentos";
+            this.descuentoComisiónToolStripMenuItem.Click += new System.EventHandler(this.descuentoComisiónToolStripMenuItem_Click);
+            // 
+            // descuentoComisiónToolStripMenuItem2
+            // 
+            this.descuentoComisiónToolStripMenuItem2.Name = "descuentoComisiónToolStripMenuItem2";
+            this.descuentoComisiónToolStripMenuItem2.Size = new System.Drawing.Size(257, 24);
+            this.descuentoComisiónToolStripMenuItem2.Text = "Descuento comisión";
+            this.descuentoComisiónToolStripMenuItem2.Visible = false;
+            this.descuentoComisiónToolStripMenuItem2.Click += new System.EventHandler(this.descuentoComisiónToolStripMenuItem2_Click);
+            // 
+            // descuentoCambioEnvasesToolStripMenuItem1
+            // 
+            this.descuentoCambioEnvasesToolStripMenuItem1.Name = "descuentoCambioEnvasesToolStripMenuItem1";
+            this.descuentoCambioEnvasesToolStripMenuItem1.Size = new System.Drawing.Size(257, 24);
+            this.descuentoCambioEnvasesToolStripMenuItem1.Text = "Descuento cambio envases";
+            this.descuentoCambioEnvasesToolStripMenuItem1.Visible = false;
+            this.descuentoCambioEnvasesToolStripMenuItem1.Click += new System.EventHandler(this.descuentoCambioEnvasesToolStripMenuItem1_Click);
             // 
             // reporteDeVentasToolStripMenuItem
             // 
@@ -700,12 +752,20 @@
             this.asignarPrivilegiosToolStripMenuItem.Text = "Asignar privilegios";
             this.asignarPrivilegiosToolStripMenuItem.Click += new System.EventHandler(this.asignarPrivilegiosToolStripMenuItem_Click);
             // 
+            // cajaRapidaToolStripMenuItem
+            // 
+            this.cajaRapidaToolStripMenuItem.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
+            this.cajaRapidaToolStripMenuItem.Name = "cajaRapidaToolStripMenuItem";
+            this.cajaRapidaToolStripMenuItem.Size = new System.Drawing.Size(215, 24);
+            this.cajaRapidaToolStripMenuItem.Text = "Caja rápida";
+            this.cajaRapidaToolStripMenuItem.Click += new System.EventHandler(this.cajaRapidaToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(781, 497);
+            this.ClientSize = new System.Drawing.Size(1020, 497);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
@@ -797,6 +857,11 @@
         private System.Windows.Forms.ToolStripMenuItem clientesInactivosToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem descuentoComisiónToolStripMenuItem;
+        private System.Windows.Forms.Button btnVentaRapida;
+        private System.Windows.Forms.ToolStripMenuItem impresoraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descuentoComisiónToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem descuentoCambioEnvasesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cajaRapidaToolStripMenuItem;
     }
 }
 

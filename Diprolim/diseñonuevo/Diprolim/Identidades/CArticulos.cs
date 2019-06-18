@@ -75,5 +75,17 @@ namespace Identidades
             get { return iAplicaComision; }
             set { iAplicaComision = value; }
         }
+        private double iValorMedida;
+        public double ValorMedida
+        {
+            get { return iValorMedida; }
+            set { iValorMedida = value; }
+        }
+        string sUnidadMedida;
+        public string UnidadMedida
+        {
+            get { return sUnidadMedida; }
+            set { sUnidadMedida = value; }
+        }
     }
 }

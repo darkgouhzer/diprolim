@@ -1,14 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace Diprolim
 {
@@ -79,7 +71,7 @@ namespace Diprolim
             
             if (tbxCodigo.Text != "" && tbxNUsuario.Text != "")
             {
-                string[] C1 = new string[38];
+                string[] C1 = new string[39];
                //Ventas
                 if (cheVentasSucursal.Checked == true) { C1[0] = "1"; } else { C1[0] = "0"; }
                 if (cheSalidasVendedores.Checked == true) { C1[1] = "1"; } else { C1[1] = "0"; }
@@ -124,6 +116,7 @@ namespace Diprolim
                 if (cheCobranzaCredito.Checked == true) { C1[35] = "1"; } else { C1[35] = "0"; }
                 if (cheAutorizaCredito.Checked == true) { C1[36] = "1"; } else { C1[36] = "0"; }
                 if (chkDescuentoComision.Checked == true) { C1[37] = "1"; } else { C1[37] = "0"; }
+                if (chbxCajaRapida.Checked == true) { C1[38] = "1"; } else { C1[38] = "0"; }
 
                 DataTable Tabla = new DataTable();
                 string comando = "DELETE FROM PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + tbxCodigo.Text;
@@ -215,6 +208,7 @@ namespace Diprolim
                 if (row["DescuentoComision"].ToString() == "1") { chkDescuentoComision.Checked = true; } else { chkDescuentoComision.Checked = false; }
 
                 if (row["CobranzaCreditos"].ToString() == "1") { cheCobranzaCredito.Checked = true; } else { cheCobranzaCredito.Checked = false; }
+                if (row["CajaRapida"].ToString() == "1") { chbxCajaRapida.Checked = true; } else { chbxCajaRapida.Checked = false; }
 
             }
              
@@ -284,6 +278,14 @@ namespace Diprolim
                 }
                 tbxCodigo.Focus();
                 ObtenerUsuario();
+            }
+        }
+
+        private void AsignarPrivilegios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
 

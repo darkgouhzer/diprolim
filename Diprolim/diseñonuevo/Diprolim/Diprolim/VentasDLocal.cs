@@ -746,8 +746,10 @@ namespace Diprolim
                                                 {
                                                     ivac = Convert.ToDouble(importe) - Convert.ToDouble(importe) / 1.16;
                                                 }
-                                                consulta = string.Format("INSERT INTO ventas values(null,{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},'credito',{11},{12},{13})",
-                                                    tbxVendedor.Text,idCliente,tblCredito[11, i].Value,cod_arti,precio_A,n_venta,importe,Fechaa,comision,costoP,ivac,nuevoFolio,pendiente,0);                                                
+                                                consulta = string.Format("INSERT INTO ventas (empleados_id_empleado,clientes_idclientes,categorias_idcategorias,articulos_codigo, precio_art,cantidad,"+
+                                                                         "importe,fecha_venta,comision,Costo_Produccion,iva,tipo_compra,folio,pendiente,Descuento) "+
+                                                                         "values({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},'credito',{11},{12},{13},'0')",
+                                                                            tbxVendedor.Text,idCliente,tblCredito[11, i].Value,cod_arti,precio_A,n_venta,importe,Fechaa,comision,costoP,ivac,nuevoFolio,pendiente,0);                                                
                                                 bAllOk = Conexion.Ejecutar(consulta);
                                                 if (bAllOk)
                                                 {
@@ -1714,4 +1716,4 @@ namespace Diprolim
             }
         }
     }
-}//eran 1698 lineas
+}

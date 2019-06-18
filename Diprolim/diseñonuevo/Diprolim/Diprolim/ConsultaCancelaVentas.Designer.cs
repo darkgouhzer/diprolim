@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.dtgPProductos = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -124,7 +125,7 @@
             this.dtgPProductos.Margin = new System.Windows.Forms.Padding(4);
             this.dtgPProductos.Name = "dtgPProductos";
             this.dtgPProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPProductos.Size = new System.Drawing.Size(1161, 342);
+            this.dtgPProductos.Size = new System.Drawing.Size(1106, 342);
             this.dtgPProductos.TabIndex = 132;
             this.dtgPProductos.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.tblReporteV_SortCompare);
             // 
@@ -202,6 +203,7 @@
             this.tblComision.HeaderText = "Comisión";
             this.tblComision.Name = "tblComision";
             this.tblComision.ReadOnly = true;
+            this.tblComision.Visible = false;
             this.tblComision.Width = 90;
             // 
             // id_empleado
@@ -213,6 +215,9 @@
             // 
             // tblfecha
             // 
+            dataGridViewCellStyle5.Format = "G";
+            dataGridViewCellStyle5.NullValue = null;
+            this.tblfecha.DefaultCellStyle = dataGridViewCellStyle5;
             this.tblfecha.HeaderText = "fecha";
             this.tblfecha.Name = "tblfecha";
             this.tblfecha.Visible = false;
@@ -434,8 +439,8 @@
             // 
             this.dtgPClientes.AllowUserToAddRows = false;
             this.dtgPClientes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dtgPClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dtgPClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgPClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
@@ -451,7 +456,7 @@
             this.dtgPClientes.Margin = new System.Windows.Forms.Padding(4);
             this.dtgPClientes.Name = "dtgPClientes";
             this.dtgPClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgPClientes.Size = new System.Drawing.Size(1161, 342);
+            this.dtgPClientes.Size = new System.Drawing.Size(1106, 342);
             this.dtgPClientes.TabIndex = 159;
             this.dtgPClientes.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dtgPClientes_SortCompare);
             this.dtgPClientes.DoubleClick += new System.EventHandler(this.dtgPClientes_DoubleClick);
@@ -485,9 +490,9 @@
             // 
             // colTotal
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.colTotal.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.colTotal.DefaultCellStyle = dataGridViewCellStyle7;
             this.colTotal.HeaderText = "Total";
             this.colTotal.Name = "colTotal";
             this.colTotal.ReadOnly = true;
@@ -502,9 +507,9 @@
             // 
             // dataGridViewTextBoxColumn11
             // 
-            dataGridViewCellStyle7.Format = "G";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Format = "G";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn11.HeaderText = "Fecha";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Width = 180;
@@ -591,7 +596,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1187, 523);
+            this.ClientSize = new System.Drawing.Size(1138, 523);
             this.Controls.Add(this.rbtnClientes);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.rbtnProductos);

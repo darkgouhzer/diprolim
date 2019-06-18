@@ -1,4 +1,5 @@
-﻿//using MySql.Data.MySqlClient;
+﻿using ReglasNegocios;
+//using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -372,7 +373,7 @@ namespace Diprolim
                             row["nombrecategoria"].ToString(), row["tipo_compra"].ToString(), row["descripcion"].ToString()
                             + " " + row["valor_medida"].ToString() + " " + row["nombremedida"].ToString(), Convert.ToDouble(row["precio_art"]),
                             Convert.ToDouble(row["cantidad"]), Convert.ToDouble(row["importe"]), Convert.ToDouble(row["comision"]),
-                            row["empleados_id_empleado"].ToString(), formato_fecha.ToString("yyyyMMddHHmmss"), row["idventas"].ToString());
+                            row["empleados_id_empleado"].ToString(), formato_fecha, row["idventas"].ToString());
                         sumaTotal += Convert.ToDouble(row["importe"]);
                         totalComision += Convert.ToDouble(row["comision"]);
                     }
@@ -436,6 +437,9 @@ namespace Diprolim
             try
             {
                 Boolean bAllOk = false;
+                CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+                DateTime objDTUltimoCorte = objCorteCajaBO.ObtenerFechaUltimoCorte();
+
                 result = MessageBox.Show("Se devolverán ventas seleccionadas ¿desea continuar?", "Devoluciones de ventas", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
@@ -448,8 +452,10 @@ namespace Diprolim
                             #region EliminaPProducto
 
                             List<DataGridViewRow> listaPProductos = new List<DataGridViewRow>();
+                            bAllOk = Conexion.Conectarse();
+                            Conexion.IniciarTransaccion();
                             foreach (DataGridViewRow row in dtgPProductos.Rows)
-                            {
+                            {                                
                                 DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
 
                                 if (Convert.ToBoolean(celdaseleccionada.Value))
@@ -458,14 +464,12 @@ namespace Diprolim
                                     cod_art = row.Cells[1].Value.ToString();
                                     cantidad = row.Cells[7].Value.ToString();
                                     cod_emp = row.Cells[10].Value.ToString();
-                                    fecha = row.Cells[11].Value.ToString();
+                                    fecha = Convert.ToDateTime(row.Cells[11].Value).ToString("yyyyMMddHHmmss");
                                     id_ventas = row.Cells[12].Value.ToString();
-
                                     if (cod_emp != "1" && !sucursal)
                                     {
-                                        #region Paravendedores
-                                        bAllOk = Conexion.Conectarse();
-                                        Conexion.IniciarTransaccion();
+                                        #region Paravendedores                           
+                                       
                                         if (bAllOk)
                                         {
                                             cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
@@ -503,36 +507,30 @@ namespace Diprolim
                                                 }
                                             }
                                         }
-                                        Conexion.FinTransaccion(bAllOk);
-                                        Conexion.Desconectarse();
+                              
                                         #endregion
                                     }
                                     else
                                     {
                                         #region ParaSucursal
-                                        bAllOk = Conexion.Conectarse();
-                                        Conexion.IniciarTransaccion();
                                         cmd = "delete from abonos where ventas_idventas='" + id_ventas + "'";
                                         Conexion.Ejecutar(cmd);
+                                        //eliminación de ventas
+                                        cmd = "delete from ventas where idventas='" + id_ventas + "'";
+                                        bAllOk = Conexion.Ejecutar(cmd);
                                         if (bAllOk)
                                         {
-                                            //eliminación de ventas
-                                            cmd = "delete from ventas where idventas='" + id_ventas + "'";
-                                            bAllOk = Conexion.Ejecutar(cmd);
-                                            if (bAllOk)
-                                            {
                                                 //actualización inventario de vendedor
-                                                cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
-                                                bAllOk = Conexion.Ejecutar(cmd);
-                                            }
+                                            cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
+                                            bAllOk = Conexion.Ejecutar(cmd);
                                         }
-                                        Conexion.FinTransaccion(bAllOk);
-                                        Conexion.Desconectarse();
+                                   
                                         #endregion
                                     }
                                 }
                             }
-
+                            Conexion.FinTransaccion(bAllOk);
+                            Conexion.Desconectarse();
                             foreach (DataGridViewRow row in listaPProductos)
                             {
                                 dtgPProductos.Rows.Remove(row);
@@ -543,6 +541,8 @@ namespace Diprolim
                         {
                             #region EliminaPCliente
                             List<DataGridViewRow> listaPCliente = new List<DataGridViewRow>();
+                            bAllOk = Conexion.Conectarse();
+                            Conexion.IniciarTransaccion();
                             foreach (DataGridViewRow row in dtgPClientes.Rows)
                             {
                                 DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
@@ -565,13 +565,12 @@ namespace Diprolim
                                     fecha = Convert.ToDateTime(row.Cells[6].Value).ToString("yyyyMMdd");
                                     cod_emp = row.Cells[7].Value.ToString();
                                     ClienteID = row.Cells[8].Value.ToString();
-
-
+                                                                      
+                                    
                                     if (cod_emp != "1" && !sucursal)
                                     {
                                         #region paraVendedores
-                                        bAllOk = Conexion.Conectarse();
-                                        Conexion.IniciarTransaccion();
+                                       
                                         if (bAllOk)
                                         {
                                             DataTable tbl = new DataTable();
@@ -624,15 +623,12 @@ namespace Diprolim
                                             }
 
                                         }
-                                        Conexion.FinTransaccion(bAllOk);
-                                        Conexion.Desconectarse();
+                                   
                                         #endregion
                                     }
                                     else
                                     {
                                         #region ParaSucursal
-                                        bAllOk = Conexion.Conectarse();
-                                        Conexion.IniciarTransaccion();
 
                                         DataTable tbl = new DataTable();
                                         cmd = String.Format("select articulos_codigo, cantidad, idventas " +
@@ -661,12 +657,12 @@ namespace Diprolim
                                                 }
                                             }
                                         }
-                                        Conexion.FinTransaccion(bAllOk);
-                                        Conexion.Desconectarse();
                                         #endregion
                                     }
                                 }
                             }
+                            Conexion.FinTransaccion(bAllOk);
+                            Conexion.Desconectarse();
 
                             foreach (DataGridViewRow row in listaPCliente)
                             {
@@ -677,8 +673,10 @@ namespace Diprolim
                         #endregion
                     }
                     else
-                    {
+                    {                       
                         #region EliminacionDiasAnteriores
+
+                        Boolean bContador = false;
                         string Respuesta = "";
                         string S = ".";
                         inicioSesion id = new inicioSesion(S);
@@ -695,12 +693,12 @@ namespace Diprolim
                                 {
                                     #region EliminaPProductos
                                     List<DataGridViewRow> list = new List<DataGridViewRow>();
-                                    List<String> list2 = new List<string>();
                                     foreach (DataGridViewRow row in dtgPProductos.Rows)
                                     {
                                         DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
+                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[4] as DataGridViewTextBoxCell;
 
-                                        if (Convert.ToBoolean(celdaseleccionada.Value))
+                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower()=="credito")
                                         {
                                             list.Add(row);
                                             cod_art = row.Cells[1].Value.ToString();
@@ -766,6 +764,7 @@ namespace Diprolim
                                                     {
                                                         cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
                                                         bAllOk = Conexion.Ejecutar(cmd);
+                                                        bContador = true;
                                                     }
                                                 }
                                                 Conexion.FinTransaccion(bAllOk);
@@ -788,8 +787,9 @@ namespace Diprolim
                                     foreach (DataGridViewRow row in dtgPClientes.Rows)
                                     {
                                         DataGridViewCheckBoxCell celdaseleccionada = row.Cells[0] as DataGridViewCheckBoxCell;
+                                        DataGridViewTextBoxCell celdaTipoVenta = row.Cells[5] as DataGridViewTextBoxCell;
 
-                                        if (Convert.ToBoolean(celdaseleccionada.Value))
+                                        if (Convert.ToBoolean(celdaseleccionada.Value) && Convert.ToString(celdaTipoVenta.Value).Trim().ToLower() == "crédito")
                                         {
                                             listaPCliente.Add(row);
                                             if (row.Cells[5].Value.ToString() == "Consignación")
@@ -859,6 +859,7 @@ namespace Diprolim
                                                                     //actualización inventario de vendedor
                                                                     cmd = "UPDATE inv_vendedor SET cantidad=cantidad+" + cantidad + " WHERE empleados_id_empleado=" + cod_emp + " AND articulos_codigo=" + cod_art;
                                                                     bAllOk = Conexion.Ejecutar(cmd);
+                                                                    bContador = true;
                                                                 }
                                                             }
                                                         }
@@ -899,6 +900,7 @@ namespace Diprolim
                                                             //actualización inventario de vendedor
                                                             cmd = "UPDATE articulos SET cantidad=cantidad+" + cantidad + " WHERE codigo=" + cod_art;
                                                             bAllOk = Conexion.Ejecutar(cmd);
+                                                            bContador = true;
                                                         }
                                                     }
                                                 }
@@ -916,14 +918,17 @@ namespace Diprolim
                                     #endregion
                                 }
                                 dtgPClientes.Rows.Clear();
-                                MessageBox.Show("Venta eliminada con éxito.");
+                                if (bContador)
+                                {
+                                    MessageBox.Show("Venta eliminada con éxito.");
+                                }
                             }
                             else
                             {
                                 MessageBox.Show("El usuario no tiene permiso necesario para cancelar la venta.");
                             }
                         }
-                        //MessageBox.Show("No puede cancelar ventas de dias anteriores.");
+                        
                         #endregion
                     }
                 }

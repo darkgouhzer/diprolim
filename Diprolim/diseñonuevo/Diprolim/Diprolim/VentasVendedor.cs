@@ -1859,7 +1859,11 @@ namespace Diprolim
                                 {
                                     iva = Convert.ToDouble(importe) - Convert.ToDouble(importe) / 1.16; 
                                 }
-                               bAllOK= Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblEntradas[12, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'contado'," + nuevoFolio + ",0," + descuento + ")");                          
+                               bAllOK= Conexion.Ejecutar("INSERT INTO ventas (empleados_id_empleado,clientes_idclientes,categorias_idcategorias, "+
+                                                        " articulos_codigo,precio_art,cantidad,importe,fecha_venta,comision,Costo_Produccion,iva,tipo_compra,"+
+                                                        " folio,pendiente,Descuento) values("+ cod_empleado + "," + idCliente + "," + tblEntradas[12, i].Value + 
+                                                        "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + 
+                                                        "," + costoP + "," + iva + ",'contado'," + nuevoFolio + ",0," + descuento + ")");                          
                             }
 
                         }
@@ -1990,7 +1994,10 @@ namespace Diprolim
                                     {
                                         iva = 0;
                                     }
-                                    bAllOK=Conexion.Ejecutar("INSERT INTO ventas values(null," + cod_empleado + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe + "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + ",0)");
+                                    bAllOK=Conexion.Ejecutar("INSERT INTO ventas(empleados_id_empleado,clientes_idclientes,categorias_idcategorias,articulos_codigo,"+
+                                        "precio_art,cantidad,importe,fecha_venta,comision,Costo_Produccion,iva,tipo_compra,folio,pendiente,Descuento) values("+
+                                        cod_empleado + "," + idCliente + "," + tblCredito[11, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe +
+                                        "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + ",0)");
 
                                     if (Convert.ToDouble(abono) > 0)
                                     {
@@ -2516,6 +2523,11 @@ namespace Diprolim
                 Conversiones CN = new Conversiones(tbxVendedor.Text, UsuarioID, Conexion);
                 CN.ShowDialog();
             }
+            else
+            {
+                Conversiones CN = new Conversiones(UsuarioID, Conexion);
+                CN.ShowDialog();
+            }
         }
 
         private void transferenciasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2608,7 +2620,8 @@ namespace Diprolim
             }
             else
             {
-                MessageBox.Show("Primero es necesario ingresar un vendedor.");
+                CancelarAbonos rdv = new CancelarAbonos("1", Convert.ToInt32(UsuarioID));
+                rdv.ShowDialog();
             }
         }
 

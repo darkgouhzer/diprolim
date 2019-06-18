@@ -53,7 +53,7 @@
             this.btnImprimirCr = new System.Windows.Forms.Button();
             this.btnRegistrarS = new System.Windows.Forms.Button();
             this.btnCambiarVendedor = new System.Windows.Forms.Button();
-            this.btnB = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -89,6 +89,7 @@
             this.tbxVendedor.TabIndex = 0;
             this.tbxVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxVendedor_KeyDown);
             this.tbxVendedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxVendedor_KeyPress);
+            this.tbxVendedor.Leave += new System.EventHandler(this.tbxVendedor_Leave);
             // 
             // tbxVT
             // 
@@ -264,6 +265,7 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
+            this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
             // 
             // tbxIva
             // 
@@ -327,18 +329,18 @@
             this.btnCambiarVendedor.UseVisualStyleBackColor = true;
             this.btnCambiarVendedor.Click += new System.EventHandler(this.btnCambiarVendedor_Click);
             // 
-            // btnB
+            // btnBuscar
             // 
-            this.btnB.BackgroundImage = global::Diprolim.Properties.Resources.iconoBuscar;
-            this.btnB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnB.Location = new System.Drawing.Point(240, 53);
-            this.btnB.Margin = new System.Windows.Forms.Padding(4);
-            this.btnB.Name = "btnB";
-            this.btnB.Size = new System.Drawing.Size(30, 30);
-            this.btnB.TabIndex = 182;
-            this.btnB.UseVisualStyleBackColor = true;
-            this.btnB.Click += new System.EventHandler(this.btnB_Click);
+            this.btnBuscar.BackgroundImage = global::Diprolim.Properties.Resources.iconoBuscar;
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Location = new System.Drawing.Point(240, 53);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(30, 30);
+            this.btnBuscar.TabIndex = 182;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnB_Click);
             // 
             // label15
             // 
@@ -376,7 +378,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxRecuperado);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnB);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbxNVendedor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxVendedor);
@@ -384,6 +386,7 @@
             this.Controls.Add(this.label7);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -391,6 +394,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Corte de caja";
             this.Load += new System.EventHandler(this.Corte_de_Caja_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Corte_de_Caja_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,7 +402,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnB;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox tbxNVendedor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxVendedor;

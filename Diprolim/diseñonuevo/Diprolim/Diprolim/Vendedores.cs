@@ -247,7 +247,9 @@ namespace Diprolim
                 }
                 else
                 {
-                    string comando = "INSERT INTO Empleados " +
+                    if(tbxLimite.Text != "" && tbxNombre.Text != "" && tbxAPaterno.Text != "" && tbxAMaterno.Text != "" && tbxTelefono.Text != "" && cbxSexo.Text != "" && dtpFNacimiento.Text != "" && cbxPuestos.Text != "")
+                    {
+                        string comando = "INSERT INTO Empleados " +
                         "(id_empleado, nombre, apellido_paterno, apellido_materno, sexo, fecha_nacimiento," +
                         " Puestos_idPuestos, limite_inv, limite_credito, Calle, NumExterior," +
                         " NumInterior, Estado, Localidad, Municipio, Telefono, E_Mail, FechaIngreso, Status ) " +
@@ -269,7 +271,7 @@ namespace Diprolim
                             + "' ,'" + dtpFNacimiento.Value.ToString("yyyyMMdd")
                             + "' ,'" + cbxStatus.Text + "')";
                         Conexion.Conectarse();
-                        if(Conexion.Ejecutar(comando))
+                        if (Conexion.Ejecutar(comando))
                         {
                             MessageBox.Show("Guardado con éxito");
                         }
@@ -278,6 +280,12 @@ namespace Diprolim
                             MessageBox.Show("Error!");
                         }
                         Conexion.Desconectarse();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Verifique que todos los datos estén capturados.");
+                    }
+                    
                 }
             }
             catch (Exception Ex)
@@ -295,7 +303,7 @@ namespace Diprolim
                 }
                 else
                 {
-                    if (tbxLimite.Text != "" && tbxNombre.Text != "" && tbxAPaterno.Text != "" && tbxAMaterno.Text != "" && tbxTelefono.Text != "" && cbxSexo.Text != "" && dtpFNacimiento.Text != "" && cbxPuestos.Text != "")
+                    if (tbxLimite.Text != "" && tbxNombre.Text != "" && cbxSexo.Text != "" && dtpFNacimiento.Text != "" && cbxPuestos.Text != "")
                     {
                         Conexion.Conectarse();
                         string comando = string.Format("UPDATE Empleados SET " +
@@ -395,11 +403,11 @@ namespace Diprolim
                         {
                             DataRow row = Tabla.Rows[0];
                             tbxNombre.Text = row["Nombre"].ToString();
-                            tbxNombre.ReadOnly = true;
+                            //tbxNombre.ReadOnly = true;
                             tbxAPaterno.Text = row["Apellido_Paterno"].ToString();
-                            tbxAPaterno.ReadOnly = true;
+                            //tbxAPaterno.ReadOnly = true;
                             tbxAMaterno.Text = row["Apellido_Materno"].ToString();
-                            tbxAMaterno.ReadOnly = true;
+                            //tbxAMaterno.ReadOnly = true;
                             cbxSexo.SelectedIndex = Convert.ToInt32(row["Sexo"]);
                             cbxSexo.Enabled = false;
                             dtpFNacimiento.Value = Convert.ToDateTime(row["Fecha_Nacimiento"]);
@@ -493,6 +501,14 @@ namespace Diprolim
         private void ModificarEmpleado_Load(object sender, EventArgs e)
         {
             cbxStatus.SelectedIndex = 1;
+        }
+
+        private void ModificarEmpleado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

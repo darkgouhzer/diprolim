@@ -84,6 +84,7 @@
             this.cheVendedoresR = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.chkDescuentoComision = new System.Windows.Forms.CheckBox();
+            this.chbxCajaRapida = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -160,7 +161,7 @@
             // 
             this.cheSalidasEspeciales.AutoSize = true;
             this.cheSalidasEspeciales.ForeColor = System.Drawing.Color.Black;
-            this.cheSalidasEspeciales.Location = new System.Drawing.Point(18, 433);
+            this.cheSalidasEspeciales.Location = new System.Drawing.Point(186, 86);
             this.cheSalidasEspeciales.Margin = new System.Windows.Forms.Padding(4);
             this.cheSalidasEspeciales.Name = "cheSalidasEspeciales";
             this.cheSalidasEspeciales.Size = new System.Drawing.Size(153, 21);
@@ -172,7 +173,7 @@
             // 
             this.cheInventarioNormal.AutoSize = true;
             this.cheInventarioNormal.ForeColor = System.Drawing.Color.Black;
-            this.cheInventarioNormal.Location = new System.Drawing.Point(18, 404);
+            this.cheInventarioNormal.Location = new System.Drawing.Point(18, 434);
             this.cheInventarioNormal.Margin = new System.Windows.Forms.Padding(4);
             this.cheInventarioNormal.Name = "cheInventarioNormal";
             this.cheInventarioNormal.Size = new System.Drawing.Size(98, 21);
@@ -184,7 +185,7 @@
             // 
             this.cheInventarioCosto.AutoSize = true;
             this.cheInventarioCosto.ForeColor = System.Drawing.Color.Black;
-            this.cheInventarioCosto.Location = new System.Drawing.Point(18, 375);
+            this.cheInventarioCosto.Location = new System.Drawing.Point(18, 405);
             this.cheInventarioCosto.Margin = new System.Windows.Forms.Padding(4);
             this.cheInventarioCosto.Name = "cheInventarioCosto";
             this.cheInventarioCosto.Size = new System.Drawing.Size(136, 21);
@@ -196,7 +197,7 @@
             // 
             this.cheConversiones.AutoSize = true;
             this.cheConversiones.ForeColor = System.Drawing.Color.Black;
-            this.cheConversiones.Location = new System.Drawing.Point(18, 346);
+            this.cheConversiones.Location = new System.Drawing.Point(18, 376);
             this.cheConversiones.Margin = new System.Windows.Forms.Padding(4);
             this.cheConversiones.Name = "cheConversiones";
             this.cheConversiones.Size = new System.Drawing.Size(122, 21);
@@ -208,7 +209,7 @@
             // 
             this.cheEntradasInventario.AutoSize = true;
             this.cheEntradasInventario.ForeColor = System.Drawing.Color.Black;
-            this.cheEntradasInventario.Location = new System.Drawing.Point(18, 317);
+            this.cheEntradasInventario.Location = new System.Drawing.Point(18, 347);
             this.cheEntradasInventario.Margin = new System.Windows.Forms.Padding(4);
             this.cheEntradasInventario.Name = "cheEntradasInventario";
             this.cheEntradasInventario.Size = new System.Drawing.Size(93, 21);
@@ -221,7 +222,7 @@
             this.cheInventarios.AutoSize = true;
             this.cheInventarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheInventarios.ForeColor = System.Drawing.Color.Black;
-            this.cheInventarios.Location = new System.Drawing.Point(18, 288);
+            this.cheInventarios.Location = new System.Drawing.Point(18, 318);
             this.cheInventarios.Margin = new System.Windows.Forms.Padding(4);
             this.cheInventarios.Name = "cheInventarios";
             this.cheInventarios.Size = new System.Drawing.Size(121, 21);
@@ -235,7 +236,7 @@
             this.cheCatalogos.AutoSize = true;
             this.cheCatalogos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheCatalogos.ForeColor = System.Drawing.Color.Black;
-            this.cheCatalogos.Location = new System.Drawing.Point(186, 86);
+            this.cheCatalogos.Location = new System.Drawing.Point(379, 86);
             this.cheCatalogos.Margin = new System.Windows.Forms.Padding(4);
             this.cheCatalogos.Name = "cheCatalogos";
             this.cheCatalogos.Size = new System.Drawing.Size(113, 21);
@@ -247,7 +248,7 @@
             // 
             this.cheVendedores.AutoSize = true;
             this.cheVendedores.ForeColor = System.Drawing.Color.Black;
-            this.cheVendedores.Location = new System.Drawing.Point(186, 112);
+            this.cheVendedores.Location = new System.Drawing.Point(379, 112);
             this.cheVendedores.Margin = new System.Windows.Forms.Padding(4);
             this.cheVendedores.Name = "cheVendedores";
             this.cheVendedores.Size = new System.Drawing.Size(113, 21);
@@ -259,7 +260,7 @@
             // 
             this.cheClientes.AutoSize = true;
             this.cheClientes.ForeColor = System.Drawing.Color.Black;
-            this.cheClientes.Location = new System.Drawing.Point(186, 144);
+            this.cheClientes.Location = new System.Drawing.Point(379, 144);
             this.cheClientes.Margin = new System.Windows.Forms.Padding(4);
             this.cheClientes.Name = "cheClientes";
             this.cheClientes.Size = new System.Drawing.Size(86, 21);
@@ -271,7 +272,7 @@
             // 
             this.cheUnidadesDeMedida.AutoSize = true;
             this.cheUnidadesDeMedida.ForeColor = System.Drawing.Color.Black;
-            this.cheUnidadesDeMedida.Location = new System.Drawing.Point(186, 231);
+            this.cheUnidadesDeMedida.Location = new System.Drawing.Point(186, 176);
             this.cheUnidadesDeMedida.Margin = new System.Windows.Forms.Padding(4);
             this.cheUnidadesDeMedida.Name = "cheUnidadesDeMedida";
             this.cheUnidadesDeMedida.Size = new System.Drawing.Size(168, 21);
@@ -283,7 +284,7 @@
             // 
             this.cheConsultasProductos.AutoSize = true;
             this.cheConsultasProductos.ForeColor = System.Drawing.Color.Black;
-            this.cheConsultasProductos.Location = new System.Drawing.Point(186, 199);
+            this.cheConsultasProductos.Location = new System.Drawing.Point(186, 144);
             this.cheConsultasProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cheConsultasProductos.Name = "cheConsultasProductos";
             this.cheConsultasProductos.Size = new System.Drawing.Size(98, 21);
@@ -295,7 +296,7 @@
             // 
             this.cheComisiones.AutoSize = true;
             this.cheComisiones.ForeColor = System.Drawing.Color.Black;
-            this.cheComisiones.Location = new System.Drawing.Point(186, 288);
+            this.cheComisiones.Location = new System.Drawing.Point(186, 233);
             this.cheComisiones.Margin = new System.Windows.Forms.Padding(4);
             this.cheComisiones.Name = "cheComisiones";
             this.cheComisiones.Size = new System.Drawing.Size(108, 21);
@@ -308,7 +309,7 @@
             this.cheReportes.AutoSize = true;
             this.cheReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheReportes.ForeColor = System.Drawing.Color.Black;
-            this.cheReportes.Location = new System.Drawing.Point(186, 375);
+            this.cheReportes.Location = new System.Drawing.Point(186, 320);
             this.cheReportes.Margin = new System.Windows.Forms.Padding(4);
             this.cheReportes.Name = "cheReportes";
             this.cheReportes.Size = new System.Drawing.Size(107, 21);
@@ -320,7 +321,7 @@
             // 
             this.cheSalidasVendedoresR.AutoSize = true;
             this.cheSalidasVendedoresR.ForeColor = System.Drawing.Color.Black;
-            this.cheSalidasVendedoresR.Location = new System.Drawing.Point(367, 286);
+            this.cheSalidasVendedoresR.Location = new System.Drawing.Point(379, 317);
             this.cheSalidasVendedoresR.Margin = new System.Windows.Forms.Padding(4);
             this.cheSalidasVendedoresR.Name = "cheSalidasVendedoresR";
             this.cheSalidasVendedoresR.Size = new System.Drawing.Size(82, 21);
@@ -332,7 +333,7 @@
             // 
             this.cheEntradasVendedoresR.AutoSize = true;
             this.cheEntradasVendedoresR.ForeColor = System.Drawing.Color.Black;
-            this.cheEntradasVendedoresR.Location = new System.Drawing.Point(367, 257);
+            this.cheEntradasVendedoresR.Location = new System.Drawing.Point(379, 288);
             this.cheEntradasVendedoresR.Margin = new System.Windows.Forms.Padding(4);
             this.cheEntradasVendedoresR.Name = "cheEntradasVendedoresR";
             this.cheEntradasVendedoresR.Size = new System.Drawing.Size(93, 21);
@@ -345,7 +346,7 @@
             this.cheVentasR.AutoSize = true;
             this.cheVentasR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheVentasR.ForeColor = System.Drawing.Color.Black;
-            this.cheVentasR.Location = new System.Drawing.Point(186, 404);
+            this.cheVentasR.Location = new System.Drawing.Point(186, 349);
             this.cheVentasR.Margin = new System.Windows.Forms.Padding(4);
             this.cheVentasR.Name = "cheVentasR";
             this.cheVentasR.Size = new System.Drawing.Size(91, 21);
@@ -357,7 +358,7 @@
             // 
             this.cheVenrasReporte.AutoSize = true;
             this.cheVenrasReporte.ForeColor = System.Drawing.Color.Black;
-            this.cheVenrasReporte.Location = new System.Drawing.Point(186, 433);
+            this.cheVenrasReporte.Location = new System.Drawing.Point(186, 378);
             this.cheVenrasReporte.Margin = new System.Windows.Forms.Padding(4);
             this.cheVenrasReporte.Name = "cheVenrasReporte";
             this.cheVenrasReporte.Size = new System.Drawing.Size(80, 21);
@@ -369,7 +370,7 @@
             // 
             this.cheVentasCosto.AutoSize = true;
             this.cheVentasCosto.ForeColor = System.Drawing.Color.Black;
-            this.cheVentasCosto.Location = new System.Drawing.Point(366, 86);
+            this.cheVentasCosto.Location = new System.Drawing.Point(186, 404);
             this.cheVentasCosto.Margin = new System.Windows.Forms.Padding(4);
             this.cheVentasCosto.Name = "cheVentasCosto";
             this.cheVentasCosto.Size = new System.Drawing.Size(118, 21);
@@ -382,7 +383,7 @@
             this.cheInventario.AutoSize = true;
             this.cheInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheInventario.ForeColor = System.Drawing.Color.Black;
-            this.cheInventario.Location = new System.Drawing.Point(366, 141);
+            this.cheInventario.Location = new System.Drawing.Point(378, 172);
             this.cheInventario.Margin = new System.Windows.Forms.Padding(4);
             this.cheInventario.Name = "cheInventario";
             this.cheInventario.Size = new System.Drawing.Size(113, 21);
@@ -394,7 +395,7 @@
             // 
             this.cheSalidasInventarioR.AutoSize = true;
             this.cheSalidasInventarioR.ForeColor = System.Drawing.Color.Black;
-            this.cheSalidasInventarioR.Location = new System.Drawing.Point(366, 199);
+            this.cheSalidasInventarioR.Location = new System.Drawing.Point(378, 230);
             this.cheSalidasInventarioR.Margin = new System.Windows.Forms.Padding(4);
             this.cheSalidasInventarioR.Name = "cheSalidasInventarioR";
             this.cheSalidasInventarioR.Size = new System.Drawing.Size(82, 21);
@@ -406,7 +407,7 @@
             // 
             this.cheEntradasInventarioR.AutoSize = true;
             this.cheEntradasInventarioR.ForeColor = System.Drawing.Color.Black;
-            this.cheEntradasInventarioR.Location = new System.Drawing.Point(366, 170);
+            this.cheEntradasInventarioR.Location = new System.Drawing.Point(378, 201);
             this.cheEntradasInventarioR.Margin = new System.Windows.Forms.Padding(4);
             this.cheEntradasInventarioR.Name = "cheEntradasInventarioR";
             this.cheEntradasInventarioR.Size = new System.Drawing.Size(93, 21);
@@ -418,7 +419,7 @@
             // 
             this.chePrenominaR.AutoSize = true;
             this.chePrenominaR.ForeColor = System.Drawing.Color.Black;
-            this.chePrenominaR.Location = new System.Drawing.Point(367, 347);
+            this.chePrenominaR.Location = new System.Drawing.Point(379, 378);
             this.chePrenominaR.Margin = new System.Windows.Forms.Padding(4);
             this.chePrenominaR.Name = "chePrenominaR";
             this.chePrenominaR.Size = new System.Drawing.Size(104, 21);
@@ -430,7 +431,7 @@
             // 
             this.cheGraficoR.AutoSize = true;
             this.cheGraficoR.ForeColor = System.Drawing.Color.Black;
-            this.cheGraficoR.Location = new System.Drawing.Point(367, 318);
+            this.cheGraficoR.Location = new System.Drawing.Point(379, 349);
             this.cheGraficoR.Margin = new System.Windows.Forms.Padding(4);
             this.cheGraficoR.Name = "cheGraficoR";
             this.cheGraficoR.Size = new System.Drawing.Size(82, 21);
@@ -442,7 +443,7 @@
             // 
             this.cheCrearUsuarios.AutoSize = true;
             this.cheCrearUsuarios.ForeColor = System.Drawing.Color.Black;
-            this.cheCrearUsuarios.Location = new System.Drawing.Point(601, 141);
+            this.cheCrearUsuarios.Location = new System.Drawing.Point(599, 173);
             this.cheCrearUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.cheCrearUsuarios.Name = "cheCrearUsuarios";
             this.cheCrearUsuarios.Size = new System.Drawing.Size(124, 21);
@@ -454,7 +455,7 @@
             // 
             this.cheModificarUsuarios.AutoSize = true;
             this.cheModificarUsuarios.ForeColor = System.Drawing.Color.Black;
-            this.cheModificarUsuarios.Location = new System.Drawing.Point(601, 175);
+            this.cheModificarUsuarios.Location = new System.Drawing.Point(599, 207);
             this.cheModificarUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.cheModificarUsuarios.Name = "cheModificarUsuarios";
             this.cheModificarUsuarios.Size = new System.Drawing.Size(146, 21);
@@ -467,7 +468,7 @@
             this.cheUsuarios.AutoSize = true;
             this.cheUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheUsuarios.ForeColor = System.Drawing.Color.Black;
-            this.cheUsuarios.Location = new System.Drawing.Point(601, 112);
+            this.cheUsuarios.Location = new System.Drawing.Point(599, 144);
             this.cheUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.cheUsuarios.Name = "cheUsuarios";
             this.cheUsuarios.Size = new System.Drawing.Size(105, 21);
@@ -511,7 +512,7 @@
             // 
             this.btnRegistrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.Location = new System.Drawing.Point(708, 417);
+            this.btnRegistrar.Location = new System.Drawing.Point(635, 414);
             this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(85, 50);
@@ -550,7 +551,7 @@
             // 
             this.cheAsignarPrivilegios.AutoSize = true;
             this.cheAsignarPrivilegios.ForeColor = System.Drawing.Color.Red;
-            this.cheAsignarPrivilegios.Location = new System.Drawing.Point(601, 204);
+            this.cheAsignarPrivilegios.Location = new System.Drawing.Point(599, 236);
             this.cheAsignarPrivilegios.Margin = new System.Windows.Forms.Padding(4);
             this.cheAsignarPrivilegios.Name = "cheAsignarPrivilegios";
             this.cheAsignarPrivilegios.Size = new System.Drawing.Size(143, 21);
@@ -562,7 +563,7 @@
             // 
             this.cheVentasGenerales.AutoSize = true;
             this.cheVentasGenerales.ForeColor = System.Drawing.Color.Black;
-            this.cheVentasGenerales.Location = new System.Drawing.Point(366, 112);
+            this.cheVentasGenerales.Location = new System.Drawing.Point(186, 430);
             this.cheVentasGenerales.Margin = new System.Windows.Forms.Padding(4);
             this.cheVentasGenerales.Name = "cheVentasGenerales";
             this.cheVentasGenerales.Size = new System.Drawing.Size(150, 21);
@@ -574,7 +575,7 @@
             // 
             this.cheAlmacenes.AutoSize = true;
             this.cheAlmacenes.ForeColor = System.Drawing.Color.Black;
-            this.cheAlmacenes.Location = new System.Drawing.Point(186, 259);
+            this.cheAlmacenes.Location = new System.Drawing.Point(186, 204);
             this.cheAlmacenes.Margin = new System.Windows.Forms.Padding(4);
             this.cheAlmacenes.Name = "cheAlmacenes";
             this.cheAlmacenes.Size = new System.Drawing.Size(105, 21);
@@ -586,7 +587,7 @@
             // 
             this.cheCobranzaR.AutoSize = true;
             this.cheCobranzaR.ForeColor = System.Drawing.Color.Black;
-            this.cheCobranzaR.Location = new System.Drawing.Point(367, 375);
+            this.cheCobranzaR.Location = new System.Drawing.Point(379, 406);
             this.cheCobranzaR.Margin = new System.Windows.Forms.Padding(4);
             this.cheCobranzaR.Name = "cheCobranzaR";
             this.cheCobranzaR.Size = new System.Drawing.Size(97, 21);
@@ -598,7 +599,7 @@
             // 
             this.cheHistoricoDeMovimientosR.AutoSize = true;
             this.cheHistoricoDeMovimientosR.ForeColor = System.Drawing.Color.Black;
-            this.cheHistoricoDeMovimientosR.Location = new System.Drawing.Point(367, 404);
+            this.cheHistoricoDeMovimientosR.Location = new System.Drawing.Point(379, 435);
             this.cheHistoricoDeMovimientosR.Margin = new System.Windows.Forms.Padding(4);
             this.cheHistoricoDeMovimientosR.Name = "cheHistoricoDeMovimientosR";
             this.cheHistoricoDeMovimientosR.Size = new System.Drawing.Size(193, 21);
@@ -646,7 +647,7 @@
             // 
             this.cheConsignacionR.AutoSize = true;
             this.cheConsignacionR.ForeColor = System.Drawing.Color.Black;
-            this.cheConsignacionR.Location = new System.Drawing.Point(367, 433);
+            this.cheConsignacionR.Location = new System.Drawing.Point(599, 86);
             this.cheConsignacionR.Margin = new System.Windows.Forms.Padding(4);
             this.cheConsignacionR.Name = "cheConsignacionR";
             this.cheConsignacionR.Size = new System.Drawing.Size(121, 21);
@@ -658,7 +659,7 @@
             // 
             this.cheIngresoDeEfectivoR.AutoSize = true;
             this.cheIngresoDeEfectivoR.ForeColor = System.Drawing.Color.Black;
-            this.cheIngresoDeEfectivoR.Location = new System.Drawing.Point(601, 83);
+            this.cheIngresoDeEfectivoR.Location = new System.Drawing.Point(599, 115);
             this.cheIngresoDeEfectivoR.Margin = new System.Windows.Forms.Padding(4);
             this.cheIngresoDeEfectivoR.Name = "cheIngresoDeEfectivoR";
             this.cheIngresoDeEfectivoR.Size = new System.Drawing.Size(156, 21);
@@ -670,7 +671,7 @@
             // 
             this.cheCobranzaCredito.AutoSize = true;
             this.cheCobranzaCredito.ForeColor = System.Drawing.Color.Black;
-            this.cheCobranzaCredito.Location = new System.Drawing.Point(601, 232);
+            this.cheCobranzaCredito.Location = new System.Drawing.Point(599, 264);
             this.cheCobranzaCredito.Margin = new System.Windows.Forms.Padding(4);
             this.cheCobranzaCredito.Name = "cheCobranzaCredito";
             this.cheCobranzaCredito.Size = new System.Drawing.Size(144, 21);
@@ -682,7 +683,7 @@
             // 
             this.cheAutorizaCredito.AutoSize = true;
             this.cheAutorizaCredito.ForeColor = System.Drawing.Color.Black;
-            this.cheAutorizaCredito.Location = new System.Drawing.Point(601, 261);
+            this.cheAutorizaCredito.Location = new System.Drawing.Point(599, 293);
             this.cheAutorizaCredito.Margin = new System.Windows.Forms.Padding(4);
             this.cheAutorizaCredito.Name = "cheAutorizaCredito";
             this.cheAutorizaCredito.Size = new System.Drawing.Size(188, 21);
@@ -694,7 +695,7 @@
             // 
             this.cheRutas.AutoSize = true;
             this.cheRutas.ForeColor = System.Drawing.Color.Black;
-            this.cheRutas.Location = new System.Drawing.Point(186, 317);
+            this.cheRutas.Location = new System.Drawing.Point(186, 262);
             this.cheRutas.Margin = new System.Windows.Forms.Padding(4);
             this.cheRutas.Name = "cheRutas";
             this.cheRutas.Size = new System.Drawing.Size(73, 21);
@@ -707,7 +708,7 @@
             this.cheProductos.AutoSize = true;
             this.cheProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheProductos.ForeColor = System.Drawing.Color.Black;
-            this.cheProductos.Location = new System.Drawing.Point(186, 170);
+            this.cheProductos.Location = new System.Drawing.Point(186, 115);
             this.cheProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cheProductos.Name = "cheProductos";
             this.cheProductos.Size = new System.Drawing.Size(114, 21);
@@ -720,7 +721,7 @@
             this.cheVendedoresR.AutoSize = true;
             this.cheVendedoresR.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cheVendedoresR.ForeColor = System.Drawing.Color.Black;
-            this.cheVendedoresR.Location = new System.Drawing.Point(367, 228);
+            this.cheVendedoresR.Location = new System.Drawing.Point(379, 259);
             this.cheVendedoresR.Margin = new System.Windows.Forms.Padding(4);
             this.cheVendedoresR.Name = "cheVendedoresR";
             this.cheVendedoresR.Size = new System.Drawing.Size(128, 21);
@@ -744,7 +745,7 @@
             // 
             this.chkDescuentoComision.AutoSize = true;
             this.chkDescuentoComision.ForeColor = System.Drawing.Color.Black;
-            this.chkDescuentoComision.Location = new System.Drawing.Point(186, 346);
+            this.chkDescuentoComision.Location = new System.Drawing.Point(186, 291);
             this.chkDescuentoComision.Margin = new System.Windows.Forms.Padding(4);
             this.chkDescuentoComision.Name = "chkDescuentoComision";
             this.chkDescuentoComision.Size = new System.Drawing.Size(163, 21);
@@ -752,12 +753,25 @@
             this.chkDescuentoComision.Text = "- Descuento comisión";
             this.chkDescuentoComision.UseVisualStyleBackColor = true;
             // 
+            // chbxCajaRapida
+            // 
+            this.chbxCajaRapida.AutoSize = true;
+            this.chbxCajaRapida.ForeColor = System.Drawing.Color.Black;
+            this.chbxCajaRapida.Location = new System.Drawing.Point(18, 291);
+            this.chbxCajaRapida.Margin = new System.Windows.Forms.Padding(4);
+            this.chbxCajaRapida.Name = "chbxCajaRapida";
+            this.chbxCajaRapida.Size = new System.Drawing.Size(108, 21);
+            this.chbxCajaRapida.TabIndex = 248;
+            this.chbxCajaRapida.Text = "- Caja rápida";
+            this.chbxCajaRapida.UseVisualStyleBackColor = true;
+            // 
             // AsignarPrivilegios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(919, 482);
+            this.ClientSize = new System.Drawing.Size(800, 482);
+            this.Controls.Add(this.chbxCajaRapida);
             this.Controls.Add(this.chkDescuentoComision);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.cheVendedoresR);
@@ -817,12 +831,14 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AsignarPrivilegios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asignar privilegios";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AsignarPrivilegios_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -885,5 +901,6 @@
         private System.Windows.Forms.CheckBox cheVendedoresR;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chkDescuentoComision;
+        private System.Windows.Forms.CheckBox chbxCajaRapida;
     }
 }

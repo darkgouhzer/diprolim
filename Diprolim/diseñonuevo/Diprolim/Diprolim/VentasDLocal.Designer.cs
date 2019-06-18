@@ -164,7 +164,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 17);
             this.label4.TabIndex = 58;
-            this.label4.Text = "Codigo de producto:";
+            this.label4.Text = "Código de producto:";
             // 
             // tbxProducto
             // 

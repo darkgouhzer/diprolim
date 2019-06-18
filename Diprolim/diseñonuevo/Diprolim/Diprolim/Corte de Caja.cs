@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Identidades;
+using MySql.Data.MySqlClient;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,49 +16,40 @@ namespace Diprolim
     public partial class Corte_de_Caja : Form
     {
         conexion conn = new conexion();
-        MySqlCommand comando;
-        UnicaSQL.DBMS_Unico Conexion;
-
+        CorteCajaBO objCorteCajaBO;
+        String ImpresoraTicket = "";
         public Corte_de_Caja(UnicaSQL.DBMS_Unico sConexion)
         {
             InitializeComponent();
             dtpFecha.Value = DateTime.Now;
-            Conexion=sConexion;
-            
+            CargarDatosTicket();
         }
-        
+        public Corte_de_Caja(UnicaSQL.DBMS_Unico sConexion, String sVendedor)
+        {
+            InitializeComponent();
+            dtpFecha.Value = DateTime.Now;
+            tbxVendedor.Text = sVendedor;
+            btnCambiarVendedor.Enabled = false;
+            btnBuscar.Enabled = false;
+            tbxVendedor.ReadOnly = true;
+            obtenerVendedor();
+            CargarDatosTicket();
+        }  
         public void obtenerVendedor()
         {
             if (tbxVendedor.Text != "")
             {
-                MySqlConnection conectar = conn.ObtenerConexion();
-                comando = new MySqlCommand("Select nombre, apellido_paterno, apellido_materno from empleados where id_empleado=" + tbxVendedor.Text, conectar);
-                conectar.Open();
-                MySqlDataReader lector = comando.ExecuteReader();
-                while (lector.Read())
-                {
-                    tbxNVendedor.Text = lector.GetString(0) + " " + lector.GetString(1) + " " + lector.GetString(2);
-                    
-                }
+                objCorteCajaBO = new CorteCajaBO();
+                CCorteIndividual objCCorteIndividual = new CCorteIndividual();
+                objCCorteIndividual = objCorteCajaBO.ObtenerTotalesCorte(Convert.ToInt32(tbxVendedor.Text.Trim()), dtpFecha.Value);
+                tbxNVendedor.Text = objCCorteIndividual.NombreVendedor;                
+                tbxGastos.Text = objCCorteIndividual.Gastos.ToString();
+                tbxConcepto.Text = objCCorteIndividual.Concepto;                
+                tbxFiado.Text = Math.Round(objCCorteIndividual.Fiado, 2).ToString();
+                tbxRecuperado.Text = Math.Round(objCCorteIndividual.Recuperado, 2).ToString();
+                tbxVT.Text = Math.Round(objCCorteIndividual.VentasTotales, 2).ToString();
+                tbxIva.Text = Math.Round(objCCorteIndividual.IVA, 2).ToString();
                 tbxGastos.Focus();
-                conectar.Close();
-                checar();
-                if(i>0)
-                {
-                    comando = new MySqlCommand("Select Gastos,Concepto from cortedcaja where empleados_id_empleado=" + tbxVendedor.Text + " and Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-                    conectar.Open();
-                    lector = comando.ExecuteReader();
-                    while (lector.Read())
-                    {
-                       
-                        tbxGastos.Text = lector.GetString(0);
-                        tbxConcepto.Text = lector.GetString(1);
-                    }
-                    tbxGastos.Focus();
-                    conectar.Close();
-                }
-                CargarTodo();
-                GV();
                 sumar();
             }
 
@@ -75,86 +68,8 @@ namespace Diprolim
                 
             }
             lblEfectivo.Text = sumaaa.ToString();
-        }
-        public void GV()
-        {
-            
-                MySqlConnection conectar = conn.ObtenerConexion();
-                comando = new MySqlCommand("Select importe, iva from ventas where empleados_id_empleado=" + tbxVendedor.Text + " and fecha_venta BETWEEN '" +
-            dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                conectar.Open();
-                MySqlDataReader lector = comando.ExecuteReader();
-                double sumaVentaTotal = 0;
-                double sumaIva = 0;         
-                
-                while (lector.Read())
-                {
-                    if(Convert.ToDouble(lector.GetDouble(1))>0)
-                    {
-                        sumaVentaTotal += lector.GetDouble(0)/1.16;
-                        sumaIva += lector.GetDouble(0) - (lector.GetDouble(0)/1.16);
-                    }
-                    else
-                    {
-                        sumaVentaTotal += lector.GetDouble(0);
-                    }
-                    
-                }
-                tbxVT.Text =Math.Round(sumaVentaTotal, 2).ToString();
-                tbxGastos.Focus();
-          //      conectar.Close();
-          //      comando = new MySqlCommand("Select iva from ventas where tipo_compra='contado' and empleados_id_empleado=" + tbxVendedor.Text + " and fecha_venta BETWEEN '" +
-          //dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-          //      conectar.Open();
-          //      lector = comando.ExecuteReader();
-                
-          //      double sumaIva = 0;
-          //      while (lector.Read())
-          //      {
-          //          sumaIva += lector.GetDouble(0);
-          //      }
-                tbxIva.Text = Math.Round(sumaIva, 2).ToString(); 
-                tbxGastos.Focus();
-                conectar.Close();            
-        }
+        }       
        
-        
-        public void CargarTodo()
-        {            
-                MySqlConnection conectar = conn.ObtenerConexion();
-                comando = new MySqlCommand("Select importe, Iva from  ventas  where empleados_id_empleado=" + tbxVendedor.Text + " and tipo_compra='credito' and fecha_venta BETWEEN '" +
-            dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                conectar.Open();
-                MySqlDataReader lector = comando.ExecuteReader();
-                double sumaVentaCredito = 0;
-                while (lector.Read())
-                {                   
-                        sumaVentaCredito += lector.GetDouble(0);
-                }
-
-                tbxFiado.Text = Math.Round(sumaVentaCredito, 2).ToString(); 
-                conectar.Close();
-                
-                double sumaAbono = 0;         
-                //---------------------
-            //Total Abonos
-                
-                comando = new MySqlCommand("select abono  from abonos where "+
-                    " empleados_id_empleado=" + tbxVendedor.Text + " AND fecha between '" + dtpFecha.Value.ToString("yyyyMMdd000000") + "' AND '" + dtpFecha.Value.ToString("yyyyMMdd235959") + "'", conectar);
-                conectar.Open();
-                //DataTable Tabla23= new DataTable();
-                //Tabla23.Load(comando.ExecuteReader());
-                lector = comando.ExecuteReader();
-                while (lector.Read())
-                {
-                    sumaAbono += lector.GetDouble(0);
-                }
-        
-                conectar.Close();
-                tbxRecuperado.Text =Math.Round(sumaAbono, 2).ToString();
-            //---------------------
-
-        }
         private void btnB_Click(object sender, EventArgs e)
         {
             BuscarVendedor id = new BuscarVendedor();
@@ -170,12 +85,12 @@ namespace Diprolim
             if (id.regresar.valXn != "1" && tbxVendedor.Text != "")
             {
                 tbxVendedor.ReadOnly = true;
-                btnB.Enabled = false;
+                btnBuscar.Enabled = false;
             }
             else
             {
                 tbxVendedor.ReadOnly = false;
-                btnB.Enabled = true;
+                btnBuscar.Enabled = true;
             }
         }
 
@@ -184,14 +99,12 @@ namespace Diprolim
             tbxVendedor.Clear();
             tbxVendedor.ReadOnly = false;
             tbxNVendedor.Clear();
-            btnB.Enabled = true;
+            btnBuscar.Enabled = true;
             tbxVT.Clear();
             tbxIva.Clear();
-            tbxRecuperado.Clear();
-            
+            tbxRecuperado.Clear();            
             tbxGastos.Clear();
-            tbxFiado.Clear();
-            
+            tbxFiado.Clear();            
             lblEfectivo.Text = "";
         }
 
@@ -202,7 +115,7 @@ namespace Diprolim
                 obtenerVendedor();
                 
                 tbxVendedor.ReadOnly = true;
-                btnB.Enabled = false;
+                btnBuscar.Enabled = false;
             }
         }
         
@@ -253,16 +166,6 @@ namespace Diprolim
             }
         }
 
-        private void tbxVendedor_KeyDown_1(object sender, KeyEventArgs e)
-        {
-           
-        }
-
-        private void tbxVendedor_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
         private void Corte_de_Caja_Load(object sender, EventArgs e)
         {
             tbxVendedor.Focus();
@@ -272,145 +175,203 @@ namespace Diprolim
         {
 
         }
-        int i = 0;
+        
         private void btnRegistrarS_Click(object sender, EventArgs e)
         {
             if (tbxVendedor.Text != "")
             {
                 if (dtpFecha.Value.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd"))
                 {
-                    sumar();
-                    MySqlConnection conectar = conn.ObtenerConexion();
-                    MySqlCommand comando;
-
-                    checar();
-                    double gastos = 0;
-                    if (tbxGastos.Text != "")
+                    CorteCajaBO objCorteCajaBO = new CorteCajaBO();
+                    CCorteIndividual objCCorteIndividual = new CCorteIndividual();
+                    objCCorteIndividual.IDEmpleado = Convert.ToInt32(tbxVendedor.Text);
+                    objCCorteIndividual.VentasTotales = Convert.ToDouble(tbxVT.Text);
+                    objCCorteIndividual.IVA = Convert.ToDouble(tbxIva.Text);
+                    objCCorteIndividual.Recuperado = Convert.ToDouble(tbxRecuperado.Text);
+                    objCCorteIndividual.Fiado = Convert.ToDouble(tbxFiado.Text);
+                    objCCorteIndividual.Gastos = Convert.ToDouble(tbxGastos.Text);
+                    objCCorteIndividual.EfectivoEntrega = Convert.ToDouble(lblEfectivo.Text);
+                    objCCorteIndividual.Concepto = tbxConcepto.Text;
+                    objCCorteIndividual.Fecha = dtpFecha.Value;
+                    if(objCorteCajaBO.GenerarCorteIndividual(objCCorteIndividual))
                     {
-                        gastos = Convert.ToDouble(tbxGastos.Text);
-                    }
-                    if (i == 0)
-                    {
-
-                        comando = new MySqlCommand("INSERT INTO cortedcaja values(null," + tbxVendedor.Text + "," + tbxVT.Text + "," + tbxRecuperado.Text + "," + tbxFiado.Text + "," + gastos + ",'" + tbxConcepto.Text + "'," + lblEfectivo.Text + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + tbxIva.Text + ")", conectar);
-                        conectar.Open();
-                        comando.ExecuteNonQuery();
-                        conectar.Close();
                         MessageBox.Show("Guardado con éxito");
-                    }
-                    else
-                    {
-                        comando = new MySqlCommand("UPDATE cortedcaja SET Ventas_Totales=" + tbxVT.Text + ",iva=" + tbxIva.Text + " ,Recuperado=" + tbxRecuperado.Text + ", Fiado=" + tbxFiado.Text + ", Gastos=" + tbxGastos.Text + ", Concepto='" + tbxConcepto.Text + "', EfectivoAEntregar=" + lblEfectivo.Text + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND Fecha='" + dtpFecha.Value.ToString("yyyyMMdd") + "'", conectar);
-                        conectar.Open();
-                        comando.ExecuteNonQuery();
-                        conectar.Close();
-                        MessageBox.Show("Cambios guardados con éxito");
-                    }
+                    }                    
                 }
                 else
                 {
-                    MessageBox.Show("No puede guardar días anteriores");
+                    MessageBox.Show("No puede guardar de días anteriores");
                 }
               
             }
-        }
-        public void checar()
-        {
-            MySqlConnection conectar = conn.ObtenerConexion();
-            MySqlCommand comando;
-            comando = new MySqlCommand("SELECT count(*) FROM cortedcaja where empleados_id_empleado="+tbxVendedor.Text+" and Fecha='"+ dtpFecha.Value.ToString("yyyyMMdd") +"'", conectar);
-            conectar.Open();
-
-            MySqlDataReader lector;
-            lector = comando.ExecuteReader();
-           
-            while (lector.Read())
-            {
-                i = lector.GetInt32(0);
-
-            }
-            conectar.Close();
-        }
+        }     
 
         private void tbxGastos_Leave(object sender, EventArgs e)
-        {
-            if (tbxGastos.Text == ".")
+        {            
+            if (tbxGastos.Text.Trim() == "" || tbxGastos.Text.Trim() == ".")
             {
-                MessageBox.Show("Verifica la cantidad de gastos");
-                tbxGastos.Focus();
+                tbxGastos.Text = "0";
             }
-            else
-            {
-                if (tbxGastos.Text != "")
-                {
-                    sumar();
-                }
-            }
+            sumar();
         }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Font letra = new Font("Arial", 12);
-            Font letra2 = new Font("Arial", 12,FontStyle.Bold);
-            int x = 120;
-            //int L = 105;
-            int y = 25;
+            Font letraTi = new Font("Arial", 11, FontStyle.Bold);
+            Font letraTi2 = new Font("Arial", 8, FontStyle.Bold);
+            Font letra = new Font("Arial", 8);
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+
+            int y = 2;
+            int x = 2;
 
             #region titulo
-            e.Graphics.DrawString("CORTE DE CAJA POR VENDEDOR", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 5*2, 50, 500, tbxNVendedor.Height + 15));
+            e.Graphics.DrawString("CORTE DE CAJA INDIVIDUAL", letraTi, Brushes.Black, new Rectangle(0, y, 290, 50), stringFormat);
             #endregion
+            y += 38;
             #region Fecha
-            e.Graphics.DrawString(dtpFecha.Value.ToString("dd/MMMM/yyyy"), letra2, Brushes.Black, new Rectangle(e.MarginBounds.Width/10*9, y * 4, 500, tbxNVendedor.Height + 15));
-       #endregion
-
-            #region NombreVendedor
-            e.Graphics.DrawString("Vendedor: ", letra2, Brushes.Black, new Rectangle(x, y * 4, 500, tbxNVendedor.Height + 15));
-            e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x+100, y * 4, 500, tbxNVendedor.Height + 15));
+            e.Graphics.DrawString("Fecha: " + dtpFecha.Value.ToString("dd/MMMM/yyyy"), letraTi2, Brushes.Black, new Rectangle(x, y, 290, 50));
             #endregion
-
+            y += 25;
+            e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x, y, 290, 75));
+            y += 40;
             #region VentasTotales
 
             Pen p = new Pen(Brushes.Black, 1.5f);
 
-            e.Graphics.DrawString("Ventas totales: ", letra2, Brushes.Black, new Rectangle(x, y*5, 500, tbxVT.Height + 15));
-            e.Graphics.DrawString("$ "+tbxVT.Text, letra, Brushes.Black, new Rectangle(x+160, y * 5, 500, tbxVT.Height + 15));
+            e.Graphics.DrawString("Ventas totales: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxVT.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
+            #endregion
+            #region Recuperado
 
+            e.Graphics.DrawString("IVA: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxIva.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Recuperado
 
-            e.Graphics.DrawString("Recuperado: ", letra2, Brushes.Black, new Rectangle(x, y*6, 500, tbxRecuperado.Height + 15));
-            e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 6, 500, tbxRecuperado.Height + 15));
-
+            e.Graphics.DrawString("Recuperado: ", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Fiado
-                
-            e.Graphics.DrawString("Fiado:", letra2, Brushes.Black, new Rectangle(x, y*7, 500, tbxFiado.Height + 15));
-            e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 7, 500, tbxFiado.Height + 15));
-                
+
+            e.Graphics.DrawString("Fiado:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Gastos
-                
-            e.Graphics.DrawString("Gastos:", letra2, Brushes.Black, new Rectangle(x, y*8, 500, tbxConcepto.Height + 15));
-            e.Graphics.DrawString("$ " + tbxGastos.Text + "          " + tbxConcepto.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 8, 500, tbxConcepto.Height + 15));
 
+            e.Graphics.DrawString("Gastos:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + tbxGastos.Text , letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
             #endregion
 
             #region Efectivo
-            Pen pl = new Pen(Brushes.Black, 2.0f);
-            e.Graphics.DrawLine(pl, 210.0f, 220.0f,350.0f, 220.0f);
-            e.Graphics.DrawString("Efectivo a entregar:", letra2, Brushes.Black, new Rectangle(x , y*9, 500, tbxConcepto.Height + 15));
-            e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(x+160, y * 9, 500, tbxConcepto.Height + 15));
-
-            #endregion             
-            
+            e.Graphics.DrawString("Efectivo a entregar:", letra, Brushes.Black, new Rectangle(x, y, 290, 50));
+            e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(140, y, 290, 50));
+            y += 25;
+            #endregion
         }
+
+       // private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+       // {
+       //     Font letra = new Font("Arial", 12);
+       //     Font letra2 = new Font("Arial", 12,FontStyle.Bold);
+       //     int x = 120;
+       //     //int L = 105;
+       //     int y = 25;
+
+       //     #region titulo
+       //     e.Graphics.DrawString("CORTE DE CAJA POR VENDEDOR", new Font("Arial", 14, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 5*2, 50, 500, tbxNVendedor.Height + 15));
+       //     #endregion
+       //     #region Fecha
+       //     e.Graphics.DrawString(dtpFecha.Value.ToString("dd/MMMM/yyyy"), letra2, Brushes.Black, new Rectangle(e.MarginBounds.Width/10*9, y * 4, 500, tbxNVendedor.Height + 15));
+       //#endregion
+
+       //     #region NombreVendedor
+       //     e.Graphics.DrawString("Vendedor: ", letra2, Brushes.Black, new Rectangle(x, y * 4, 500, tbxNVendedor.Height + 15));
+       //     e.Graphics.DrawString(tbxNVendedor.Text, letra, Brushes.Black, new Rectangle(x+100, y * 4, 500, tbxNVendedor.Height + 15));
+       //     #endregion
+
+       //     #region VentasTotales
+
+       //     Pen p = new Pen(Brushes.Black, 1.5f);
+
+       //     e.Graphics.DrawString("Ventas totales: ", letra2, Brushes.Black, new Rectangle(x, y*5, 500, tbxVT.Height + 15));
+       //     e.Graphics.DrawString("$ "+tbxVT.Text, letra, Brushes.Black, new Rectangle(x+160, y * 5, 500, tbxVT.Height + 15));
+
+       //     #endregion
+
+       //     #region Recuperado
+
+       //     e.Graphics.DrawString("Recuperado: ", letra2, Brushes.Black, new Rectangle(x, y*6, 500, tbxRecuperado.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxRecuperado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 6, 500, tbxRecuperado.Height + 15));
+
+       //     #endregion
+
+       //     #region Fiado
+                
+       //     e.Graphics.DrawString("Fiado:", letra2, Brushes.Black, new Rectangle(x, y*7, 500, tbxFiado.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxFiado.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 7, 500, tbxFiado.Height + 15));
+                
+       //     #endregion
+
+       //     #region Gastos
+                
+       //     e.Graphics.DrawString("Gastos:", letra2, Brushes.Black, new Rectangle(x, y*8, 500, tbxConcepto.Height + 15));
+       //     e.Graphics.DrawString("$ " + tbxGastos.Text + "          " + tbxConcepto.Text, letra, Brushes.Black, new Rectangle(x + 160, y * 8, 500, tbxConcepto.Height + 15));
+
+       //     #endregion
+
+       //     #region Efectivo
+       //     Pen pl = new Pen(Brushes.Black, 2.0f);
+       //     e.Graphics.DrawLine(pl, 210.0f, 220.0f,350.0f, 220.0f);
+       //     e.Graphics.DrawString("Efectivo a entregar:", letra2, Brushes.Black, new Rectangle(x , y*9, 500, tbxConcepto.Height + 15));
+       //     e.Graphics.DrawString("$ " + lblEfectivo.Text, letra, Brushes.Black, new Rectangle(x+160, y * 9, 500, tbxConcepto.Height + 15));
+
+       //     #endregion             
+            
+       // }
 
         private void btnImprimirCr_Click(object sender, EventArgs e)
         {
-            printPreviewDialog1.ShowDialog();
+            printDocument1.PrinterSettings.PrinterName = ImpresoraTicket;
+            printDocument1.Print();
+        }
+        public void CargarDatosTicket()
+        {
+            CImpresora objCImpresora = new CImpresora();
+            ImpresoraBO objImpresoraBO = new ImpresoraBO();
+            objCImpresora = objImpresoraBO.ObtenerDatosImpresora();
+            ImpresoraTicket = objCImpresora.Impresora;
+        }
+        private void tbxVendedor_Leave(object sender, EventArgs e)
+        {
+            if (tbxVendedor.Text.Length > 0)
+            {
+                obtenerVendedor();
+
+                tbxVendedor.ReadOnly = true;
+                btnBuscar.Enabled = false;
+            }
+        }
+
+        private void Corte_de_Caja_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

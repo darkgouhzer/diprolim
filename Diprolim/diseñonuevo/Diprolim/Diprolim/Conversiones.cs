@@ -444,20 +444,22 @@ namespace Diprolim
         double cantidad2 = 0, existenciaFinal2 = 0, ExistenciaInicial1=0,cantidad6=0;
         public void Guardado()
         {
-            MySqlConnection conectar = conn.ObtenerConexion();
-            MySqlCommand comando;
-            if (tbxVendedor.Text != ""&&tbxNVendedor.Text!="")
+            //MySqlConnection conectar = conn.ObtenerConexion();
+            //MySqlCommand comando;
+            bool bAllOK = true;
+            if (tbxVendedor.Text != "" && tbxNVendedor.Text!="")
             {
+                Conexion.Conectarse();
+                Conexion.IniciarTransaccion();
                 insertar();
-                comando = new MySqlCommand("UPDATE inv_vendedor SET cantidad=cantidad-" + tbxCConvertir.Text + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND articulos_codigo=" + tbxProducto.Text, conectar);
-                conectar.Open();
-                comando.ExecuteNonQuery();
-                conectar.Close();
-                
-                comando = new MySqlCommand("UPDATE inv_vendedor SET cantidad=cantidad+" + tbxCCConvertir.Text + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND articulos_codigo=" + tbxCodigo.Text, conectar);
-                conectar.Open();
-                comando.ExecuteNonQuery();
-                conectar.Close();
+                cmd = "UPDATE inv_vendedor SET cantidad=cantidad-" + tbxCConvertir.Text + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND articulos_codigo=" + tbxProducto.Text;
+                bAllOK = Conexion.Ejecutar(cmd);
+                if (bAllOK)
+                {
+                    cmd = "UPDATE inv_vendedor SET cantidad=cantidad+" + tbxCCConvertir.Text + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND articulos_codigo=" + tbxCodigo.Text;
+                    bAllOK = Conexion.Ejecutar(cmd);
+                }
+               
 
                 cantidad = Convert.ToDouble(tbxCConvertir.Text);
                 cantidad2 = Convert.ToDouble(tbxCCConvertir.Text);
@@ -465,86 +467,107 @@ namespace Diprolim
                 existenciaFinal1 = (Convert.ToDouble(tbxExistencias.Text) - cantidad);
                 ExistenciaInicial1 = Convert.ToDouble(tbxExistencias.Text);
 
-                Conexion.Conectarse();
-                cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
+                if (bAllOK)
+                {
+                    cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
                   " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) " +
                   " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
                   cod_art, cantidad, "Conversión", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
                   ExistenciaInicial1, existenciaFinal1, tbxVendedor.Text, UsuarioID);
-                Conexion.Ejecutar(cmd);
+                    bAllOK = Conexion.Ejecutar(cmd);
+                }
 
-                cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
-                " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) " +
-                " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
-                cod_art2, cantidad2, "Conversión", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
-                ExistenciaInicial2, existenciaFinal2, tbxVendedor.Text, UsuarioID);
-                Conexion.Ejecutar(cmd);
+                if (bAllOK)
+                {
+
+                    cmd = String.Format("INSERT INTO historicovendedores (articulos_codigo,cantidad,Movimiento,Fecha," +
+                    " Existencia_inicial,Existencia_Final,empleados_id_empleado,Usuarios_id_usuarios) " +
+                    " VALUES({0},{1},'{2}','{3}',{4},{5},{6},{7})",
+                    cod_art2, cantidad2, "Conversión", dtpFecha.Value.ToString("yyyyMMddHHmmss"),
+                    ExistenciaInicial2, existenciaFinal2, tbxVendedor.Text, UsuarioID);
+                    bAllOK = Conexion.Ejecutar(cmd);
+                }
+                Conexion.FinTransaccion(bAllOK);
                 Conexion.Desconectarse();
 
-                RepConversion Reporte = new RepConversion();
-               
-                Reporte.sFuente = "Fuente: " + tbxNVendedor.Text;
-
-                Reporte.sFecha = "Fecha: " + dtpFecha.Value.ToString("dd/MM/yyyy");
-                Reporte.sCodigo1 = tbxProducto.Text;
-                Reporte.sDescripcion1 = tbxNombre.Text;
-                Reporte.sCantidad1 = tbxCConvertir.Text;
-                Reporte.sCodigo2 = tbxCodigo.Text;
-                Reporte.sDescripcion2 = tbxNProducto.Text;
-                Reporte.sCantidad2 = tbxCCConvertir.Text;
-
-                using (ReportPrintTool printTool = new ReportPrintTool(Reporte))
+                if (bAllOK)
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                    printTool.ShowRibbonPreview(UserLookAndFeel.Default);
+                    RepConversion Reporte = new RepConversion();
+
+                    Reporte.sFuente = "Fuente: " + tbxNVendedor.Text;
+
+                    Reporte.sFecha = "Fecha: " + dtpFecha.Value.ToString("dd/MM/yyyy");
+                    Reporte.sCodigo1 = tbxProducto.Text;
+                    Reporte.sDescripcion1 = tbxNombre.Text;
+                    Reporte.sCantidad1 = tbxCConvertir.Text;
+                    Reporte.sCodigo2 = tbxCodigo.Text;
+                    Reporte.sDescripcion2 = tbxNProducto.Text;
+                    Reporte.sCantidad2 = tbxCCConvertir.Text;
+
+                    using (ReportPrintTool printTool = new ReportPrintTool(Reporte))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                        printTool.ShowRibbonPreview(UserLookAndFeel.Default);
+                    }
+
+                    MessageBox.Show("La conversión ha sido realizada.");
+                }else
+                {
+                    MessageBox.Show("Hubo un error al realizar la conversión.");
                 }
-       
-                MessageBox.Show("Convertido");
+            
              
             }
             else
             {
 
                 obtenerProducto22();
-                //MessageBox.Show("" + cantidad3);
-                comando = new MySqlCommand("UPDATE articulos SET cantidad=cantidad-" + tbxCConvertir.Text + " WHERE codigo=" + tbxProducto.Text, conectar);
-                conectar.Open();
-                comando.ExecuteNonQuery();
-                conectar.Close();
+                Conexion.Conectarse();
+                Conexion.IniciarTransaccion();
+                cmd = "UPDATE articulos SET cantidad=cantidad-" + tbxCConvertir.Text + " WHERE codigo=" + tbxProducto.Text;
+                bAllOK = Conexion.Ejecutar(cmd);
 
-
-                comando = new MySqlCommand("UPDATE articulos SET cantidad=cantidad+" + tbxCCConvertir.Text + " WHERE codigo=" + tbxCodigo.Text, conectar);
-                conectar.Open();
-                comando.ExecuteNonQuery();
-                conectar.Close();
-               
-                
-                cantidad = Convert.ToDouble(tbxCConvertir.Text);
-                cantidad2 = Convert.ToDouble(tbxCCConvertir.Text);
-                existenciaFinal2 = (ExistenciaInicial2 + cantidad2);
-                existenciaFinal1 = (Convert.ToDouble(tbxExistencias.Text) - cantidad);
-                ExistenciaInicial1 = Convert.ToDouble(tbxExistencias.Text);
-                InsertarHistoricoDMovimientos();
-                InsertarHistoricoDMovimientos2();
-                RepConversion Reporte = new RepConversion();
-               
-                Reporte.sFuente = "Fuente: Sucursal";
-                
-                Reporte.sFecha = "Fecha: "+dtpFecha.Value.ToString("dd/MM/yyyy");
-                Reporte.sCodigo1 = tbxProducto.Text;
-                Reporte.sDescripcion1 = tbxNombre.Text;
-                Reporte.sCantidad1 = tbxCConvertir.Text;
-                Reporte.sCodigo2 = tbxCodigo.Text;
-                Reporte.sDescripcion2 = tbxNProducto.Text;
-                Reporte.sCantidad2 = tbxCCConvertir.Text;
-
-                using (ReportPrintTool printTool = new ReportPrintTool(Reporte))
+                if (bAllOK)
                 {
-                    printTool.ShowRibbonPreviewDialog();
-                    printTool.ShowRibbonPreview(UserLookAndFeel.Default);
+                    cmd = "UPDATE articulos SET cantidad=cantidad+" + tbxCCConvertir.Text + " WHERE codigo=" + tbxCodigo.Text;
+                    bAllOK = Conexion.Ejecutar(cmd);
                 }
+                Conexion.FinTransaccion(bAllOK);
+                Conexion.Desconectarse();
+                if (bAllOK)
+                {
+                    cantidad = Convert.ToDouble(tbxCConvertir.Text);
+                    cantidad2 = Convert.ToDouble(tbxCCConvertir.Text);
+                    existenciaFinal2 = (ExistenciaInicial2 + cantidad2);
+                    existenciaFinal1 = (Convert.ToDouble(tbxExistencias.Text) - cantidad);
+                    ExistenciaInicial1 = Convert.ToDouble(tbxExistencias.Text);
+                    InsertarHistoricoDMovimientos();
+                    InsertarHistoricoDMovimientos2();
+                    RepConversion Reporte = new RepConversion();
 
-                MessageBox.Show("Convertido");
+                    Reporte.sFuente = "Fuente: Sucursal";
+
+                    Reporte.sFecha = "Fecha: " + dtpFecha.Value.ToString("dd/MM/yyyy");
+                    Reporte.sCodigo1 = tbxProducto.Text;
+                    Reporte.sDescripcion1 = tbxNombre.Text;
+                    Reporte.sCantidad1 = tbxCConvertir.Text;
+                    Reporte.sCodigo2 = tbxCodigo.Text;
+                    Reporte.sDescripcion2 = tbxNProducto.Text;
+                    Reporte.sCantidad2 = tbxCCConvertir.Text;
+
+                    using (ReportPrintTool printTool = new ReportPrintTool(Reporte))
+                    {
+                        printTool.ShowRibbonPreviewDialog();
+                        printTool.ShowRibbonPreview(UserLookAndFeel.Default);
+                    }
+
+                    MessageBox.Show("La conversión ha sido realizada.");
+                }else
+                {
+                    MessageBox.Show("Hubo un error al realizar la conversión.");
+                }
+                
+               
             }
             Reset();
         }
@@ -552,21 +575,13 @@ namespace Diprolim
         {
             if (tbxCodigo.Text != "")
             {
-                MySqlConnection conectar = conn.ObtenerConexion();
-                MySqlCommand comando;
-                comando = new MySqlCommand("SELECT cantidad FROM articulos WHERE codigo =" + tbxCodigo.Text, conectar);
-                conectar.Open();
+                DataTable tbl = new DataTable();
+                Conexion.Conectarse();
+                cmd = "SELECT cantidad FROM articulos WHERE codigo =" + tbxCodigo.Text;
+                Conexion.Ejecutar(cmd, ref tbl);              
 
-                MySqlDataReader lector;
-                lector = comando.ExecuteReader();
-               
-                while (lector.Read())
-                {
-
-                    ExistenciaInicial2 = lector.GetDouble(0);
-                   
-                }
-                conectar.Close();
+                ExistenciaInicial2 = (double)tbl.Rows[0].ItemArray[0];
+                Conexion.Desconectarse();
                
             }
         }
@@ -586,25 +601,15 @@ namespace Diprolim
             {
                 i = lector.GetInt32(0);
                 if (i == 0)
-                {
-                    InsertarDeVerdad();
-
-
+                {                    
+                    comando = new MySqlCommand("insert into inv_vendedor values(null,0," + tbxVendedor.Text + "," + tbxCodigo.Text + ")", conectar);
+                    comando.ExecuteNonQuery();
                 }
             }
             conectar.Close();
 
         }
-        public void InsertarDeVerdad()
-        {
-            MySqlConnection conectar = conn.ObtenerConexion();
-            MySqlCommand comando;
-
-            comando = new MySqlCommand("insert into inv_vendedor values(null,0," + tbxVendedor.Text + "," + tbxCodigo.Text + ")", conectar);
-            conectar.Open();
-            comando.ExecuteNonQuery();
-            conectar.Close();
-        }
+        
         public void Reset()
         {
             tbxExistencias2.Clear();
@@ -825,6 +830,7 @@ namespace Diprolim
         {
             dtpFecha.Value = DateTime.Now;
         }
+        
 
         private void tbxProducto_KeyUp(object sender, KeyEventArgs e)
         {

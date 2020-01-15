@@ -5,16 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Identidades;
+using UnicaSQL;
+
 namespace AccesoDatos
 {
     public class ComisionDAL
     {
-        UnicaSQL.DBMS_Unico objConexion;
+        DBMS_Unico objConexion;
         String cmd;
         public ComisionDAL()
         {
             cmd = string.Empty;
-            objConexion = new UnicaSQL.DBMS_Unico(Conexion.Default.GestorBD, Conexion.Default.Server,
+            objConexion = new DBMS_Unico(Conexion.Default.GestorBD, Conexion.Default.Server,
                             Conexion.Default.BaseDatos, Conexion.Default.Usuario, Conexion.Default.Password,
                             Conexion.Default.Puerto);        
         }

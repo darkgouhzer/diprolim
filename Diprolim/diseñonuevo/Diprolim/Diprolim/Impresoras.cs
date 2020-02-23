@@ -1,4 +1,4 @@
-﻿using Identidades;
+﻿using Entidades;
 using ReglasNegocios;
 using System;
 using System.Collections.Generic;

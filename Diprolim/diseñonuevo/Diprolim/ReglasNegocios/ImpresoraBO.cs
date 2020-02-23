@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Printing;
-using Identidades;
+using Entidades;
 using AccesoDatos;
 
 namespace ReglasNegocios

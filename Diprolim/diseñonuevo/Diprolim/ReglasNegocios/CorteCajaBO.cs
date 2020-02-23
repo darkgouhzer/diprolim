@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
-using Identidades;
+using Entidades;
 namespace ReglasNegocios
 {
     public class CorteCajaBO

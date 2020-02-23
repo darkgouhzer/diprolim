@@ -4,21 +4,24 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Identidades;
+using Entidades;
 using UnicaSQL;
+using ConexionConfig;
 
 namespace AccesoDatos
 {
     public class ComisionDAL
     {
         DBMS_Unico objConexion;
+        GetConexion objGetConexion;
         String cmd;
         public ComisionDAL()
         {
             cmd = string.Empty;
-            objConexion = new DBMS_Unico(Conexion.Default.GestorBD, Conexion.Default.Server,
-                            Conexion.Default.BaseDatos, Conexion.Default.Usuario, Conexion.Default.Password,
-                            Conexion.Default.Puerto);        
+            objGetConexion = GetConexion.Instance;
+            objConexion = new DBMS_Unico(objGetConexion.getObj.Gestor, objGetConexion.getObj.Servidor,
+                            objGetConexion.getObj.BaseDeDatos, objGetConexion.getObj.Usuarios, objGetConexion.getObj.Password,
+                            objGetConexion.getObj.Puerto);    
         }
         public DataTable ObtenerDescuentosComision()
         {

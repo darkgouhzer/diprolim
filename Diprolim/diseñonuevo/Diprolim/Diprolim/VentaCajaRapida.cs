@@ -1,4 +1,4 @@
-﻿using Identidades;
+﻿using Entidades;
 using ReglasNegocios;
 using System;
 using System.Collections.Generic;
@@ -203,17 +203,28 @@ namespace Diprolim
             {
                 Cobrar objCobrar = new Cobrar(Double.Parse(tbxTotal.Text, NumberStyles.Currency));
                 objCobrar.ShowDialog();
+             
                 if (objCobrar.bResult)
                 {
+                   
                     objVentaBO = new VentaBO();
                     iFolioTicket = objVentaBO.RegistrarVenta(dtgVenta);
                     sSuPago = objCobrar.sSuPago;
                     sSuCambio = objCobrar.sSuCambio;
-                    printDocument1.PrinterSettings.PrinterName = ImpresoraTicket;
-                    printDocument1.Print();
+                    try
+                    {
+                        printDocument1.PrinterSettings.PrinterName = ImpresoraTicket;
+                        printDocument1.Print();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                     dtgVenta.Rows.Clear();
-                    MessageBox.Show("La venta ha sido realizada con éxito.");
+                    MessageBox.Show("La venta ha sido realizada con éxito.");                    
+                   
                 }
+             
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConexionConfig;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,13 +12,15 @@ namespace AccesoDatos
     public class DescuentosDAL
     {
         DBMS_Unico objConexion;
+        GetConexion objGetConexion;
         String cmd;
         public DescuentosDAL()
         {
             cmd = string.Empty;
-            objConexion = new DBMS_Unico(Conexion.Default.GestorBD, Conexion.Default.Server,
-                            Conexion.Default.BaseDatos, Conexion.Default.Usuario, Conexion.Default.Password,
-                            Conexion.Default.Puerto); 
+            objGetConexion = GetConexion.Instance;
+            objConexion = new DBMS_Unico(objGetConexion.getObj.Gestor, objGetConexion.getObj.Servidor,
+                            objGetConexion.getObj.BaseDeDatos, objGetConexion.getObj.Usuarios, objGetConexion.getObj.Password,
+                            objGetConexion.getObj.Puerto);   
         }
         public Boolean Guardar(DataTable dtDatos)
         {

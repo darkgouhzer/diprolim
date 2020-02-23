@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccesoDatos;
-using Identidades;
+using Entidades;
 namespace ReglasNegocios
 {
     public class ComisionBO

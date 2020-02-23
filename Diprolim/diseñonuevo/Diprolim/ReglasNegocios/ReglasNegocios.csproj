@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ReglasNegocios</RootNamespace>
     <AssemblyName>ReglasNegocios</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,12 +33,13 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccesoDatos">
+    <Reference Include="AccesoDatos, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\AccesoDatos\bin\Debug\AccesoDatos.dll</HintPath>
     </Reference>
-    <Reference Include="Identidades, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Entidades, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Identidades\bin\Debug\Identidades.dll</HintPath>
+      <HintPath>..\Entidades\bin\Debug\Entidades.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

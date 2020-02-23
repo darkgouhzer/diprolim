@@ -1,4 +1,4 @@
-﻿using Identidades;
+﻿using Entidades;
 using MySql.Data.MySqlClient;
 using ReglasNegocios;
 using System;

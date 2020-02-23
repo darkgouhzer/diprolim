@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diprolim", "Diprolim\Diprolim.csproj", "{14E1F758-3BCE-44CB-848F-D0836FA766F3}"
 EndProject
@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReglasNegocios", "ReglasNeg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{8731BF54-F808-4430-B7AC-C3B4671E562B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identidades", "Identidades\Identidades.csproj", "{7FA531F1-B4EC-4B3E-9DBC-401109F75121}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClaseUnica", "..\..\..\..\ClaseUnica\ClaseUnica\ClaseUnica\ClaseUnica.csproj", "{E72542F9-9A74-42ED-94BE-5D71EB40EC29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{7FA531F1-B4EC-4B3E-9DBC-401109F75121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConexionConfig", "ConexionConfig\ConexionConfig.csproj", "{823966EF-4A35-4C46-8370-28DC4FF6D5CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +47,6 @@ Global
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Release|x86.ActiveCfg = Release|x86
 		{8731BF54-F808-4430-B7AC-C3B4671E562B}.Release|x86.Build.0 = Release|x86
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|x86.Build.0 = Debug|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|x86.ActiveCfg = Release|Any CPU
-		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|x86.Build.0 = Release|Any CPU
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -61,6 +55,18 @@ Global
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Release|x86.ActiveCfg = Release|Any CPU
 		{E72542F9-9A74-42ED-94BE-5D71EB40EC29}.Release|x86.Build.0 = Release|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA531F1-B4EC-4B3E-9DBC-401109F75121}.Release|x86.ActiveCfg = Release|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823966EF-4A35-4C46-8370-28DC4FF6D5CD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

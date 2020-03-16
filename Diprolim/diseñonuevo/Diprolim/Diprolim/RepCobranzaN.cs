@@ -702,23 +702,28 @@ namespace Diprolim
                         comando = new MySqlCommand("select b.folio, b.articulos_codigo, a.descripcion, a.valor_medida, u.nombre, b.SaldoAnterior," +
                             " b.abono, b.SaldoDespues, b.fecha, b.dias from articulos a, abonos b, unidad_medida u where b.clientes_idclientes=" + tbxCliente.Text +
                             " and b.empleados_id_empleado=" + tbxVendedor.Text + " and a.unidad_medida_id=u.id and b.articulos_codigo=a.codigo" +
-                            " and b.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") + " order by b.fecha asc", conectar);
+                            " and b.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") + 
+                            " order by b.fecha asc", conectar);
                         dtgHistTotales.Visible = false;
                         dtgHistTabla.Visible = true;
                     }
                     else if (tbxCliente.Text == "" && tbxVendedor.Text != "")
                     {
-                        comando = new MySqlCommand("select a.clientes_idclientes,c.nombre, sum(a.abono), a.fecha "+
-                            "from clientes c, abonos a where a.empleados_id_empleado="+tbxVendedor.Text+" and a.clientes_idclientes=c.idclientes and "+
-                            "a.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") + " group by day(a.fecha),c.nombre order by a.fecha asc;", conectar);
+
+
+                        comando = new MySqlCommand("select a.Folio, a.clientes_idclientes,c.nombre, sum(a.abono), v.fecha_venta, a.fecha, a.dias, v.fecha_venta " +
+                            "from clientes c, abonos a, ventas v where a.empleados_id_empleado="+tbxVendedor.Text+" and a.clientes_idclientes=c.idclientes and "+
+                            " a.ventas_idventas = v.idventas and a.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") +
+                            " group by a.Folio, c.nombre order by a.fecha asc;", conectar);
                         dtgHistTotales.Visible = true;
                         dtgHistTabla.Visible = false;
                     }
                     else if (tbxCliente.Text == "" && tbxVendedor.Text == "")
                     {
-                        comando = new MySqlCommand("select a.clientes_idclientes,c.nombre, sum(a.abono), a.fecha " +
-                            "from clientes c, abonos a where a.clientes_idclientes=c.idclientes and " +
-                            "a.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") + " group by day(a.fecha),c.nombre order by a.fecha asc;", conectar);
+                        comando = new MySqlCommand("select a.Folio, a.clientes_idclientes,c.nombre, sum(a.abono), v.fecha_venta, a.fecha, a.dias " +
+                            "from clientes c, abonos a, ventas v where a.clientes_idclientes=c.idclientes and a.ventas_idventas = v.idventas and " +
+                            "a.fecha between " + dtpInicio.Value.ToString("yyyyMMdd000000") + " and " + dtpFin.Value.ToString("yyyyMMdd235959") +
+                            " group by a.Folio, c.nombre order by a.fecha asc;", conectar);
                         dtgHistTotales.Visible = true;
                         dtgHistTabla.Visible = false;
                     }
@@ -736,13 +741,15 @@ namespace Diprolim
                         }
                         else if (tbxCliente.Text == "" && tbxVendedor.Text != "")
                         {
-                            dtgHistTotales.Rows.Add(lector.GetString(0), lector.GetString(1),lector.GetDouble(2),lector.GetDateTime(3));
-                                abono += lector.GetDouble(2);
+                            dtgHistTotales.Rows.Add(lector.GetInt32(0), lector.GetString(1), lector.GetString(2), lector.GetDouble(3),
+                                                    lector.GetDateTime(4), lector.GetDateTime(5), lector.GetInt32(6));
+                                abono += lector.GetDouble(3);
                         }
                         else if (tbxCliente.Text == "" && tbxVendedor.Text == "")
                         {
-                            dtgHistTotales.Rows.Add(lector.GetString(0), lector.GetString(1),lector.GetDouble(2), lector.GetDateTime(3));
-                            abono += lector.GetDouble(2);
+                            dtgHistTotales.Rows.Add(lector.GetInt32(0), lector.GetString(1), lector.GetString(2), lector.GetDouble(3),
+                                                    lector.GetDateTime(4), lector.GetDateTime(5), lector.GetInt32(6));
+                            abono += lector.GetDouble(3);
                         }
                         
                     }
@@ -753,12 +760,12 @@ namespace Diprolim
                     }
                     else if (tbxCliente.Text == "" && tbxVendedor.Text != "")
                     {
-                        dtgHistTotales.Rows.Add("", "", abono, "");
+                        dtgHistTotales.Rows.Add("", "", "", abono, "");
                     }
                     else if (tbxCliente.Text == "" && tbxVendedor.Text == "")
                     {
 
-                        dtgHistTotales.Rows.Add("", "", abono, "");
+                        dtgHistTotales.Rows.Add("", "", "", abono, "");
                     }
                 
             }
@@ -1380,15 +1387,18 @@ namespace Diprolim
             if (dtgHistTotales.Rows.Count > 0)
             {
                 int height = 0;
-                int an = -10;
+                int an = 0;
                 Font letra = new Font("Arial", 9);
-                int x = 100;
-                int L = 105;
+                int x = 70;
+                int L = 75;
                 int y = 140;
-                int col1 = dtgHistTotales.Columns[0].Width - an;
-                int col2 = dtgHistTotales.Columns[1].Width - an;
+                int col1 = dtgHistTotales.Columns[0].Width - an - 15;
+                int col2 = dtgHistTotales.Columns[1].Width - an - 30;
                 int col3 = dtgHistTotales.Columns[2].Width - an;
-                int col4 = dtgHistTotales.Columns[3].Width - an;
+                int col4 = dtgHistTotales.Columns[3].Width - an - 10;
+                int col5 = dtgHistTotales.Columns[4].Width - an - 10;
+                int col6 = dtgHistTotales.Columns[5].Width - an - 10;
+                int col7 = dtgHistTotales.Columns[6].Width - an;
                 Pen p = new Pen(Brushes.Black, 1.5f);
 
                 //Logotipo
@@ -1428,7 +1438,7 @@ namespace Diprolim
                 #endregion
 
 
-                #region CodigodeArticulo
+                #region CodigoCliente
 
                 //               e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1, 100, col2 + 100, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1, y, col2, dtgHistTotales.Rows[0].Height + 15));
@@ -1436,7 +1446,7 @@ namespace Diprolim
 
                 #endregion
 
-                #region descripcion
+                #region NombreCliente
                 //               e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2, 100, col3, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2, y, col3, dtgHistTotales.Rows[0].Height + 15));
                 e.Graphics.DrawString(dtgHistTotales.Columns[2].HeaderText.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(x + col1 + col2, y, col3, dtgHistTotales.Rows[0].Height + 15));
@@ -1444,13 +1454,37 @@ namespace Diprolim
 
                 #endregion
 
-                #region SaldoAnterior
+                #region Abono
 
                 //e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
                 e.Graphics.DrawString(dtgHistTotales.Columns[3].HeaderText.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
 
-                #endregion            
+                #endregion   
+
+                #region Fecha nota
+
+                //e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4, y, col5, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawString(dtgHistTotales.Columns[4].HeaderText.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4, y, col5, dtgHistTotales.Rows[0].Height + 15));
+
+                #endregion  
+         
+                #region Fecha pago
+
+                //e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawString(dtgHistTotales.Columns[5].HeaderText.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, dtgHistTotales.Rows[0].Height + 15));
+
+                #endregion  
+
+                #region Dias
+
+                //e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3, y, col4, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, dtgHistTotales.Rows[0].Height + 15));
+                e.Graphics.DrawString(dtgHistTotales.Columns[6].HeaderText.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, dtgHistTotales.Rows[0].Height + 15));
+
+                #endregion  
 
                 height = 155;
 
@@ -1475,6 +1509,12 @@ namespace Diprolim
 
                     //e.Graphics.DrawRectangle(p, new Rectangle(400 + dtgHistTotales.Columns[1].Width, height, dtgHistTotales.Columns[4].Width, dtgHistTotales.Rows[0].Height));
                     e.Graphics.DrawString(dtgHistTotales.Rows[i].Cells[3].FormattedValue.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3, height, dtgHistTotales.Columns[3].Width, dtgHistTotales.Rows[0].Height));
+
+                    e.Graphics.DrawString(dtgHistTotales.Rows[i].Cells[4].FormattedValue.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4, height, dtgHistTotales.Columns[4].Width, dtgHistTotales.Rows[0].Height));
+
+                    e.Graphics.DrawString(dtgHistTotales.Rows[i].Cells[5].FormattedValue.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, dtgHistTotales.Columns[4].Width, dtgHistTotales.Rows[0].Height));
+
+                    e.Graphics.DrawString(dtgHistTotales.Rows[i].Cells[6].FormattedValue.ToString(), dtgHistTotales.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6, height, dtgHistTotales.Columns[5].Width, dtgHistTotales.Rows[0].Height));
 
 
                     i++;
@@ -1507,6 +1547,14 @@ namespace Diprolim
                 //  dtgHistTabla.Rows[e.RowIndex2].Cells["Codigo"].Value.ToString()));
                 e.SortResult = comparar(Convert.ToDouble(dtgHistTotales.Rows[e.RowIndex1].Cells["totabono"].Value.ToString()),
                     Convert.ToDouble(dtgHistTotales.Rows[e.RowIndex2].Cells["totabono"].Value.ToString()));
+            }
+
+            if (e.Column.Name == "clColDias" && e.RowIndex2 < dtgHistTotales.Rows.Count - 1 && e.RowIndex1 < dtgHistTotales.Rows.Count - 1)
+            {
+                // e.SortResult = dtgHistTabla.Rows[e.RowIndex1].Cells["Codigo"].Value.ToString().CompareTo((object)(
+                //  dtgHistTabla.Rows[e.RowIndex2].Cells["Codigo"].Value.ToString()));
+                e.SortResult = comparar(Convert.ToInt32(dtgHistTotales.Rows[e.RowIndex1].Cells["clColDias"].Value.ToString()),
+                    Convert.ToInt32(dtgHistTotales.Rows[e.RowIndex2].Cells["clColDias"].Value.ToString()));
             }
             e.Handled = true;
         }

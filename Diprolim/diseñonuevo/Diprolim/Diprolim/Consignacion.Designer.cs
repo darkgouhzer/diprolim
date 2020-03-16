@@ -616,7 +616,7 @@
             this.MinimizeBox = false;
             this.Name = "Consignacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "||";
+            this.Text = "Consignación";
             this.Load += new System.EventHandler(this.Consignacion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Consignacion_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dtgConsignacion)).EndInit();

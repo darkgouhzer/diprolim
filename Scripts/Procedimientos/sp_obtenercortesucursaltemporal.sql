@@ -1,9 +1,3 @@
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
 CREATE PROCEDURE `sp_obtenercortesucursaltemporal` (dfecha DATETIME)
 BEGIN
 	DECLARE _idEmpleado		 	INT DEFAULT 0;
@@ -20,11 +14,12 @@ BEGIN
 	DECLARE _dFechaInicial		DATETIME DEFAULT NOW();
 	DECLARE exit_loop BOOLEAN DEFAULT FALSE;
 	DECLARE _ContEmpleados int default 0;
+	DECLARE _COUNT			INT DEFAULT 0;
 	
 
 
 	DECLARE cursorEmpleados	CURSOR FOR 
-	SELECT id_empleado FROM empleados order by id_empleado asc;  
+	SELECT id_empleado FROM empleados order by empleados.id_empleado asc;  
 	
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET exit_loop = TRUE;
 	
@@ -50,10 +45,15 @@ CREATE TEMPORARY TABLE `tmp_cortedcaja` (
 		FETCH cursorEmpleados INTO _idEmpleado;	
 
 		-- Obtener fecha del último corte de caja del empleado
-		SELECT if( CAST(fecha AS TIME) > CAST('00:00:00' AS TIME), fecha, CAST(CAST(dfecha AS DATE) AS DATETIME))
-		FROM cortedcaja WHERE empleados_id_empleado =_idEmpleado AND CAST(fecha AS DATE) < CAST(dfecha AS DATE)	
-		ORDER BY fecha DESC LIMIT 1 INTO _dFechaInicial;
-		
+		SELECT count(*) FROM cortedcaja where empleados_id_empleado=_idEmpleado INTO _COUNT;
+		IF _COUNT > 0 THEN
+			SELECT if( CAST(fecha AS TIME) > CAST('00:00:00' AS TIME), fecha, CAST(CAST(dfecha AS DATE) AS DATETIME))
+			FROM cortedcaja WHERE empleados_id_empleado =_idEmpleado AND CAST(fecha AS DATE) < CAST(dfecha AS DATE)	
+			ORDER BY cortedcaja.fecha DESC LIMIT 1 INTO _dFechaInicial;
+		ELSE
+			SELECT CAST(fecha_venta as date) FROM ventas WHERE empleados_id_empleado=_idEmpleado ORDER BY fecha_venta ASC LIMIT 1 INTO _dFechaInicial;
+        END IF;	
+						
 		-- Obtener ventas totales desde el último corte al día actual CON IVA
 		SELECT COALESCE(SUM(importe)/1.16,0),COALESCE(SUM(importe) - SUM(importe)/1.16, 0) FROM ventas
 		WHERE empleados_id_empleado=_idEmpleado AND fecha_venta BETWEEN _dFechaInicial AND dfecha AND iva>0 

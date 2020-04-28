@@ -324,6 +324,24 @@
     <Compile Include="EntradasAVendedores.Designer.cs">
       <DependentUpon>EntradasAVendedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\BuscarDescripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\BuscarDescripcion.Designer.cs">
+      <DependentUpon>BuscarDescripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\DescripcionProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\DescripcionProductos.Designer.cs">
+      <DependentUpon>DescripcionProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\Familias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Productos\Familias.Designer.cs">
+      <DependentUpon>Familias.cs</DependentUpon>
+    </Compile>
     <Compile Include="FolioSalidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,10 +443,10 @@
     <Compile Include="Clientes.Designer.cs">
       <DependentUpon>Clientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Productos.cs">
+    <Compile Include="MainForm\Catalogos\Productos\Productos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Productos.Designer.cs">
+    <Compile Include="MainForm\Catalogos\Productos\Productos.Designer.cs">
       <DependentUpon>Productos.cs</DependentUpon>
     </Compile>
     <Compile Include="BajasDeVendedores.cs">
@@ -467,10 +485,10 @@
     <Compile Include="Capturar Entrada.Designer.cs">
       <DependentUpon>Capturar Entrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="consultaProductosCosto.cs">
+    <Compile Include="MainForm\Catalogos\Productos\consultaProductosCosto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="consultaProductosCosto.Designer.cs">
+    <Compile Include="MainForm\Catalogos\Productos\consultaProductosCosto.Designer.cs">
       <DependentUpon>consultaProductosCosto.cs</DependentUpon>
     </Compile>
     <Compile Include="conexion.cs" />
@@ -510,10 +528,10 @@
     <Compile Include="VentasVendedor.Designer.cs">
       <DependentUpon>VentasVendedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="MainForm\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="inicioSesion.cs">
@@ -546,10 +564,10 @@
     <Compile Include="Vendedores.Designer.cs">
       <DependentUpon>Vendedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="nuevaUnidadMedida.cs">
+    <Compile Include="MainForm\Catalogos\Productos\nuevaUnidadMedida.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="nuevaUnidadMedida.Designer.cs">
+    <Compile Include="MainForm\Catalogos\Productos\nuevaUnidadMedida.Designer.cs">
       <DependentUpon>nuevaUnidadMedida.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -644,10 +662,10 @@
     <Compile Include="Salidas de Inventario.Designer.cs">
       <DependentUpon>Salidas de Inventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventario vendedor.cs">
+    <Compile Include="MainForm\Ventas\Inventario vendedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventario vendedor.Designer.cs">
+    <Compile Include="MainForm\Ventas\Inventario vendedor.Designer.cs">
       <DependentUpon>Inventario vendedor.cs</DependentUpon>
     </Compile>
     <Compile Include="sourceUnidadesMedida.cs" />
@@ -663,10 +681,10 @@
     <Compile Include="ventaInesperada.Designer.cs">
       <DependentUpon>ventaInesperada.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasDLocal.cs">
+    <Compile Include="MainForm\Ventas\VentasDLocal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentasDLocal.Designer.cs">
+    <Compile Include="MainForm\Ventas\VentasDLocal.Designer.cs">
       <DependentUpon>VentasDLocal.cs</DependentUpon>
     </Compile>
     <Compile Include="VentasProductosClientesDetalle.cs">
@@ -774,6 +792,15 @@
     <EmbeddedResource Include="EntradasAVendedores.resx">
       <DependentUpon>EntradasAVendedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\BuscarDescripcion.resx">
+      <DependentUpon>BuscarDescripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\DescripcionProductos.resx">
+      <DependentUpon>DescripcionProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\Familias.resx">
+      <DependentUpon>Familias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FolioSalidas.resx">
       <DependentUpon>FolioSalidas.cs</DependentUpon>
     </EmbeddedResource>
@@ -822,7 +849,7 @@
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Productos.resx">
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\Productos.resx">
       <DependentUpon>Productos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BajasDeVendedores.resx">
@@ -843,7 +870,7 @@
     <EmbeddedResource Include="Capturar Entrada.resx">
       <DependentUpon>Capturar Entrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="consultaProductosCosto.resx">
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\consultaProductosCosto.resx">
       <DependentUpon>consultaProductosCosto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreacionUsuarios.resx">
@@ -865,7 +892,7 @@
     <EmbeddedResource Include="VentasVendedor.resx">
       <DependentUpon>VentasVendedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="MainForm\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="inicioSesion.resx">
@@ -883,7 +910,7 @@
     <EmbeddedResource Include="Vendedores.resx">
       <DependentUpon>Vendedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="nuevaUnidadMedida.resx">
+    <EmbeddedResource Include="MainForm\Catalogos\Productos\nuevaUnidadMedida.resx">
       <DependentUpon>nuevaUnidadMedida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -933,7 +960,7 @@
     <EmbeddedResource Include="Salidas de Inventario.resx">
       <DependentUpon>Salidas de Inventario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventario vendedor.resx">
+    <EmbeddedResource Include="MainForm\Ventas\Inventario vendedor.resx">
       <DependentUpon>Inventario vendedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="transferenciasInventario.resx">
@@ -942,7 +969,7 @@
     <EmbeddedResource Include="ventaInesperada.resx">
       <DependentUpon>ventaInesperada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VentasDLocal.resx">
+    <EmbeddedResource Include="MainForm\Ventas\VentasDLocal.resx">
       <DependentUpon>VentasDLocal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentasProductosClientesDetalle.resx">
@@ -1086,6 +1113,9 @@
     <None Include="Imagenes\iconos\iconoBuscar.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="MainForm\Inventarios\" />
+    <Folder Include="MainForm\Reportes\" />
+    <Folder Include="MainForm\Sesion\" />
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>

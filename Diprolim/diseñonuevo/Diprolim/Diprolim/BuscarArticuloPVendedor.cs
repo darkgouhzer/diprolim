@@ -16,10 +16,7 @@ namespace Diprolim
         recuperarCodigo _ui = new recuperarCodigo();
         conexion conn = new conexion();
         string Nombre = "";
-        string LIKE = "";
         
-        
-       
         public BuscarArticuloPVendedor()
         {
             InitializeComponent();

@@ -107,7 +107,7 @@ namespace Diprolim
 
                             conectar.Close();
                         }
-                        catch (MySqlException er)
+                        catch (MySqlException)
                         {
                             MessageBox.Show("Imposible eliminar");
 

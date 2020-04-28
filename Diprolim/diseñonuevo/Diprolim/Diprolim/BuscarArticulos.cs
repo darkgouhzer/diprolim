@@ -64,9 +64,22 @@ namespace Diprolim
 
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlCommand comando;
-            comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a,"+
+            if(tipoBusc == "Producción")
+            {
+                comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a," +
+                "unidad_medida c where a.unidad_medida_id=c.id and (a.unidad_medida_id=7)", conectar);
+            }
+            else if(tipoBusc == "Transferencia de producción")
+            {
+                comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a, "+
+                    " unidad_medida c where a.unidad_medida_id=c.id and a.unidad_medida_id<>7 and "+
+                    " a.iddescripcion in (select iddescripcion from articulos where unidad_medida_id = 7 and iddescripcion >0);", conectar);
+            }
+            else
+            {
+                comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a," +
                 "unidad_medida c where a.unidad_medida_id=c.id and (a.valor_medida>=4 or a.unidad_medida_id=7)", conectar);
-
+            }
 
             conectar.Open();
 
@@ -110,6 +123,18 @@ namespace Diprolim
                 comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a, " +
                    "unidad_medida c where a.unidad_medida_id=c.id and (a.valor_medida>=4 or a.unidad_medida_id=7) and descripcion like '%" + tbxFiltro.Text.Trim() + "%'", conectar);
             
+            }
+            else if (tipoBusc == "Producción")
+            {
+                comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a," +
+                "unidad_medida c where a.unidad_medida_id=c.id and (a.unidad_medida_id=7) and descripcion like '%" + tbxFiltro.Text.Trim() + "%'", conectar);
+            }
+            else if (tipoBusc == "Transferencia de producción")
+            {
+                comando = new MySqlCommand("select a.codigo, a.descripcion, a.valor_medida, c.nombre,a.cantidad from articulos a, " +
+                    " unidad_medida c where a.unidad_medida_id=c.id and a.unidad_medida_id<>7 and " +
+                    " a.iddescripcion in (select iddescripcion from articulos where unidad_medida_id = 7 and iddescripcion >0) "+
+                    " and descripcion like '%" + tbxFiltro.Text.Trim() + "%';", conectar);
             }
             else
             {

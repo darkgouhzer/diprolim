@@ -29,12 +29,37 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Capturar_Entrada));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
             this.tbxProducto = new System.Windows.Forms.TextBox();
             this.tbxNProducto = new System.Windows.Forms.TextBox();
             this.tbxCantidad = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
             this.Tabla = new System.Windows.Forms.DataGridView();
+            this.tbxComentarios = new System.Windows.Forms.TextBox();
+            this.lblComentarios = new System.Windows.Forms.Label();
+            this.lblMotivo = new System.Windows.Forms.Label();
+            this.cbxMotivo = new System.Windows.Forms.ComboBox();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.tbxNVendedor = new System.Windows.Forms.TextBox();
+            this.lblVendedor = new System.Windows.Forms.Label();
+            this.tbxVendedor = new System.Windows.Forms.TextBox();
+            this.tbxExistencias = new System.Windows.Forms.TextBox();
+            this.lblExistencias = new System.Windows.Forms.Label();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.tbxFolioDE = new System.Windows.Forms.TextBox();
+            this.lblOrigen = new System.Windows.Forms.Label();
+            this.cbxAlmacen = new System.Windows.Forms.ComboBox();
+            this.chkImprimir = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblFolio = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCambiarVendedor = new System.Windows.Forms.Button();
+            this.btnSV = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnSP = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.CheckE = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.codigoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.desE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,44 +68,20 @@
             this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDevInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbxComentarios = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbxMotivo = new System.Windows.Forms.ComboBox();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.tbxNVendedor = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbxVendedor = new System.Windows.Forms.TextBox();
-            this.tbxExistencias = new System.Windows.Forms.TextBox();
-            this.lblExistencias = new System.Windows.Forms.Label();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.tbxFolioDE = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbxAlmacen = new System.Windows.Forms.ComboBox();
-            this.chkImprimir = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCambiarVendedor = new System.Windows.Forms.Button();
-            this.btnSV = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnSP = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.colDescripcionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblCodigo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(15, 125);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Código:";
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCodigo.Location = new System.Drawing.Point(15, 125);
+            this.lblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(63, 17);
+            this.lblCodigo.TabIndex = 0;
+            this.lblCodigo.Text = "Código:";
             // 
             // tbxProducto
             // 
@@ -111,16 +112,16 @@
             this.tbxCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             this.tbxCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
-            // label2
+            // lblCantidad
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(15, 156);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 17);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "Cantidad:";
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCantidad.Location = new System.Drawing.Point(15, 156);
+            this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(77, 17);
+            this.lblCantidad.TabIndex = 39;
+            this.lblCantidad.Text = "Cantidad:";
             // 
             // Tabla
             // 
@@ -135,64 +136,13 @@
             this.totalE,
             this.a,
             this.Fecha,
-            this.colDevInicial});
-            this.Tabla.Location = new System.Drawing.Point(18, 191);
+            this.colDevInicial,
+            this.colDescripcionID});
+            this.Tabla.Location = new System.Drawing.Point(12, 191);
             this.Tabla.Name = "Tabla";
             this.Tabla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabla.Size = new System.Drawing.Size(661, 185);
             this.Tabla.TabIndex = 101;
-            // 
-            // CheckE
-            // 
-            this.CheckE.HeaderText = "";
-            this.CheckE.Name = "CheckE";
-            this.CheckE.Width = 30;
-            // 
-            // codigoE
-            // 
-            this.codigoE.HeaderText = "Código";
-            this.codigoE.Name = "codigoE";
-            this.codigoE.ReadOnly = true;
-            this.codigoE.Width = 80;
-            // 
-            // desE
-            // 
-            this.desE.HeaderText = "Descripción";
-            this.desE.Name = "desE";
-            this.desE.ReadOnly = true;
-            this.desE.Width = 300;
-            // 
-            // cantidadE
-            // 
-            this.cantidadE.HeaderText = "Cantidad";
-            this.cantidadE.Name = "cantidadE";
-            this.cantidadE.ReadOnly = true;
-            this.cantidadE.Width = 80;
-            // 
-            // totalE
-            // 
-            this.totalE.HeaderText = "Total";
-            this.totalE.Name = "totalE";
-            this.totalE.ReadOnly = true;
-            this.totalE.Width = 80;
-            // 
-            // a
-            // 
-            this.a.HeaderText = "anterior";
-            this.a.Name = "a";
-            this.a.Visible = false;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.Visible = false;
-            // 
-            // colDevInicial
-            // 
-            this.colDevInicial.HeaderText = "Cantidad Dev inicial vendedor";
-            this.colDevInicial.Name = "colDevInicial";
-            this.colDevInicial.Visible = false;
             // 
             // tbxComentarios
             // 
@@ -204,27 +154,27 @@
             this.tbxComentarios.TabIndex = 7;
             this.tbxComentarios.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxComentarios_KeyPress);
             // 
-            // label4
+            // lblComentarios
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 387);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 16);
-            this.label4.TabIndex = 164;
-            this.label4.Text = "Comentarios:";
+            this.lblComentarios.AutoSize = true;
+            this.lblComentarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComentarios.Location = new System.Drawing.Point(6, 387);
+            this.lblComentarios.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblComentarios.Name = "lblComentarios";
+            this.lblComentarios.Size = new System.Drawing.Size(99, 16);
+            this.lblComentarios.TabIndex = 164;
+            this.lblComentarios.Text = "Comentarios:";
             // 
-            // label5
+            // lblMotivo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 62);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 16);
-            this.label5.TabIndex = 163;
-            this.label5.Text = "Motivo:";
+            this.lblMotivo.AutoSize = true;
+            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.Location = new System.Drawing.Point(15, 62);
+            this.lblMotivo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(58, 16);
+            this.lblMotivo.TabIndex = 163;
+            this.lblMotivo.Text = "Motivo:";
             // 
             // cbxMotivo
             // 
@@ -233,6 +183,8 @@
             this.cbxMotivo.FormattingEnabled = true;
             this.cbxMotivo.Items.AddRange(new object[] {
             "Transferencia",
+            "Producción",
+            "Transferencia de producción",
             "Devolución de Vendedor",
             "Devolución por consignación",
             "Devolucion de Cliente",
@@ -267,16 +219,16 @@
             this.tbxNVendedor.Size = new System.Drawing.Size(248, 23);
             this.tbxNVendedor.TabIndex = 179;
             // 
-            // label3
+            // lblVendedor
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(15, 90);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 17);
-            this.label3.TabIndex = 178;
-            this.label3.Text = "Vendedor:";
+            this.lblVendedor.AutoSize = true;
+            this.lblVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblVendedor.Location = new System.Drawing.Point(15, 90);
+            this.lblVendedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVendedor.Name = "lblVendedor";
+            this.lblVendedor.Size = new System.Drawing.Size(83, 17);
+            this.lblVendedor.TabIndex = 178;
+            this.lblVendedor.Text = "Vendedor:";
             // 
             // tbxVendedor
             // 
@@ -337,17 +289,17 @@
             this.tbxFolioDE.TabIndex = 191;
             this.tbxFolioDE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label7
+            // lblOrigen
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(329, 62);
-            this.label7.Margin = new System.Windows.Forms.Padding(4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 16);
-            this.label7.TabIndex = 194;
-            this.label7.Text = "Origen:";
-            this.label7.Visible = false;
+            this.lblOrigen.AutoSize = true;
+            this.lblOrigen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrigen.Location = new System.Drawing.Point(329, 62);
+            this.lblOrigen.Margin = new System.Windows.Forms.Padding(4);
+            this.lblOrigen.Name = "lblOrigen";
+            this.lblOrigen.Size = new System.Drawing.Size(58, 16);
+            this.lblOrigen.TabIndex = 194;
+            this.lblOrigen.Text = "Origen:";
+            this.lblOrigen.Visible = false;
             // 
             // cbxAlmacen
             // 
@@ -382,6 +334,29 @@
             this.label8.Size = new System.Drawing.Size(73, 17);
             this.label8.TabIndex = 217;
             this.label8.Text = "Impresión:";
+            // 
+            // lblFolio
+            // 
+            this.lblFolio.AutoSize = true;
+            this.lblFolio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFolio.Location = new System.Drawing.Point(502, 62);
+            this.lblFolio.Margin = new System.Windows.Forms.Padding(4);
+            this.lblFolio.Name = "lblFolio";
+            this.lblFolio.Size = new System.Drawing.Size(47, 16);
+            this.lblFolio.TabIndex = 219;
+            this.lblFolio.Text = "Folio:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(202, 12);
+            this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(286, 24);
+            this.label15.TabIndex = 246;
+            this.label15.Text = "ENTRADAS DE INVENTARIO";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnGuardar
             // 
@@ -463,28 +438,63 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label9
+            // CheckE
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(502, 62);
-            this.label9.Margin = new System.Windows.Forms.Padding(4);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 16);
-            this.label9.TabIndex = 219;
-            this.label9.Text = "Folio:";
+            this.CheckE.HeaderText = "";
+            this.CheckE.Name = "CheckE";
+            this.CheckE.Width = 30;
             // 
-            // label15
+            // codigoE
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(202, 12);
-            this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(286, 24);
-            this.label15.TabIndex = 246;
-            this.label15.Text = "ENTRADAS DE INVENTARIO";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.codigoE.HeaderText = "Código";
+            this.codigoE.Name = "codigoE";
+            this.codigoE.ReadOnly = true;
+            this.codigoE.Width = 80;
+            // 
+            // desE
+            // 
+            this.desE.HeaderText = "Descripción";
+            this.desE.Name = "desE";
+            this.desE.ReadOnly = true;
+            this.desE.Width = 300;
+            // 
+            // cantidadE
+            // 
+            this.cantidadE.HeaderText = "Cantidad";
+            this.cantidadE.Name = "cantidadE";
+            this.cantidadE.ReadOnly = true;
+            this.cantidadE.Width = 80;
+            // 
+            // totalE
+            // 
+            this.totalE.HeaderText = "Total";
+            this.totalE.Name = "totalE";
+            this.totalE.ReadOnly = true;
+            this.totalE.Width = 80;
+            // 
+            // a
+            // 
+            this.a.HeaderText = "anterior";
+            this.a.Name = "a";
+            this.a.Visible = false;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = false;
+            // 
+            // colDevInicial
+            // 
+            this.colDevInicial.HeaderText = "Cantidad Dev inicial vendedor";
+            this.colDevInicial.Name = "colDevInicial";
+            this.colDevInicial.Visible = false;
+            // 
+            // colDescripcionID
+            // 
+            this.colDescripcionID.HeaderText = "DescripcionID";
+            this.colDescripcionID.Name = "colDescripcionID";
+            this.colDescripcionID.ReadOnly = true;
             // 
             // Capturar_Entrada
             // 
@@ -493,11 +503,11 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(687, 474);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblFolio);
             this.Controls.Add(this.chkImprimir);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblOrigen);
             this.Controls.Add(this.cbxAlmacen);
             this.Controls.Add(this.tbxFolioDE);
             this.Controls.Add(this.lblExistencias);
@@ -505,22 +515,22 @@
             this.Controls.Add(this.btnCambiarVendedor);
             this.Controls.Add(this.btnSV);
             this.Controls.Add(this.tbxNVendedor);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblVendedor);
             this.Controls.Add(this.tbxVendedor);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.tbxComentarios);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblComentarios);
+            this.Controls.Add(this.lblMotivo);
             this.Controls.Add(this.cbxMotivo);
             this.Controls.Add(this.Tabla);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnSP);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbxCantidad);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.tbxNProducto);
             this.Controls.Add(this.tbxProducto);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblCodigo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -539,36 +549,37 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox tbxProducto;
         private System.Windows.Forms.TextBox tbxNProducto;
         private System.Windows.Forms.TextBox tbxCantidad;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnSP;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView Tabla;
         private System.Windows.Forms.TextBox tbxComentarios;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblComentarios;
+        private System.Windows.Forms.Label lblMotivo;
         private System.Windows.Forms.ComboBox cbxMotivo;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Button btnCambiarVendedor;
         private System.Windows.Forms.Button btnSV;
         private System.Windows.Forms.TextBox tbxNVendedor;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblVendedor;
         private System.Windows.Forms.TextBox tbxVendedor;
         private System.Windows.Forms.TextBox tbxExistencias;
         private System.Windows.Forms.Label lblExistencias;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.TextBox tbxFolioDE;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblOrigen;
         private System.Windows.Forms.ComboBox cbxAlmacen;
         private System.Windows.Forms.CheckBox chkImprimir;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblFolio;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CheckE;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoE;
         private System.Windows.Forms.DataGridViewTextBoxColumn desE;
@@ -577,6 +588,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn a;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDevInicial;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcionID;
     }
 }

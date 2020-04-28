@@ -101,9 +101,9 @@ namespace Diprolim
                 var dSuCambio = dEfectivo - dTotal;
                 tbxCambio.Text = (dSuCambio < 0 ? 0 : dSuCambio).ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+           
             }
             
         }

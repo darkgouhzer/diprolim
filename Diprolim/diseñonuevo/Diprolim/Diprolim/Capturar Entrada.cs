@@ -164,22 +164,73 @@ namespace Diprolim
                         MessageBox.Show("Primero es necesario indicar un código de artículo");
                     }
                 }
-                else if (cbxMotivo.Text != "Devolución de Vendedor")
+                else if (cbxMotivo.Text == "Producción")
+                {
+
+                    if (tbxProducto.Text.Length > 0)
+                    {
+                        ArticuloBO objArticuloBO = new ArticuloBO();
+                        if (objArticuloBO.ValidarProductoProduccion(Convert.ToInt32(tbxProducto.Text)))
+                        {
+                            ObtenerP();
+                        }
+                        else
+                        {
+                            tbxProducto.Clear();
+                            tbxNProducto.Clear();
+                            MessageBox.Show("El código de artículo debe ser A Granel.");
+                        }
+
+                    }else
+                    {
+                        MessageBox.Show("Primero es necesario indicar un código de artículo");
+                    }
+
+
+                }
+                else if (cbxMotivo.Text == "Transferencia de producción")
+                {
+
+                    if (tbxProducto.Text.Length > 0)
+                    {
+                        ArticuloBO objArticuloBO = new ArticuloBO();
+                        if (objArticuloBO.ValidarTransfProduccion(Convert.ToInt32(tbxProducto.Text)))
+                        {
+                            ObtenerP();
+                        }
+                        else
+                        {
+                            tbxProducto.Clear();
+                            tbxNProducto.Clear();
+                            MessageBox.Show("El código de artículo también debe tener su presentación A Granel.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Primero es necesario indicar un código de artículo");
+                    }
+
+
+                }
+                else 
                 {
                     if (tbxProducto.Text != "")
                     {
                         ObtenerP();
                     }
+                    else
+                    {
+                        MessageBox.Show("Primero es necesario indicar un código de artículo");
+                        tbxVendedor.Focus();
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Primero es necesario indicar un código de artículo");
-                    tbxVendedor.Focus();
-                }
+               
                 #endregion
 
             }
         }
+        
         string FechaConsignacion = "";
     
         double CantidadInicial = 0;
@@ -259,7 +310,7 @@ namespace Diprolim
                             MySqlConnection conectar1 = conn.ObtenerConexion();
                             MySqlCommand comando1;
                             conectar1.Open();
-                            comando1 = new MySqlCommand("SELECT a.codigo, a.descripcion, a.valor_medida, u.nombre, a.cantidad " +
+                            comando1 = new MySqlCommand("SELECT a.codigo, a.descripcion, a.valor_medida, u.nombre, a.cantidad, a.iddescripcion " +
                                 "FROM articulos a, unidad_medida u WHERE codigo =" + tbxProducto.Text + " and a.unidad_medida_id=u.id", conectar1);
                             MySqlDataReader lector1;
                             lector1 = comando1.ExecuteReader();
@@ -268,7 +319,7 @@ namespace Diprolim
                             {
                                 cantidad = Convert.ToDouble(lector1.GetString(4));
 
-                                Tabla.Rows.Add(false, lector1.GetString(0), lector1.GetString(1) + " " + lector1.GetString(2) + " " + lector1.GetString(3), tbxCantidad.Text, cantidad + Convert.ToDouble(tbxCantidad.Text), cantidad, FechaConsignacion);
+                                Tabla.Rows.Add(false, lector1.GetString(0), lector1.GetString(1) + " " + lector1.GetString(2) + " " + lector1.GetString(3), tbxCantidad.Text, cantidad + Convert.ToDouble(tbxCantidad.Text), cantidad, FechaConsignacion, "", lector1.GetString(5));
 
                                 tbxCantidad.Clear();
                                 tbxProducto.Clear();
@@ -430,6 +481,28 @@ namespace Diprolim
                     MetodoProducto();
                 }
             }
+            else if(cbxMotivo.Text == "Producción")
+            {
+                BuscarArticulos id = new BuscarArticulos(cbxMotivo.Text);
+                DialogResult dr = id.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    tbxProducto.Text = id.regresar.valXn;
+                }
+                tbxProducto.Focus();
+                MetodoProducto();
+            }
+            else if (cbxMotivo.Text == "Transferencia de producción")
+            {
+                BuscarArticulos id = new BuscarArticulos(cbxMotivo.Text);
+                DialogResult dr = id.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    tbxProducto.Text = id.regresar.valXn;
+                }
+                tbxProducto.Focus();
+                MetodoProducto();
+            }
             else
             {
                 if (tbxVendedor.Text != "" && tbxNVendedor.Text != ""&&cbxMotivo.Text != "Devolucion de Cliente")
@@ -538,7 +611,7 @@ namespace Diprolim
         int ini = 0;
         private void cbxMotivo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label3.Text = "Vendedor:";
+            lblVendedor.Text = "Vendedor:";
             if (ini == 0)
             {
                 MySqlConnection conectar = conn.ObtenerConexion();
@@ -554,8 +627,6 @@ namespace Diprolim
                 conectar.Close();
                 if (Tabla.Rows.Count > 0)
                 {
-                   
-
                     result = MessageBox.Show("Está cambiando de motivo y hay información sin guardar ¿Desea continuar?", "Registrar entrada a inventario", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
@@ -572,7 +643,6 @@ namespace Diprolim
                         tbxProducto.Clear();
                         tbxNProducto.Clear();
                         tbxCantidad.Clear();
-                        //tbxFolioDE.Text = CargarFolio().ToString();
                         if (cbxMotivo.Text == "Devolución de Vendedor")
                         {
                             btnCambiarVendedor.Enabled = false;
@@ -583,18 +653,16 @@ namespace Diprolim
                             tbxExistencias.Visible = true;
                             tbxExistencias.Clear();
                         }
-
                     }
                     else
                     {
                         ini = 1;
-                        cbxMotivo.Text = motivo;
-                        
+                        cbxMotivo.Text = motivo;                        
                     }
                 }
                 else if (cbxMotivo.Text == "Normal")
                 {
-                    label7.Visible = false;
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     lblExistencias.Visible = false;
                     Tabla.Rows.Clear();
@@ -609,17 +677,15 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-                  //  tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "EI-Normal";
                 }
                 else if (cbxMotivo.Text == "Transferencia")
                 {
                     tbxExistencias.Clear();
                     unidades();
-                    label7.Visible = true;
+                    lblOrigen.Visible = true;
                     cbxAlmacen.Visible = true;
                     lblExistencias.Visible = false;
-
                     Tabla.Rows.Clear();
                     tbxVendedor.Enabled = false;
                     btnSV.Enabled = false;
@@ -636,7 +702,7 @@ namespace Diprolim
                 }
                 else if (cbxMotivo.Text == "Devolución de Vendedor")
                 {
-                    label7.Visible = false;
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     tbxExistencias.Clear();
                     Tabla.Rows.Clear();
@@ -652,13 +718,12 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-             //       tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "EI-Devolu-" + NOMBREVENDEDOR;
                 }
                 else if (cbxMotivo.Text == "Devolución por consignación")
                 {
-                    label3.Text = "Cliente:";
-                    label7.Visible = false;
+                    lblVendedor.Text = "Cliente:";
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     tbxExistencias.Clear();
                     Tabla.Rows.Clear();
@@ -674,13 +739,12 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-                    //       tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "EI-Devolución por consignación";
                 }
                 else if (cbxMotivo.Text == "Devolucion de Cliente")
                 {
-                    label3.Text = "Cliente:";
-                    label7.Visible = false;
+                    lblVendedor.Text = "Cliente:";
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     tbxExistencias.Clear();
                     tbxVendedor.Clear();
@@ -695,13 +759,12 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-                    //   tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "EI-Devolución de cliente";
 
                 }
                 else if (cbxMotivo.Text == "Otros")
                 {
-                    label7.Visible = false;
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     tbxExistencias.Clear();
                     tbxVendedor.Clear();
@@ -716,12 +779,11 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-                    //    tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "EI-Otros";
                 }
                 else if (cbxMotivo.Text == "Entradas a vendedores")
                 {
-                    label7.Visible = false;
+                    lblOrigen.Visible = false;
                     cbxAlmacen.Visible = false;
                     tbxExistencias.Clear();
                     tbxExistencias.Visible = false;
@@ -737,8 +799,45 @@ namespace Diprolim
                     tbxProducto.Clear();
                     tbxNProducto.Clear();
                     tbxCantidad.Clear();
-                    //       tbxFolioDE.Text = CargarFolio().ToString();
                     Operacion = "Entrada a vendedor " + NOMBREVENDEDOR;
+                }
+                else if (cbxMotivo.Text == "Producción")
+                {
+                    lblOrigen.Visible = false;
+                    cbxAlmacen.Visible = false;
+                    tbxExistencias.Clear();
+                    tbxVendedor.Clear();
+                    tbxNVendedor.Clear();
+                    lblExistencias.Visible = false;
+                    Tabla.Rows.Clear();
+                    tbxExistencias.Visible = false;
+                    tbxVendedor.Enabled = false;
+                    btnSV.Enabled = false;
+                    tbxNVendedor.Enabled = false;
+                    btnCambiarVendedor.Enabled = false;
+                    tbxProducto.Clear();
+                    tbxNProducto.Clear();
+                    tbxCantidad.Clear();
+                    Operacion = "EI-Produccion";
+                }
+                else if (cbxMotivo.Text == "Transferencia de producción")
+                {
+                    lblOrigen.Visible = false;
+                    cbxAlmacen.Visible = false;
+                    tbxExistencias.Clear();
+                    tbxVendedor.Clear();
+                    tbxNVendedor.Clear();
+                    lblExistencias.Visible = false;
+                    Tabla.Rows.Clear();
+                    tbxExistencias.Visible = false;
+                    tbxVendedor.Enabled = false;
+                    btnSV.Enabled = false;
+                    tbxNVendedor.Enabled = false;
+                    btnCambiarVendedor.Enabled = false;
+                    tbxProducto.Clear();
+                    tbxNProducto.Clear();
+                    tbxCantidad.Clear();
+                    Operacion = "EI-Trans-Produccion";
                 }
             }
             else
@@ -1070,9 +1169,7 @@ namespace Diprolim
                     {
                         vendedor = 1;
                     }
-
-                    MySqlConnection conectar = conn.ObtenerConexion();
-                    MySqlCommand comando;
+                    
                     Boolean bAllOk = false;
                     Conexion.Conectarse();
                     Conexion.IniciarTransaccion();
@@ -1087,7 +1184,11 @@ namespace Diprolim
                         DateTime FechaCon = Convert.ToDateTime(Tabla[6, i].Value);
                         CantVendedorIni = Convert.ToDouble(Tabla[7, i].Value);
 
-                        if (cbxMotivo.Text != "Entradas a vendedores")
+                        if(cbxMotivo.Text == "Transferencia de producción")
+                        {
+
+                        }
+                        else if (cbxMotivo.Text != "Entradas a vendedores")
                         {
                             cmd = String.Format("UPDATE articulos SET cantidad=cantidad+" + cantidad + " where codigo=" + codigo);
                             bAllOk = Conexion.Ejecutar(cmd);
@@ -1131,10 +1232,8 @@ namespace Diprolim
 
                         if (cbxMotivo.Text == "Devolución de Vendedor")
                         {
-                            comando = new MySqlCommand("UPDATE inv_vendedor SET cantidad=cantidad-" + cantidad + " WHERE empleados_id_empleado=" + tbxVendedor.Text + " AND articulos_codigo=" + codigo, conectar);
-                            conectar.Open();
-                            comando.ExecuteNonQuery();
-                            conectar.Close();
+                            cmd = String.Format("UPDATE inv_vendedor SET cantidad = cantidad - " + cantidad + " WHERE empleados_id_empleado = " + tbxVendedor.Text + " AND articulos_codigo = " + codigo);
+                            bAllOk = Conexion.Ejecutar(cmd);
                         }
                         else if (cbxMotivo.Text == "Devolución por consignación")
                         {
@@ -1142,9 +1241,7 @@ namespace Diprolim
                                 "clientes_idclientes={0} AND articulos_codigo = {1} ORDER BY idinv_Abarrote ASC",
                     tbxVendedor.Text, codigo);
                             double resto = cantidad;
-                            //Conexion.Conectarse();
                             bAllOk = Conexion.Ejecutar(cmd, ref tbl);
-                            //Conexion.Desconectarse();
                             for (int j = 0; j < tbl.Rows.Count; j++)
                             {
                                 DataRow row = tbl.Rows[j];
@@ -1162,14 +1259,12 @@ namespace Diprolim
                                     resto = 0;
                                 }
                              
-                                //Conexion.Conectarse();
                                 bAllOk = Conexion.Ejecutar(cmd);
-                                //Conexion.Desconectarse();
-                                
                             }
                                 
                             Operacion = "EI-Devolución por consignación";
                         }
+
                         if (cbxMotivo.Text == "Normal")
                         {
 
@@ -1196,6 +1291,14 @@ namespace Diprolim
                         {
 
                             Operacion = "EI-Otros";
+                        }
+                        else if (cbxMotivo.Text == "Transferencia de producción")
+                        {
+                            Operacion = "EI-Trans-Produccion";
+                        }
+                        else if (cbxMotivo.Text == "Producción")
+                        {
+                            Operacion = "EI-Produccion";
                         }
 
                         if (cbxMotivo.Text == "Entradas a vendedores")

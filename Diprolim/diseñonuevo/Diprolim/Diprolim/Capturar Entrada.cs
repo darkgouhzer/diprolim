@@ -249,6 +249,8 @@ namespace Diprolim
                 string des = "";
                 while (lector.Read())
                 {
+
+                    tbxProducto.Tag = lector.GetString(2);
                     tbxNProducto.Text = lector.GetString(1) + " " + lector.GetString(2) + " " + lector.GetString(3);
                     des = lector.GetString(1);
                    
@@ -270,7 +272,70 @@ namespace Diprolim
                 }
             }
         }
+
+        private Boolean ValidarExistenciaProdTotal()
+        {
+            List<CArticulos> listTipoProducto = new List<CArticulos>();
+            Boolean bAllOk = true;
+            tbxProducto.Clear();
+            tbxNProducto.Clear();
+            tbxCantidad.Clear();
+            if (Tabla.Rows.Count > 0)
+            {
+                foreach(DataGridViewRow row in Tabla.Rows)
+                {                    
+                    DataGridViewTextBoxCell DescripcionID = row.Cells[8] as DataGridViewTextBoxCell;
+                    DataGridViewTextBoxCell DescripcionGral = row.Cells[10] as DataGridViewTextBoxCell;
+                    if (listTipoProducto.Where(p => p.IdDescripcion == Convert.ToInt32(DescripcionID.Value)).Count() == 0)
+                    {
+                        CArticulos objCArticulos = new CArticulos();
+                        objCArticulos.IdDescripcion = Convert.ToInt32(DescripcionID.Value);
+                        objCArticulos.Descripcion = DescripcionGral.Value.ToString();
+                        listTipoProducto.Add(objCArticulos);
+                    }
+                }
+            }
+
+            foreach(CArticulos tipoProducto in listTipoProducto)
+            {
+                if (!ValidarExistenciasProduccion(tipoProducto.IdDescripcion))
+                {
+                    MessageBox.Show(String.Format("No hay suficiente inventario de producción para el tipo de producto {0}", tipoProducto.Descripcion));
+                    bAllOk = false;
+                    break;
+                }
+            }
+            
+            return bAllOk;
+        }
         
+        private Boolean ValidarExistenciasProduccion(int DescripcionID)
+        {
+            ArticuloBO objArticuloBO = new ArticuloBO();
+            Double Cantidad = objArticuloBO.ObtenerExistenciasProduccion(DescripcionID);
+            Double CantidadEntrada = 0;
+            Boolean bAllOk = false;
+            if(tbxCantidad.Text.Length > 0)
+            {
+                CantidadEntrada = Convert.ToDouble(tbxCantidad.Text) * Convert.ToDouble(tbxProducto.Tag);
+            }
+
+            if (Tabla.Rows.Count > 0)
+            {
+                for (int i = 0; i < Tabla.Rows.Count; i++)
+                {
+
+                    if (Convert.ToInt32(Tabla[8, i].Value) == DescripcionID)
+                    {
+                        CantidadEntrada += Convert.ToDouble(Tabla[3, i].Value) * Convert.ToDouble(Tabla[9, i].Value);
+                    }
+
+                }
+            }
+
+            bAllOk = Cantidad >= CantidadEntrada ? true : false;
+            return bAllOk;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (tbxProducto.Text != "" && tbxCantidad.Text != "")
@@ -293,6 +358,7 @@ namespace Diprolim
 
                 if (tbxProducto.Text != "" && tbxCantidad.Text != "")
                 {
+                    Boolean bAllOk = true;
                     if (tbxCantidad.Text == ".")
                     {
                         MessageBox.Show("Verifique la cantidad de entrada");
@@ -307,6 +373,7 @@ namespace Diprolim
                             {
                                 FechaConsignacion = DateTime.Now.ToString();
                             }
+
                             MySqlConnection conectar1 = conn.ObtenerConexion();
                             MySqlCommand comando1;
                             conectar1.Open();
@@ -317,9 +384,21 @@ namespace Diprolim
 
                             while (lector1.Read())
                             {
-                                cantidad = Convert.ToDouble(lector1.GetString(4));
+                                if (cbxMotivo.Text == "Transferencia de producción")
+                                {
+                                    bAllOk = ValidarExistenciasProduccion(lector1.GetInt32(5));
+                                }
+                                if (bAllOk)
+                                {
+                                    cantidad = Convert.ToDouble(lector1.GetString(4));
+                                    Tabla.Rows.Add(false, lector1.GetString(0), lector1.GetString(1) + " " + lector1.GetString(2) + " " + lector1.GetString(3), tbxCantidad.Text, cantidad + Convert.ToDouble(tbxCantidad.Text), cantidad, FechaConsignacion, 0, lector1.GetString(5), lector1.GetString(2), lector1.GetString(1));
 
-                                Tabla.Rows.Add(false, lector1.GetString(0), lector1.GetString(1) + " " + lector1.GetString(2) + " " + lector1.GetString(3), tbxCantidad.Text, cantidad + Convert.ToDouble(tbxCantidad.Text), cantidad, FechaConsignacion, "", lector1.GetString(5));
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No hay suficientes existencias en producción para hacer la entrada");
+                                }
+                              
 
                                 tbxCantidad.Clear();
                                 tbxProducto.Clear();
@@ -328,6 +407,7 @@ namespace Diprolim
                                 tbxProducto.Focus();
                             }
                             conectar1.Close();
+                                                 
                         }
                         else if (cbxMotivo.Text == "Devolución de Vendedor")
                         {
@@ -476,9 +556,14 @@ namespace Diprolim
                     if (dr == DialogResult.OK)
                     {
                         tbxProducto.Text = id.regresar.valXn;
+                        tbxProducto.Focus();
+                        MetodoProducto();
                     }
-                    tbxProducto.Focus();
-                    MetodoProducto();
+                    else
+                    {
+                        tbxProducto.Focus();
+                    }
+                  
                 }
             }
             else if(cbxMotivo.Text == "Producción")
@@ -488,9 +573,13 @@ namespace Diprolim
                 if (dr == DialogResult.OK)
                 {
                     tbxProducto.Text = id.regresar.valXn;
+                    tbxProducto.Focus();
+                    MetodoProducto();
+                }else
+                {
+                    tbxProducto.Focus();
                 }
-                tbxProducto.Focus();
-                MetodoProducto();
+               
             }
             else if (cbxMotivo.Text == "Transferencia de producción")
             {
@@ -499,9 +588,13 @@ namespace Diprolim
                 if (dr == DialogResult.OK)
                 {
                     tbxProducto.Text = id.regresar.valXn;
+                    tbxProducto.Focus();
+                    MetodoProducto();
+                }else
+                {
+                    tbxProducto.Focus();
                 }
-                tbxProducto.Focus();
-                MetodoProducto();
+               
             }
             else
             {
@@ -512,9 +605,13 @@ namespace Diprolim
                     if (dr == DialogResult.OK)
                     {
                         tbxProducto.Text = id.regresar.valXn;
+                        tbxProducto.Focus();
+                        MetodoProducto();
+                    }else
+                    {
+                        tbxProducto.Focus();
                     }
-                    tbxProducto.Focus();
-                    MetodoProducto();
+                    
                 }
                 else
                 {
@@ -523,9 +620,12 @@ namespace Diprolim
                     if (dr == DialogResult.OK)
                     {
                         tbxProducto.Text = id.regresar.valXn;
-                    }
-                    tbxProducto.Focus();
-                    MetodoProducto();
+                        tbxProducto.Focus();
+                        MetodoProducto();
+                    }else
+                    {
+                        tbxProducto.Focus();
+                    }                  
                 }
             }
         }
@@ -984,6 +1084,19 @@ namespace Diprolim
 
       
         int col1, col2, col3, col4, y, i = 0, x, L;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            if (ValidarExistenciaProdTotal())
+            {
+                MessageBox.Show("si hay existencias");
+            }else
+            {
+                MessageBox.Show("no hay existencias");
+            }
+        }
+
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             if (Tabla.Rows.Count > 0)
@@ -1171,6 +1284,7 @@ namespace Diprolim
                     }
                     
                     Boolean bAllOk = false;
+                    Boolean bTranfProd = cbxMotivo.Text == "Transferencia de producción" ? ValidarExistenciaProdTotal() : false;
                     Conexion.Conectarse();
                     Conexion.IniciarTransaccion();
                     for (int i = 0; i < Tabla.Rows.Count; i++)
@@ -1186,7 +1300,17 @@ namespace Diprolim
 
                         if(cbxMotivo.Text == "Transferencia de producción")
                         {
-
+                            if (bTranfProd)
+                            {
+                                cmd = String.Format("call sp_entradaProductoDeProduccion({0}, {1});", codigo, cantidad);
+                                bAllOk = Conexion.Ejecutar(cmd);
+                            }
+                            else
+                            {
+                                bAllOk = false;
+                                break;
+                            }
+                           
                         }
                         else if (cbxMotivo.Text != "Entradas a vendedores")
                         {

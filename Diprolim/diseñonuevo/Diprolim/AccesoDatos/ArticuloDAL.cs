@@ -229,7 +229,42 @@ namespace AccesoDatos
             objConexion.Ejecutar(cmd, ref tblDescripciones);
             objConexion.Desconectarse();
             return tblDescripciones;
-        }        
+        }
+        
+        public Double ObtenerExistenciasProduccion(int DescripcionID )
+        {
+            Double Cantidad = 0;
+            DataTable tblCantidad = new DataTable();
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerExistenciaProduccion('{0}');", DescripcionID);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+
+            if(tblCantidad.Rows.Count > 0)
+            {
+                DataRow row = tblCantidad.Rows[0];
+                Cantidad = Convert.ToInt32(row["cantidad"]);
+            }           
+
+            return Cantidad;
+        }
+
+        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID)
+        {
+            Boolean bAllOk= false;
+            DataTable tblCantidad = new DataTable();
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_validarExisteProductoAGranel('{0}');", DescripcionID);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+
+            if (tblCantidad.Rows.Count > 0)
+            {
+                bAllOk = true;
+            }
+
+            return bAllOk;
+        }
 
     }
 }

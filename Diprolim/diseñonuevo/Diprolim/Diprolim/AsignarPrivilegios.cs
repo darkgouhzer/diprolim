@@ -71,7 +71,7 @@ namespace Diprolim
             
             if (tbxCodigo.Text != "" && tbxNUsuario.Text != "")
             {
-                string[] C1 = new string[39];
+                string[] C1 = new string[41];
                //Ventas
                 if (cheVentasSucursal.Checked == true) { C1[0] = "1"; } else { C1[0] = "0"; }
                 if (cheSalidasVendedores.Checked == true) { C1[1] = "1"; } else { C1[1] = "0"; }
@@ -117,6 +117,8 @@ namespace Diprolim
                 if (cheAutorizaCredito.Checked == true) { C1[36] = "1"; } else { C1[36] = "0"; }
                 if (chkDescuentoComision.Checked == true) { C1[37] = "1"; } else { C1[37] = "0"; }
                 if (chbxCajaRapida.Checked == true) { C1[38] = "1"; } else { C1[38] = "0"; }
+                if (chbxFamilias.Checked == true) { C1[39] = "1"; } else { C1[39] = "0"; }
+                if (chbxDescripciones.Checked == true) { C1[40] = "1"; } else { C1[40] = "0"; }
 
                 DataTable Tabla = new DataTable();
                 string comando = "DELETE FROM PrivilegiosDeUsuario WHERE Usuarios_id_usuarios=" + tbxCodigo.Text;
@@ -210,8 +212,13 @@ namespace Diprolim
                 if (row["CobranzaCreditos"].ToString() == "1") { cheCobranzaCredito.Checked = true; } else { cheCobranzaCredito.Checked = false; }
                 if (row["CajaRapida"].ToString() == "1") { chbxCajaRapida.Checked = true; } else { chbxCajaRapida.Checked = false; }
 
+                if (row["Familias"].ToString() == "1") { chbxFamilias.Checked = true; } else { chbxFamilias.Checked = false; }
+                if (row["DescProductos"].ToString() == "1") { chbxDescripciones.Checked = true; } else { chbxDescripciones.Checked = false; }
+
+
+
             }
-             
+
         }
         private void che1_CheckedChanged(object sender, EventArgs e)
         {

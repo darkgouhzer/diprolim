@@ -202,6 +202,8 @@ namespace Diprolim
             capturarProductosToolStripMenuItem.Enabled = false;
             consultarToolStripMenuItem.Enabled = false;
             valorDeMedidaToolStripMenuItem.Enabled = false;
+            familiasToolStripMenuItem.Enabled = false;
+            descripcionesToolStripMenuItem.Enabled = false;
             almacenesToolStripMenuItem.Enabled = false;
             categoriasToolStripMenuItem.Enabled = false;
             rutasToolStripMenuItem.Enabled = false;
@@ -288,6 +290,8 @@ namespace Diprolim
                 if (row["DescuentoComision"].ToString() == "1") { descuentoComisiónToolStripMenuItem.Enabled = true; } else { descuentoComisiónToolStripMenuItem.Enabled = false; }
                 if (row["CajaRapida"].ToString() == "1") { btnVentaRapida.Enabled = true; cajaRapidaToolStripMenuItem.Enabled = true;
                                                         } else { btnVentaRapida.Enabled = false; cajaRapidaToolStripMenuItem.Enabled = false; }
+                if (row["Familias"].ToString() == "1"){ familiasToolStripMenuItem.Enabled = true; } else { familiasToolStripMenuItem.Enabled = false; }
+                if (row["DescProductos"].ToString() == "1"){ descripcionesToolStripMenuItem.Enabled = true; } else { descripcionesToolStripMenuItem.Enabled = false; }
             }
         }
 

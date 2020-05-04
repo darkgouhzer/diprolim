@@ -88,5 +88,18 @@ namespace ReglasNegocios
             ArticuloDAL objArticuloDAL = new ArticuloDAL();
             return objArticuloDAL.ValidarTransfProduccion(iDescripcionId);
         }
+
+        public Double ObtenerExistenciasProduccion(int DescripcionID)
+        {
+            ArticuloDAL objArticuloDAL = new ArticuloDAL();
+            return objArticuloDAL.ObtenerExistenciasProduccion(DescripcionID);
+        }
+
+        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID)
+        {
+            ArticuloDAL objArticuloDAL = new ArticuloDAL();
+            return objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID);
+        }
+
     }
 }

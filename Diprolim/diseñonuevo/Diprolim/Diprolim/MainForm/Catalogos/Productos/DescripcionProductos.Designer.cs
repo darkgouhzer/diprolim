@@ -81,7 +81,7 @@
             this.tblDescripciones.Location = new System.Drawing.Point(15, 56);
             this.tblDescripciones.Margin = new System.Windows.Forms.Padding(4);
             this.tblDescripciones.Name = "tblDescripciones";
-            this.tblDescripciones.Size = new System.Drawing.Size(364, 297);
+            this.tblDescripciones.Size = new System.Drawing.Size(364, 535);
             this.tblDescripciones.TabIndex = 94;
             // 
             // check
@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 372);
+            this.ClientSize = new System.Drawing.Size(395, 604);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAgregar);

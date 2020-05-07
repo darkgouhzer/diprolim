@@ -95,10 +95,39 @@ namespace ReglasNegocios
             return objArticuloDAL.ObtenerExistenciasProduccion(DescripcionID);
         }
 
-        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID)
+        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, String tipoGuardado)
         {
             ArticuloDAL objArticuloDAL = new ArticuloDAL();
-            return objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID);
+            Boolean bAllOk = false;
+            if( tipoGuardado == "UPDATE")
+            {
+                if(objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID) > 1)
+                {
+                    bAllOk = true;
+                }
+                
+            }
+            else
+            {
+                if (objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID) > 0)
+                {
+                    bAllOk = true;
+                }
+            }
+            return bAllOk;
+        }
+
+        public Boolean ValidarExisteDescripcionProducto(String Descripcion, Int32 DescripcionID)
+        {
+            ArticuloDAL objArticuloDAL = new ArticuloDAL();
+            Boolean bAllOk = false;
+        
+            if (objArticuloDAL.ValidarExisteDescripcionProducto(Descripcion, DescripcionID) > 0)
+            {
+                bAllOk = true;
+            }
+           
+            return bAllOk;
         }
 
     }

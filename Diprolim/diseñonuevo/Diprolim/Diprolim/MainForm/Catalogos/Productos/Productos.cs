@@ -225,49 +225,66 @@ namespace Diprolim
 
                     if (Convert.ToInt32(tbxDesc.Tag) != 0)
                     {
+                        
                         DataTable tbl = new DataTable();
                         Conexion.Conectarse();
                         cmd = "SELECT * FROM articulos WHERE codigo=" + tbxCodigo.Text;
                         Conexion.Ejecutar(cmd, ref tbl);
+                       
                         if (tbl.Rows.Count > 0)
                         {
-                            cmd = "update articulos set descripcion='" + tbxDesc.Text +
-                                "',precioproduccion=" + tbxPrecioProduccion.Text +
-                                " ,valor_medida=" + tbxVMedida.Text +
-                                " ,unidad_medida_id=" + cbxUMedida.SelectedValue +
-                                " ,precio_calle=" + tbxPCalle.Text +
-                                " ,precio_abarrotes=" + tbxPAbarrotes.Text +
-                                " ,precio_distribuidor=" + tbxPDistribuidor.Text +
-                                " ,departamento=" + dep +
-                                " ,descuento=" + descuentoCont +
-                                " ,comision=" + comisionConsig +
-                                " ,aplicacomision=" + iAplicaComision +
-                                " ,familias_idfamilias=" + cbxFamilia.SelectedValue +
-                                " ,iddescripcion=" + tbxDesc.Tag +
-                            " WHERE codigo=" + tbxCodigo.Text;
-                        }
-                        else
-                        {
-                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag)))
+                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), "UPDATE"))
                             {
-                                cmd = "INSERT INTO articulos values(" + tbxCodigo.Text + ",'" + tbxDesc.Text +
-                                "'," + tbxPrecioProduccion.Text +
-                                ",0, " + tbxVMedida.Text + ", " + cbxUMedida.SelectedValue + " ," + tbxPCalle.Text +
-                                " , " + tbxPAbarrotes.Text + ", " + tbxPDistribuidor.Text + " , " + dep + ", " + descuentoCont + " , "
-                                + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + ")";
+                                cmd = "update articulos set descripcion='" + tbxDesc.Text +
+                                        "',precioproduccion=" + tbxPrecioProduccion.Text +
+                                        " ,valor_medida=" + tbxVMedida.Text +
+                                        " ,unidad_medida_id=" + cbxUMedida.SelectedValue +
+                                        " ,precio_calle=" + tbxPCalle.Text +
+                                        " ,precio_abarrotes=" + tbxPAbarrotes.Text +
+                                        " ,precio_distribuidor=" + tbxPDistribuidor.Text +
+                                        " ,departamento=" + dep +
+                                        " ,descuento=" + descuentoCont +
+                                        " ,comision=" + comisionConsig +
+                                        " ,aplicacomision=" + iAplicaComision +
+                                        " ,familias_idfamilias=" + cbxFamilia.SelectedValue +
+                                        " ,iddescripcion=" + tbxDesc.Tag +
+                                    " WHERE codigo=" + tbxCodigo.Text;
+                                if (Conexion.Ejecutar(cmd))
+                                {
+                                    MessageBox.Show("Los datos fueron guardados con éxito");
+                                    this.tbxDesc.BackColor = SystemColors.Control;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("El producto a granel con la descripción seleccionada ya existe.");
+                                MessageBox.Show("Ya existe un producto con esta presentación.");
                             }
                         }
-
-                        if (Conexion.Ejecutar(cmd))
+                        else
                         {
-                            MessageBox.Show("Los datos fueron guardados con éxito");
+                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), "INSERT"))
+                            {
+                                cmd = "INSERT INTO articulos values(" + tbxCodigo.Text + ",'" + tbxDesc.Text +
+                                    "'," + tbxPrecioProduccion.Text +
+                                    ",0, " + tbxVMedida.Text + ", " + cbxUMedida.SelectedValue + " ," + tbxPCalle.Text +
+                                    " , " + tbxPAbarrotes.Text + ", " + tbxPDistribuidor.Text + " , " + dep + ", " + descuentoCont + " , "
+                                    + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + ")";
+                                if (Conexion.Ejecutar(cmd))
+                                {
+                                    MessageBox.Show("Los datos fueron guardados con éxito");
+                                    this.tbxDesc.BackColor = SystemColors.Control;
+                                }
+                                
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ya existe un producto con esta presentación.");
+                            }
+
                         }
+
                         Conexion.Desconectarse();
-                       
+
                     }
                     else
                     {

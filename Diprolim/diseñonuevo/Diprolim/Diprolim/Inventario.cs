@@ -271,6 +271,15 @@ namespace Diprolim
             //  printDocument1.Print();
         }
         int i,col1,col2,col3,col4,col5,col6,col7,col8,x,L;
+
+        private void Inventario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             if (Tabla.Rows.Count > 0)

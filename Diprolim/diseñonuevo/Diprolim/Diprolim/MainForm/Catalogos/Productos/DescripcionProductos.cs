@@ -33,16 +33,24 @@ namespace Diprolim
             ArticuloBO objArticuloBO = new ArticuloBO();
             if (tbxDescripcion.Text.Length > 0)
             {
-                if (objArticuloBO.AgregarDescripcionProducto(tbxDescripcion.Text))
+                if (!objArticuloBO.ValidarExisteDescripcionProducto(tbxDescripcion.Text, 0))
                 {
-                    MessageBox.Show("Descripción guardada con éxito.");
-                    updateDataToGridView();
-                    tbxDescripcion.Clear();
+                    if (objArticuloBO.AgregarDescripcionProducto(tbxDescripcion.Text))
+                    {
+                        MessageBox.Show("Descripción guardada con éxito.");
+                        updateDataToGridView();
+                        tbxDescripcion.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La descripción no se pudo guardar.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("La descripción no se pudo guardar.");
+                    MessageBox.Show("La descripción que está intentando agregar ya existe.");
                 }
+               
             }
             
         }
@@ -109,7 +117,7 @@ namespace Diprolim
             {
                 List<CFamilia> list = new List<CFamilia>();
                 ArticuloBO objArticuloBO = new ArticuloBO();
-
+                Boolean bAllOk = false;
 
                 foreach (DataGridViewRow row in tblDescripciones.Rows)
                 {                
@@ -122,18 +130,32 @@ namespace Diprolim
                         objCFamilia.IDFamilia = Convert.ToInt32(row.Cells[1].Value);
                         objCFamilia.Descripcion = row.Cells[2].Value.ToString();
                         list.Add(objCFamilia);
+                        bAllOk = objArticuloBO.ValidarExisteDescripcionProducto(objCFamilia.Descripcion, objCFamilia.IDFamilia);
+                        if (bAllOk)
+                        {
+                            break;
+                        }
                     }
                 }
 
-                if (objArticuloBO.actualizarDescripcionProducto(list))
+
+                if (!bAllOk)
                 {
-                    MessageBox.Show("Descripciones actualizadas con éxito.");
+                    if (objArticuloBO.actualizarDescripcionProducto(list))
+                    {
+                        MessageBox.Show("Descripciones actualizadas con éxito.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Las descripciones no pudieron ser actualizadas.");
+                    }
+                    updateDataToGridView();
                 }
                 else
                 {
-                    MessageBox.Show("Las descripciones no pudieron ser actualizadas.");
+                    MessageBox.Show("Alguna de las descripciones a actualizar está repetida, favor de verificar.");
                 }
-                updateDataToGridView();
+              
             }
             
         }

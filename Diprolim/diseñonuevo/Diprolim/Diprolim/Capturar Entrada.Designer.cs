@@ -35,6 +35,17 @@
             this.tbxCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.Tabla = new System.Windows.Forms.DataGridView();
+            this.CheckE = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.codigoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDevInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValorMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcionGeneral = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxComentarios = new System.Windows.Forms.TextBox();
             this.lblComentarios = new System.Windows.Forms.Label();
             this.lblMotivo = new System.Windows.Forms.Label();
@@ -60,18 +71,6 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnSP = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.CheckE = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.codigoE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDevInicial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescripcionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colValorMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescripcionGeneral = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,6 +147,77 @@
             this.Tabla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Tabla.Size = new System.Drawing.Size(661, 185);
             this.Tabla.TabIndex = 101;
+            // 
+            // CheckE
+            // 
+            this.CheckE.HeaderText = "";
+            this.CheckE.Name = "CheckE";
+            this.CheckE.Width = 30;
+            // 
+            // codigoE
+            // 
+            this.codigoE.HeaderText = "Código";
+            this.codigoE.Name = "codigoE";
+            this.codigoE.ReadOnly = true;
+            this.codigoE.Width = 80;
+            // 
+            // desE
+            // 
+            this.desE.HeaderText = "Descripción";
+            this.desE.Name = "desE";
+            this.desE.ReadOnly = true;
+            this.desE.Width = 300;
+            // 
+            // cantidadE
+            // 
+            this.cantidadE.HeaderText = "Cantidad";
+            this.cantidadE.Name = "cantidadE";
+            this.cantidadE.ReadOnly = true;
+            this.cantidadE.Width = 80;
+            // 
+            // totalE
+            // 
+            this.totalE.HeaderText = "Total";
+            this.totalE.Name = "totalE";
+            this.totalE.ReadOnly = true;
+            this.totalE.Width = 80;
+            // 
+            // a
+            // 
+            this.a.HeaderText = "anterior";
+            this.a.Name = "a";
+            this.a.Visible = false;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = false;
+            // 
+            // colDevInicial
+            // 
+            this.colDevInicial.HeaderText = "Cantidad Dev inicial vendedor";
+            this.colDevInicial.Name = "colDevInicial";
+            this.colDevInicial.Visible = false;
+            // 
+            // colDescripcionID
+            // 
+            this.colDescripcionID.HeaderText = "DescripcionID";
+            this.colDescripcionID.Name = "colDescripcionID";
+            this.colDescripcionID.ReadOnly = true;
+            this.colDescripcionID.Visible = false;
+            // 
+            // colValorMedida
+            // 
+            this.colValorMedida.HeaderText = "ValorMedida";
+            this.colValorMedida.Name = "colValorMedida";
+            this.colValorMedida.Visible = false;
+            // 
+            // colDescripcionGeneral
+            // 
+            this.colDescripcionGeneral.HeaderText = "DescripcionGeneral";
+            this.colDescripcionGeneral.Name = "colDescripcionGeneral";
+            this.colDescripcionGeneral.Visible = false;
             // 
             // tbxComentarios
             // 
@@ -443,96 +513,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.BackgroundImage = global::Diprolim.Properties.Resources.save;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(333, 416);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(40, 40);
-            this.button2.TabIndex = 247;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // CheckE
-            // 
-            this.CheckE.HeaderText = "";
-            this.CheckE.Name = "CheckE";
-            this.CheckE.Width = 30;
-            // 
-            // codigoE
-            // 
-            this.codigoE.HeaderText = "Código";
-            this.codigoE.Name = "codigoE";
-            this.codigoE.ReadOnly = true;
-            this.codigoE.Width = 80;
-            // 
-            // desE
-            // 
-            this.desE.HeaderText = "Descripción";
-            this.desE.Name = "desE";
-            this.desE.ReadOnly = true;
-            this.desE.Width = 300;
-            // 
-            // cantidadE
-            // 
-            this.cantidadE.HeaderText = "Cantidad";
-            this.cantidadE.Name = "cantidadE";
-            this.cantidadE.ReadOnly = true;
-            this.cantidadE.Width = 80;
-            // 
-            // totalE
-            // 
-            this.totalE.HeaderText = "Total";
-            this.totalE.Name = "totalE";
-            this.totalE.ReadOnly = true;
-            this.totalE.Width = 80;
-            // 
-            // a
-            // 
-            this.a.HeaderText = "anterior";
-            this.a.Name = "a";
-            this.a.Visible = false;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.Visible = false;
-            // 
-            // colDevInicial
-            // 
-            this.colDevInicial.HeaderText = "Cantidad Dev inicial vendedor";
-            this.colDevInicial.Name = "colDevInicial";
-            this.colDevInicial.Visible = false;
-            // 
-            // colDescripcionID
-            // 
-            this.colDescripcionID.HeaderText = "DescripcionID";
-            this.colDescripcionID.Name = "colDescripcionID";
-            this.colDescripcionID.ReadOnly = true;
-            this.colDescripcionID.Visible = false;
-            // 
-            // colValorMedida
-            // 
-            this.colValorMedida.HeaderText = "ValorMedida";
-            this.colValorMedida.Name = "colValorMedida";
-            this.colValorMedida.Visible = false;
-            // 
-            // colDescripcionGeneral
-            // 
-            this.colDescripcionGeneral.HeaderText = "DescripcionGeneral";
-            this.colDescripcionGeneral.Name = "colDescripcionGeneral";
-            this.colDescripcionGeneral.Visible = false;
-            // 
             // Capturar_Entrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(687, 474);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.lblFolio);
             this.Controls.Add(this.chkImprimir);
@@ -565,6 +551,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -572,6 +559,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Capturar entrada a inventario sucursal";
             this.Load += new System.EventHandler(this.Capturar_Entrada_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Capturar_Entrada_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -611,7 +599,6 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblFolio;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CheckE;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoE;
         private System.Windows.Forms.DataGridViewTextBoxColumn desE;

@@ -1085,15 +1085,23 @@ namespace Diprolim
       
         int col1, col2, col3, col4, y, i = 0, x, L;
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Capturar_Entrada_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            if (ValidarExistenciaProdTotal())
+            if (e.KeyCode == Keys.Escape)
             {
-                MessageBox.Show("si hay existencias");
-            }else
-            {
-                MessageBox.Show("no hay existencias");
+                if(Tabla.Rows.Count > 0)
+                {
+                    DialogResult result = MessageBox.Show("Hay datos por guardar ¿Desea continuar?", "Capturar Entrada", MessageBoxButtons.YesNo);
+                    if (DialogResult.Yes == result)
+                    {
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    this.Close();
+                }
+                
             }
         }
 

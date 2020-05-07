@@ -87,5 +87,12 @@ namespace Entidades
             get { return sUnidadMedida; }
             set { sUnidadMedida = value; }
         }
+
+        int iIdDescripcion;
+        public int IdDescripcion
+        {
+            get { return iIdDescripcion; }
+            set { iIdDescripcion = value; }
+        }
     }
 }

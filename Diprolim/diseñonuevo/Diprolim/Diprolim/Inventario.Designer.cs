@@ -293,6 +293,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -300,6 +301,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";
             this.Load += new System.EventHandler(this.Inventario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inventario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

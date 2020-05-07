@@ -54,7 +54,6 @@ namespace Diprolim
 
         }
         string fechaG = "", vendedor = "", cliente = "", tipocliente = "", str_depto="";
-        int x=0;
         private void btnGrafica_Click(object sender, EventArgs e)
         {
             chartGrafica.Series[0].Points.Clear();

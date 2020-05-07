@@ -635,12 +635,10 @@ namespace Diprolim
         {
             MySqlConnection conectar = conn.ObtenerConexion();
             MySqlCommand comando;
-            MySqlTransaction trans;
             comando = new MySqlCommand("SELECT departamento FROM articulos WHERE codigo =" + cod_art, conectar);
             conectar.Open();
             MySqlDataReader lector;
             lector = comando.ExecuteReader();
-            string des = "";
             while (lector.Read())
             {
                 Depa = lector.GetInt32(0);

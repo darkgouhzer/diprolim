@@ -76,7 +76,6 @@ namespace Diprolim
             {
                 CorteCajaBO objCorteCajaBO = new CorteCajaBO();
                 DateTime objDTUltimoCorte = objCorteCajaBO.ObtenerFechaUltimoCorte();
-                Boolean bAllOK = true;
                 CCancelaAbonos objCCancelaAbonos;
                 List<CCancelaAbonos> lsCCancelaAbonos = new List<CCancelaAbonos>();
                 List<DataGridViewRow> lsGridEliminar = new List<DataGridViewRow>();

@@ -278,9 +278,7 @@ namespace Diprolim
 
             }
         }
-        DialogResult result;
-        int cod_art = 0;
-        double cantidad = 0, inv_total = 0, disponible = 0, existenciaA=0,existencia=0;
+
         recuperarCodigo _lis = new recuperarCodigo();
         public recuperarCodigo regresar
         {

@@ -178,7 +178,6 @@ namespace Diprolim
         {
            
             DataTable Tabla = new DataTable();
-            Boolean existe = false;
             Conexion.Conectarse();
             if(Conexion.Ejecutar("select idclientes,nombre,empleados_id_empleado from clientes where idclientes=" + cliente,ref Tabla))
             {

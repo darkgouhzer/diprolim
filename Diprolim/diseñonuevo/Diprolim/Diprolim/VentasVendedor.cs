@@ -2034,7 +2034,6 @@ namespace Diprolim
             Conexion.FinTransaccion(bAllOK);
             Conexion.Desconectarse();
         }
-        double Descuentoo = 0;
         private void btnImprimir_Click_1(object sender, EventArgs e)
         {
             if (rbtContado.Checked)

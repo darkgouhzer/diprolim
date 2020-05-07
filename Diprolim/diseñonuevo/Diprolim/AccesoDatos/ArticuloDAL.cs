@@ -54,5 +54,220 @@ namespace AccesoDatos
             return objCArticulos;
         }
 
+        public Boolean AgregarFamilia(String sDescripcion)
+        {
+            Boolean bAllOk = false;
+
+            if (sDescripcion.Length > 0)
+            {
+                objConexion.Conectarse();
+
+                cmd = String.Format("call sp_agregarnuevafamilia('{0}');", sDescripcion);
+                bAllOk = objConexion.Ejecutar(cmd);
+                objConexion.Desconectarse();
+            }
+            return bAllOk;
+        }
+
+        public DataTable ObtenerFamilias()
+        {
+            DataTable tblFamilias = new DataTable();
+         
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerfamilias();");
+            objConexion.Ejecutar(cmd, ref tblFamilias);
+            objConexion.Desconectarse();
+            return tblFamilias;
+        }
+
+        public Boolean EliminarFamilias(int[] aFamiliasID)
+        {
+            Boolean bAllOk = false;
+
+            objConexion.Conectarse();
+            objConexion.IniciarTransaccion();
+            for (int i=0; i < aFamiliasID.Length; i++)
+            {                
+                cmd = String.Format("call sp_eliminarfamilia({0});", aFamiliasID[i]);
+                bAllOk = objConexion.Ejecutar(cmd);
+                if (!bAllOk)
+                {
+                    break;
+                }                
+            }
+            objConexion.FinTransaccion(bAllOk);
+            objConexion.Desconectarse();
+
+            return bAllOk;
+        }
+
+        public Boolean actualizarFamilias(List<CFamilia> listFamilias)
+        {
+            Boolean bAllOk = false;
+
+            objConexion.Conectarse();
+            objConexion.IniciarTransaccion();
+            for (int i = 0; i < listFamilias.Count; i++)
+            {
+                cmd = String.Format("call sp_actualizarFamilia({0},'{1}');", listFamilias[i].IDFamilia, listFamilias[i].Descripcion);
+                bAllOk = objConexion.Ejecutar(cmd);
+                if (!bAllOk)
+                {
+                    break;
+                }
+            }
+            objConexion.FinTransaccion(bAllOk);
+            objConexion.Desconectarse();
+
+            return bAllOk;
+        }
+
+        public Boolean ValidarProductoProduccion(int codigoProducto)
+        {
+            Boolean bAllOk = false;
+            DataTable dtProducto = new DataTable();
+            objConexion.Conectarse();
+          
+            cmd = String.Format("call sp_validarProduccion({0});", codigoProducto);
+            objConexion.Ejecutar(cmd, ref dtProducto);
+            objConexion.Desconectarse();
+
+            bAllOk = dtProducto.Rows.Count > 0 ? true : false;
+
+            return bAllOk;
+        }
+
+        public Boolean ValidarTransfProduccion(int codigoProducto)
+        {
+            Boolean bAllOk = false;
+            DataTable dtProducto = new DataTable();
+            objConexion.Conectarse();
+
+            cmd = String.Format("call sp_validarTransfProduccion({0});", codigoProducto);
+            objConexion.Ejecutar(cmd, ref dtProducto);
+            objConexion.Desconectarse();
+
+            bAllOk = dtProducto.Rows.Count > 0 ? true : false;
+
+            return bAllOk;
+        }
+
+        public Boolean AgregarDescripcionProducto(String sDescripcion)
+        {
+            Boolean bAllOk = false;
+
+            if (sDescripcion.Length > 0)
+            {
+                objConexion.Conectarse();
+
+                cmd = String.Format("call sp_agregarproductodescripcion('{0}');", sDescripcion);
+                bAllOk = objConexion.Ejecutar(cmd);
+                objConexion.Desconectarse();
+            }
+            return bAllOk;
+        }
+
+        public DataTable ObtenerDescripcionesProductos(String filtro)
+        {
+            DataTable tblDescripciones = new DataTable();
+
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerdescripcionproductos('{0}');", filtro);
+            objConexion.Ejecutar(cmd, ref tblDescripciones);
+            objConexion.Desconectarse();
+            return tblDescripciones;
+        }
+
+        public Boolean EliminarDescripcionProducto(int[] aFamiliasID)
+        {
+            Boolean bAllOk = false;
+
+            objConexion.Conectarse();
+            objConexion.IniciarTransaccion();
+            for (int i = 0; i < aFamiliasID.Length; i++)
+            {
+                cmd = String.Format("call sp_eliminardescripcionProducto({0});", aFamiliasID[i]);
+                bAllOk = objConexion.Ejecutar(cmd);
+                if (!bAllOk)
+                {
+                    break;
+                }
+            }
+            objConexion.FinTransaccion(bAllOk);
+            objConexion.Desconectarse();
+
+            return bAllOk;
+        }
+
+        public Boolean actualizarDescripcionProducto(List<CFamilia> listDescripciones)
+        {
+            Boolean bAllOk = false;
+
+            objConexion.Conectarse();
+            objConexion.IniciarTransaccion();
+            for (int i = 0; i < listDescripciones.Count; i++)
+            {
+                cmd = String.Format("call sp_actualizarDescripcionProducto({0},'{1}');", listDescripciones[i].IDFamilia, listDescripciones[i].Descripcion);
+                bAllOk = objConexion.Ejecutar(cmd);
+                if (!bAllOk)
+                {
+                    break;
+                }
+            }
+            objConexion.FinTransaccion(bAllOk);
+            objConexion.Desconectarse();
+
+            return bAllOk;
+        }
+
+        public DataTable ObtenerDescripcionesProductosById(int iDescripcionId)
+        {
+            DataTable tblDescripciones = new DataTable();
+
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerDescripcionProdById('{0}');", iDescripcionId);
+            objConexion.Ejecutar(cmd, ref tblDescripciones);
+            objConexion.Desconectarse();
+            return tblDescripciones;
+        }
+        
+        public Double ObtenerExistenciasProduccion(int DescripcionID )
+        {
+            Double Cantidad = 0;
+            DataTable tblCantidad = new DataTable();
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerExistenciaProduccion('{0}');", DescripcionID);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+
+            if(tblCantidad.Rows.Count > 0)
+            {
+                DataRow row = tblCantidad.Rows[0];
+                Cantidad = Convert.ToInt32(row["cantidad"]);
+            }           
+
+            return Cantidad;
+        }
+
+        public int ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID)
+        {
+            DataTable tblCantidad = new DataTable();
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_validarExisteProductoAGranel('{0}','{1}');", DescripcionID, UnidadMedidaID);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+            return tblCantidad.Rows.Count;
+        }
+
+        public int ValidarExisteDescripcionProducto(String Descripcion, int DescripcionID)
+        {
+            DataTable tblCantidad = new DataTable();
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_validarExisteDescripcion('{0}', {1});", Descripcion, DescripcionID);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+            return tblCantidad.Rows.Count;
+        }
+
     }
 }

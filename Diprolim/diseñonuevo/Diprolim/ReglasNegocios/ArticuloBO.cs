@@ -95,13 +95,13 @@ namespace ReglasNegocios
             return objArticuloDAL.ObtenerExistenciasProduccion(DescripcionID);
         }
 
-        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, String tipoGuardado)
+        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, int ValorMedida, String tipoGuardado)
         {
             ArticuloDAL objArticuloDAL = new ArticuloDAL();
             Boolean bAllOk = false;
             if( tipoGuardado == "UPDATE")
             {
-                if(objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID) > 1)
+                if(objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID, ValorMedida) > 1)
                 {
                     bAllOk = true;
                 }
@@ -109,7 +109,7 @@ namespace ReglasNegocios
             }
             else
             {
-                if (objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID) > 0)
+                if (objArticuloDAL.ValidarExisteDescripcionAGranel(DescripcionID, UnidadMedidaID, ValorMedida) > 0)
                 {
                     bAllOk = true;
                 }

@@ -249,11 +249,11 @@ namespace AccesoDatos
             return Cantidad;
         }
 
-        public int ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID)
+        public int ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, int ValorMedida)
         {
             DataTable tblCantidad = new DataTable();
             objConexion.Conectarse();
-            cmd = String.Format("call sp_validarExisteProductoAGranel('{0}','{1}');", DescripcionID, UnidadMedidaID);
+            cmd = String.Format("call sp_validarExisteProductoAGranel('{0}','{1}', '{2}');", DescripcionID, UnidadMedidaID, ValorMedida);
             objConexion.Ejecutar(cmd, ref tblCantidad);
             objConexion.Desconectarse();
             return tblCantidad.Rows.Count;

@@ -233,7 +233,7 @@ namespace Diprolim
                        
                         if (tbl.Rows.Count > 0)
                         {
-                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), "UPDATE"))
+                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), Convert.ToInt32(tbxVMedida.Text), "UPDATE"))
                             {
                                 cmd = "update articulos set descripcion='" + tbxDesc.Text +
                                         "',precioproduccion=" + tbxPrecioProduccion.Text +
@@ -262,7 +262,7 @@ namespace Diprolim
                         }
                         else
                         {
-                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), "INSERT"))
+                            if (!objArticuloBO.ValidarExisteDescripcionAGranel(Convert.ToInt32(tbxDesc.Tag), Convert.ToInt32(cbxUMedida.SelectedValue), Convert.ToInt32(tbxVMedida.Text), "INSERT"))
                             {
                                 cmd = "INSERT INTO articulos values(" + tbxCodigo.Text + ",'" + tbxDesc.Text +
                                     "'," + tbxPrecioProduccion.Text +

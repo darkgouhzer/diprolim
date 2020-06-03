@@ -96,9 +96,10 @@
             this.btnVentaRapida = new System.Windows.Forms.Button();
             this.btnCobranzaCredito = new System.Windows.Forms.Button();
             this.btnInvVendedor = new System.Windows.Forms.Button();
-            this.btnConsignacion = new System.Windows.Forms.Button();
             this.btnVentasVendedor = new System.Windows.Forms.Button();
+            this.btnConsignacion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -271,14 +272,14 @@
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(141, 24);
             this.clientesToolStripMenuItem1.Text = "Clientes";
             this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // consultarToolStripMenuItem1
             // 
             this.consultarToolStripMenuItem1.Name = "consultarToolStripMenuItem1";
-            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(152, 24);
+            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(141, 24);
             this.consultarToolStripMenuItem1.Text = "Consultar";
             this.consultarToolStripMenuItem1.Click += new System.EventHandler(this.consultarToolStripMenuItem1_Click);
             // 
@@ -579,7 +580,6 @@
             this.clientesInactivosToolStripMenuItem.Name = "clientesInactivosToolStripMenuItem";
             this.clientesInactivosToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
             this.clientesInactivosToolStripMenuItem.Text = "Clientes inactivos";
-            this.clientesInactivosToolStripMenuItem.Visible = false;
             this.clientesInactivosToolStripMenuItem.Click += new System.EventHandler(this.clientesInactivosToolStripMenuItem_Click);
             // 
             // sesiónToolStripMenuItem
@@ -674,22 +674,24 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.btnVentaRapida, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCobranzaCredito, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnInvVendedor, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnConsignacion, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnVentasVendedor, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(120, 396);
+            this.tableLayoutPanel1.Controls.Add(this.btnConsignacion, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnVentaRapida, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(214, 307);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(781, 99);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 186);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // btnVentaRapida
@@ -698,9 +700,9 @@
             this.btnVentaRapida.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVentaRapida.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
             this.btnVentaRapida.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVentaRapida.Location = new System.Drawing.Point(634, 3);
+            this.btnVentaRapida.Location = new System.Drawing.Point(151, 94);
             this.btnVentaRapida.Name = "btnVentaRapida";
-            this.btnVentaRapida.Size = new System.Drawing.Size(136, 93);
+            this.btnVentaRapida.Size = new System.Drawing.Size(136, 89);
             this.btnVentaRapida.TabIndex = 8;
             this.btnVentaRapida.Text = "Caja Rápida [F5]";
             this.btnVentaRapida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -713,9 +715,9 @@
             this.btnCobranzaCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobranzaCredito.Image = global::Diprolim.Properties.Resources.efectivo42;
             this.btnCobranzaCredito.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCobranzaCredito.Location = new System.Drawing.Point(478, 3);
+            this.btnCobranzaCredito.Location = new System.Drawing.Point(444, 3);
             this.btnCobranzaCredito.Name = "btnCobranzaCredito";
-            this.btnCobranzaCredito.Size = new System.Drawing.Size(136, 93);
+            this.btnCobranzaCredito.Size = new System.Drawing.Size(136, 85);
             this.btnCobranzaCredito.TabIndex = 7;
             this.btnCobranzaCredito.Text = "Cobranza Crédito [F4]";
             this.btnCobranzaCredito.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -728,29 +730,14 @@
             this.btnInvVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvVendedor.Image = global::Diprolim.Properties.Resources.back32;
             this.btnInvVendedor.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnInvVendedor.Location = new System.Drawing.Point(162, 3);
+            this.btnInvVendedor.Location = new System.Drawing.Point(149, 3);
             this.btnInvVendedor.Name = "btnInvVendedor";
-            this.btnInvVendedor.Size = new System.Drawing.Size(144, 93);
+            this.btnInvVendedor.Size = new System.Drawing.Size(140, 85);
             this.btnInvVendedor.TabIndex = 5;
             this.btnInvVendedor.Text = "Inventario vendedor [F2]";
             this.btnInvVendedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnInvVendedor.UseVisualStyleBackColor = true;
             this.btnInvVendedor.Click += new System.EventHandler(this.btnInvVendedor_Click);
-            // 
-            // btnConsignacion
-            // 
-            this.btnConsignacion.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnConsignacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsignacion.Image = global::Diprolim.Properties.Resources.acuerdo42;
-            this.btnConsignacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnConsignacion.Location = new System.Drawing.Point(322, 3);
-            this.btnConsignacion.Name = "btnConsignacion";
-            this.btnConsignacion.Size = new System.Drawing.Size(136, 93);
-            this.btnConsignacion.TabIndex = 6;
-            this.btnConsignacion.Text = "Consignación [F3]";
-            this.btnConsignacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnConsignacion.UseVisualStyleBackColor = true;
-            this.btnConsignacion.Click += new System.EventHandler(this.btnConsignacion_Click);
             // 
             // btnVentasVendedor
             // 
@@ -758,14 +745,29 @@
             this.btnVentasVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVentasVendedor.ForeColor = System.Drawing.Color.Black;
             this.btnVentasVendedor.Image = global::Diprolim.Properties.Resources.next32;
-            this.btnVentasVendedor.Location = new System.Drawing.Point(10, 3);
+            this.btnVentasVendedor.Location = new System.Drawing.Point(5, 3);
             this.btnVentasVendedor.Name = "btnVentasVendedor";
-            this.btnVentasVendedor.Size = new System.Drawing.Size(136, 93);
+            this.btnVentasVendedor.Size = new System.Drawing.Size(136, 85);
             this.btnVentasVendedor.TabIndex = 4;
             this.btnVentasVendedor.Text = "Ventas vendedor [F1]";
             this.btnVentasVendedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVentasVendedor.UseVisualStyleBackColor = true;
             this.btnVentasVendedor.Click += new System.EventHandler(this.btnVentasVendedor_Click);
+            // 
+            // btnConsignacion
+            // 
+            this.btnConsignacion.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnConsignacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsignacion.Image = global::Diprolim.Properties.Resources.acuerdo42;
+            this.btnConsignacion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnConsignacion.Location = new System.Drawing.Point(297, 3);
+            this.btnConsignacion.Name = "btnConsignacion";
+            this.btnConsignacion.Size = new System.Drawing.Size(136, 85);
+            this.btnConsignacion.TabIndex = 6;
+            this.btnConsignacion.Text = "Consignación [F3]";
+            this.btnConsignacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnConsignacion.UseVisualStyleBackColor = true;
+            this.btnConsignacion.Click += new System.EventHandler(this.btnConsignacion_Click);
             // 
             // pictureBox1
             // 
@@ -775,10 +777,24 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 32);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1020, 361);
+            this.pictureBox1.Size = new System.Drawing.Size(1020, 269);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Diprolim.Properties.Resources.acuerdo42;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.Location = new System.Drawing.Point(297, 94);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 89);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Pedidos [F6]";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -884,6 +900,7 @@
         private System.Windows.Forms.ToolStripMenuItem cajaRapidaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem familiasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem descripcionesToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

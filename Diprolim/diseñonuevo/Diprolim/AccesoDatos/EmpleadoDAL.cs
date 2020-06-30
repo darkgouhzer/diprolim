@@ -50,5 +50,27 @@ namespace AccesoDatos
             }
             return objCEmpleados;
         }
+
+        public Double ObtenerInvVendedorArticulo(int iEmpleadoID, int iCodigoArticulo)
+        {
+            DataTable tblCantidad = new DataTable();
+            Double CantidadInventario = 0;
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerInvVendedorArticulo({0},{1});", iEmpleadoID, iCodigoArticulo);
+            objConexion.Ejecutar(cmd, ref tblCantidad);
+            objConexion.Desconectarse();
+            if(tblCantidad.Rows.Count > 0)
+            {
+                DataRow row = tblCantidad.Rows[0];
+                CantidadInventario = Convert.ToDouble(row[0]);
+            }
+            else
+            {
+                CantidadInventario = 0;
+            }
+
+            return CantidadInventario;
+        }
+        
     }
 }

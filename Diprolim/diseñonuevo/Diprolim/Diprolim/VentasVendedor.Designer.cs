@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasVendedor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbxNVendedor = new System.Windows.Forms.TextBox();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -121,10 +121,11 @@
             this.invInesperadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cobranzaCréditoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelaAbonoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidosPendientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cancelaAbonoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCredito)).BeginInit();
@@ -200,10 +201,10 @@
             // 
             // seleccionar
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.NullValue = "false";
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "false";
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle1;
             this.seleccionar.HeaderText = "";
             this.seleccionar.Name = "seleccionar";
             this.seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -232,9 +233,9 @@
             // 
             // n_Entrada
             // 
-            dataGridViewCellStyle14.Format = "N0";
-            dataGridViewCellStyle14.NullValue = null;
-            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle2;
             this.n_Entrada.HeaderText = "Entradas";
             this.n_Entrada.MaxInputLength = 9;
             this.n_Entrada.Name = "n_Entrada";
@@ -243,8 +244,8 @@
             // 
             // EVendidas
             // 
-            dataGridViewCellStyle15.NullValue = null;
-            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.NullValue = null;
+            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle3;
             this.EVendidas.HeaderText = "Cantidad Vendida";
             this.EVendidas.MaxInputLength = 9;
             this.EVendidas.Name = "EVendidas";
@@ -253,9 +254,9 @@
             // 
             // EPrecio
             // 
-            dataGridViewCellStyle16.Format = "C2";
-            dataGridViewCellStyle16.NullValue = null;
-            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle4;
             this.EPrecio.HeaderText = "Precio";
             this.EPrecio.Name = "EPrecio";
             this.EPrecio.ReadOnly = true;
@@ -263,18 +264,18 @@
             // 
             // Sub
             // 
-            dataGridViewCellStyle17.Format = "C2";
-            dataGridViewCellStyle17.NullValue = null;
-            this.Sub.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Sub.DefaultCellStyle = dataGridViewCellStyle5;
             this.Sub.HeaderText = "SubTotal";
             this.Sub.Name = "Sub";
             this.Sub.ReadOnly = true;
             // 
             // EDescuento
             // 
-            dataGridViewCellStyle18.Format = "C2";
-            dataGridViewCellStyle18.NullValue = null;
-            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle6;
             this.EDescuento.HeaderText = "Descuento";
             this.EDescuento.Name = "EDescuento";
             this.EDescuento.ReadOnly = true;
@@ -282,9 +283,9 @@
             // 
             // ETotal
             // 
-            dataGridViewCellStyle19.Format = "C2";
-            dataGridViewCellStyle19.NullValue = null;
-            this.ETotal.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.ETotal.DefaultCellStyle = dataGridViewCellStyle7;
             this.ETotal.HeaderText = "Total";
             this.ETotal.Name = "ETotal";
             this.ETotal.ReadOnly = true;
@@ -696,10 +697,10 @@
             // 
             // dataGridViewCheckBoxColumn1
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.NullValue = "false";
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = "false";
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewCheckBoxColumn1.HeaderText = "";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Width = 30;
@@ -727,9 +728,9 @@
             // 
             // tblCrPrecio
             // 
-            dataGridViewCellStyle21.Format = "C2";
-            dataGridViewCellStyle21.NullValue = null;
-            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle9;
             this.tblCrPrecio.HeaderText = "Precio";
             this.tblCrPrecio.MaxInputLength = 9;
             this.tblCrPrecio.Name = "tblCrPrecio";
@@ -738,9 +739,9 @@
             // 
             // tblCrTotal
             // 
-            dataGridViewCellStyle22.Format = "C2";
-            dataGridViewCellStyle22.NullValue = null;
-            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle10;
             this.tblCrTotal.HeaderText = "Total";
             this.tblCrTotal.MaxInputLength = 9;
             this.tblCrTotal.Name = "tblCrTotal";
@@ -749,9 +750,9 @@
             // 
             // tblCrAbono
             // 
-            dataGridViewCellStyle23.Format = "C2";
-            dataGridViewCellStyle23.NullValue = null;
-            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle11;
             this.tblCrAbono.HeaderText = "Abono";
             this.tblCrAbono.MaxInputLength = 8;
             this.tblCrAbono.Name = "tblCrAbono";
@@ -759,9 +760,9 @@
             // 
             // tblCrPendiente
             // 
-            dataGridViewCellStyle24.Format = "C2";
-            dataGridViewCellStyle24.NullValue = null;
-            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Format = "C2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle12;
             this.tblCrPendiente.HeaderText = "Pendiente";
             this.tblCrPendiente.Name = "tblCrPendiente";
             this.tblCrPendiente.ReadOnly = true;
@@ -921,7 +922,8 @@
             this.invInesperadoToolStripMenuItem,
             this.cobranzaCréditoToolStripMenuItem,
             this.cancelacionesToolStripMenuItem,
-            this.cancelaAbonoToolStripMenuItem});
+            this.cancelaAbonoToolStripMenuItem,
+            this.pedidosPendientesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1082, 24);
@@ -952,7 +954,7 @@
             // transferenciasToolStripMenuItem
             // 
             this.transferenciasToolStripMenuItem.Name = "transferenciasToolStripMenuItem";
-            this.transferenciasToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.transferenciasToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.transferenciasToolStripMenuItem.Text = "Transferencias";
             this.transferenciasToolStripMenuItem.Click += new System.EventHandler(this.transferenciasToolStripMenuItem_Click);
             // 
@@ -976,6 +978,20 @@
             this.cancelacionesToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
             this.cancelacionesToolStripMenuItem.Text = "Cancelar venta";
             this.cancelacionesToolStripMenuItem.Click += new System.EventHandler(this.cancelacionesToolStripMenuItem_Click);
+            // 
+            // cancelaAbonoToolStripMenuItem
+            // 
+            this.cancelaAbonoToolStripMenuItem.Name = "cancelaAbonoToolStripMenuItem";
+            this.cancelaAbonoToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.cancelaAbonoToolStripMenuItem.Text = "Cancelar abono";
+            this.cancelaAbonoToolStripMenuItem.Click += new System.EventHandler(this.cancelaAbonoToolStripMenuItem_Click);
+            // 
+            // pedidosPendientesToolStripMenuItem
+            // 
+            this.pedidosPendientesToolStripMenuItem.Name = "pedidosPendientesToolStripMenuItem";
+            this.pedidosPendientesToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
+            this.pedidosPendientesToolStripMenuItem.Text = "Pedidos pendientes";
+            this.pedidosPendientesToolStripMenuItem.Click += new System.EventHandler(this.pedidosPendientesToolStripMenuItem_Click);
             // 
             // label7
             // 
@@ -1023,13 +1039,6 @@
             this.groupBox2.TabIndex = 245;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos:";
-            // 
-            // cancelaAbonoToolStripMenuItem
-            // 
-            this.cancelaAbonoToolStripMenuItem.Name = "cancelaAbonoToolStripMenuItem";
-            this.cancelaAbonoToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
-            this.cancelaAbonoToolStripMenuItem.Text = "Cancelar abono";
-            this.cancelaAbonoToolStripMenuItem.Click += new System.EventHandler(this.cancelaAbonoToolStripMenuItem_Click);
             // 
             // VentasVendedor
             // 
@@ -1175,5 +1184,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
         private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
     }
 }

@@ -21,7 +21,13 @@ namespace Diprolim
             nombre = vendedor;
             buscar(vendedor);
         }
-        
+
+
+        public BuscarClientes()
+        {
+            InitializeComponent();
+            buscar("");
+        }
         recuperarCodigo _ui = new recuperarCodigo();
         public recuperarCodigo regresar
         {

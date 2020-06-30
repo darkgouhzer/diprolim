@@ -21,5 +21,12 @@ namespace ReglasNegocios
             objCEmpleados = objEmpleadoDAL.ObtenerDatosVendedor(iVendedor);
             return objCEmpleados;
         }
+
+        public Double ObtenerInvVendedorArticulo(int iEmpleadoID, int iCodigoArticulo)
+        {
+            EmpleadoDAL objArticuloDAL = new EmpleadoDAL();
+            return objArticuloDAL.ObtenerInvVendedorArticulo(iEmpleadoID, iCodigoArticulo);
+
+        }
     }
 }

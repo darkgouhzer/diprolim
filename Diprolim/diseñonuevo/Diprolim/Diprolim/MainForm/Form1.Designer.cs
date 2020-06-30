@@ -93,13 +93,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.modificarUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnVentaRapida = new System.Windows.Forms.Button();
             this.btnCobranzaCredito = new System.Windows.Forms.Button();
             this.btnInvVendedor = new System.Windows.Forms.Button();
             this.btnVentasVendedor = new System.Windows.Forms.Button();
             this.btnConsignacion = new System.Windows.Forms.Button();
+            this.btnVentaRapida = new System.Windows.Forms.Button();
+            this.btnPedidos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -685,7 +685,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnVentasVendedor, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnConsignacion, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnVentaRapida, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnPedidos, 2, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(214, 307);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -693,21 +693,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 186);
             this.tableLayoutPanel1.TabIndex = 10;
-            // 
-            // btnVentaRapida
-            // 
-            this.btnVentaRapida.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnVentaRapida.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVentaRapida.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
-            this.btnVentaRapida.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnVentaRapida.Location = new System.Drawing.Point(151, 94);
-            this.btnVentaRapida.Name = "btnVentaRapida";
-            this.btnVentaRapida.Size = new System.Drawing.Size(136, 89);
-            this.btnVentaRapida.TabIndex = 8;
-            this.btnVentaRapida.Text = "Caja Rápida [F5]";
-            this.btnVentaRapida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnVentaRapida.UseVisualStyleBackColor = true;
-            this.btnVentaRapida.Click += new System.EventHandler(this.btnVentaRapida_Click);
             // 
             // btnCobranzaCredito
             // 
@@ -769,6 +754,34 @@
             this.btnConsignacion.UseVisualStyleBackColor = true;
             this.btnConsignacion.Click += new System.EventHandler(this.btnConsignacion_Click);
             // 
+            // btnVentaRapida
+            // 
+            this.btnVentaRapida.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnVentaRapida.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVentaRapida.Image = global::Diprolim.Properties.Resources.acl_cr68fj_1_32;
+            this.btnVentaRapida.Location = new System.Drawing.Point(151, 94);
+            this.btnVentaRapida.Name = "btnVentaRapida";
+            this.btnVentaRapida.Size = new System.Drawing.Size(136, 89);
+            this.btnVentaRapida.TabIndex = 8;
+            this.btnVentaRapida.Text = "Caja Rápida [F5]";
+            this.btnVentaRapida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVentaRapida.UseVisualStyleBackColor = true;
+            this.btnVentaRapida.Click += new System.EventHandler(this.btnVentaRapida_Click);
+            // 
+            // btnPedidos
+            // 
+            this.btnPedidos.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
+            this.btnPedidos.Location = new System.Drawing.Point(297, 94);
+            this.btnPedidos.Name = "btnPedidos";
+            this.btnPedidos.Size = new System.Drawing.Size(136, 89);
+            this.btnPedidos.TabIndex = 9;
+            this.btnPedidos.Text = "Pedidos [F6]";
+            this.btnPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPedidos.UseVisualStyleBackColor = true;
+            this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -782,25 +795,11 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::Diprolim.Properties.Resources.acuerdo42;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(297, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 89);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Pedidos [F6]";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(1020, 497);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
@@ -900,7 +899,7 @@
         private System.Windows.Forms.ToolStripMenuItem cajaRapidaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem familiasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem descripcionesToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPedidos;
     }
 }
 

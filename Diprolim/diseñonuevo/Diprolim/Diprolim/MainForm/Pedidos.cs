@@ -231,15 +231,19 @@ namespace Diprolim.MainForm
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Int32 RowIndex = dtgPedidos.SelectedCells[0].RowIndex;
-            if (dtgPedidos.Rows.Count > 0 && RowIndex > -1)
-            {
-                NuevoPedido objNuevoPedido = this.SelectPedido ? new NuevoPedido(Convert.ToInt32(dtgPedidos.Rows[RowIndex].Cells[0].Value), this.SelectPedido) :
-                                                                 new NuevoPedido(Convert.ToInt32(dtgPedidos.Rows[RowIndex].Cells[0].Value));
-                objNuevoPedido.ShowDialog();
-                ObtenerPedidos();
+        { 
+
+            if(dtgPedidos.Rows.Count > 0){
+                Int32 RowIndex = dtgPedidos.SelectedCells[0].RowIndex;
+                if (RowIndex > -1)
+                {
+                    NuevoPedido objNuevoPedido = this.SelectPedido ? new NuevoPedido(Convert.ToInt32(dtgPedidos.Rows[RowIndex].Cells[0].Value), this.SelectPedido) :
+                                                                     new NuevoPedido(Convert.ToInt32(dtgPedidos.Rows[RowIndex].Cells[0].Value));
+                    objNuevoPedido.ShowDialog();
+                    ObtenerPedidos();
+                }
             }
+            
         }
     }
 }

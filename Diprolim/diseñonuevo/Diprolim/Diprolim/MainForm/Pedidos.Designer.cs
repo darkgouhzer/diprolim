@@ -34,6 +34,11 @@
             this.rbtnTodos = new System.Windows.Forms.RadioButton();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dtgPedidos = new System.Windows.Forms.DataGridView();
+            this.colPedidoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colClientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxNCliente = new System.Windows.Forms.TextBox();
             this.lblCliente = new System.Windows.Forms.Label();
             this.tbxCliente = new System.Windows.Forms.TextBox();
@@ -45,11 +50,6 @@
             this.rbtContado = new System.Windows.Forms.RadioButton();
             this.panelTipoCompra = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.colPedidoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colClientes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPedidos)).BeginInit();
             this.panelTipoCompra.SuspendLayout();
@@ -93,11 +93,14 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
             this.btnNuevo.Location = new System.Drawing.Point(708, 13);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(101, 77);
             this.btnNuevo.TabIndex = 3;
-            this.btnNuevo.Text = "Nuevo pedido";
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
@@ -119,6 +122,37 @@
             this.dtgPedidos.Size = new System.Drawing.Size(797, 532);
             this.dtgPedidos.TabIndex = 4;
             this.dtgPedidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPedidos_CellDoubleClick);
+            // 
+            // colPedidoID
+            // 
+            this.colPedidoID.HeaderText = "Folio";
+            this.colPedidoID.Name = "colPedidoID";
+            this.colPedidoID.ReadOnly = true;
+            // 
+            // colClientes
+            // 
+            this.colClientes.HeaderText = "Cliente";
+            this.colClientes.Name = "colClientes";
+            this.colClientes.ReadOnly = true;
+            this.colClientes.Width = 300;
+            // 
+            // colFechaRegistro
+            // 
+            this.colFechaRegistro.HeaderText = "Fecha Registro";
+            this.colFechaRegistro.Name = "colFechaRegistro";
+            this.colFechaRegistro.ReadOnly = true;
+            // 
+            // colFechaEntrega
+            // 
+            this.colFechaEntrega.HeaderText = "Fecha Entrega";
+            this.colFechaEntrega.Name = "colFechaEntrega";
+            this.colFechaEntrega.ReadOnly = true;
+            // 
+            // colStatus
+            // 
+            this.colStatus.HeaderText = "Estatus";
+            this.colStatus.Name = "colStatus";
+            this.colStatus.ReadOnly = true;
             // 
             // tbxNCliente
             // 
@@ -186,13 +220,16 @@
             // 
             // btnSelectPedido
             // 
-            this.btnSelectPedido.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnSelectPedido.BackColor = System.Drawing.SystemColors.Control;
             this.btnSelectPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectPedido.Image")));
             this.btnSelectPedido.Location = new System.Drawing.Point(640, 13);
             this.btnSelectPedido.Name = "btnSelectPedido";
             this.btnSelectPedido.Size = new System.Drawing.Size(169, 77);
             this.btnSelectPedido.TabIndex = 195;
-            this.btnSelectPedido.Text = "Cargar pedido seleccionado";
+            this.btnSelectPedido.Text = "Cargar pedido";
+            this.btnSelectPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSelectPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSelectPedido.UseVisualStyleBackColor = false;
             this.btnSelectPedido.Visible = false;
             this.btnSelectPedido.Click += new System.EventHandler(this.btnSelectPedido_Click);
@@ -242,45 +279,17 @@
             this.label1.TabIndex = 227;
             this.label1.Text = "Tipo de compra";
             // 
-            // colPedidoID
-            // 
-            this.colPedidoID.HeaderText = "Folio";
-            this.colPedidoID.Name = "colPedidoID";
-            this.colPedidoID.ReadOnly = true;
-            // 
-            // colClientes
-            // 
-            this.colClientes.HeaderText = "Cliente";
-            this.colClientes.Name = "colClientes";
-            this.colClientes.ReadOnly = true;
-            this.colClientes.Width = 300;
-            // 
-            // colFechaRegistro
-            // 
-            this.colFechaRegistro.HeaderText = "Fecha Registro";
-            this.colFechaRegistro.Name = "colFechaRegistro";
-            this.colFechaRegistro.ReadOnly = true;
-            // 
-            // colFechaEntrega
-            // 
-            this.colFechaEntrega.HeaderText = "Fecha Entrega";
-            this.colFechaEntrega.Name = "colFechaEntrega";
-            this.colFechaEntrega.ReadOnly = true;
-            // 
-            // colStatus
-            // 
-            this.colStatus.HeaderText = "Estatus";
-            this.colStatus.Name = "colStatus";
-            this.colStatus.ReadOnly = true;
-            // 
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.Location = new System.Drawing.Point(601, 13);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(101, 77);
             this.btnEditar.TabIndex = 228;
-            this.btnEditar.Text = "Editar pedido";
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -289,8 +298,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 642);
-            this.Controls.Add(this.panelTipoCompra);
             this.Controls.Add(this.btnSelectPedido);
+            this.Controls.Add(this.panelTipoCompra);
             this.Controls.Add(this.tbxNVendedor);
             this.Controls.Add(this.lblVendedor);
             this.Controls.Add(this.tbxVendedor);
@@ -301,8 +310,8 @@
             this.Controls.Add(this.rbtnTodos);
             this.Controls.Add(this.rbtnFinalizadas);
             this.Controls.Add(this.rbtnPendientes);
-            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnNuevo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

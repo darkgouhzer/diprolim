@@ -221,6 +221,7 @@ namespace Diprolim
                         MessageBox.Show(ex.Message);
                     }
                     dtgVenta.Rows.Clear();
+                    SumarTotales();
                     MessageBox.Show("La venta ha sido realizada con éxito.");                    
                    
                 }

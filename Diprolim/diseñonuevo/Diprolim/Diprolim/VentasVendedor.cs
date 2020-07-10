@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Diprolim.MainForm;
+using Entidades;
+using MySql.Data.MySqlClient;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1868,7 +1871,14 @@ namespace Diprolim
 
                         }
                         //chbxIVa.Checked = false;
-                        MessageBox.Show("La entrada ha sido registrada exitosamente");                        
+                        MessageBox.Show("La entrada ha sido registrada exitosamente");
+                        if(objPedidos.FolioPedido != 0)
+                        {
+                            PedidosBO objPedidosBO = new PedidosBO();
+                            objPedidosBO.FinalizarPedido(objPedidos.FolioPedido);
+                            objPedidos.FolioPedido = 0;
+                        }
+                                              
                         tblEntradas.Rows.Clear();
                         tbxSubtotal.Clear();
                         tbxIVA.Clear();
@@ -2009,7 +2019,12 @@ namespace Diprolim
                             }
                             //chbxIVa.Checked = false;
                             MessageBox.Show("La venta a crédito ha sido registrada exitosamente");
-
+                            if (objPedidos.FolioPedido != 0)
+                            {
+                                PedidosBO objPedidosBO = new PedidosBO();
+                                objPedidosBO.FinalizarPedido(objPedidos.FolioPedido);
+                                objPedidos.FolioPedido = 0;
+                            }
                             tblCredito.Rows.Clear();
                             tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
                            // tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
@@ -2063,12 +2078,13 @@ namespace Diprolim
             tblEntradas.Visible = true;
             tblCredito.Visible = false;
         }
-
+        Boolean CreditoAutorizado = false;
         private void rbtCredito_CheckedChanged(object sender, EventArgs e)
         {
 
             Boolean bAllOk = false;
-            if(rbtCredito.Checked)
+            CreditoAutorizado = true;
+            if (rbtCredito.Checked)
             {
                 bAllOk = CreditoPendiente();
                 if (bAllOk)
@@ -2092,15 +2108,24 @@ namespace Diprolim
                             if (row["AutorizarCredito"].ToString() == "1")
                             {
                                 bAllOk = false;
+                                CreditoAutorizado = true;
                             }
                             else
                             {
+                                CreditoAutorizado = false;
                                 MessageBox.Show("El usuario no tiene permiso necesario para autorizar venta a crédito.");
                             }
                         }
                         Conexion.Desconectarse();
                     }
+                    else
+                    {
+                        CreditoAutorizado = false;
+                    }
                 }
+            }else
+            {
+                CreditoAutorizado = false;
             }
            
             if (!bAllOk)
@@ -2261,6 +2286,188 @@ namespace Diprolim
             }
             evitar = false;
         }
+                
+        Pedidos objPedidos = new Pedidos(true);
+        private void pedidosPendientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            objPedidos = new Pedidos(true);
+            objPedidos.ShowDialog();
+            if(objPedidos.FolioPedido > 0)
+            {
+                resetControles();             
+                CargarPedido(objPedidos.FolioPedido, objPedidos.TipoCompra, sender, e);
+            }
+        }
+        
+        public void CargarPedido(int iFolioPedido, int iTipoCompra, object sender, EventArgs e)
+        {
+            PedidosBO objPedidosBO = new PedidosBO();
+            ClienteBO objClienteBO = new ClienteBO();
+            CClientes objCClientes = new CClientes();
+            CPedidos objCPedidos = new CPedidos();
+            objCPedidos = objPedidosBO.ObtenerPedido(iFolioPedido);
+            objCClientes = objClienteBO.ObtenerDatosCliente(objCPedidos.ClienteID);
+            if(objCClientes.IDEmpleado != 1)
+            {
+                tbxVendedor.Text = objCClientes.IDEmpleado.ToString();
+                MetodoVendedor();            
+                tbxCCliente.Text = objCPedidos.ClienteID.ToString();
+                MetodoCliente();
+                if (iTipoCompra == 1)
+                {
+                    rbtContado.Checked = true;
+                    rbtContado_CheckedChanged(sender, e);
+                    CargarProductosPedidos(objCPedidos, iTipoCompra);
+                }
+                else if (iTipoCompra == 2)
+                {
+                    rbtCredito.Checked = false;
+                    rbtCredito.Checked = true;
+                    //   rbtCredito_CheckedChanged(sender, e);
+                    if (CreditoAutorizado)
+                    {
+                        CargarProductosPedidos(objCPedidos, iTipoCompra);
+                    }
+                }
+               
+            }
+            else
+            {
+                resetControles();
+                inavilitados();
+                tbxIVA.Clear();
+                tbxSubtotal.Clear();
+                tbxTotal.Clear();
+                tblEntradas.AllowUserToDeleteRows = false;
+                tblEntradas.Columns[4].Visible = true;
+                tblEntradas.Columns[7].Visible = false;
+                tblEntradas.Visible = true;
+                tblCredito.Visible = false;
+                rbtCredito.Enabled = false;
+                rbtContado.Enabled = false;
+                rbtCredito.Checked = false;
+                rbtContado.Checked = true;
+                tbxVendedor.Enabled = true;
+                tbxVendedor.Focus();
+                MessageBox.Show("No se permiten cargar pedidos de clientes de vendedor sucursal.");
+            }
+        }
+        List<CArticulos> lCArticulosSinExistencia = new List<CArticulos>();
+        public void CargarProductosPedidos(CPedidos objCPedidos, int iTipoCompra)
+        {
+            ArticuloBO objArticuloBO = new ArticuloBO();
+            CArticulos objCArticulos = new CArticulos();
+            lCArticulosSinExistencia = new List<CArticulos>();
+
+            foreach (CPedidosDetalle PedidoDetalle in objCPedidos.PedidosDetalle)
+            {
+                objCArticulos = new CArticulos();
+                //PedidoDetalle.TipoPrecio
+                objCArticulos = objArticuloBO.ObtenerDatosArticulo(PedidoDetalle.CodigoArticulo);
+
+                Double precio_cliente = 0;
+                descuento = 0;
+                if (PedidoDetalle.TipoPrecio == TipoPrecio.Abarrotes.ToString())
+                {
+                    precio_cliente = objCArticulos.PrecioAbarrotes;
+                    categoria = "7";
+
+                }
+                else if (PedidoDetalle.TipoPrecio == TipoPrecio.Distribuidor.ToString())
+                {
+                    precio_cliente = objCArticulos.PrecioDistribuidor;
+                    categoria = "8";
+                }
+                else if (PedidoDetalle.TipoPrecio == TipoPrecio.Calle.ToString())
+                {
+                    precio_cliente = objCArticulos.PrecioCalle;
+                    categoria = "9";
+                }
+                if (aplicaDescuento() && PedidoDetalle.TipoPrecio != TipoPrecio.Distribuidor.ToString())
+                {
+
+                    descuento = PedidoDetalle.Cantidad * precio_cliente * (objCArticulos.Descuento / 100);
+                }
+
+                EmpleadoBO objEmpleadoBO = new EmpleadoBO();
+                Double InvetarioEmpleado = objEmpleadoBO.ObtenerInvVendedorArticulo(Convert.ToInt32(tbxVendedor.Text), objCArticulos.Codigo);
+
+                if (iTipoCompra == 1) //Compras de contado
+                {
+
+                  
+                    double entradas = InvetarioEmpleado - PedidoDetalle.Cantidad;
+                    double cantidadVendida = InvetarioEmpleado - entradas;
+                    double total = (precio_cliente * cantidadVendida) - descuento;
+
+                    if (entradas >= 0)
+                    {
+
+                        if (objCArticulos.Departamento.ToString() == "2")
+                        {
+                            categoria = "6";
+                        }
+                        else if (objCArticulos.Departamento.ToString() == "3")
+                        {
+                            categoria = "10";
+                        }
+                        tblEntradas.Rows.Add(false, objCArticulos.Codigo, objCArticulos.Descripcion + " " +
+                                            objCArticulos.ValorMedida + " " + objCArticulos.UnidadMedida, InvetarioEmpleado, entradas, cantidadVendida, 
+                                            precio_cliente, cantidadVendida * precio_cliente, descuento, total, tbxVendedor.Text,
+                                            objCArticulos.PrecioProduccion, categoria);
+                        tbxProducto.Clear();
+                        tbxCantidad.Clear();
+                        tbxNombre.Clear();
+                        tbxExistencias.Clear();
+                        tbxProducto.Focus();
+                        Totls();
+
+                    }
+                    else
+                    {
+                        lCArticulosSinExistencia.Add(objCArticulos);
+                    }
+
+                }
+                else if (iTipoCompra == 2) //Compras a crédito
+                {
+                    double existVendedor = InvetarioEmpleado - PedidoDetalle.Cantidad;
+                    double total = precio_cliente * PedidoDetalle.Cantidad;
+
+                    if (existVendedor >= 0)
+                    {
+                        if (objCArticulos.Departamento.ToString() == "2")
+                        {
+                            categoria = "6";
+                        }
+                        else if (objCArticulos.Departamento.ToString() == "3")
+                        {
+                            categoria = "10";
+                        }
+                        tblCredito.Rows.Insert(tblCredito.Rows.Count - 1, false, objCArticulos.Codigo, objCArticulos.Descripcion + " " +
+                                            objCArticulos.ValorMedida + " " + objCArticulos.UnidadMedida, PedidoDetalle.Cantidad, precio_cliente, 
+                                           total, 0, total, tbxVendedor.Text, objCArticulos.PrecioProduccion, InvetarioEmpleado, categoria);
+                    }
+                    else
+                    {
+                        lCArticulosSinExistencia.Add(objCArticulos);
+                    }
+                }
+
+            }
+            sumaTotal();
+            if (lCArticulosSinExistencia.Count > 0)
+            {
+                String ArticulosSinExistencia = String.Join(", ", lCArticulosSinExistencia.Select(x => x.Codigo.ToString()).ToArray());
+                MessageBox.Show("Vendedor con existencias insuficientes de los siguientes códigos de artículos: \n"+ ArticulosSinExistencia);
+            }
+            if (tblEntradas.Rows.Count > 0)
+            {
+                
+            }
+
+        }
+        
         Boolean evitar = false;
         //metodo para distribuir abono en diferentes adeudos.
         public void disAbono(double abono)
@@ -2462,22 +2669,14 @@ namespace Diprolim
                     }
                     height += tblCredito.Rows[0].Height;
 
-                    //e.Graphics.DrawRectangle(p, new Rectangle(100, height, tblCredito.Columns[1].Width, tblCredito.Rows[0].Height));
-                    //e.Graphics.DrawString(tblCredito.Rows[i].Cells[0].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L, height, tblCredito.Columns[0].Width, tblCredito.Rows[0].Height));
-
-                    //e.Graphics.DrawRectangle(p, new Rectangle(100 + tblCredito.Columns[1].Width, height, tblCredito.Columns[2].Width, tblCredito.Rows[0].Height));
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[1].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L, height, tblCredito.Columns[1].Width, tblCredito.Rows[0].Height));
 
-                    //e.Graphics.DrawRectangle(p, new Rectangle(300 + tblCredito.Columns[1].Width, height, tblCredito.Columns[3].Width, tblCredito.Rows[0].Height));
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[2].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1, height, tblCredito.Columns[2].Width, tblCredito.Rows[0].Height));
 
-                    //e.Graphics.DrawRectangle(p, new Rectangle(400 + tblCredito.Columns[1].Width, height, tblCredito.Columns[4].Width, tblCredito.Rows[0].Height));
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[3].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2, height, tblCredito.Columns[3].Width, tblCredito.Rows[0].Height));
 
-                    //e.Graphics.DrawRectangle(p, new Rectangle(500 + tblCredito.Columns[1].Width, height, tblCredito.Columns[5].Width, tblCredito.Rows[0].Height));
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[4].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3, height, tblCredito.Columns[4].Width, tblCredito.Rows[0].Height));
 
-                    //e.Graphics.DrawRectangle(p, new Rectangle(500 + tblCredito.Columns[1].Width, height, tblCredito.Columns[5].Width, tblCredito.Rows[0].Height));
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[5].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4, height, tblCredito.Columns[5].Width, tblCredito.Rows[0].Height));
 
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[6].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, tblCredito.Columns[6].Width, tblCredito.Rows[0].Height));
@@ -2622,8 +2821,6 @@ namespace Diprolim
                 CancelarAbonos rdv = new CancelarAbonos("1", Convert.ToInt32(UsuarioID));
                 rdv.ShowDialog();
             }
-        }
-
-    
+        }    
     }
 }

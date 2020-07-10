@@ -1,5 +1,6 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraReports.UI;
+using Diprolim.MainForm;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Diprolim
         string UsuarioID = "";
         string Comando = "";
         DataTable tabla;
-        string PrivilegioHastaAhora = "11111111111111111111111111111111111111111111111111111111";
+        
         public string ID = "";
         public Form1()
         {
@@ -230,6 +231,7 @@ namespace Diprolim
             descuentoComisiónToolStripMenuItem.Enabled = false;
             btnVentaRapida.Enabled = false;
             cajaRapidaToolStripMenuItem.Enabled = false;
+            btnPedidos.Enabled = false;
 
         }
 
@@ -292,6 +294,7 @@ namespace Diprolim
                                                         } else { btnVentaRapida.Enabled = false; cajaRapidaToolStripMenuItem.Enabled = false; }
                 if (row["Familias"].ToString() == "1"){ familiasToolStripMenuItem.Enabled = true; } else { familiasToolStripMenuItem.Enabled = false; }
                 if (row["DescProductos"].ToString() == "1"){ descripcionesToolStripMenuItem.Enabled = true; } else { descripcionesToolStripMenuItem.Enabled = false; }
+                if (row["Pedidos"].ToString() == "1") { btnPedidos.Enabled = true; } else { btnPedidos.Enabled = false; }
             }
         }
 
@@ -618,6 +621,9 @@ namespace Diprolim
                 else if (e.KeyCode == Keys.F5)
                 {
                     btnVentaRapida_Click(sender, e);
+                }else if(e.KeyCode == Keys.F6 && btnPedidos.Enabled)
+                {
+                    btnPedidos_Click(sender, e);
                 }
             }
         }
@@ -681,6 +687,12 @@ namespace Diprolim
         {
             DescripcionProductos objDescripcionProductos = new DescripcionProductos();
             objDescripcionProductos.ShowDialog();
+        }
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+        {
+            Pedidos objPedidos = new Pedidos();
+            objPedidos.ShowDialog();
         }
     }
 }

@@ -249,7 +249,7 @@ namespace AccesoDatos
             return Cantidad;
         }
 
-        public int ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, int ValorMedida)
+        public int ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, double ValorMedida)
         {
             DataTable tblCantidad = new DataTable();
             objConexion.Conectarse();

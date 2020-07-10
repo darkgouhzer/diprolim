@@ -86,6 +86,9 @@
     <Reference Include="Entidades">
       <HintPath>..\Entidades\bin\Debug\Entidades.dll</HintPath>
     </Reference>
+    <Reference Include="Enumeradores">
+      <HintPath>..\Enumeradores\bin\Debug\Enumeradores.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -377,6 +380,18 @@
     </Compile>
     <Compile Include="Ingreso de Efectivo.Designer.cs">
       <DependentUpon>Ingreso de Efectivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\NuevoPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\NuevoPedido.Designer.cs">
+      <DependentUpon>NuevoPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\Pedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Pedidos.Designer.cs">
+      <DependentUpon>Pedidos.cs</DependentUpon>
     </Compile>
     <Compile Include="ModificarAlmacen.cs">
       <SubType>Form</SubType>
@@ -818,6 +833,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ingreso de Efectivo.resx">
       <DependentUpon>Ingreso de Efectivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\NuevoPedido.resx">
+      <DependentUpon>NuevoPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Pedidos.resx">
+      <DependentUpon>Pedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificarAlmacen.resx">
       <DependentUpon>ModificarAlmacen.cs</DependentUpon>

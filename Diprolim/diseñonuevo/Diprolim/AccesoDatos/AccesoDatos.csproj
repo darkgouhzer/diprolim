@@ -88,6 +88,7 @@
     <Compile Include="DescuentosDAL.cs" />
     <Compile Include="EmpleadoDAL.cs" />
     <Compile Include="ImpresoraDAL.cs" />
+    <Compile Include="PedidosDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentaDAL.cs" />
   </ItemGroup>

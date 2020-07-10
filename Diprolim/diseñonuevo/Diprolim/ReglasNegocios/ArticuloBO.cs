@@ -95,7 +95,7 @@ namespace ReglasNegocios
             return objArticuloDAL.ObtenerExistenciasProduccion(DescripcionID);
         }
 
-        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, int ValorMedida, String tipoGuardado)
+        public Boolean ValidarExisteDescripcionAGranel(int DescripcionID, int UnidadMedidaID, double ValorMedida, String tipoGuardado)
         {
             ArticuloDAL objArticuloDAL = new ArticuloDAL();
             Boolean bAllOk = false;
@@ -129,6 +129,5 @@ namespace ReglasNegocios
            
             return bAllOk;
         }
-
     }
 }

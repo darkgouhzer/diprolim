@@ -53,6 +53,15 @@ namespace Diprolim
             notafinal = objCImpresora.NotaFinal;
             ImpresoraTicket = objCImpresora.Impresora;
         }
+        private Double CalcularDescuentoEnvase()
+        {
+            Double dDescuento = 0;
+            if (chbxCambioEnvase.Checked)
+            {
+                dDescuento = (Convert.ToDouble(tbxCantidad.Text) * objCArticulos.PrecioCalle) * (objCArticulos.DescuentoEnvase / 100);
+            }            
+            return dDescuento;
+        }
         private void VentaCajaRapida_KeyDown(object sender, KeyEventArgs e)
         {            
             if(e.KeyCode == Keys.F1)
@@ -89,14 +98,17 @@ namespace Diprolim
                         row.Cells[1].Value = objCArticulos.Descripcion;
                         row.Cells[2].Value = tbxCantidad.Text;
                         row.Cells[3].Value = objCArticulos.PrecioCalle;
-                        row.Cells[4].Value = 0;//objCArticulos.Descuento;
-                        row.Cells[5].Value = Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioCalle;
+                        row.Cells[4].Value = CalcularDescuentoEnvase();//objCArticulos.Descuento;
+                        row.Cells[5].Value = (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioCalle) - Convert.ToDouble(row.Cells[4].Value);
+                        row.Cells[6].Value = chbxCambioEnvase.Checked;
                     }
                     tbxCodigo.Clear();
                     tbxDescripcion.Clear();
                     tbxExistencias.Clear();
                     tbxCantidad.Clear();
                     tbxCodigo.Focus();
+                    chbxCambioEnvase.Visible = false;
+                    chbxCambioEnvase.Checked = false;
                 }
             }
             else if (e.KeyCode == Keys.F5)
@@ -178,6 +190,22 @@ namespace Diprolim
                     {
                         tbxCantidad.Text = "0";
                     }
+
+                    
+                    chbxCambioEnvase.Visible = objCArticulos.CodigoEnvase == 0 ? false : true;
+
+                    if(objCArticulos.CodigoEnvase > 0)
+                    {
+                        DialogResult dlg = MessageBox.Show("¿La compra será con cambio de envase?", "Cambio de envase", MessageBoxButtons.YesNo);
+                        if (DialogResult.Yes == dlg)
+                        {
+                            chbxCambioEnvase.Checked = true;
+                        }else
+                        {
+                            chbxCambioEnvase.Checked = false;
+                        }
+                    }
+
                     tbxCantidad.Focus();
                 }
             }
@@ -271,14 +299,14 @@ namespace Diprolim
             e.Graphics.DrawImage(newImage, destRect1, 0, 0, newImage.Width, newImage.Height, units);
 
             y = 43;
-            //e.Graphics.DrawString(encabezado1, letraTi, Brushes.Black, new Rectangle(0, y, 290, 50), stringFormat);
+
             y += 38;
             e.Graphics.DrawString(encabezado2, letraTi2, Brushes.Black, new Rectangle(0, y, 290, 50), stringFormat);
             y += 25;
             e.Graphics.DrawString(encabezado1 + " \nRFC: "+ RFC + " \n" + Direccion + " \n" + Telefonos, letra, Brushes.Black, new Rectangle(0, y, 290, 75), stringFormat);
             y += 25;
             y += 25;
-            //e.Graphics.DrawString(Telefonos, letra, Brushes.Black, new Rectangle(0, y, 290, 50), stringFormat);
+
             y += 12;
             e.Graphics.DrawString("Folio # " + iFolioTicket, letraTi2, Brushes.Black, new Rectangle(2, y, 290, 50));
             y += 12;
@@ -296,9 +324,16 @@ namespace Diprolim
                 e.Graphics.DrawString(dtgVenta.Rows[i].Cells[2].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(2, y, 28, 15));
                 e.Graphics.DrawString(dtgVenta.Rows[i].Cells[1].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(30, y, 115, 15));
                 e.Graphics.DrawString(dtgVenta.Rows[i].Cells[3].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(140, y, 290, 15));
-                e.Graphics.DrawString(dtgVenta.Rows[i].Cells[5].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(200, y, 290, 15));
+                e.Graphics.DrawString((Convert.ToDouble(dtgVenta.Rows[i].Cells[4].Value) + Convert.ToDouble(dtgVenta.Rows[i].Cells[5].Value)).ToString("C2"), letra, Brushes.Black, new Rectangle(200, y, 290, 15));
 
                 y += 12;
+
+                if (Convert.ToDouble(dtgVenta.Rows[i].Cells[4].Value) > 0) {
+                    e.Graphics.DrawString("Descuento", letra, Brushes.Black, new Rectangle(30, y, 115, 15));
+                    e.Graphics.DrawString("-"+dtgVenta.Rows[i].Cells[4].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(200, y, 290, 15));
+                    y += 12;
+                }
+              
             }
 
 

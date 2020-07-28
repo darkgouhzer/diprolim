@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentaCajaRapida));
             this.tbxCodigo = new System.Windows.Forms.TextBox();
             this.lblCodigo = new System.Windows.Forms.Label();
@@ -41,24 +42,26 @@
             this.lblIVA = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.dtgVenta = new System.Windows.Forms.DataGridView();
-            this.colCódigoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbxDescripcion = new System.Windows.Forms.TextBox();
             this.tbxCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblExistencias = new System.Windows.Forms.Label();
             this.tbxExistencias = new System.Windows.Forms.TextBox();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnNuevaVenta = new System.Windows.Forms.Button();
+            this.btnCorteCaja = new System.Windows.Forms.Button();
             this.btnCancelaVenta = new System.Windows.Forms.Button();
             this.btnCobrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.btnCorteCaja = new System.Windows.Forms.Button();
-            this.btnNuevaVenta = new System.Windows.Forms.Button();
+            this.chbxCambioEnvase = new System.Windows.Forms.CheckBox();
+            this.colCódigoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCambioEnvase = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgVenta)).BeginInit();
             this.panelContainer.SuspendLayout();
             this.SuspendLayout();
@@ -163,7 +166,8 @@
             this.colCantidad,
             this.colPrecio,
             this.colDescuento,
-            this.colTotal});
+            this.colTotal,
+            this.colCambioEnvase});
             this.dtgVenta.Location = new System.Drawing.Point(18, 118);
             this.dtgVenta.Name = "dtgVenta";
             this.dtgVenta.ReadOnly = true;
@@ -171,54 +175,6 @@
             this.dtgVenta.Size = new System.Drawing.Size(839, 325);
             this.dtgVenta.TabIndex = 2;
             this.dtgVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgVenta_CellContentClick);
-            // 
-            // colCódigoArticulo
-            // 
-            this.colCódigoArticulo.FillWeight = 64.65517F;
-            this.colCódigoArticulo.HeaderText = "Código";
-            this.colCódigoArticulo.Name = "colCódigoArticulo";
-            this.colCódigoArticulo.ReadOnly = true;
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.FillWeight = 173.7397F;
-            this.colDescripcion.HeaderText = "Descripción";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.ReadOnly = true;
-            this.colDescripcion.Width = 250;
-            // 
-            // colCantidad
-            // 
-            this.colCantidad.FillWeight = 69.88499F;
-            this.colCantidad.HeaderText = "Cantidad";
-            this.colCantidad.Name = "colCantidad";
-            this.colCantidad.ReadOnly = true;
-            // 
-            // colPrecio
-            // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colPrecio.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colPrecio.FillWeight = 82.3207F;
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.ReadOnly = true;
-            // 
-            // colDescuento
-            // 
-            this.colDescuento.FillWeight = 93.03726F;
-            this.colDescuento.HeaderText = "Descuento";
-            this.colDescuento.Name = "colDescuento";
-            this.colDescuento.ReadOnly = true;
-            // 
-            // colTotal
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            this.colTotal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colTotal.FillWeight = 116.3622F;
-            this.colTotal.HeaderText = "Total";
-            this.colTotal.Name = "colTotal";
-            this.colTotal.ReadOnly = true;
             // 
             // tbxDescripcion
             // 
@@ -276,6 +232,7 @@
             // panelContainer
             // 
             this.panelContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelContainer.Controls.Add(this.chbxCambioEnvase);
             this.panelContainer.Controls.Add(this.btnNuevaVenta);
             this.panelContainer.Controls.Add(this.btnCorteCaja);
             this.panelContainer.Controls.Add(this.btnCancelaVenta);
@@ -299,6 +256,32 @@
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(878, 570);
             this.panelContainer.TabIndex = 15;
+            // 
+            // btnNuevaVenta
+            // 
+            this.btnNuevaVenta.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnNuevaVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaVenta.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnNuevaVenta.Location = new System.Drawing.Point(312, 449);
+            this.btnNuevaVenta.Name = "btnNuevaVenta";
+            this.btnNuevaVenta.Size = new System.Drawing.Size(141, 86);
+            this.btnNuevaVenta.TabIndex = 19;
+            this.btnNuevaVenta.Text = "Nueva Venta [F2]";
+            this.btnNuevaVenta.UseVisualStyleBackColor = false;
+            this.btnNuevaVenta.Click += new System.EventHandler(this.btnNuevaVenta_Click);
+            // 
+            // btnCorteCaja
+            // 
+            this.btnCorteCaja.BackColor = System.Drawing.Color.Teal;
+            this.btnCorteCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCorteCaja.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCorteCaja.Location = new System.Drawing.Point(165, 449);
+            this.btnCorteCaja.Name = "btnCorteCaja";
+            this.btnCorteCaja.Size = new System.Drawing.Size(141, 86);
+            this.btnCorteCaja.TabIndex = 18;
+            this.btnCorteCaja.Text = "Corte de caja";
+            this.btnCorteCaja.UseVisualStyleBackColor = false;
+            this.btnCorteCaja.Click += new System.EventHandler(this.btnCorteCaja_Click);
             // 
             // btnCancelaVenta
             // 
@@ -340,31 +323,77 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // btnCorteCaja
+            // chbxCambioEnvase
             // 
-            this.btnCorteCaja.BackColor = System.Drawing.Color.Teal;
-            this.btnCorteCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCorteCaja.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCorteCaja.Location = new System.Drawing.Point(165, 449);
-            this.btnCorteCaja.Name = "btnCorteCaja";
-            this.btnCorteCaja.Size = new System.Drawing.Size(141, 86);
-            this.btnCorteCaja.TabIndex = 18;
-            this.btnCorteCaja.Text = "Corte de caja";
-            this.btnCorteCaja.UseVisualStyleBackColor = false;
-            this.btnCorteCaja.Click += new System.EventHandler(this.btnCorteCaja_Click);
+            this.chbxCambioEnvase.AutoSize = true;
+            this.chbxCambioEnvase.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbxCambioEnvase.Location = new System.Drawing.Point(352, 89);
+            this.chbxCambioEnvase.Name = "chbxCambioEnvase";
+            this.chbxCambioEnvase.Size = new System.Drawing.Size(161, 21);
+            this.chbxCambioEnvase.TabIndex = 21;
+            this.chbxCambioEnvase.Text = "Cambio de Envase";
+            this.chbxCambioEnvase.UseVisualStyleBackColor = true;
+            this.chbxCambioEnvase.Visible = false;
             // 
-            // btnNuevaVenta
+            // colCódigoArticulo
             // 
-            this.btnNuevaVenta.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnNuevaVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaVenta.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnNuevaVenta.Location = new System.Drawing.Point(312, 449);
-            this.btnNuevaVenta.Name = "btnNuevaVenta";
-            this.btnNuevaVenta.Size = new System.Drawing.Size(141, 86);
-            this.btnNuevaVenta.TabIndex = 19;
-            this.btnNuevaVenta.Text = "Nueva Venta [F2]";
-            this.btnNuevaVenta.UseVisualStyleBackColor = false;
-            this.btnNuevaVenta.Click += new System.EventHandler(this.btnNuevaVenta_Click);
+            this.colCódigoArticulo.FillWeight = 64.65517F;
+            this.colCódigoArticulo.HeaderText = "Código";
+            this.colCódigoArticulo.Name = "colCódigoArticulo";
+            this.colCódigoArticulo.ReadOnly = true;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.FillWeight = 173.7397F;
+            this.colDescripcion.HeaderText = "Descripción";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.ReadOnly = true;
+            this.colDescripcion.Width = 250;
+            // 
+            // colCantidad
+            // 
+            this.colCantidad.FillWeight = 69.88499F;
+            this.colCantidad.HeaderText = "Cantidad";
+            this.colCantidad.Name = "colCantidad";
+            this.colCantidad.ReadOnly = true;
+            // 
+            // colPrecio
+            // 
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colPrecio.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colPrecio.FillWeight = 82.3207F;
+            this.colPrecio.HeaderText = "Precio";
+            this.colPrecio.Name = "colPrecio";
+            this.colPrecio.ReadOnly = true;
+            // 
+            // colDescuento
+            // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.colDescuento.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colDescuento.FillWeight = 93.03726F;
+            this.colDescuento.HeaderText = "Descuento";
+            this.colDescuento.Name = "colDescuento";
+            this.colDescuento.ReadOnly = true;
+            // 
+            // colTotal
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            this.colTotal.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colTotal.FillWeight = 116.3622F;
+            this.colTotal.HeaderText = "Total";
+            this.colTotal.Name = "colTotal";
+            this.colTotal.ReadOnly = true;
+            // 
+            // colCambioEnvase
+            // 
+            this.colCambioEnvase.HeaderText = "CambioEnvase";
+            this.colCambioEnvase.Name = "colCambioEnvase";
+            this.colCambioEnvase.ReadOnly = true;
+            this.colCambioEnvase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colCambioEnvase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colCambioEnvase.Visible = false;
             // 
             // VentaCajaRapida
             // 
@@ -412,15 +441,17 @@
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCobrar;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnCancelaVenta;
+        private System.Windows.Forms.Button btnCorteCaja;
+        private System.Windows.Forms.Button btnNuevaVenta;
+        private System.Windows.Forms.CheckBox chbxCambioEnvase;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCódigoArticulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.Button btnCancelaVenta;
-        private System.Windows.Forms.Button btnCorteCaja;
-        private System.Windows.Forms.Button btnNuevaVenta;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colCambioEnvase;
     }
 }

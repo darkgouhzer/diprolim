@@ -94,5 +94,19 @@ namespace Entidades
             get { return iIdDescripcion; }
             set { iIdDescripcion = value; }
         }
+
+        double iDescuentoEnvase;
+        public double DescuentoEnvase
+        {
+            get { return iDescuentoEnvase; }
+            set { iDescuentoEnvase = value; }
+        }
+
+        int iCodigoEnvase;
+        public int CodigoEnvase
+        {
+            get { return iCodigoEnvase; }
+            set { iCodigoEnvase = value; }
+        }
     }
 }

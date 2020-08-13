@@ -199,9 +199,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 230);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 17);
+            this.label3.Size = new System.Drawing.Size(195, 17);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Precio de calle:          $";
+            this.label3.Text = "Precio de calle:             $";
             // 
             // tbxPCalle
             // 
@@ -219,9 +219,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(12, 292);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(177, 17);
+            this.label9.Size = new System.Drawing.Size(192, 17);
             this.label9.TabIndex = 14;
-            this.label9.Text = "Precio distribuidores: $";
+            this.label9.Text = "Precio distribuidores:    $";
             // 
             // label10
             // 
@@ -229,9 +229,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(12, 261);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(178, 17);
+            this.label10.Size = new System.Drawing.Size(193, 17);
             this.label10.TabIndex = 12;
-            this.label10.Text = "Precio abarrotes:       $";
+            this.label10.Text = "Precio abarrotes:          $";
             // 
             // tbxPDistribuidor
             // 
@@ -278,9 +278,9 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(12, 170);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(182, 17);
+            this.label12.Size = new System.Drawing.Size(197, 17);
             this.label12.TabIndex = 8;
-            this.label12.Text = "Precio de Producción: $";
+            this.label12.Text = "Precio de Producción:    $";
             // 
             // tbxPrecioProduccion
             // 
@@ -528,7 +528,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(191, 17);
             this.label7.TabIndex = 127;
-            this.label7.Text = "Descuento Envase       %";
+            this.label7.Text = "Precio con envase        $";
             // 
             // tbxDescuentoEnvase
             // 

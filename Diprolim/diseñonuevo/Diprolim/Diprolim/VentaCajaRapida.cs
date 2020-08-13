@@ -53,15 +53,7 @@ namespace Diprolim
             notafinal = objCImpresora.NotaFinal;
             ImpresoraTicket = objCImpresora.Impresora;
         }
-        private Double CalcularDescuentoEnvase()
-        {
-            Double dDescuento = 0;
-            if (chbxCambioEnvase.Checked)
-            {
-                dDescuento = (Convert.ToDouble(tbxCantidad.Text) * objCArticulos.PrecioCalle) * (objCArticulos.DescuentoEnvase / 100);
-            }            
-            return dDescuento;
-        }
+    
         private void VentaCajaRapida_KeyDown(object sender, KeyEventArgs e)
         {            
             if(e.KeyCode == Keys.F1)
@@ -93,13 +85,17 @@ namespace Diprolim
                     if (Convert.ToInt32(tbxCantidad.Text) > 0 && ValidarExistenciaArticulo())
                     {
                         int index = dtgVenta.Rows.Add();
+                        double totalPrecio = 0;
                         DataGridViewRow row = (DataGridViewRow)dtgVenta.Rows[index];
                         row.Cells[0].Value = objCArticulos.Codigo;
                         row.Cells[1].Value = objCArticulos.Descripcion;
                         row.Cells[2].Value = tbxCantidad.Text;
-                        row.Cells[3].Value = objCArticulos.PrecioCalle;
-                        row.Cells[4].Value = CalcularDescuentoEnvase();//objCArticulos.Descuento;
-                        row.Cells[5].Value = (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioCalle) - Convert.ToDouble(row.Cells[4].Value);
+                        row.Cells[3].Value = chbxCambioEnvase.Checked ? objCArticulos.PrecioConEnvase :
+                                                                        objCArticulos.PrecioCalle;
+                        row.Cells[4].Value = 0;//objCArticulos.Descuento;
+                        totalPrecio = chbxCambioEnvase.Checked ? (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioConEnvase) : 
+                                                                 (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioCalle);
+                        row.Cells[5].Value = totalPrecio;
                         row.Cells[6].Value = chbxCambioEnvase.Checked;
                     }
                     tbxCodigo.Clear();
@@ -400,6 +396,7 @@ namespace Diprolim
                 tbxCantidad.Clear();
                 tbxCodigo.Focus();
                 dtgVenta.Rows.Clear();
+                SumarTotales();
             }          
         }
     }

@@ -153,7 +153,7 @@ namespace Diprolim
                     ArticuloBO objArticuloBO = new ArticuloBO();
                     CArticulos objCArticulos = new CArticulos();
                     objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(row["codigo_envase"])); 
-                    tbxDescuentoEnvase.Text = Convert.ToDouble(row["descuento_envase"]) == 0 ? "" : Convert.ToDouble(row["descuento_envase"]).ToString();
+                    tbxDescuentoEnvase.Text = Convert.ToDouble(row["precio_con_envase"]) == 0 ? "" : Convert.ToDouble(row["precio_con_envase"]).ToString();
                     tbxCodEnvase.Text = Convert.ToInt32(row["codigo_envase"]) == 0 ? "": objCArticulos.Codigo.ToString();
                     tbxDescripcionEnvase.Text = Convert.ToInt32(row["codigo_envase"]) == 0 ? "" : objCArticulos.Descripcion + " " + objCArticulos.ValorMedida + "" + objCArticulos.UnidadMedida;
 
@@ -183,7 +183,10 @@ namespace Diprolim
             tbxComision.Clear();
             tbxDescuento.Clear();
             chkbxComision.Checked = false;
-            
+            tbxDescuentoEnvase.Clear();
+            tbxCodEnvase.Clear();
+            tbxDescripcionEnvase.Clear();
+
         }
         private void btnCambiarP_Click(object sender, EventArgs e)
         {
@@ -258,7 +261,7 @@ namespace Diprolim
                                         " ,aplicacomision=" + iAplicaComision +
                                         " ,familias_idfamilias=" + cbxFamilia.SelectedValue +
                                         " ,iddescripcion=" + tbxDesc.Tag +
-                                        " ,descuento_envase=" + (tbxDescuentoEnvase.Text == "" ? "0" : tbxDescuentoEnvase.Text).ToString() +
+                                        " ,precio_con_envase=" + (tbxDescuentoEnvase.Text == "" ? "0" : tbxDescuentoEnvase.Text).ToString() +
                                         " ,codigo_envase=" + (tbxCodEnvase.Text == "" ? "''" : tbxCodEnvase.Text).ToString() +
                                         
                                     " WHERE codigo=" + tbxCodigo.Text;
@@ -281,8 +284,8 @@ namespace Diprolim
                                     "'," + tbxPrecioProduccion.Text +
                                     ",0, " + tbxVMedida.Text + ", " + cbxUMedida.SelectedValue + " ," + tbxPCalle.Text +
                                     " , " + tbxPAbarrotes.Text + ", " + tbxPDistribuidor.Text + " , " + dep + ", " + descuentoCont + " , "
-                                    + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + " ," + tbxDescuentoEnvase.Text +
-                                        " ," + tbxCodEnvase.Text + ")";
+                                    + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + " ,'" + tbxDescuentoEnvase.Text +
+                                        "' ,'" + tbxCodEnvase.Text + "')";
                                 if (Conexion.Ejecutar(cmd))
                                 {
                                     MessageBox.Show("Los datos fueron guardados con éxito");

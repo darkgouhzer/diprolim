@@ -95,11 +95,11 @@ namespace Entidades
             set { iIdDescripcion = value; }
         }
 
-        double iDescuentoEnvase;
-        public double DescuentoEnvase
+        double iPrecioConEnvase;
+        public double PrecioConEnvase
         {
-            get { return iDescuentoEnvase; }
-            set { iDescuentoEnvase = value; }
+            get { return iPrecioConEnvase; }
+            set { iPrecioConEnvase = value; }
         }
 
         int iCodigoEnvase;

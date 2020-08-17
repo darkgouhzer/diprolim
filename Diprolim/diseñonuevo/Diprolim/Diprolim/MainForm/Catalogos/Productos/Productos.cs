@@ -1,5 +1,6 @@
 ﻿
 using Diprolim.MainForm.Catalogos.Productos;
+using Entidades;
 using ReglasNegocios;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,7 @@ namespace Diprolim
             if (tbxCodigo.Text != "")
             {
                 unidades();
-                
+               
                 DataTable tbl=new DataTable();
                 cmd = "select * from articulos where codigo=" + tbxCodigo.Text;
                 Conexion.Conectarse();
@@ -148,6 +149,15 @@ namespace Diprolim
                     tbxCodigo.Enabled = false;
                     btnSP.Enabled = false;
                     tbxDesc.Focus();
+
+                    ArticuloBO objArticuloBO = new ArticuloBO();
+                    CArticulos objCArticulos = new CArticulos();
+                    objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(row["codigo_envase"])); 
+                    tbxDescuentoEnvase.Text = Convert.ToDouble(row["precio_con_envase"]) == 0 ? "" : Convert.ToDouble(row["precio_con_envase"]).ToString();
+                    tbxCodEnvase.Text = Convert.ToInt32(row["codigo_envase"]) == 0 ? "": objCArticulos.Codigo.ToString();
+                    tbxDescripcionEnvase.Text = Convert.ToInt32(row["codigo_envase"]) == 0 ? "" : objCArticulos.Descripcion + " " + objCArticulos.ValorMedida + "" + objCArticulos.UnidadMedida;
+
+
                 }
                 else
                 {
@@ -173,7 +183,10 @@ namespace Diprolim
             tbxComision.Clear();
             tbxDescuento.Clear();
             chkbxComision.Checked = false;
-            
+            tbxDescuentoEnvase.Clear();
+            tbxCodEnvase.Clear();
+            tbxDescripcionEnvase.Clear();
+
         }
         private void btnCambiarP_Click(object sender, EventArgs e)
         {
@@ -248,6 +261,9 @@ namespace Diprolim
                                         " ,aplicacomision=" + iAplicaComision +
                                         " ,familias_idfamilias=" + cbxFamilia.SelectedValue +
                                         " ,iddescripcion=" + tbxDesc.Tag +
+                                        " ,precio_con_envase=" + (tbxDescuentoEnvase.Text == "" ? "0" : tbxDescuentoEnvase.Text).ToString() +
+                                        " ,codigo_envase=" + (tbxCodEnvase.Text == "" ? "''" : tbxCodEnvase.Text).ToString() +
+                                        
                                     " WHERE codigo=" + tbxCodigo.Text;
                                 if (Conexion.Ejecutar(cmd))
                                 {
@@ -268,7 +284,8 @@ namespace Diprolim
                                     "'," + tbxPrecioProduccion.Text +
                                     ",0, " + tbxVMedida.Text + ", " + cbxUMedida.SelectedValue + " ," + tbxPCalle.Text +
                                     " , " + tbxPAbarrotes.Text + ", " + tbxPDistribuidor.Text + " , " + dep + ", " + descuentoCont + " , "
-                                    + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + ")";
+                                    + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + " ,'" + tbxDescuentoEnvase.Text +
+                                        "' ,'" + tbxCodEnvase.Text + "')";
                                 if (Conexion.Ejecutar(cmd))
                                 {
                                     MessageBox.Show("Los datos fueron guardados con éxito");
@@ -543,6 +560,19 @@ namespace Diprolim
             {
                 this.Close();
             }
+            if (tbxCodEnvase.Focused && e.KeyCode == Keys.F1)
+            {
+                BuscarArticulos id = new BuscarArticulos();
+                DialogResult dr = id.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    ArticuloBO objArticuloBO = new ArticuloBO();
+                    CArticulos objCArticulos = new CArticulos();
+                    tbxCodEnvase.Text = id.regresar.valXn;
+                    objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(tbxCodEnvase.Text));
+                    tbxDescripcionEnvase.Text = objCArticulos.Descripcion + " " + objCArticulos.ValorMedida + objCArticulos.UnidadMedida;
+                }
+            }
         }
 
         private void cbxFamilia_SelectedIndexChanged(object sender, EventArgs e)
@@ -563,6 +593,70 @@ namespace Diprolim
                 tblResult = objArticuloBO.ObtenerDescripcionesProductosById(objBuscarDescripcion.iCodigo);
                 tbxDesc.Text = tblResult.Rows[0]["descripcion"].ToString();
                 tbxDesc.Tag = tblResult.Rows[0]["iddescripcion"].ToString();
+
+            }
+        }
+
+        private void tbxDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46 && tbxDescuento.Text.IndexOf('.') != -1)
+            {
+
+                e.Handled = true;
+                return;
+
+            }
+
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
+            {
+
+                e.Handled = true;
+
+            }
+        }
+
+        private void tbxComision_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46 && tbxComision.Text.IndexOf('.') != -1)
+            {
+
+                e.Handled = true;
+                return;
+
+            }
+
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
+            {
+
+                e.Handled = true;
+
+            }
+        }
+
+        private void tbxDescuentoEnvase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46 && tbxDescuentoEnvase.Text.IndexOf('.') != -1)
+            {
+
+                e.Handled = true;
+                return;
+
+            }
+
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
+            {
+
+                e.Handled = true;
+
+            }
+        }
+
+        private void tbxCodEnvase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+
+                e.Handled = true;
 
             }
         }

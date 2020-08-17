@@ -60,8 +60,8 @@ namespace AccesoDatos
                 objConexion.IniciarTransaccion();
                 foreach (DataRow row in dtDatos.Rows)
                 {
-                    cmd = String.Format("call sp_registrarventa({0}, {1}, {2}, {3}, {4}, {5})",
-                        row[0], row[2], row[3], row[4], row[5],  iFolioTicket);
+                    cmd = String.Format("call sp_registrarventa({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                        row[0], row[2], row[3], row[4], row[5],  iFolioTicket, row[6]);
                     objConexion.Ejecutar(cmd, ref dtRespuesta);
                   iFolioTicket =  Convert.ToInt32(dtRespuesta.Rows[0][0]);
                 }

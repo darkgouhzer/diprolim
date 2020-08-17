@@ -1,5 +1,5 @@
 CREATE PROCEDURE sp_registrarventa(iCodigoArticulo INT,  dCantidad DOUBLE, dPrecioArticulo DOUBLE, dDescuento DOUBLE, 
-                                dImporte DOUBLE, iFolioTicket INT)
+                                dImporte DOUBLE, iFolioTicket INT, bCambioEnvase Boolean)
 BEGIN
 DECLARE dIVA DOUBLE DEFAULT 0;
 DECLARE dCostoProduccion DOUBLE DEFAULT 0;
@@ -15,9 +15,12 @@ INSERT INTO ventas (empleados_id_empleado, clientes_idclientes, categorias_idcat
                     precio_art, cantidad, importe, fecha_venta, comision, Costo_Produccion, iva, 
                     tipo_compra, folio, pendiente, Descuento, folioticket )
             VALUES(1, 1, 9, iCodigoArticulo, dPrecioArticulo, dCantidad, dImporte, now(), 0, dCostoProduccion,
-                    dIVA, 'contado', 0, 0, 0,iFolioTicket);
+                    dIVA, 'contado', 0, 0, dDescuento,iFolioTicket);
 
 UPDATE articulos SET cantidad = cantidad - dCantidad WHERE  codigo = iCodigoArticulo;
-
+IF bCambioEnvase = TRUE THEN
+	CALL sp_cambioEnvase(iCodigoArticulo, dCantidad, 1, 1, true);
+END IF;    
+    
 SELECT iFolioTicket;
 END

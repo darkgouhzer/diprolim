@@ -29,8 +29,9 @@ namespace AccesoDatos
             DataTable dtDatos = new DataTable();
             cmd = String.Format("SELECT a.codigo, a.descripcion, a.precioproduccion, a.cantidad, a.precio_calle, " +
                 " a.precio_abarrotes, a.precio_distribuidor, a.departamento, a.Descuento, a.Comision, " +
-                "a.aplicacomision, a.valor_medida, um.simbolo FROM articulos a inner JOIN unidad_medida um " +
+                "a.aplicacomision, a.valor_medida, um.simbolo, precio_con_envase, codigo_envase FROM articulos a inner JOIN unidad_medida um " +
                 "ON um.id = a.unidad_medida_id WHERE codigo = {0};", iArticulo);
+
             objConexion.Conectarse();
             objConexion.Ejecutar(cmd, ref dtDatos);
             objConexion.Desconectarse();
@@ -50,6 +51,8 @@ namespace AccesoDatos
                 objCArticulos.AplicaComision = (short)Convert.ToInt32(row["aplicacomision"]);
                 objCArticulos.ValorMedida = Convert.ToDouble(row["valor_medida"]);
                 objCArticulos.UnidadMedida = row["simbolo"].ToString();
+                objCArticulos.PrecioConEnvase = Convert.ToDouble(row["precio_con_envase"]);
+                objCArticulos.CodigoEnvase  = Convert.ToInt32(row["codigo_envase"]);
             }
             return objCArticulos;
         }

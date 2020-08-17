@@ -65,7 +65,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.chkbxComision = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.chbxEnvaseCambio = new System.Windows.Forms.CheckBox();
             this.lblFamilia = new System.Windows.Forms.Label();
             this.cbxFamilia = new System.Windows.Forms.ComboBox();
             this.btnAdelante = new System.Windows.Forms.Button();
@@ -73,6 +72,10 @@
             this.btnCambiarP = new System.Windows.Forms.Button();
             this.btnSP = new System.Windows.Forms.Button();
             this.btnEditDescProducto = new System.Windows.Forms.Button();
+            this.tbxCodEnvase = new System.Windows.Forms.TextBox();
+            this.tbxDescripcionEnvase = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbxDescuentoEnvase = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // codigoDataGridViewTextBoxColumn
@@ -141,7 +144,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGuardar.Location = new System.Drawing.Point(215, 448);
+            this.btnGuardar.Location = new System.Drawing.Point(215, 477);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 40);
@@ -196,13 +199,14 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 230);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 17);
+            this.label3.Size = new System.Drawing.Size(195, 17);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Precio de calle:          $";
+            this.label3.Text = "Precio de calle:             $";
             // 
             // tbxPCalle
             // 
             this.tbxPCalle.Location = new System.Drawing.Point(219, 227);
+            this.tbxPCalle.MaxLength = 15;
             this.tbxPCalle.Name = "tbxPCalle";
             this.tbxPCalle.Size = new System.Drawing.Size(138, 23);
             this.tbxPCalle.TabIndex = 11;
@@ -215,9 +219,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(12, 292);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(177, 17);
+            this.label9.Size = new System.Drawing.Size(192, 17);
             this.label9.TabIndex = 14;
-            this.label9.Text = "Precio distribuidores: $";
+            this.label9.Text = "Precio distribuidores:    $";
             // 
             // label10
             // 
@@ -225,13 +229,14 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(12, 261);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(178, 17);
+            this.label10.Size = new System.Drawing.Size(193, 17);
             this.label10.TabIndex = 12;
-            this.label10.Text = "Precio abarrotes:       $";
+            this.label10.Text = "Precio abarrotes:          $";
             // 
             // tbxPDistribuidor
             // 
             this.tbxPDistribuidor.Location = new System.Drawing.Point(219, 289);
+            this.tbxPDistribuidor.MaxLength = 15;
             this.tbxPDistribuidor.Name = "tbxPDistribuidor";
             this.tbxPDistribuidor.Size = new System.Drawing.Size(138, 23);
             this.tbxPDistribuidor.TabIndex = 15;
@@ -241,6 +246,7 @@
             // tbxPAbarrotes
             // 
             this.tbxPAbarrotes.Location = new System.Drawing.Point(219, 258);
+            this.tbxPAbarrotes.MaxLength = 15;
             this.tbxPAbarrotes.Name = "tbxPAbarrotes";
             this.tbxPAbarrotes.Size = new System.Drawing.Size(138, 23);
             this.tbxPAbarrotes.TabIndex = 13;
@@ -272,13 +278,14 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(12, 170);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(182, 17);
+            this.label12.Size = new System.Drawing.Size(197, 17);
             this.label12.TabIndex = 8;
-            this.label12.Text = "Precio de Producción: $";
+            this.label12.Text = "Precio de Producción:    $";
             // 
             // tbxPrecioProduccion
             // 
             this.tbxPrecioProduccion.Location = new System.Drawing.Point(219, 167);
+            this.tbxPrecioProduccion.MaxLength = 15;
             this.tbxPrecioProduccion.Name = "tbxPrecioProduccion";
             this.tbxPrecioProduccion.Size = new System.Drawing.Size(138, 23);
             this.tbxPrecioProduccion.TabIndex = 5;
@@ -300,6 +307,7 @@
             // tbxVMedida
             // 
             this.tbxVMedida.Location = new System.Drawing.Point(219, 104);
+            this.tbxVMedida.MaxLength = 15;
             this.tbxVMedida.Name = "tbxVMedida";
             this.tbxVMedida.Size = new System.Drawing.Size(138, 23);
             this.tbxVMedida.TabIndex = 2;
@@ -339,9 +347,11 @@
             // tbxComision
             // 
             this.tbxComision.Location = new System.Drawing.Point(219, 351);
+            this.tbxComision.MaxLength = 15;
             this.tbxComision.Name = "tbxComision";
             this.tbxComision.Size = new System.Drawing.Size(138, 23);
             this.tbxComision.TabIndex = 111;
+            this.tbxComision.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxComision_KeyPress);
             // 
             // label4
             // 
@@ -356,14 +366,16 @@
             // tbxDescuento
             // 
             this.tbxDescuento.Location = new System.Drawing.Point(219, 320);
+            this.tbxDescuento.MaxLength = 15;
             this.tbxDescuento.Name = "tbxDescuento";
             this.tbxDescuento.Size = new System.Drawing.Size(138, 23);
             this.tbxDescuento.TabIndex = 109;
+            this.tbxDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxDescuento_KeyPress);
             // 
             // btnEliminar
             // 
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEliminar.Location = new System.Drawing.Point(323, 448);
+            this.btnEliminar.Location = new System.Drawing.Point(323, 477);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 40);
@@ -378,9 +390,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 382);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 17);
+            this.label5.Size = new System.Drawing.Size(78, 17);
             this.label5.TabIndex = 117;
-            this.label5.Text = "Comisión";
+            this.label5.Text = "Comisión:";
             // 
             // chkbxComision
             // 
@@ -395,22 +407,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 412);
+            this.label6.Location = new System.Drawing.Point(12, 438);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 17);
+            this.label6.Size = new System.Drawing.Size(143, 17);
             this.label6.TabIndex = 119;
-            this.label6.Text = "Envase a cambio";
-            this.label6.Visible = false;
-            // 
-            // chbxEnvaseCambio
-            // 
-            this.chbxEnvaseCambio.AutoSize = true;
-            this.chbxEnvaseCambio.Location = new System.Drawing.Point(219, 414);
-            this.chbxEnvaseCambio.Name = "chbxEnvaseCambio";
-            this.chbxEnvaseCambio.Size = new System.Drawing.Size(15, 14);
-            this.chbxEnvaseCambio.TabIndex = 120;
-            this.chbxEnvaseCambio.UseVisualStyleBackColor = true;
-            this.chbxEnvaseCambio.Visible = false;
+            this.label6.Text = "Código de envase:";
             // 
             // lblFamilia
             // 
@@ -500,16 +501,57 @@
             this.btnEditDescProducto.UseVisualStyleBackColor = true;
             this.btnEditDescProducto.Click += new System.EventHandler(this.btnEditDescProducto_Click);
             // 
+            // tbxCodEnvase
+            // 
+            this.tbxCodEnvase.Location = new System.Drawing.Point(219, 435);
+            this.tbxCodEnvase.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxCodEnvase.MaxLength = 10;
+            this.tbxCodEnvase.Name = "tbxCodEnvase";
+            this.tbxCodEnvase.Size = new System.Drawing.Size(69, 23);
+            this.tbxCodEnvase.TabIndex = 124;
+            this.tbxCodEnvase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxCodEnvase_KeyPress);
+            // 
+            // tbxDescripcionEnvase
+            // 
+            this.tbxDescripcionEnvase.Location = new System.Drawing.Point(296, 435);
+            this.tbxDescripcionEnvase.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxDescripcionEnvase.Name = "tbxDescripcionEnvase";
+            this.tbxDescripcionEnvase.ReadOnly = true;
+            this.tbxDescripcionEnvase.Size = new System.Drawing.Size(219, 23);
+            this.tbxDescripcionEnvase.TabIndex = 125;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 408);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(191, 17);
+            this.label7.TabIndex = 127;
+            this.label7.Text = "Precio con envase        $";
+            // 
+            // tbxDescuentoEnvase
+            // 
+            this.tbxDescuentoEnvase.Location = new System.Drawing.Point(219, 405);
+            this.tbxDescuentoEnvase.MaxLength = 15;
+            this.tbxDescuentoEnvase.Name = "tbxDescuentoEnvase";
+            this.tbxDescuentoEnvase.Size = new System.Drawing.Size(138, 23);
+            this.tbxDescuentoEnvase.TabIndex = 126;
+            this.tbxDescuentoEnvase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxDescuentoEnvase_KeyPress);
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(559, 506);
+            this.ClientSize = new System.Drawing.Size(559, 536);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbxDescuentoEnvase);
+            this.Controls.Add(this.tbxDescripcionEnvase);
+            this.Controls.Add(this.tbxCodEnvase);
             this.Controls.Add(this.btnEditDescProducto);
             this.Controls.Add(this.lblFamilia);
             this.Controls.Add(this.cbxFamilia);
-            this.Controls.Add(this.chbxEnvaseCambio);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.chkbxComision);
             this.Controls.Add(this.label5);
@@ -601,9 +643,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkbxComision;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chbxEnvaseCambio;
         private System.Windows.Forms.Label lblFamilia;
         private System.Windows.Forms.ComboBox cbxFamilia;
         private System.Windows.Forms.Button btnEditDescProducto;
+        private System.Windows.Forms.TextBox tbxCodEnvase;
+        private System.Windows.Forms.TextBox tbxDescripcionEnvase;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbxDescuentoEnvase;
     }
 }

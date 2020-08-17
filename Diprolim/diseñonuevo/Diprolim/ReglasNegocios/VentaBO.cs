@@ -39,6 +39,7 @@ namespace ReglasNegocios
             dtDatos.Columns.Add(dgDatos.Columns[3].HeaderText, typeof(Double));
             dtDatos.Columns.Add(dgDatos.Columns[4].HeaderText, typeof(Double));
             dtDatos.Columns.Add(dgDatos.Columns[5].HeaderText, typeof(Double));
+            dtDatos.Columns.Add(dgDatos.Columns[6].HeaderText, typeof(Boolean));
 
             foreach (DataGridViewRow rowGrid in dgDatos.Rows)
             {
@@ -49,6 +50,7 @@ namespace ReglasNegocios
                 row[3] = Double.Parse(rowGrid.Cells[3].Value.ToString(), NumberStyles.Currency);
                 row[4] = Double.Parse(rowGrid.Cells[4].Value.ToString(), NumberStyles.Currency);
                 row[5] = Double.Parse(rowGrid.Cells[5].Value.ToString(), NumberStyles.Currency);
+                row[6] = Convert.ToBoolean(rowGrid.Cells[6].Value);
                 dtDatos.Rows.Add(row);
             }
             

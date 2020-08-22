@@ -187,8 +187,9 @@ namespace Diprolim
                         tbxCantidad.Text = "0";
                     }
 
-                    
-                    chbxCambioEnvase.Visible = objCArticulos.CodigoEnvase == 0 ? false : true;
+                    Boolean aplicaCambioEnvase = (objCArticulos.ValorMedida == 4 || objCArticulos.ValorMedida == 20) && objCArticulos.UnidadMedida == "L";
+
+                    chbxCambioEnvase.Visible = objCArticulos.CodigoEnvase > 0 && aplicaCambioEnvase ? true : false;
 
                     if(objCArticulos.CodigoEnvase > 0)
                     {

@@ -150,6 +150,9 @@ namespace Diprolim
                     btnSP.Enabled = false;
                     tbxDesc.Focus();
 
+                    Boolean aplicaCambioEnvase = (Convert.ToDouble(tbxVMedida.Text) == 4 || Convert.ToDouble(tbxVMedida.Text) == 20) && Convert.ToInt32(cbxUMedida.SelectedValue) == 1;
+                    activarCambioEnvase(aplicaCambioEnvase);
+
                     ArticuloBO objArticuloBO = new ArticuloBO();
                     CArticulos objCArticulos = new CArticulos();
                     objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(row["codigo_envase"])); 
@@ -595,6 +598,13 @@ namespace Diprolim
                 tbxDesc.Tag = tblResult.Rows[0]["iddescripcion"].ToString();
 
             }
+        }
+
+        private void activarCambioEnvase(Boolean activar)
+        {
+            tbxDescuentoEnvase.Enabled = activar;
+            tbxCodEnvase.Enabled = activar;
+            
         }
 
         private void tbxDescuento_KeyPress(object sender, KeyPressEventArgs e)

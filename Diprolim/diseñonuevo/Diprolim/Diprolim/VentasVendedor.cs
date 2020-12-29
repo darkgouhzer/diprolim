@@ -1433,6 +1433,11 @@ namespace Diprolim
             //}
         }
 
+        public void CalcularDescuentosDistribuidor()
+        {
+
+        }
+
         public Boolean CreditoPendiente()
         {
             Boolean bAllOk = false;
@@ -2467,7 +2472,28 @@ namespace Diprolim
             }
 
         }
-        
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DescuentosBO objDescuentos = new DescuentosBO();
+            List<CArticulos> objListArticulos = new List<CArticulos>();
+            objListArticulos = listaProductos();
+            int ClienteID = Convert.ToInt32(tbxCCliente.Text);
+            objDescuentos.CalcularDescuentos(objListArticulos, ClienteID);
+        }
+
+        private List<CArticulos> listaProductos()
+        {
+            List<CArticulos> objListCArticulos = new List<CArticulos>();
+            ArticuloBO objArticuloBO = new ArticuloBO();
+            for ( int i= 0; i < tblEntradas.Rows.Count-1; i++)
+            {
+                CArticulos objCArticulos = new CArticulos();
+                objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value));
+                objListCArticulos.Add(objCArticulos);
+            }
+            return objListCArticulos;
+        }
         Boolean evitar = false;
         //metodo para distribuir abono en diferentes adeudos.
         public void disAbono(double abono)

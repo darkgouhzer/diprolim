@@ -285,11 +285,17 @@
     <Compile Include="CorteSucursal.Designer.cs">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
     </Compile>
-    <Compile Include="DescuentoCambioEnvase.cs">
+    <Compile Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DescuentoCambioEnvase.Designer.cs">
-      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
+    <Compile Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.Designer.cs">
+      <DependentUpon>ConsultaDescuentosPersonalizados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.Designer.cs">
+      <DependentUpon>DescuentosPersonalizados.cs</DependentUpon>
     </Compile>
     <Compile Include="DescuentosComision.cs">
       <SubType>Form</SubType>
@@ -786,8 +792,11 @@
     <EmbeddedResource Include="CorteSucursal.resx">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DescuentoCambioEnvase.resx">
-      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.resx">
+      <DependentUpon>ConsultaDescuentosPersonalizados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.resx">
+      <DependentUpon>DescuentosPersonalizados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DescuentosComision.resx">
       <DependentUpon>DescuentosComision.cs</DependentUpon>

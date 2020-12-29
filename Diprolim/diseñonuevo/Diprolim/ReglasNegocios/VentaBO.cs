@@ -64,5 +64,10 @@ namespace ReglasNegocios
         {
             return new VentaDAL().CancelarTicket(iFolioTicket);
         }
+
+        public int NoCompraCliente(int ClienteID)
+        {           
+            return new VentaDAL().NoCompraCliente(ClienteID);
+        }
     }
 }

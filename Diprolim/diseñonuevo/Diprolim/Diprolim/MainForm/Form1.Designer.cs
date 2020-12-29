@@ -100,6 +100,7 @@
             this.btnVentaRapida = new System.Windows.Forms.Button();
             this.btnPedidos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.descuentosDistribuidorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -372,7 +373,8 @@
             // 
             this.descuentoComisiónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.descuentoComisiónToolStripMenuItem2,
-            this.descuentoCambioEnvasesToolStripMenuItem1});
+            this.descuentoCambioEnvasesToolStripMenuItem1,
+            this.descuentosDistribuidorToolStripMenuItem});
             this.descuentoComisiónToolStripMenuItem.Image = global::Diprolim.Properties.Resources.descuentocomision;
             this.descuentoComisiónToolStripMenuItem.Name = "descuentoComisiónToolStripMenuItem";
             this.descuentoComisiónToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
@@ -384,7 +386,6 @@
             this.descuentoComisiónToolStripMenuItem2.Name = "descuentoComisiónToolStripMenuItem2";
             this.descuentoComisiónToolStripMenuItem2.Size = new System.Drawing.Size(257, 24);
             this.descuentoComisiónToolStripMenuItem2.Text = "Descuento comisión";
-            this.descuentoComisiónToolStripMenuItem2.Visible = false;
             this.descuentoComisiónToolStripMenuItem2.Click += new System.EventHandler(this.descuentoComisiónToolStripMenuItem2_Click);
             // 
             // descuentoCambioEnvasesToolStripMenuItem1
@@ -795,6 +796,13 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // descuentosDistribuidorToolStripMenuItem
+            // 
+            this.descuentosDistribuidorToolStripMenuItem.Name = "descuentosDistribuidorToolStripMenuItem";
+            this.descuentosDistribuidorToolStripMenuItem.Size = new System.Drawing.Size(257, 24);
+            this.descuentosDistribuidorToolStripMenuItem.Text = "Descuentos Distribuidor";
+            this.descuentosDistribuidorToolStripMenuItem.Click += new System.EventHandler(this.descuentosDistribuidorToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -900,6 +908,7 @@
         private System.Windows.Forms.ToolStripMenuItem familiasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem descripcionesToolStripMenuItem;
         private System.Windows.Forms.Button btnPedidos;
+        private System.Windows.Forms.ToolStripMenuItem descuentosDistribuidorToolStripMenuItem;
     }
 }
 

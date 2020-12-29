@@ -126,6 +126,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCredito)).BeginInit();
@@ -1040,12 +1041,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(995, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 246;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // VentasVendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1082, 640);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.rbtCredito);
             this.Controls.Add(this.rbtContado);
@@ -1185,5 +1197,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
         private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

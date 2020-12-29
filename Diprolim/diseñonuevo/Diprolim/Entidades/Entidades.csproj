@@ -56,7 +56,9 @@
     <Compile Include="CImpresora.cs" />
     <Compile Include="CPedidos.cs" />
     <Compile Include="CPedidosDetalle.cs" />
+    <Compile Include="CPresentaciones.cs" />
     <Compile Include="CVenta.cs" />
+    <Compile Include="CDescuentoCustom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

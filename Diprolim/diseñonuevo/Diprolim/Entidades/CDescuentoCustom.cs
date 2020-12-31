@@ -50,5 +50,12 @@ namespace Entidades
             get { return bActiva; }
             set { bActiva = value; }
         }
+
+        private double iCantidadAcumulada;
+        public double CantidadAcumulada
+        {
+            get { return iCantidadAcumulada; }
+            set { iCantidadAcumulada = value; }
+        }
     }
 }

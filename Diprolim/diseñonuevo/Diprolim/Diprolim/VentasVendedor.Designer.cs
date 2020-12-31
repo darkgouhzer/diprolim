@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasVendedor));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -35,29 +41,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasVendedor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbxNVendedor = new System.Windows.Forms.TextBox();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tblEntradas = new System.Windows.Forms.DataGridView();
-            this.seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvCodArtS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.n_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ETotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eidcategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.printDocContado = new System.Drawing.Printing.PrintDocument();
             this.printPrevContado = new System.Windows.Forms.PrintPreviewDialog();
             this.tbxNCliente = new System.Windows.Forms.TextBox();
@@ -127,6 +114,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvCodArtS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invVendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.n_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EVendidas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ETotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eidcategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCredito)).BeginInit();
@@ -199,119 +199,6 @@
             this.tblEntradas.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblEntradas_EditingControlShowing);
             this.tblEntradas.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.tblEntradas_SortCompare);
             this.tblEntradas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tblEntradas_KeyPress);
-            // 
-            // seleccionar
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "false";
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle1;
-            this.seleccionar.HeaderText = "";
-            this.seleccionar.Name = "seleccionar";
-            this.seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.seleccionar.Width = 30;
-            // 
-            // dgvCodArtS
-            // 
-            this.dgvCodArtS.HeaderText = "Código Artículo";
-            this.dgvCodArtS.Name = "dgvCodArtS";
-            this.dgvCodArtS.ReadOnly = true;
-            this.dgvCodArtS.Width = 70;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 280;
-            // 
-            // invVendedor
-            // 
-            this.invVendedor.HeaderText = "Inventario vendedor";
-            this.invVendedor.Name = "invVendedor";
-            this.invVendedor.ReadOnly = true;
-            this.invVendedor.Width = 80;
-            // 
-            // n_Entrada
-            // 
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle2;
-            this.n_Entrada.HeaderText = "Entradas";
-            this.n_Entrada.MaxInputLength = 9;
-            this.n_Entrada.Name = "n_Entrada";
-            this.n_Entrada.ReadOnly = true;
-            this.n_Entrada.Width = 80;
-            // 
-            // EVendidas
-            // 
-            dataGridViewCellStyle3.NullValue = null;
-            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle3;
-            this.EVendidas.HeaderText = "Cantidad Vendida";
-            this.EVendidas.MaxInputLength = 9;
-            this.EVendidas.Name = "EVendidas";
-            this.EVendidas.ReadOnly = true;
-            this.EVendidas.Width = 80;
-            // 
-            // EPrecio
-            // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle4;
-            this.EPrecio.HeaderText = "Precio";
-            this.EPrecio.Name = "EPrecio";
-            this.EPrecio.ReadOnly = true;
-            this.EPrecio.Width = 90;
-            // 
-            // Sub
-            // 
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Sub.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Sub.HeaderText = "SubTotal";
-            this.Sub.Name = "Sub";
-            this.Sub.ReadOnly = true;
-            // 
-            // EDescuento
-            // 
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle6;
-            this.EDescuento.HeaderText = "Descuento";
-            this.EDescuento.Name = "EDescuento";
-            this.EDescuento.ReadOnly = true;
-            this.EDescuento.Width = 90;
-            // 
-            // ETotal
-            // 
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ETotal.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ETotal.HeaderText = "Total";
-            this.ETotal.Name = "ETotal";
-            this.ETotal.ReadOnly = true;
-            this.ETotal.Width = 90;
-            // 
-            // CEmpleado
-            // 
-            this.CEmpleado.HeaderText = "CEmpleado";
-            this.CEmpleado.Name = "CEmpleado";
-            this.CEmpleado.ReadOnly = true;
-            this.CEmpleado.Visible = false;
-            // 
-            // PP
-            // 
-            this.PP.HeaderText = "PrecioProduccion";
-            this.PP.Name = "PP";
-            this.PP.ReadOnly = true;
-            this.PP.Visible = false;
-            // 
-            // Eidcategoria
-            // 
-            this.Eidcategoria.HeaderText = "Idcategorias";
-            this.Eidcategoria.Name = "Eidcategoria";
-            this.Eidcategoria.ReadOnly = true;
-            this.Eidcategoria.Visible = false;
             // 
             // printDocContado
             // 
@@ -1051,6 +938,118 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // seleccionar
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "false";
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle1;
+            this.seleccionar.HeaderText = "";
+            this.seleccionar.Name = "seleccionar";
+            this.seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.seleccionar.Width = 30;
+            // 
+            // dgvCodArtS
+            // 
+            this.dgvCodArtS.HeaderText = "Código Artículo";
+            this.dgvCodArtS.Name = "dgvCodArtS";
+            this.dgvCodArtS.ReadOnly = true;
+            this.dgvCodArtS.Width = 70;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 280;
+            // 
+            // invVendedor
+            // 
+            this.invVendedor.HeaderText = "Inventario vendedor";
+            this.invVendedor.Name = "invVendedor";
+            this.invVendedor.ReadOnly = true;
+            this.invVendedor.Width = 80;
+            // 
+            // n_Entrada
+            // 
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle2;
+            this.n_Entrada.HeaderText = "Entradas";
+            this.n_Entrada.MaxInputLength = 9;
+            this.n_Entrada.Name = "n_Entrada";
+            this.n_Entrada.ReadOnly = true;
+            this.n_Entrada.Width = 80;
+            // 
+            // EVendidas
+            // 
+            dataGridViewCellStyle3.NullValue = null;
+            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle3;
+            this.EVendidas.HeaderText = "Cantidad Vendida";
+            this.EVendidas.MaxInputLength = 9;
+            this.EVendidas.Name = "EVendidas";
+            this.EVendidas.ReadOnly = true;
+            this.EVendidas.Width = 80;
+            // 
+            // EPrecio
+            // 
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle4;
+            this.EPrecio.HeaderText = "Precio";
+            this.EPrecio.Name = "EPrecio";
+            this.EPrecio.ReadOnly = true;
+            this.EPrecio.Width = 90;
+            // 
+            // Sub
+            // 
+            dataGridViewCellStyle5.Format = "C2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Sub.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Sub.HeaderText = "SubTotal";
+            this.Sub.Name = "Sub";
+            this.Sub.ReadOnly = true;
+            // 
+            // EDescuento
+            // 
+            dataGridViewCellStyle6.Format = "C2";
+            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle6;
+            this.EDescuento.HeaderText = "Descuento";
+            this.EDescuento.Name = "EDescuento";
+            this.EDescuento.ReadOnly = true;
+            this.EDescuento.Width = 90;
+            // 
+            // ETotal
+            // 
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.ETotal.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ETotal.HeaderText = "Total";
+            this.ETotal.Name = "ETotal";
+            this.ETotal.ReadOnly = true;
+            this.ETotal.Width = 90;
+            // 
+            // CEmpleado
+            // 
+            this.CEmpleado.HeaderText = "CEmpleado";
+            this.CEmpleado.Name = "CEmpleado";
+            this.CEmpleado.ReadOnly = true;
+            this.CEmpleado.Visible = false;
+            // 
+            // PP
+            // 
+            this.PP.HeaderText = "PrecioProduccion";
+            this.PP.Name = "PP";
+            this.PP.ReadOnly = true;
+            this.PP.Visible = false;
+            // 
+            // Eidcategoria
+            // 
+            this.Eidcategoria.HeaderText = "Idcategorias";
+            this.Eidcategoria.Name = "Eidcategoria";
+            this.Eidcategoria.ReadOnly = true;
+            this.Eidcategoria.Visible = false;
+            // 
             // VentasVendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1182,6 +1181,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCodArtS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
@@ -1195,8 +1197,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
-        private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
     }
 }

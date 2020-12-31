@@ -108,6 +108,7 @@ namespace AccesoDatos
                     objCDescuentoCustom.CantidadMinima = Convert.ToInt32(row["cantidad_minima"]);
                     objCDescuentoCustom.Porcentaje = Convert.ToDouble(row["porcentaje"]);
                     objCDescuentoCustom.Activa  = Convert.ToBoolean(row["activa"]);
+                    objCDescuentoCustom.CantidadAcumulada = 0;
                     objListCDescuentosCustom.Add(objCDescuentoCustom);
                 }                
             }

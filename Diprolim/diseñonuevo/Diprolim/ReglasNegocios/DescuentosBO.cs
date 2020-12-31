@@ -59,7 +59,7 @@ namespace ReglasNegocios
             return objDescuentosDAL.ObtenerDescuentosACalcular(nCompra, iCantMin);
         }
 
-        public List<CArticulos> CalcularDescuentos(List<CArticulos> objListArticulos, int ClienteID)
+        public void CalcularDescuentos(ref List<CArticulos> objListArticulos, int ClienteID)
         {
             List<CDescuentoCustom> objListCDescuentoCustom = new List<CDescuentoCustom>();
             DescuentosDAL objDescuentosDAL = new DescuentosDAL();
@@ -70,12 +70,69 @@ namespace ReglasNegocios
 
             objListCDescuentoCustom = objDescuentosDAL.ObtenerTodosDescuentos(Convert.ToInt32(EnumActivoInactivo.Activas)).
                                         Where( obj => obj.NoCompra <= nCompraCliente).ToList<CDescuentoCustom>();
-
-
             
-            return objListArticulos;
+            //Llena las cantidades acumuladas para cada camapaña
+            foreach(CDescuentoCustom objCDescuentoCustom in objListCDescuentoCustom)
+            {
+                foreach(CArticulos objArticulos in objListArticulos)
+                {
+                    if (ValidarAplicaPresentacion(objArticulos.ValorMedida, objCDescuentoCustom.Presentaciones))
+                    {
+                        objCDescuentoCustom.CantidadAcumulada = objCDescuentoCustom.CantidadAcumulada + objArticulos.Cantidad;
+                    }
+                }
+              
+            }
+
+            //Descartar campañas que no cumplen el mínimo de compra
+            objListCDescuentoCustom.RemoveAll(x => x.CantidadMinima > x.CantidadAcumulada);
+
+            //Mantener campañas de diferentes presentaciones que tienen el mayor porcentaje
+            List<CDescuentoCustom> objListCDescuentoCustomAux = new List<CDescuentoCustom>();
+            objListCDescuentoCustomAux = objListCDescuentoCustom;
+            objListCDescuentoCustom = new List<CDescuentoCustom>();
+            foreach (CDescuentoCustom objCDescuentoCustomAux in objListCDescuentoCustomAux)
+            {
+                var firstElement = objListCDescuentoCustomAux.Where(d => d.Presentaciones == objCDescuentoCustomAux.Presentaciones).
+                                                OrderByDescending(x => x.NoCompra).ThenByDescending( x => x.Porcentaje).First();
+                if(objListCDescuentoCustom.Where( x=> x.CampanaID == firstElement.CampanaID).Count() == 0)
+                {
+                    objListCDescuentoCustom.Add(firstElement);
+                }
+               
+            }
+
+            //Asignar descuentos a productos 
+
+            foreach(CArticulos objArticulos in objListArticulos)
+            {
+                objArticulos.Descuento = 0;
+                try
+                {
+                    objArticulos.Descuento = objListCDescuentoCustom.Where(x => ObtenerPresentacionesSplit(x.Presentaciones).
+                                                                   Contains(objArticulos.ValorMedida.ToString())).First().Porcentaje;
+                }catch{}
+           
+            }
+
+
+            //return objListArticulos;
         }
 
+        public Boolean ValidarAplicaPresentacion(double ValorPresentacion, String sPresentaciones)
+        {
+            Boolean bAllOK = false;
+            List<String> listPresentaciones = ObtenerPresentacionesSplit(sPresentaciones);
+            foreach(String objPresentacion in listPresentaciones)
+            {
+                if(ValorPresentacion == Convert.ToDouble(objPresentacion))
+                {
+                    bAllOK = true;
+                }
+            }
+
+            return bAllOK;
+        }
        
     }
 }

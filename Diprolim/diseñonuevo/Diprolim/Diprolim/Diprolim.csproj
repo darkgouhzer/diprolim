@@ -1048,6 +1048,8 @@
     <None Include="Imagenes\efectivo42.png" />
     <None Include="Imagenes\scissors.png" />
     <None Include="Imagenes\scissors24.png" />
+    <None Include="Imagenes\iconos\discount24x24.png" />
+    <None Include="Imagenes\iconos\discount-comision32.png" />
     <Content Include="ParaConsignacion.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

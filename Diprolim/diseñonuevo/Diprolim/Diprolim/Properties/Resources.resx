@@ -232,8 +232,11 @@
   <data name="percent_98525" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\percent_98525.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pinol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pinol.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="venta1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\venta.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scissors24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\scissors24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo-Carritus-icono" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo-Carritus-icono.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,6 +295,9 @@
   <data name="search_page32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_page32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="discount24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\iconos\discount24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dIPROLIM" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dIPROLIM.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -343,8 +349,8 @@
   <data name="ENTRADAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ENTRADAS.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="venta1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\venta.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pinol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pinol.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="acuerdo42" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\acuerdo42.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -418,7 +424,7 @@
   <data name="inventory_categories" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventory_categories.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="scissors24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Imagenes\scissors24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="discount-comision32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\iconos\discount-comision32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

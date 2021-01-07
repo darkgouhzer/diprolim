@@ -1431,21 +1431,21 @@ namespace Diprolim
             //}
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            DescuentosBO objDescuentos = new DescuentosBO();
-            List<CArticulos> objListArticulos = new List<CArticulos>();
-            objListArticulos = listaProductos();
-            int ClienteID = Convert.ToInt32(tbxCCliente.Text);
-            objDescuentos.CalcularDescuentos(ref objListArticulos, ClienteID);
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
+        //    DescuentosBO objDescuentos = new DescuentosBO();
+        //    List<CArticulos> objListArticulos = new List<CArticulos>();
+        //    objListArticulos = listaProductos();
+        //    int ClienteID = Convert.ToInt32(tbxCCliente.Text);
+        //    objDescuentos.CalcularDescuentos(ref objListArticulos, ClienteID);
 
-            for (int i = 0; i < tblEntradas.Rows.Count - 1; i++)
-            {
-                double descuento = objListArticulos.Where(x => x.Codigo == Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value)).First().Descuento;
-                tblEntradas.Rows[i].Cells[8].Value = descuento;
-            }
-            tblEntradas.Refresh();
-        }
+        //    for (int i = 0; i < tblEntradas.Rows.Count - 1; i++)
+        //    {
+        //        double descuento = objListArticulos.Where(x => x.Codigo == Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value)).First().Descuento;
+        //        tblEntradas.Rows[i].Cells[8].Value = descuento;
+        //    }
+        //    tblEntradas.Refresh();
+        //}
 
         public void CalcularDescuentosDistribuidor()
         {

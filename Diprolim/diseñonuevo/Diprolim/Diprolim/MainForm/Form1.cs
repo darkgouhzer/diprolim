@@ -1,6 +1,7 @@
 ﻿using DevExpress.LookAndFeel;
 using DevExpress.XtraReports.UI;
 using Diprolim.MainForm;
+using Diprolim.MainForm.Catalogos.Descuentos;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -630,8 +631,8 @@ namespace Diprolim
 
         private void descuentoComisiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DescuentosComision objDescuentosComision = new DescuentosComision();
-            objDescuentosComision.ShowDialog();
+            //DescuentosComision objDescuentosComision = new DescuentosComision();
+            //objDescuentosComision.ShowDialog();
         }
 
         private void cobranzaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -667,7 +668,7 @@ namespace Diprolim
 
         private void descuentoCambioEnvasesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            DescuentoCambioEnvase objDescuentoCambioEnvase = new DescuentoCambioEnvase();
+            DescuentosPersonalizados objDescuentoCambioEnvase = new DescuentosPersonalizados();
             objDescuentoCambioEnvase.ShowDialog();
         }
 
@@ -693,6 +694,12 @@ namespace Diprolim
         {
             Pedidos objPedidos = new Pedidos();
             objPedidos.ShowDialog();
+        }
+
+        private void descuentosDistribuidorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Consulta_descuentos_personalizados objConsulta_descuentos_personalizados = new Consulta_descuentos_personalizados();
+            objConsulta_descuentos_personalizados.ShowDialog();
         }
     }
 }

@@ -751,9 +751,9 @@
             this.chkDescuentoComision.Location = new System.Drawing.Point(195, 375);
             this.chkDescuentoComision.Margin = new System.Windows.Forms.Padding(4);
             this.chkDescuentoComision.Name = "chkDescuentoComision";
-            this.chkDescuentoComision.Size = new System.Drawing.Size(163, 21);
+            this.chkDescuentoComision.Size = new System.Drawing.Size(111, 21);
             this.chkDescuentoComision.TabIndex = 247;
-            this.chkDescuentoComision.Text = "- Descuento comisión";
+            this.chkDescuentoComision.Text = "- Descuentos";
             this.chkDescuentoComision.UseVisualStyleBackColor = true;
             // 
             // chbxCajaRapida

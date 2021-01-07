@@ -69,7 +69,9 @@
     <Reference Include="ClaseUnica">
       <HintPath>..\..\..\..\..\ClaseUnica\ClaseUnica\ClaseUnica\bin\Debug\ClaseUnica.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\DevExpress\DXperience 13.1\Bin\Framework\DevExpress.Charts.v13.1.Core.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v13.1.Core, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -285,11 +287,17 @@
     <Compile Include="CorteSucursal.Designer.cs">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
     </Compile>
-    <Compile Include="DescuentoCambioEnvase.cs">
+    <Compile Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DescuentoCambioEnvase.Designer.cs">
-      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
+    <Compile Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.Designer.cs">
+      <DependentUpon>ConsultaDescuentosPersonalizados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.Designer.cs">
+      <DependentUpon>DescuentosPersonalizados.cs</DependentUpon>
     </Compile>
     <Compile Include="DescuentosComision.cs">
       <SubType>Form</SubType>
@@ -786,8 +794,11 @@
     <EmbeddedResource Include="CorteSucursal.resx">
       <DependentUpon>CorteSucursal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DescuentoCambioEnvase.resx">
-      <DependentUpon>DescuentoCambioEnvase.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm\Catalogos\Descuentos\ConsultaDescuentosPersonalizados.resx">
+      <DependentUpon>ConsultaDescuentosPersonalizados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\Catalogos\Descuentos\DescuentosPersonalizados.resx">
+      <DependentUpon>DescuentosPersonalizados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DescuentosComision.resx">
       <DependentUpon>DescuentosComision.cs</DependentUpon>
@@ -1037,6 +1048,8 @@
     <None Include="Imagenes\efectivo42.png" />
     <None Include="Imagenes\scissors.png" />
     <None Include="Imagenes\scissors24.png" />
+    <None Include="Imagenes\iconos\discount24x24.png" />
+    <None Include="Imagenes\iconos\discount-comision32.png" />
     <Content Include="ParaConsignacion.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

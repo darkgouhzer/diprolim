@@ -274,7 +274,6 @@
             // EDescuento
             // 
             dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
             this.EDescuento.DefaultCellStyle = dataGridViewCellStyle6;
             this.EDescuento.HeaderText = "Descuento";
             this.EDescuento.Name = "EDescuento";
@@ -1170,6 +1169,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCodArtS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
@@ -1183,7 +1184,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
-        private System.Windows.Forms.ToolStripMenuItem cancelaAbonoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pedidosPendientesToolStripMenuItem;
     }
 }

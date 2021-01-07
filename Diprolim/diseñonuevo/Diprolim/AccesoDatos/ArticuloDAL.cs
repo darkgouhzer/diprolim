@@ -272,5 +272,30 @@ namespace AccesoDatos
             return tblCantidad.Rows.Count;
         }
 
+        public List<CPresentaciones> ObtenerPresentaciones(int UnidadMedida)
+        {
+            List<CPresentaciones> objListCPresentaciones = new List<CPresentaciones>();
+            CPresentaciones objCPresentaciones = new CPresentaciones();
+            DataTable tblResult = new DataTable();
+
+            objConexion.Conectarse();
+            cmd = String.Format("call sp_obtenerPresentaciones({0});", UnidadMedida);
+            objConexion.Ejecutar(cmd, ref tblResult);
+            objConexion.Desconectarse();
+            if (tblResult.Rows.Count > 0)
+            {
+                foreach(DataRow row in tblResult.Rows)
+                {
+                    objCPresentaciones = new CPresentaciones();
+                    objCPresentaciones.ValorMedida = Convert.ToDouble(row["valor_medida"]);
+                    objCPresentaciones.Nombre = row["nombre"].ToString();
+                    objCPresentaciones.Simbolo = row["simbolo"].ToString();
+                    objListCPresentaciones.Add(objCPresentaciones);
+                }            
+            }
+            return objListCPresentaciones;
+        }
+
+
     }
 }

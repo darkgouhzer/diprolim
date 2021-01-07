@@ -31,6 +31,8 @@ namespace Diprolim
         string Fechaa = "";
         string UsuarioID = "";
         DateTime FFecha;
+        Boolean bAutorizacionDescDistribuidor = false, bAutorizar = true;
+
 
 
 
@@ -94,6 +96,8 @@ namespace Diprolim
                 rbtContado.Checked = true;
                 tbxVendedor.Enabled = true;
                 tbxVendedor.Focus();
+                bAutorizacionDescDistribuidor = false;
+                bAutorizar = true;
             }
         }
         public void resetControles()
@@ -495,15 +499,17 @@ namespace Diprolim
                     tblEntradas.Rows.Remove(row);
                 }
                 double Subtotal = 0;
-                double Descuento = 0,totales=0;
+                double totales=0;//Descuento = 0,
+
+             
                 
                 for (int i = 0; i < tblEntradas.Rows.Count; i++)
                 {
                     Subtotal += (Convert.ToDouble(tblEntradas[7, i].Value));
-                     Descuento += (Convert.ToDouble(tblEntradas[8, i].Value));
+                    // Descuento += (Convert.ToDouble(tblEntradas[8, i].Value));
                     totales += Convert.ToDouble(tblEntradas[9, i].Value);
                 }
-                tblEntradas.Rows.Add(true, "-", "-", "-", "-", "-", "Totales:", Subtotal, Descuento,totales);
+                tblEntradas.Rows.Add(true, "-", "-", "-", "-", "-", "Totales:", Subtotal, "-",totales);
                 tblEntradas[0, tblEntradas.Rows.Count - 1].ReadOnly = true;
             }
 
@@ -515,13 +521,21 @@ namespace Diprolim
             {
                 if (tblEntradas.Rows.Count > 0)
                 {
-                    double total = 0;
+                    double total = 0,subtotal=0, descuento=0;
                     for (int i = 0; i < tblEntradas.Rows.Count; i++)
                     {
                         if ((tblEntradas[6, i].Value).ToString() != "Totales:")
                         {
-                            total += (Convert.ToDouble(tblEntradas[5, i].Value) * Convert.ToDouble(tblEntradas[6, i].Value)) - Convert.ToDouble(tblEntradas[8, i].Value);
-                            //total += Convert.ToDouble(tblEntradas[8, i].Value);
+                            if(tblEntradas[8, i].Style.Format.ToString() == "0.00\\%")
+                            {
+                                subtotal = (Convert.ToDouble(tblEntradas[5, i].Value) * Convert.ToDouble(tblEntradas[6, i].Value));
+                                descuento =  (subtotal * (Convert.ToDouble(tblEntradas[8, i].Value) / 100));
+                                total += subtotal - descuento;
+                            }
+                            else
+                            {
+                                total += (Convert.ToDouble(tblEntradas[5, i].Value) * Convert.ToDouble(tblEntradas[6, i].Value)) - Convert.ToDouble(tblEntradas[8, i].Value);
+                            }
                         }
                     }
                     tbxSubtotal.Text = total.ToString();
@@ -645,7 +659,7 @@ namespace Diprolim
                                 if (Convert.ToDouble(tblEntradas[4, tblEntradas.CurrentRow.Index].Value) >= 0)
                                 {
                                     tblEntradas[5, e.RowIndex].Value = Convert.ToDouble(tblEntradas[3, e.RowIndex].Value) - Convert.ToDouble(tblEntradas[4, e.RowIndex].Value);
-                                    tblEntradas[8, e.RowIndex].Value = (Convert.ToDouble(tblEntradas[5, e.RowIndex].Value) * Convert.ToDouble(tblEntradas[6, e.RowIndex].Value)) - Convert.ToDouble(tblEntradas[7, e.RowIndex].Value);
+                                   //tblEntradas[8, e.RowIndex].Value = (Convert.ToDouble(tblEntradas[5, e.RowIndex].Value) * Convert.ToDouble(tblEntradas[6, e.RowIndex].Value)) - Convert.ToDouble(tblEntradas[7, e.RowIndex].Value);
 
                                 }
                                 else
@@ -1023,24 +1037,7 @@ namespace Diprolim
         }
         double PProduccion = 0;
         int Depa = 0;
-        public void obtenerProducto2()
-        {
-                //MySqlConnection conectar = conn.ObtenerConexion();
-                //MySqlCommand comando;
-                //comando = new MySqlCommand("SELECT departamento FROM articulos WHERE codigo =" +cod_art, conectar);
-                //conectar.Open();
-                //MySqlDataReader lector;
-                //lector = comando.ExecuteReader();
-                //while (lector.Read())
-                //{
-                   
-                //    Depa = lector.GetInt32(0);
-                    
-                //}
-                //conectar.Close();
-                
-            
-        }
+
         public void obtenerProducto()
         {
             if (tbxProducto.Text != "")
@@ -1179,9 +1176,9 @@ namespace Diprolim
                                 categoria = "9";
                                 
                             }
-                            if (tbxCCliente.Text.Length > 0)
+                            if (tbxCCliente.Text.Length > 0 && tbxCantidad.Text.Length>0 )
                             {
-                                if (aplicaDescuento())
+                                if (aplicaDescuento() && categoria == "7")
                                 {
                                     double precio = 0, descArticulo = 0;
                                     conectar = conn.ObtenerConexion();
@@ -1309,6 +1306,7 @@ namespace Diprolim
                             {
                                 sumaTotal();
                                 Totls();
+                                CalcularDescuentosDistribuidor();
                             }
                         }
                         #endregion
@@ -1433,6 +1431,71 @@ namespace Diprolim
             //}
         }
 
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
+        //    DescuentosBO objDescuentos = new DescuentosBO();
+        //    List<CArticulos> objListArticulos = new List<CArticulos>();
+        //    objListArticulos = listaProductos();
+        //    int ClienteID = Convert.ToInt32(tbxCCliente.Text);
+        //    objDescuentos.CalcularDescuentos(ref objListArticulos, ClienteID);
+
+        //    for (int i = 0; i < tblEntradas.Rows.Count - 1; i++)
+        //    {
+        //        double descuento = objListArticulos.Where(x => x.Codigo == Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value)).First().Descuento;
+        //        tblEntradas.Rows[i].Cells[8].Value = descuento;
+        //    }
+        //    tblEntradas.Refresh();
+        //}
+
+        public void CalcularDescuentosDistribuidor()
+        {
+            DescuentosBO objDescuentos = new DescuentosBO();
+            List<CArticulos> objListArticulos = new List<CArticulos>();
+
+            if (!bAutorizacionDescDistribuidor && bAutorizar)
+            {
+                string Respuesta = "";
+                inicioSesion id = new inicioSesion("", "Autorizar descuentos distribuidor");
+                DialogResult dr = id.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    bAutorizacionDescDistribuidor = true;
+                }
+                bAutorizar = false;
+            }
+           
+
+            if (bAutorizacionDescDistribuidor)
+            {
+                objListArticulos = listaProductos();
+                int ClienteID = Convert.ToInt32(tbxCCliente.Text);
+                objDescuentos.CalcularDescuentos(ref objListArticulos, ClienteID);
+                double total = 0, subtotal = 0;
+
+                for (int i = 0; i < tblEntradas.Rows.Count - 1; i++)
+                {
+                    try
+                    {
+                        double descuento = objListArticulos.Where(x => x.Codigo == Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value)).First().Descuento;
+                        tblEntradas.Rows[i].Cells[8].Value = descuento;
+                        if (descuento > 0)
+                        {
+                            tblEntradas.Rows[i].Cells[8].Style.Format = "0.00\\%";
+                            subtotal = Convert.ToDouble(tblEntradas.Rows[i].Cells[5].Value) * Convert.ToDouble(tblEntradas.Rows[i].Cells[6].Value);
+                            total = subtotal - (subtotal * (descuento / 100));
+                            tblEntradas.Rows[i].Cells[9].Value = total;
+                        }
+                    }
+                    catch { }
+
+                }
+
+                sumaTotal();
+                Totls();
+                tblEntradas.Refresh();
+            }          
+        }
+
         public Boolean CreditoPendiente()
         {
             Boolean bAllOk = false;
@@ -1551,6 +1614,8 @@ namespace Diprolim
             sumaTotal();
             panel1.Enabled = false;
             tbxCCliente.Focus();
+            bAutorizacionDescDistribuidor = false;
+            bAutorizar = true;
         }
 
         private void tbxCCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -1884,6 +1949,8 @@ namespace Diprolim
                         tbxIVA.Clear();
                         tbxTotal.Clear();
                         button5_Click(sender, e);
+                        bAutorizacionDescDistribuidor = false;
+                        bAutorizar = true;
                     }
                 }
                 else
@@ -2073,10 +2140,11 @@ namespace Diprolim
             tbxSubtotal.Clear();
             tbxIVA.Clear();
             tbxTotal.Clear();
-
-            //rbtnDistribuidor.Enabled = true;
+            
             tblEntradas.Visible = true;
             tblCredito.Visible = false;
+            bAutorizacionDescDistribuidor = false;
+            bAutorizar = true;
         }
         Boolean CreditoAutorizado = false;
         private void rbtCredito_CheckedChanged(object sender, EventArgs e)
@@ -2084,6 +2152,8 @@ namespace Diprolim
 
             Boolean bAllOk = false;
             CreditoAutorizado = true;
+            bAutorizacionDescDistribuidor = false;
+            bAutorizar = true;
             if (rbtCredito.Checked)
             {
                 bAllOk = CreditoPendiente();
@@ -2318,6 +2388,7 @@ namespace Diprolim
                     rbtContado.Checked = true;
                     rbtContado_CheckedChanged(sender, e);
                     CargarProductosPedidos(objCPedidos, iTipoCompra);
+                    CalcularDescuentosDistribuidor();
                 }
                 else if (iTipoCompra == 2)
                 {
@@ -2468,6 +2539,22 @@ namespace Diprolim
 
         }
         
+        private List<CArticulos> listaProductos()
+        {
+            List<CArticulos> objListCArticulos = new List<CArticulos>();
+            ArticuloBO objArticuloBO = new ArticuloBO();
+            for ( int i= 0; i < tblEntradas.Rows.Count-1; i++)
+            {
+                if(tblEntradas.Rows[i].Cells[12].Value.ToString() == "8"){
+                    CArticulos objCArticulos = new CArticulos();
+                    objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(tblEntradas.Rows[i].Cells[1].Value));
+                    objCArticulos.Cantidad = Convert.ToDouble(tblEntradas.Rows[i].Cells[5].Value);
+                    objListCArticulos.Add(objCArticulos);
+                }
+                
+            }
+            return objListCArticulos;
+        }
         Boolean evitar = false;
         //metodo para distribuir abono en diferentes adeudos.
         public void disAbono(double abono)

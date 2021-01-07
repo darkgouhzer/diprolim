@@ -101,5 +101,24 @@ namespace AccesoDatos
 
             return bAllOk;
         }
+
+        public int NoCompraCliente(int ClienteID)
+        {
+            int nCompra = 0;
+            DataTable dtRespuesta = new DataTable();
+           
+            objConexion.Conectarse();
+
+            cmd = String.Format("call sp_obtenerNumeroCompra({0});", ClienteID);
+            objConexion.Ejecutar(cmd, ref dtRespuesta);
+            objConexion.Desconectarse();
+            if(dtRespuesta.Rows.Count > 0)
+            {
+                DataRow row = dtRespuesta.Rows[0];
+                nCompra = Convert.ToInt32(row["compras"]);
+            }
+         
+            return nCompra;
+        }
     }
 }

@@ -129,5 +129,11 @@ namespace ReglasNegocios
            
             return bAllOk;
         }
+
+        public List<CPresentaciones> ObtenerPresentaciones(int UnidadMedida)
+        {
+            ArticuloDAL objArticuloDAL = new ArticuloDAL();
+            return objArticuloDAL.ObtenerPresentaciones(UnidadMedida);
+        }
     }
 }

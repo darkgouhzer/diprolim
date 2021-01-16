@@ -353,7 +353,7 @@ namespace Diprolim
                                                                 cbxLocalidades.SelectedValue);
                         if (Conexion.Ejecutar(comando))
                         {                            
-                            comando = String.Format("UPDATE ventas SET empleados_id_empleado={0} WHERE clientes_idclientes={1} AND pendiente>0;", tbxVendedor.Text, tbxID.Text);
+                            comando = string.Format("UPDATE ventas SET empleados_id_empleado={0} WHERE clientes_idclientes={1} and empleados_id_empleado <> {0}", tbxVendedor.Text, tbxID.Text);
                             Conexion.Ejecutar(comando);
                             Conexion.FinTransaccion(bAllOK);
                             MessageBox.Show("Modificado con éxito");  

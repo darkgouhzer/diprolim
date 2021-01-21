@@ -160,9 +160,14 @@ namespace Diprolim
             {
                 if(CampanaID > 0)
                 {
-                    objDescuentosBO.EliminarDescuentoCustom(CampanaID);
-                    MessageBox.Show("Campaña eliminada con éxito.");
-                    this.Close();
+                    DialogResult rs = MessageBox.Show("¿Deseas eliminar esta camapaña?", "Eliminar campaña", MessageBoxButtons.YesNo);
+                    if(rs == DialogResult.Yes)
+                    {
+                        objDescuentosBO.EliminarDescuentoCustom(CampanaID);
+                        MessageBox.Show("Campaña eliminada con éxito.");
+                        this.Close();
+                    }
+                    
                 }else
                 {
                     MessageBox.Show("No es posible eliminar campaña no guardada.");

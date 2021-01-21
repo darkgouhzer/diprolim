@@ -276,7 +276,7 @@
             this.MinimizeBox = false;
             this.Name = "DescuentosPersonalizados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Descuentos Personalizados";
+            this.Text = "Descuentos distribuidor";
             this.Load += new System.EventHandler(this.DescuentosPersonalizados_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DescuentosPersonalizados_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPresentaciones)).EndInit();

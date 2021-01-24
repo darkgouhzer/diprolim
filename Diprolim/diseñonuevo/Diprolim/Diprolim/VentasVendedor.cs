@@ -1446,22 +1446,38 @@ namespace Diprolim
         //    }
         //    tblEntradas.Refresh();
         //}
+        public Boolean ValidarHayProductosDistribuidor()
+        {
+            Boolean bHayProductos = false;
+            List<CArticulos> objListArticulos = new List<CArticulos>();
+            objListArticulos = listaProductos();
 
+            if (objListArticulos.Count > 0)
+            {
+                bHayProductos = true;
+            }
+            return bHayProductos;
+        }
         public void CalcularDescuentosDistribuidor()
         {
             DescuentosBO objDescuentos = new DescuentosBO();
             List<CArticulos> objListArticulos = new List<CArticulos>();
 
+            Boolean  bHayProductos = ValidarHayProductosDistribuidor();
+
             if (!bAutorizacionDescDistribuidor && bAutorizar)
             {
-                string Respuesta = "";
-                inicioSesion id = new inicioSesion("", "Autorizar descuentos distribuidor");
-                DialogResult dr = id.ShowDialog();
-                if (dr == DialogResult.OK)
+                if (bHayProductos)
                 {
-                    bAutorizacionDescDistribuidor = true;
-                }
-                bAutorizar = false;
+                    string Respuesta = "";
+                    inicioSesion id = new inicioSesion("", "Autorizar descuentos distribuidor");
+                    DialogResult dr = id.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        bAutorizacionDescDistribuidor = true;
+                    }
+                    bAutorizar = false;
+                }             
             }
            
 

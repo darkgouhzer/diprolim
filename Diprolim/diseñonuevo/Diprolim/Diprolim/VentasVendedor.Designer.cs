@@ -41,6 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbxNVendedor = new System.Windows.Forms.TextBox();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -89,18 +90,6 @@
             this.rbtnDistribuidor = new System.Windows.Forms.RadioButton();
             this.chbxIVa = new System.Windows.Forms.CheckBox();
             this.tblCredito = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tblCrCodArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrPendiente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrCEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrPrecioProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCrInvAnterior = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblCridcategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rbtContado = new System.Windows.Forms.RadioButton();
             this.rbtCredito = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
@@ -126,6 +115,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tblCrCodArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrPendiente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrCEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrPrecioProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCrInvAnterior = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblCridcategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblCredito)).BeginInit();
@@ -674,6 +677,8 @@
             this.tblCrDesc,
             this.tblCrCantidad,
             this.tblCrPrecio,
+            this.colSubtotal,
+            this.colDescuento,
             this.tblCrTotal,
             this.tblCrAbono,
             this.tblCrPendiente,
@@ -684,7 +689,7 @@
             this.tblCredito.Location = new System.Drawing.Point(19, 226);
             this.tblCredito.Margin = new System.Windows.Forms.Padding(4);
             this.tblCredito.Name = "tblCredito";
-            this.tblCredito.Size = new System.Drawing.Size(944, 277);
+            this.tblCredito.Size = new System.Drawing.Size(1049, 277);
             this.tblCredito.TabIndex = 222;
             this.tblCredito.Visible = false;
             this.tblCredito.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCredito_CellEndEdit);
@@ -693,105 +698,6 @@
             this.tblCredito.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblCredito_EditingControlShowing);
             this.tblCredito.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.tblCredito_SortCompare);
             this.tblCredito.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tblCredito_KeyPress);
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = "false";
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewCheckBoxColumn1.HeaderText = "";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.Width = 30;
-            // 
-            // tblCrCodArt
-            // 
-            this.tblCrCodArt.HeaderText = "Código Artículo";
-            this.tblCrCodArt.Name = "tblCrCodArt";
-            this.tblCrCodArt.ReadOnly = true;
-            this.tblCrCodArt.Width = 70;
-            // 
-            // tblCrDesc
-            // 
-            this.tblCrDesc.HeaderText = "Descripción";
-            this.tblCrDesc.Name = "tblCrDesc";
-            this.tblCrDesc.ReadOnly = true;
-            this.tblCrDesc.Width = 280;
-            // 
-            // tblCrCantidad
-            // 
-            this.tblCrCantidad.HeaderText = "Cantidad";
-            this.tblCrCantidad.Name = "tblCrCantidad";
-            this.tblCrCantidad.ReadOnly = true;
-            this.tblCrCantidad.Width = 80;
-            // 
-            // tblCrPrecio
-            // 
-            dataGridViewCellStyle9.Format = "C2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle9;
-            this.tblCrPrecio.HeaderText = "Precio";
-            this.tblCrPrecio.MaxInputLength = 9;
-            this.tblCrPrecio.Name = "tblCrPrecio";
-            this.tblCrPrecio.ReadOnly = true;
-            this.tblCrPrecio.Width = 80;
-            // 
-            // tblCrTotal
-            // 
-            dataGridViewCellStyle10.Format = "C2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle10;
-            this.tblCrTotal.HeaderText = "Total";
-            this.tblCrTotal.MaxInputLength = 9;
-            this.tblCrTotal.Name = "tblCrTotal";
-            this.tblCrTotal.ReadOnly = true;
-            this.tblCrTotal.Width = 80;
-            // 
-            // tblCrAbono
-            // 
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle11;
-            this.tblCrAbono.HeaderText = "Abono";
-            this.tblCrAbono.MaxInputLength = 8;
-            this.tblCrAbono.Name = "tblCrAbono";
-            this.tblCrAbono.Width = 90;
-            // 
-            // tblCrPendiente
-            // 
-            dataGridViewCellStyle12.Format = "C2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle12;
-            this.tblCrPendiente.HeaderText = "Pendiente";
-            this.tblCrPendiente.Name = "tblCrPendiente";
-            this.tblCrPendiente.ReadOnly = true;
-            this.tblCrPendiente.Width = 90;
-            // 
-            // tblCrCEmpleado
-            // 
-            this.tblCrCEmpleado.HeaderText = "CEmpleado";
-            this.tblCrCEmpleado.Name = "tblCrCEmpleado";
-            this.tblCrCEmpleado.ReadOnly = true;
-            this.tblCrCEmpleado.Visible = false;
-            // 
-            // tblCrPrecioProd
-            // 
-            this.tblCrPrecioProd.HeaderText = "Precioproduccion";
-            this.tblCrPrecioProd.Name = "tblCrPrecioProd";
-            this.tblCrPrecioProd.Visible = false;
-            // 
-            // tblCrInvAnterior
-            // 
-            this.tblCrInvAnterior.HeaderText = "inventario anterior";
-            this.tblCrInvAnterior.Name = "tblCrInvAnterior";
-            this.tblCrInvAnterior.Visible = false;
-            // 
-            // tblCridcategoria
-            // 
-            this.tblCridcategoria.HeaderText = "Idcategoria";
-            this.tblCridcategoria.Name = "tblCridcategoria";
-            this.tblCridcategoria.ReadOnly = true;
-            this.tblCridcategoria.Visible = false;
             // 
             // rbtContado
             // 
@@ -1039,6 +945,120 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos:";
             // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.NullValue = "false";
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 30;
+            // 
+            // tblCrCodArt
+            // 
+            this.tblCrCodArt.HeaderText = "Código Artículo";
+            this.tblCrCodArt.Name = "tblCrCodArt";
+            this.tblCrCodArt.ReadOnly = true;
+            this.tblCrCodArt.Width = 70;
+            // 
+            // tblCrDesc
+            // 
+            this.tblCrDesc.HeaderText = "Descripción";
+            this.tblCrDesc.Name = "tblCrDesc";
+            this.tblCrDesc.ReadOnly = true;
+            this.tblCrDesc.Width = 280;
+            // 
+            // tblCrCantidad
+            // 
+            this.tblCrCantidad.HeaderText = "Cantidad";
+            this.tblCrCantidad.Name = "tblCrCantidad";
+            this.tblCrCantidad.ReadOnly = true;
+            this.tblCrCantidad.Width = 80;
+            // 
+            // tblCrPrecio
+            // 
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle9;
+            this.tblCrPrecio.HeaderText = "Precio";
+            this.tblCrPrecio.MaxInputLength = 9;
+            this.tblCrPrecio.Name = "tblCrPrecio";
+            this.tblCrPrecio.ReadOnly = true;
+            this.tblCrPrecio.Width = 80;
+            // 
+            // colSubtotal
+            // 
+            dataGridViewCellStyle10.Format = "C2";
+            this.colSubtotal.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colSubtotal.HeaderText = "SubTotal";
+            this.colSubtotal.Name = "colSubtotal";
+            this.colSubtotal.Width = 80;
+            // 
+            // colDescuento
+            // 
+            this.colDescuento.HeaderText = "Descuento";
+            this.colDescuento.Name = "colDescuento";
+            this.colDescuento.ReadOnly = true;
+            this.colDescuento.Width = 80;
+            // 
+            // tblCrTotal
+            // 
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle11;
+            this.tblCrTotal.HeaderText = "Total";
+            this.tblCrTotal.MaxInputLength = 9;
+            this.tblCrTotal.Name = "tblCrTotal";
+            this.tblCrTotal.ReadOnly = true;
+            this.tblCrTotal.Width = 80;
+            // 
+            // tblCrAbono
+            // 
+            dataGridViewCellStyle12.Format = "C2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle12;
+            this.tblCrAbono.HeaderText = "Abono";
+            this.tblCrAbono.MaxInputLength = 8;
+            this.tblCrAbono.Name = "tblCrAbono";
+            this.tblCrAbono.Width = 90;
+            // 
+            // tblCrPendiente
+            // 
+            dataGridViewCellStyle13.Format = "C2";
+            dataGridViewCellStyle13.NullValue = null;
+            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle13;
+            this.tblCrPendiente.HeaderText = "Pendiente";
+            this.tblCrPendiente.Name = "tblCrPendiente";
+            this.tblCrPendiente.ReadOnly = true;
+            this.tblCrPendiente.Width = 90;
+            // 
+            // tblCrCEmpleado
+            // 
+            this.tblCrCEmpleado.HeaderText = "CEmpleado";
+            this.tblCrCEmpleado.Name = "tblCrCEmpleado";
+            this.tblCrCEmpleado.ReadOnly = true;
+            this.tblCrCEmpleado.Visible = false;
+            // 
+            // tblCrPrecioProd
+            // 
+            this.tblCrPrecioProd.HeaderText = "Precioproduccion";
+            this.tblCrPrecioProd.Name = "tblCrPrecioProd";
+            this.tblCrPrecioProd.Visible = false;
+            // 
+            // tblCrInvAnterior
+            // 
+            this.tblCrInvAnterior.HeaderText = "inventario anterior";
+            this.tblCrInvAnterior.Name = "tblCrInvAnterior";
+            this.tblCrInvAnterior.Visible = false;
+            // 
+            // tblCridcategoria
+            // 
+            this.tblCridcategoria.HeaderText = "Idcategoria";
+            this.tblCridcategoria.Name = "tblCridcategoria";
+            this.tblCridcategoria.ReadOnly = true;
+            this.tblCridcategoria.Visible = false;
+            // 
             // VentasVendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1068,8 +1088,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tblEntradas);
             this.Controls.Add(this.tblCredito);
+            this.Controls.Add(this.tblEntradas);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1144,18 +1164,6 @@
         private System.Windows.Forms.TextBox tbxSubtotal;
         private System.Drawing.Printing.PrintDocument printDocCredito;
         private System.Windows.Forms.PrintPreviewDialog printPrevCredito;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCodArt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrAbono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPendiente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecioProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrInvAnterior;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCridcategoria;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox tbxCreditoRestante;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -1184,5 +1192,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCodArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSubtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrAbono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPendiente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecioProd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrInvAnterior;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCridcategoria;
     }
 }

@@ -566,17 +566,17 @@ namespace Diprolim
                     double total = 0, abono = 0, pendiente = 0,totaliva=0, pDescuento = 0;
                     for (int i = 0; i < tblCredito.Rows.Count-1; i++)
                     {
-                        totaliva += Convert.ToDouble(tblCredito[6, i].Value);// (Convert.ToDouble(tblCredito[3, i].Value)*Convert.ToDouble(tblCredito[4, i].Value));
-                        total += Convert.ToDouble(tblCredito[6, i].Value);
-                        abono += Convert.ToDouble(tblCredito[7, i].Value);
-                        pendiente += Convert.ToDouble(tblCredito[8, i].Value);
+                        totaliva += Convert.ToDouble(tblCredito[7, i].Value);// (Convert.ToDouble(tblCredito[3, i].Value)*Convert.ToDouble(tblCredito[4, i].Value));
+                        total += Convert.ToDouble(tblCredito[7, i].Value);
+                        abono += Convert.ToDouble(tblCredito[8, i].Value);
+                        pendiente += Convert.ToDouble(tblCredito[9, i].Value);
                     }
                     evitar = true;
-                    tblCredito[6, tblCredito.Rows.Count - 1].Value = total;
+                    tblCredito[7, tblCredito.Rows.Count - 1].Value = total;
                     evitar = true;
-                    tblCredito[7, tblCredito.Rows.Count - 1].Value = abono;
+                    tblCredito[8, tblCredito.Rows.Count - 1].Value = abono;
                     evitar = true;
-                    tblCredito[8, tblCredito.Rows.Count - 1].Value = pendiente;
+                    tblCredito[9, tblCredito.Rows.Count - 1].Value = pendiente;
 
                     tbxSubtotal.Text = totaliva.ToString();
                     if (chbxIVa.Checked)
@@ -1384,7 +1384,8 @@ namespace Diprolim
                                                         categoria = "10";
                                                     }
                                                     tblCredito.Rows.Insert(tblCredito.Rows.Count - 1, false, lector.GetString(0), lector.GetString(1) + " " +
-                                                        lector.GetString(2) + " " + lector.GetString(3), Convert.ToDouble(tbxCantidad.Text), lector.GetDouble(5), 0, total, 0, total, tbxVendedor.Text, PProduccion, lector.GetDouble(4), categoria);
+                                                        lector.GetString(2) + " " + lector.GetString(3), Convert.ToDouble(tbxCantidad.Text), lector.GetDouble(5), total, 0,
+                                                        total, 0, total, tbxVendedor.Text, PProduccion, lector.GetDouble(4), categoria);
                                                     tbxProducto.Clear();
                                                     tbxCantidad.Clear();
                                                     tbxNombre.Clear();
@@ -1502,13 +1503,13 @@ namespace Diprolim
                         try
                         {
                             double descuento = objListArticulos.Where(x => x.Codigo == Convert.ToInt32(tblCredito.Rows[i].Cells[1].Value)).First().Descuento;
-                            tblCredito.Rows[i].Cells[5].Value = descuento;
+                            tblCredito.Rows[i].Cells[6].Value = descuento;
                             if (descuento > 0)
                             {
-                                tblCredito.Rows[i].Cells[5].Style.Format = "0.00\\%";
+                                tblCredito.Rows[i].Cells[6].Style.Format = "0.00\\%";
                                 subtotal = Convert.ToDouble(tblCredito.Rows[i].Cells[3].Value) * Convert.ToDouble(tblCredito.Rows[i].Cells[4].Value);
                                 total = subtotal - (subtotal * (descuento / 100));
-                                tblCredito.Rows[i].Cells[6].Value = total;
+                                tblCredito.Rows[i].Cells[7].Value = total;
                                 iProductosDescDistribuidor++;
                             }
                         }
@@ -2021,16 +2022,16 @@ namespace Diprolim
                                 {
                                     cod_empleado = tbxVendedor.Text;
                                     cod_art = tblCredito[1, i].Value.ToString();
-                                    inv_anterior = tblCredito[11, i].Value.ToString();
-                                    n_entradas = (Convert.ToDouble(tblCredito[11, i].Value) - Convert.ToDouble(tblCredito[3, i].Value)).ToString();
+                                    inv_anterior = tblCredito[12, i].Value.ToString();
+                                    n_entradas = (Convert.ToDouble(tblCredito[12, i].Value) - Convert.ToDouble(tblCredito[3, i].Value)).ToString();
                                     n_venta = tblCredito[3, i].Value.ToString();
-                                    costoP = Convert.ToDouble(tblCredito[10, i].Value);
+                                    costoP = Convert.ToDouble(tblCredito[11, i].Value);
                                     precio_A = Convert.ToDouble(tblCredito[4, i].Value);
-                                    descuento = Convert.ToDouble(tblCredito[5, i].Value.ToString());
+                                    descuento = Convert.ToDouble(tblCredito[6, i].Value.ToString());
 
-                                    importe = tblCredito[6, i].Value.ToString(); //(Convert.ToDouble(n_venta) * precio_A).ToString();
-                                    abono = tblCredito[7, i].Value.ToString();
-                                    pendiente = tblCredito[8, i].Value.ToString();
+                                    importe = tblCredito[7, i].Value.ToString(); //(Convert.ToDouble(n_venta) * precio_A).ToString();
+                                    abono = tblCredito[8, i].Value.ToString();
+                                    pendiente = tblCredito[9, i].Value.ToString();
 
                                     verificarYEliminar();
                                     bAllOK = Conexion.Ejecutar("INSERT INTO entradas values(null," + n_entradas + ",'" + dtpFecha.Value.ToString("yyyyMMdd") + "'," + cod_empleado + "," + cod_art + "," + inv_anterior + ")");
@@ -2118,7 +2119,7 @@ namespace Diprolim
                                         }
                                         bAllOK = Conexion.Ejecutar("INSERT INTO ventas(empleados_id_empleado,clientes_idclientes,categorias_idcategorias,articulos_codigo," +
                                             "precio_art,cantidad,importe,fecha_venta,comision,Costo_Produccion,iva,tipo_compra,folio,pendiente,Descuento) values(" +
-                                            cod_empleado + "," + idCliente + "," + tblCredito[12, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe +
+                                            cod_empleado + "," + idCliente + "," + tblCredito[13, i].Value + "," + cod_art + "," + precio_A + "," + n_venta + "," + importe +
                                             "," + Fechaa + "," + comision + "," + costoP + "," + iva + ",'credito'," + nuevoFolio + "," + pendiente + "," + descuento + ")");
 
                                         if (Convert.ToDouble(abono) > 0)
@@ -2138,7 +2139,7 @@ namespace Diprolim
                                     objPedidos.FolioPedido = 0;
                                 }
                                 tblCredito.Rows.Clear();
-                                tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
+                                tblCredito.Rows.Add(false, "-", "-", "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
                                 tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
                                 tbxSubtotal.Clear();
                                 tbxIVA.Clear();
@@ -2251,7 +2252,7 @@ namespace Diprolim
                 tbxIVA.Clear();
                 tbxTotal.Clear();
                 
-                tblCredito.Rows.Add(false, "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
+                tblCredito.Rows.Add(false, "-", "-", "-", "-", "-", "Total", 0, 0, 0, 0, 0, 0);
                 tblCredito[0, tblCredito.Rows.Count - 1].ReadOnly = true;
                 tblCredito.Rows[tblCredito.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGray;
                 tblCredito.Visible = true;
@@ -2266,7 +2267,7 @@ namespace Diprolim
 
         private void tblCredito_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (tblCredito.CurrentCell.ColumnIndex == 7)
+            if (tblCredito.CurrentCell.ColumnIndex == 8)
             {
                 if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
                 {
@@ -2310,16 +2311,16 @@ namespace Diprolim
             n = 0;
             if (tblCredito.Rows.Count > 1)
             {
-                if (tblCredito[7, e.RowIndex].Value.ToString().Replace('$', ' ').Trim() == "" || tblCredito[7, e.RowIndex].Value.ToString().Replace('$', ' ').Trim() == ".")
+                if (tblCredito[8, e.RowIndex].Value.ToString().Replace('$', ' ').Trim() == "" || tblCredito[8, e.RowIndex].Value.ToString().Replace('$', ' ').Trim() == ".")
                 {                  
-                    tblCredito[7, e.RowIndex].Value = 0.00;
+                    tblCredito[8, e.RowIndex].Value = 0.00;
                 }
                 else
                 {
                     n = 0;
-                    for (int i = 0; i < tblCredito[7, e.RowIndex].Value.ToString().Length; i++)
+                    for (int i = 0; i < tblCredito[8, e.RowIndex].Value.ToString().Length; i++)
                     {
-                        if (tblCredito[7, e.RowIndex].Value.ToString().Substring(i, 1) == ".")
+                        if (tblCredito[8, e.RowIndex].Value.ToString().Substring(i, 1) == ".")
                         {
                             n++;
                         }
@@ -2327,14 +2328,14 @@ namespace Diprolim
                     }
                     if (n > 1)
                     {
-                        tblCredito[7, e.RowIndex].Value = 0.00;
+                        tblCredito[8, e.RowIndex].Value = 0.00;
                     }
-                    tblCredito[7, e.RowIndex].Value = Convert.ToDouble(tblCredito[7, e.RowIndex].Value.ToString().Replace('$', ' ').Trim());
+                    tblCredito[8, e.RowIndex].Value = Convert.ToDouble(tblCredito[8, e.RowIndex].Value.ToString().Replace('$', ' ').Trim());
                 }
                  n = 0;
-                for (int i = 0; i < tblCredito[7, e.RowIndex].Value.ToString().Length; i++)
+                for (int i = 0; i < tblCredito[8, e.RowIndex].Value.ToString().Length; i++)
                 {
-                    if (tblCredito[7, e.RowIndex].Value.ToString().Substring(i, 1) == ".")
+                    if (tblCredito[8, e.RowIndex].Value.ToString().Substring(i, 1) == ".")
                     {
                         n++;
                     }
@@ -2342,63 +2343,63 @@ namespace Diprolim
                 }
                 if (n < 2)
                 {
-                    if (tblCredito[7, e.RowIndex].Value.ToString().Equals("."))
+                    if (tblCredito[8, e.RowIndex].Value.ToString().Equals("."))
                     {
-                        tblCredito[7, e.RowIndex].Value = Convert.ToDouble(0.00);
-                        tblCredito[8, e.RowIndex].Value = tblCredito[5, e.RowIndex].Value;
+                        tblCredito[8, e.RowIndex].Value = Convert.ToDouble(0.00);
+                        tblCredito[9, e.RowIndex].Value = tblCredito[5, e.RowIndex].Value;
                     }
                     else
                     {
-                        tblCredito[7, e.RowIndex].Value = Convert.ToDouble(tblCredito[7, e.RowIndex].Value);
-                        if (e.RowIndex == tblCredito.Rows.Count - 1 && Convert.ToDouble(tblCredito[7, e.RowIndex].Value) <= Convert.ToDouble(tblCredito[6, e.RowIndex].Value))
+                        tblCredito[8, e.RowIndex].Value = Convert.ToDouble(tblCredito[8, e.RowIndex].Value);
+                        if (e.RowIndex == tblCredito.Rows.Count - 1 && Convert.ToDouble(tblCredito[8, e.RowIndex].Value) <= Convert.ToDouble(tblCredito[7, e.RowIndex].Value))
                         {
                             if (!evitar)
                             {
-                                disAbono(Convert.ToDouble(tblCredito[7, e.RowIndex].Value));
+                                disAbono(Convert.ToDouble(tblCredito[8, e.RowIndex].Value));
 
                             }
                             //  tblCredito[6, e.RowIndex].Value = 0.00;
                         }
-                        if (Convert.ToDouble(tblCredito[6, e.RowIndex].Value) >= Convert.ToDouble(tblCredito[7, e.RowIndex].Value))
+                        if (Convert.ToDouble(tblCredito[7, e.RowIndex].Value) >= Convert.ToDouble(tblCredito[7, e.RowIndex].Value))
                         {
                             if (Convert.ToDouble(tblCredito[7, e.RowIndex].Value) >= 0)
                             {
                                 if (tblCredito.Rows[e.RowIndex].Index < tblCredito.Rows.Count - 1)
                                 {
                                     double subtotal = 0, pDescuento = 0;
-                                    pDescuento = (Convert.ToDouble(tblCredito[5, e.RowIndex].Value) / 100);
+                                    pDescuento = (Convert.ToDouble(tblCredito[6, e.RowIndex].Value) / 100);
                                     if (chbxIVa.Checked)
                                     {
                                         subtotal = (Convert.ToDouble(tblCredito[3, e.RowIndex].Value) * Convert.ToDouble(tblCredito[4, e.RowIndex].Value));                                       
-                                        tblCredito[6, e.RowIndex].Value = subtotal - (subtotal* pDescuento);
+                                        tblCredito[7, e.RowIndex].Value = subtotal - (subtotal* pDescuento);
                                       
                                     }
                                     else
                                     {
                                         subtotal = (Convert.ToDouble(tblCredito[3, e.RowIndex].Value) * Convert.ToDouble(tblCredito[4, e.RowIndex].Value));
-                                        tblCredito[6, e.RowIndex].Value = subtotal - (subtotal * pDescuento);
+                                        tblCredito[7, e.RowIndex].Value = subtotal - (subtotal * pDescuento);
                                     }
                                     // tblCredito[5, e.RowIndex].Value = Convert.ToDouble(tblCredito[3, e.RowIndex].Value) - Convert.ToDouble(tblCredito[4, e.RowIndex].Value);
-                                    tblCredito[8, e.RowIndex].Value = Convert.ToDouble(tblCredito[6, e.RowIndex].Value) - Convert.ToDouble(tblCredito[7, e.RowIndex].Value);
+                                    tblCredito[9, e.RowIndex].Value = Convert.ToDouble(tblCredito[7, e.RowIndex].Value) - Convert.ToDouble(tblCredito[8, e.RowIndex].Value);
                                 }
                             }
                             else
                             {
                                 MessageBox.Show("No se puede ingresar números negativos");
-                                tblCredito[7, e.RowIndex].Value = 0.00;
+                                tblCredito[8, e.RowIndex].Value = 0.00;
                             }
                         }
                         else
                         {
                             MessageBox.Show("El abono a ingresar no puede ser mayor que el total.");
-                            tblCredito[7, e.RowIndex].Value = 0.00;
+                            tblCredito[8, e.RowIndex].Value = 0.00;
                         }
                     }
                 }
                 else
                 {
                     MessageBox.Show("Solo puede agregar 1 punto decimal");
-                    tblCredito[7, e.RowIndex].Value = 0.00;
+                    tblCredito[8, e.RowIndex].Value = 0.00;
                 }
                 //sumaTotal();
             }
@@ -2565,7 +2566,7 @@ namespace Diprolim
                             categoria = "10";
                         }
                         tblCredito.Rows.Insert(tblCredito.Rows.Count - 1, false, objCArticulos.Codigo, objCArticulos.Descripcion + " " +
-                                            objCArticulos.ValorMedida + " " + objCArticulos.UnidadMedida, PedidoDetalle.Cantidad, precio_cliente, 0, 
+                                            objCArticulos.ValorMedida + " " + objCArticulos.UnidadMedida, PedidoDetalle.Cantidad, precio_cliente, total, 0, 
                                            total, 0, total, tbxVendedor.Text, objCArticulos.PrecioProduccion, InvetarioEmpleado, categoria);
                     }
                     else
@@ -2610,7 +2611,7 @@ namespace Diprolim
             {
                 for (int i = 0; i < tblCredito.Rows.Count - 1; i++)
                 {
-                    if (tblCredito.Rows[i].Cells[12].Value.ToString() == "8")
+                    if (tblCredito.Rows[i].Cells[13].Value.ToString() == "8")
                     {
                         CArticulos objCArticulos = new CArticulos();
                         objCArticulos = objArticuloBO.ObtenerDatosArticulo(Convert.ToInt32(tblCredito.Rows[i].Cells[1].Value));
@@ -2632,22 +2633,22 @@ namespace Diprolim
             for (int i = 0; i < tblCredito.Rows.Count - 1; i++)
             {
 
-                if (resto >= Convert.ToDouble(tblCredito[6, i].Value))
+                if (resto >= Convert.ToDouble(tblCredito[7, i].Value))
                 {
-                    resto = resto - Convert.ToDouble(tblCredito[6, i].Value);
-                    tblCredito[7, i].Value = Convert.ToDouble(tblCredito[6, i].Value);
-                    tblCredito[8, i].Value = Convert.ToDouble(tblCredito[6, i].Value) - Convert.ToDouble(tblCredito[7, i].Value);
+                    resto = resto - Convert.ToDouble(tblCredito[7, i].Value);
+                    tblCredito[8, i].Value = Convert.ToDouble(tblCredito[7, i].Value);
+                    tblCredito[9, i].Value = Convert.ToDouble(tblCredito[7, i].Value) - Convert.ToDouble(tblCredito[8, i].Value);
                 }
-                else if (resto > 0 && resto < Convert.ToDouble(tblCredito[6, i].Value))
+                else if (resto > 0 && resto < Convert.ToDouble(tblCredito[7, i].Value))
                 {
-                    tblCredito[7, i].Value = resto;
-                    tblCredito[8, i].Value = Convert.ToDouble(tblCredito[6, i].Value) - Convert.ToDouble(tblCredito[7, i].Value);
+                    tblCredito[8, i].Value = resto;
+                    tblCredito[9, i].Value = Convert.ToDouble(tblCredito[7, i].Value) - Convert.ToDouble(tblCredito[8, i].Value);
                     resto = 0;
                 }
                 else
                 {
-                    tblCredito[7, i].Value = 0.00;
-                    tblCredito[8, i].Value = Convert.ToDouble(tblCredito[6, i].Value) - Convert.ToDouble(tblCredito[7, i].Value);
+                    tblCredito[8, i].Value = 0.00;
+                    tblCredito[9, i].Value = Convert.ToDouble(tblCredito[7, i].Value) - Convert.ToDouble(tblCredito[8, i].Value);
                 }
             }
         }
@@ -2659,11 +2660,11 @@ namespace Diprolim
                 {
                     if (chbxIVa.Checked)
                     {
-                        tblCredito[6, i].Value = Convert.ToDouble(tblCredito[3, i].Value) * Convert.ToDouble(tblCredito[4, i].Value)*1.16;
+                        tblCredito[7, i].Value = Convert.ToDouble(tblCredito[3, i].Value) * Convert.ToDouble(tblCredito[4, i].Value)*1.16;
                     }
                     else
                     {
-                        tblCredito[6, i].Value = Convert.ToDouble(tblCredito[3, i].Value) * Convert.ToDouble(tblCredito[4, i].Value);
+                        tblCredito[7, i].Value = Convert.ToDouble(tblCredito[3, i].Value) * Convert.ToDouble(tblCredito[4, i].Value);
                     }
                 }
             }

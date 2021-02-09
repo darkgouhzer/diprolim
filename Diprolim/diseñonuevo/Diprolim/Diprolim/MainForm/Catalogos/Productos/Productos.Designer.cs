@@ -45,7 +45,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbxPCalle = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPrecioDistribuidor = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tbxPDistribuidor = new System.Windows.Forms.TextBox();
             this.tbxPAbarrotes = new System.Windows.Forms.TextBox();
@@ -76,6 +76,8 @@
             this.tbxDescripcionEnvase = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tbxDescuentoEnvase = new System.Windows.Forms.TextBox();
+            this.lblPrecioPuntoVenta = new System.Windows.Forms.Label();
+            this.tbxPrecioPuntoVenta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // codigoDataGridViewTextBoxColumn
@@ -144,7 +146,7 @@
             // btnGuardar
             // 
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGuardar.Location = new System.Drawing.Point(215, 477);
+            this.btnGuardar.Location = new System.Drawing.Point(215, 502);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 40);
@@ -213,15 +215,15 @@
             this.tbxPCalle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPCalle_KeyDown);
             this.tbxPCalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxPCalle_KeyPress);
             // 
-            // label9
+            // lblPrecioDistribuidor
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(12, 292);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(192, 17);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Precio distribuidores:    $";
+            this.lblPrecioDistribuidor.AutoSize = true;
+            this.lblPrecioDistribuidor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioDistribuidor.Location = new System.Drawing.Point(12, 290);
+            this.lblPrecioDistribuidor.Name = "lblPrecioDistribuidor";
+            this.lblPrecioDistribuidor.Size = new System.Drawing.Size(192, 17);
+            this.lblPrecioDistribuidor.TabIndex = 14;
+            this.lblPrecioDistribuidor.Text = "Precio distribuidores:    $";
             // 
             // label10
             // 
@@ -235,7 +237,7 @@
             // 
             // tbxPDistribuidor
             // 
-            this.tbxPDistribuidor.Location = new System.Drawing.Point(219, 289);
+            this.tbxPDistribuidor.Location = new System.Drawing.Point(219, 287);
             this.tbxPDistribuidor.MaxLength = 15;
             this.tbxPDistribuidor.Name = "tbxPDistribuidor";
             this.tbxPDistribuidor.Size = new System.Drawing.Size(138, 23);
@@ -338,7 +340,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 354);
+            this.label2.Location = new System.Drawing.Point(12, 379);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(193, 17);
             this.label2.TabIndex = 112;
@@ -346,18 +348,19 @@
             // 
             // tbxComision
             // 
-            this.tbxComision.Location = new System.Drawing.Point(219, 351);
+            this.tbxComision.Location = new System.Drawing.Point(219, 376);
             this.tbxComision.MaxLength = 15;
             this.tbxComision.Name = "tbxComision";
             this.tbxComision.Size = new System.Drawing.Size(138, 23);
             this.tbxComision.TabIndex = 111;
+            this.tbxComision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxComision_KeyDown);
             this.tbxComision.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxComision_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 323);
+            this.label4.Location = new System.Drawing.Point(12, 348);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(193, 17);
             this.label4.TabIndex = 110;
@@ -365,17 +368,18 @@
             // 
             // tbxDescuento
             // 
-            this.tbxDescuento.Location = new System.Drawing.Point(219, 320);
+            this.tbxDescuento.Location = new System.Drawing.Point(219, 345);
             this.tbxDescuento.MaxLength = 15;
             this.tbxDescuento.Name = "tbxDescuento";
             this.tbxDescuento.Size = new System.Drawing.Size(138, 23);
             this.tbxDescuento.TabIndex = 109;
+            this.tbxDescuento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxDescuento_KeyDown);
             this.tbxDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxDescuento_KeyPress);
             // 
             // btnEliminar
             // 
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEliminar.Location = new System.Drawing.Point(323, 477);
+            this.btnEliminar.Location = new System.Drawing.Point(323, 502);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 40);
@@ -388,7 +392,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 382);
+            this.label5.Location = new System.Drawing.Point(12, 407);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 17);
             this.label5.TabIndex = 117;
@@ -397,7 +401,7 @@
             // chkbxComision
             // 
             this.chkbxComision.AutoSize = true;
-            this.chkbxComision.Location = new System.Drawing.Point(219, 385);
+            this.chkbxComision.Location = new System.Drawing.Point(219, 410);
             this.chkbxComision.Name = "chkbxComision";
             this.chkbxComision.Size = new System.Drawing.Size(15, 14);
             this.chkbxComision.TabIndex = 118;
@@ -407,7 +411,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 438);
+            this.label6.Location = new System.Drawing.Point(12, 463);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(143, 17);
             this.label6.TabIndex = 119;
@@ -503,7 +507,7 @@
             // 
             // tbxCodEnvase
             // 
-            this.tbxCodEnvase.Location = new System.Drawing.Point(219, 435);
+            this.tbxCodEnvase.Location = new System.Drawing.Point(219, 460);
             this.tbxCodEnvase.Margin = new System.Windows.Forms.Padding(4);
             this.tbxCodEnvase.MaxLength = 10;
             this.tbxCodEnvase.Name = "tbxCodEnvase";
@@ -513,7 +517,7 @@
             // 
             // tbxDescripcionEnvase
             // 
-            this.tbxDescripcionEnvase.Location = new System.Drawing.Point(296, 435);
+            this.tbxDescripcionEnvase.Location = new System.Drawing.Point(296, 460);
             this.tbxDescripcionEnvase.Margin = new System.Windows.Forms.Padding(4);
             this.tbxDescripcionEnvase.Name = "tbxDescripcionEnvase";
             this.tbxDescripcionEnvase.ReadOnly = true;
@@ -524,7 +528,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 408);
+            this.label7.Location = new System.Drawing.Point(12, 433);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(191, 17);
             this.label7.TabIndex = 127;
@@ -532,19 +536,41 @@
             // 
             // tbxDescuentoEnvase
             // 
-            this.tbxDescuentoEnvase.Location = new System.Drawing.Point(219, 405);
+            this.tbxDescuentoEnvase.Location = new System.Drawing.Point(219, 430);
             this.tbxDescuentoEnvase.MaxLength = 15;
             this.tbxDescuentoEnvase.Name = "tbxDescuentoEnvase";
             this.tbxDescuentoEnvase.Size = new System.Drawing.Size(138, 23);
             this.tbxDescuentoEnvase.TabIndex = 126;
             this.tbxDescuentoEnvase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxDescuentoEnvase_KeyPress);
             // 
+            // lblPrecioPuntoVenta
+            // 
+            this.lblPrecioPuntoVenta.AutoSize = true;
+            this.lblPrecioPuntoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioPuntoVenta.Location = new System.Drawing.Point(12, 319);
+            this.lblPrecioPuntoVenta.Name = "lblPrecioPuntoVenta";
+            this.lblPrecioPuntoVenta.Size = new System.Drawing.Size(192, 17);
+            this.lblPrecioPuntoVenta.TabIndex = 128;
+            this.lblPrecioPuntoVenta.Text = "Precio punto de venta:  $";
+            // 
+            // tbxPrecioPuntoVenta
+            // 
+            this.tbxPrecioPuntoVenta.Location = new System.Drawing.Point(219, 316);
+            this.tbxPrecioPuntoVenta.MaxLength = 15;
+            this.tbxPrecioPuntoVenta.Name = "tbxPrecioPuntoVenta";
+            this.tbxPrecioPuntoVenta.Size = new System.Drawing.Size(138, 23);
+            this.tbxPrecioPuntoVenta.TabIndex = 129;
+            this.tbxPrecioPuntoVenta.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPrecioPuntoVenta_KeyDown);
+            this.tbxPrecioPuntoVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxPrecioPuntoVenta_KeyPress);
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(559, 536);
+            this.ClientSize = new System.Drawing.Size(559, 622);
+            this.Controls.Add(this.lblPrecioPuntoVenta);
+            this.Controls.Add(this.tbxPrecioPuntoVenta);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbxDescuentoEnvase);
             this.Controls.Add(this.tbxDescripcionEnvase);
@@ -558,7 +584,7 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAdelante);
             this.Controls.Add(this.btnAtras);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblPrecioDistribuidor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbxPDistribuidor);
             this.Controls.Add(this.label10);
@@ -621,7 +647,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbxPCalle;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPrecioDistribuidor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbxPDistribuidor;
         private System.Windows.Forms.TextBox tbxPAbarrotes;
@@ -650,5 +676,7 @@
         private System.Windows.Forms.TextBox tbxDescripcionEnvase;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbxDescuentoEnvase;
+        private System.Windows.Forms.Label lblPrecioPuntoVenta;
+        private System.Windows.Forms.TextBox tbxPrecioPuntoVenta;
     }
 }

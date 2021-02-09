@@ -738,7 +738,7 @@ namespace Diprolim
                 col9 = tblEntradas.Columns[9].Width - an;
 
                 #region titulo
-                e.Graphics.DrawString("VENTAS VENDEDOR", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 2 + 40, 50, 500, tblEntradas.Rows[0].Height + 15));
+                e.Graphics.DrawString("VENTAS VENDEDOR", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, new Rectangle(e.MarginBounds.Width / 2 + 20, 50, 500, tblEntradas.Rows[0].Height + 15));
                 #endregion
 
                 #region NombreVendedor
@@ -838,7 +838,6 @@ namespace Diprolim
 
                         height += tblEntradas.Rows[0].Height;
 
-                        //              e.Graphics.DrawRectangle(p, new Rectangle(100, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[1].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
 
                         if (tblEntradas.Rows[i].Cells[2].FormattedValue.ToString().Length > 40)
@@ -849,13 +848,11 @@ namespace Diprolim
                         {
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[2].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1, height, tblEntradas.Columns[2].Width, tblEntradas.Rows[0].Height));
                         }
-                        //          e.Graphics.DrawRectangle(p, new Rectangle(300 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
+
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[3].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
 
-                        //                    e.Graphics.DrawRectangle(p, new Rectangle(400 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[4].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
 
-                        //                    e.Graphics.DrawRectangle(p, new Rectangle(500 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[5].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
 
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[6].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, tblEntradas.Columns[6].Width, tblEntradas.Rows[0].Height));
@@ -867,16 +864,25 @@ namespace Diprolim
 
                         e.Graphics.DrawString(tblEntradas.Rows[i].Cells[9].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblEntradas.Columns[9].Width, tblEntradas.Rows[0].Height));
 
-                        //suma += Convert.ToDouble(tblEntradas.Rows[i].Cells[7].Value);
                         i++;
                     }
                     else if (cbxCEntradas.Text == "Con entradas")
                     {
-                        if (Convert.ToDouble(tblEntradas.Rows[i].Cells[4].Value) > 0)
+                        Double Contador = 0;
+
+                        if (tblEntradas.Rows[i].Cells[4].Value.ToString().Trim() == "-")
+                        {
+                            Contador = 1;
+                        }
+                        else
+                        {
+                            Contador = Convert.ToDouble(tblEntradas.Rows[i].Cells[4].Value);
+                        }                        
+
+                        if (Contador > 0)
                         {
                             height += tblEntradas.Rows[0].Height;
 
-                            //              e.Graphics.DrawRectangle(p, new Rectangle(100, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[1].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
 
                             if (tblEntradas.Rows[i].Cells[2].FormattedValue.ToString().Length > 40)
@@ -887,13 +893,10 @@ namespace Diprolim
                             {
                                 e.Graphics.DrawString(tblEntradas.Rows[i].Cells[2].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1, height, tblEntradas.Columns[2].Width, tblEntradas.Rows[0].Height));
                             }
-                            //          e.Graphics.DrawRectangle(p, new Rectangle(300 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[3].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
 
-                            //                    e.Graphics.DrawRectangle(p, new Rectangle(400 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[4].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
 
-                            //                    e.Graphics.DrawRectangle(p, new Rectangle(500 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[5].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
 
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[6].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, tblEntradas.Columns[6].Width, tblEntradas.Rows[0].Height));
@@ -901,21 +904,29 @@ namespace Diprolim
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[7].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6, height, tblEntradas.Columns[7].Width, tblEntradas.Rows[0].Height));
 
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[8].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7, height, tblEntradas.Columns[8].Width, tblEntradas.Rows[0].Height));
-
-
+                            
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[9].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblEntradas.Columns[9].Width, tblEntradas.Rows[0].Height));
-                            //suma += Convert.ToDouble(tblEntradas.Rows[i].Cells[7].Value);
                         }
                         i++;
                     }
                     else
                     {
 
-                        if (Convert.ToDouble(tblEntradas.Rows[i].Cells[5].Value) > 0)
+                        Double Contador = 0;
+
+                        if (tblEntradas.Rows[i].Cells[5].Value.ToString().Trim() == "-")
+                        {
+                            Contador = 1;
+                        }
+                        else
+                        {
+                            Contador = Convert.ToDouble(tblEntradas.Rows[i].Cells[5].Value);
+                        }
+
+                        if (Contador > 0)
                         {
                             height += tblEntradas.Rows[0].Height;
 
-                            //              e.Graphics.DrawRectangle(p, new Rectangle(100, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[1].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L, height, tblEntradas.Columns[1].Width, tblEntradas.Rows[0].Height));
 
                             if (tblEntradas.Rows[i].Cells[2].FormattedValue.ToString().Length > 40)
@@ -926,13 +937,11 @@ namespace Diprolim
                             {
                                 e.Graphics.DrawString(tblEntradas.Rows[i].Cells[2].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1, height, tblEntradas.Columns[2].Width, tblEntradas.Rows[0].Height));
                             }
-                            //          e.Graphics.DrawRectangle(p, new Rectangle(300 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
+
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[3].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2, height, tblEntradas.Columns[3].Width, tblEntradas.Rows[0].Height));
 
-                            //                    e.Graphics.DrawRectangle(p, new Rectangle(400 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[4].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3, height, tblEntradas.Columns[4].Width, tblEntradas.Rows[0].Height));
 
-                            //                    e.Graphics.DrawRectangle(p, new Rectangle(500 + tblEntradas.Columns[1].Width, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[5].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4, height, tblEntradas.Columns[5].Width, tblEntradas.Rows[0].Height));
 
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[6].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, tblEntradas.Columns[6].Width, tblEntradas.Rows[0].Height));
@@ -943,14 +952,12 @@ namespace Diprolim
 
 
                             e.Graphics.DrawString(tblEntradas.Rows[i].Cells[9].FormattedValue.ToString(), letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblEntradas.Columns[9].Width, tblEntradas.Rows[0].Height));
-                            //suma += Convert.ToDouble(tblEntradas.Rows[i].Cells[7].Value);
+                            
                         }
                         i++;
                     }
                 }
-                //e.Graphics.DrawString("Total", letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height + 20, tblEntradas.Columns[6].Width, tblEntradas.Rows[0].Height));
 
-                //e.Graphics.DrawString("$" + suma, letra, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6, height + 20, tblEntradas.Columns[7].Width, tblEntradas.Rows[0].Height));
                 i = 0;
                 //suma = 0;
                 e.HasMorePages = false;
@@ -2624,6 +2631,12 @@ namespace Diprolim
          
             return objListCArticulos;
         }
+
+        private void VentasVendedor_Load(object sender, EventArgs e)
+        {
+
+        }
+
         Boolean evitar = false;
         //metodo para distribuir abono en diferentes adeudos.
         public void disAbono(double abono)
@@ -2739,8 +2752,8 @@ namespace Diprolim
                 int height = 0;
                 int an = -10;
                 Font letra = new Font("Arial", 9);
-                int x = 155;
-                int L = 160;
+                int x = 45;
+                int L = 50;
                 int y = 140;
                 int col1 = tblCredito.Columns[1].Width - an;
                 int col2 = tblCredito.Columns[2].Width - an;
@@ -2749,6 +2762,8 @@ namespace Diprolim
                 int col5 = tblCredito.Columns[5].Width - an;
                 int col6 = tblCredito.Columns[6].Width - an;
                 int col7 = tblCredito.Columns[7].Width - an;
+                int col8 = tblCredito.Columns[8].Width - an;
+                int col9 = tblCredito.Columns[9].Width - an;
                 Pen p = new Pen(Brushes.Black, 1.5f);
 
                 #region titulo
@@ -2761,14 +2776,12 @@ namespace Diprolim
                 
                 #region CodigodeArticulo
 
-                //               e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1, 100, col2 + 100, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x, y, col1, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawString(tblCredito.Columns[1].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x, y, col1, tblCredito.Rows[0].Height + 15));
 
                 #endregion
 
                 #region descripcion
-                //               e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2, 100, col3, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1, y, col2, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawString(tblCredito.Columns[2].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1, y, col2, tblCredito.Rows[0].Height + 15));
 
@@ -2777,7 +2790,6 @@ namespace Diprolim
 
                 #region Cantidad
 
-                //e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3, y, col4, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2, y, col3, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawString(tblCredito.Columns[3].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2, y, col3, tblCredito.Rows[0].Height + 15));
 
@@ -2785,33 +2797,37 @@ namespace Diprolim
 
                 #region Precio
 
-                //              e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3 + col4, 100, col5, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3, y, col4, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawString(tblCredito.Columns[4].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3, y, col4, tblCredito.Rows[0].Height + 15));
-                //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
                 #endregion
 
-                #region Saldo
+                #region Subtotal
 
-                //              e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3 + col4, 100, col5, tblSalidas.Rows[0].Height + 15));
                 e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4, y, col5, tblCredito.Rows[0].Height + 15));
                 e.Graphics.DrawString(tblCredito.Columns[5].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4, y, col5, tblCredito.Rows[0].Height + 15));
-                //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
+                #endregion
+
+                #region Descuento
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, tblCredito.Rows[0].Height + 15));
+                e.Graphics.DrawString(tblCredito.Columns[6].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, tblCredito.Rows[0].Height + 15));
+                #endregion
+
+                #region Total
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, tblCredito.Rows[0].Height + 15));
+                e.Graphics.DrawString(tblCredito.Columns[7].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, tblCredito.Rows[0].Height + 15));
                 #endregion
 
                 #region Abono
-                //              e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3 + col4, 100, col5, tblSalidas.Rows[0].Height + 15));
-                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, tblCredito.Rows[0].Height + 15));
-                e.Graphics.DrawString(tblCredito.Columns[6].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5, y, col6, tblCredito.Rows[0].Height + 15));
-                //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7, y, col8, tblCredito.Rows[0].Height + 15));
+                e.Graphics.DrawString(tblCredito.Columns[8].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7, y, col8, tblCredito.Rows[0].Height + 15));
                 #endregion
 
+
                 #region Pendiente
-                //              e.Graphics.FillRectangle(Brushes.DarkGray, new Rectangle(100 + col1 + col2 + col3 + col4, 100, col5, tblSalidas.Rows[0].Height + 15));
-                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, tblCredito.Rows[0].Height + 15));
-                e.Graphics.DrawString(tblCredito.Columns[7].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6, y, col7, tblCredito.Rows[0].Height + 15));
-                //   MessageBox.Show("" + tblSalidas.Rows[1].Height);
+                e.Graphics.DrawRectangle(p, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, y, col9, tblCredito.Rows[0].Height + 15));
+                e.Graphics.DrawString(tblCredito.Columns[9].HeaderText.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(x + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, y, col9, tblCredito.Rows[0].Height + 15));
                 #endregion
+
 
                 height = 155;
 
@@ -2838,6 +2854,10 @@ namespace Diprolim
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[6].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5, height, tblCredito.Columns[6].Width, tblCredito.Rows[0].Height));
 
                     e.Graphics.DrawString(tblCredito.Rows[i].Cells[7].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6, height, tblCredito.Columns[7].Width, tblCredito.Rows[0].Height));
+
+                    e.Graphics.DrawString(tblCredito.Rows[i].Cells[8].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7, height, tblCredito.Columns[8].Width, tblCredito.Rows[0].Height));
+
+                    e.Graphics.DrawString(tblCredito.Rows[i].Cells[9].FormattedValue.ToString(), tblCredito.Font, Brushes.Black, new Rectangle(L + col1 + col2 + col3 + col4 + col5 + col6 + col7 + col8, height, tblCredito.Columns[9].Width, tblCredito.Rows[0].Height));
 
                     i++;
                 }

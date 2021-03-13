@@ -51,8 +51,8 @@ namespace Diprolim
         private void button1_Click(object sender, EventArgs e)
         {
 
-            tbxID.Text = "Diprolim";
-            tbxContraseña.Text = "1";
+            //tbxID.Text = "Diprolim";
+            //tbxContraseña.Text = "1";
             if (tbxID.Text != "" && tbxContraseña.Text != "")
                 {
                     MD5 hashm = MD5.Create();

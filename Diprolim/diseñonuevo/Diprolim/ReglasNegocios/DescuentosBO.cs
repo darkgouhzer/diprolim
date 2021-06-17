@@ -76,9 +76,12 @@ namespace ReglasNegocios
             {
                 foreach(CArticulos objArticulos in objListArticulos)
                 {
-                    if (ValidarAplicaPresentacion(objArticulos.ValorMedida, objCDescuentoCustom.Presentaciones))
+                    if ( objCDescuentoCustom.Presentaciones.Trim().ToString() != String.Empty)
                     {
-                        objCDescuentoCustom.CantidadAcumulada = objCDescuentoCustom.CantidadAcumulada + objArticulos.Cantidad;
+                        if (ValidarAplicaPresentacion(objArticulos.ValorMedida, objCDescuentoCustom.Presentaciones))
+                        {
+                            objCDescuentoCustom.CantidadAcumulada = objCDescuentoCustom.CantidadAcumulada + objArticulos.Cantidad;
+                        }
                     }
                 }
               

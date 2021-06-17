@@ -53,7 +53,7 @@ namespace Diprolim
 
             //tbxID.Text = "Diprolim";
             //tbxContraseña.Text = "1";
-                if (tbxID.Text != "" && tbxContraseña.Text != "")
+            if (tbxID.Text != "" && tbxContraseña.Text != "")
                 {
                     MD5 hashm = MD5.Create();
                     MySqlConnection conectar = conn.ObtenerConexion();

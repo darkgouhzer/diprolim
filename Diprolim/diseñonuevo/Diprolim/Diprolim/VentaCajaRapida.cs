@@ -91,10 +91,10 @@ namespace Diprolim
                         row.Cells[1].Value = objCArticulos.Descripcion;
                         row.Cells[2].Value = tbxCantidad.Text;
                         row.Cells[3].Value = chbxCambioEnvase.Checked ? objCArticulos.PrecioConEnvase :
-                                                                        objCArticulos.PrecioCalle;
+                                                                        objCArticulos.PrecioPuntoVenta;
                         row.Cells[4].Value = 0;//objCArticulos.Descuento;
                         totalPrecio = chbxCambioEnvase.Checked ? (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioConEnvase) : 
-                                                                 (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioCalle);
+                                                                 (Convert.ToDouble(row.Cells[2].Value) * objCArticulos.PrecioPuntoVenta);
                         row.Cells[5].Value = totalPrecio;
                         row.Cells[6].Value = chbxCambioEnvase.Checked;
                     }

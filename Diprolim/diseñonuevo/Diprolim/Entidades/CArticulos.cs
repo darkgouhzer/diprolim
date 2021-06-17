@@ -51,6 +51,14 @@ namespace Entidades
             get { return dPrecioDistribuidor; }
             set { dPrecioDistribuidor = value; }
         }
+
+        private double dPrecioPuntoVenta;
+        public double PrecioPuntoVenta
+        {
+            get { return dPrecioPuntoVenta; }
+            set { dPrecioPuntoVenta = value; }
+        }
+
         private int iDepartamento;
         public int Departamento
         {

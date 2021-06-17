@@ -150,6 +150,8 @@ namespace Diprolim
                     btnSP.Enabled = false;
                     tbxDesc.Focus();
 
+                    tbxPrecioPuntoVenta.Text = row[17].ToString();
+
                     Boolean aplicaCambioEnvase = (Convert.ToDouble(tbxVMedida.Text) == 4 || Convert.ToDouble(tbxVMedida.Text) == 20) && Convert.ToInt32(cbxUMedida.SelectedValue) == 1;
                     activarCambioEnvase(aplicaCambioEnvase);
 
@@ -212,8 +214,8 @@ namespace Diprolim
                 ArticuloBO objArticuloBO = new ArticuloBO();
 
                 if (tbxCodigo.Text != "" && tbxDesc.Text != "" && tbxVMedida.Text != "" && cbxUMedida.Text != "" && tbxPrecioProduccion.Text != "" &&
-                                   tbxPCalle.Text != "" && tbxPAbarrotes.Text != "" && tbxPDistribuidor.Text != "" && (rbProductos.Checked || rbAccesorios.Checked || rbPapel.Checked) &&
-                                   cbxFamilia.SelectedValue != null)
+                                   tbxPCalle.Text != "" && tbxPAbarrotes.Text != "" && tbxPDistribuidor.Text != "" && tbxPrecioPuntoVenta.Text != "" &&
+                                   (rbProductos.Checked || rbAccesorios.Checked || rbPapel.Checked) && cbxFamilia.SelectedValue != null)
                 {
                     if (rbProductos.Checked) { dep = 1; }
                     if (rbAccesorios.Checked) { dep = 2; }
@@ -258,6 +260,7 @@ namespace Diprolim
                                         " ,precio_calle=" + tbxPCalle.Text +
                                         " ,precio_abarrotes=" + tbxPAbarrotes.Text +
                                         " ,precio_distribuidor=" + tbxPDistribuidor.Text +
+                                        " ,precio_puntoventa=" + tbxPrecioPuntoVenta.Text +
                                         " ,departamento=" + dep +
                                         " ,descuento=" + descuentoCont +
                                         " ,comision=" + comisionConsig +
@@ -288,7 +291,7 @@ namespace Diprolim
                                     ",0, " + tbxVMedida.Text + ", " + cbxUMedida.SelectedValue + " ," + tbxPCalle.Text +
                                     " , " + tbxPAbarrotes.Text + ", " + tbxPDistribuidor.Text + " , " + dep + ", " + descuentoCont + " , "
                                     + comisionConsig + "," + iAplicaComision + "," + cbxFamilia.SelectedValue + "," + tbxDesc.Tag + " ,'" + tbxDescuentoEnvase.Text +
-                                        "' ,'" + tbxCodEnvase.Text + "')";
+                                        "' ,'" + tbxCodEnvase.Text + "', '" + tbxPrecioPuntoVenta.Text +"')";
                                 if (Conexion.Ejecutar(cmd))
                                 {
                                     MessageBox.Show("Los datos fueron guardados con éxito");
@@ -314,7 +317,7 @@ namespace Diprolim
                 }
                 else
                 {
-                    MessageBox.Show("Llene todos los campos");
+                    MessageBox.Show("Favor de llenar todos los campos.");
                 }
 
 
@@ -484,7 +487,7 @@ namespace Diprolim
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                btnGuardar.Focus();
+                tbxPrecioPuntoVenta.Focus();
 
             }
         }
@@ -667,6 +670,51 @@ namespace Diprolim
             {
 
                 e.Handled = true;
+
+            }
+        }
+
+        private void tbxPrecioPuntoVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46 && tbxPrecioPuntoVenta.Text.IndexOf('.') != -1)
+            {
+
+                e.Handled = true;
+                return;
+
+            }
+
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar) && e.KeyChar != 46)
+            {
+
+                e.Handled = true;
+
+            }
+        }
+
+        private void tbxPrecioPuntoVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                tbxPrecioPuntoVenta.Focus();
+
+            }
+        }
+
+        private void tbxDescuento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                tbxComision.Focus();
+
+            }
+        }
+
+        private void tbxComision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                btnGuardar.Focus();
 
             }
         }

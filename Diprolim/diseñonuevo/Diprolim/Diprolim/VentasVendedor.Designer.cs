@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentasVendedor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbxNVendedor = new System.Windows.Forms.TextBox();
             this.tbxVendedor = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -94,6 +95,8 @@
             this.tblCrDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrAbono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblCrPendiente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -201,10 +204,10 @@
             // 
             // seleccionar
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "false";
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.NullValue = "false";
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.seleccionar.DefaultCellStyle = dataGridViewCellStyle14;
             this.seleccionar.HeaderText = "";
             this.seleccionar.Name = "seleccionar";
             this.seleccionar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -233,9 +236,9 @@
             // 
             // n_Entrada
             // 
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle15.Format = "N0";
+            dataGridViewCellStyle15.NullValue = null;
+            this.n_Entrada.DefaultCellStyle = dataGridViewCellStyle15;
             this.n_Entrada.HeaderText = "Entradas";
             this.n_Entrada.MaxInputLength = 9;
             this.n_Entrada.Name = "n_Entrada";
@@ -244,8 +247,8 @@
             // 
             // EVendidas
             // 
-            dataGridViewCellStyle3.NullValue = null;
-            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle16.NullValue = null;
+            this.EVendidas.DefaultCellStyle = dataGridViewCellStyle16;
             this.EVendidas.HeaderText = "Cantidad Vendida";
             this.EVendidas.MaxInputLength = 9;
             this.EVendidas.Name = "EVendidas";
@@ -254,9 +257,9 @@
             // 
             // EPrecio
             // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle17.Format = "C2";
+            dataGridViewCellStyle17.NullValue = null;
+            this.EPrecio.DefaultCellStyle = dataGridViewCellStyle17;
             this.EPrecio.HeaderText = "Precio";
             this.EPrecio.Name = "EPrecio";
             this.EPrecio.ReadOnly = true;
@@ -264,17 +267,17 @@
             // 
             // Sub
             // 
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Sub.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle18.Format = "C2";
+            dataGridViewCellStyle18.NullValue = null;
+            this.Sub.DefaultCellStyle = dataGridViewCellStyle18;
             this.Sub.HeaderText = "SubTotal";
             this.Sub.Name = "Sub";
             this.Sub.ReadOnly = true;
             // 
             // EDescuento
             // 
-            dataGridViewCellStyle6.Format = "C2";
-            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle19.Format = "C2";
+            this.EDescuento.DefaultCellStyle = dataGridViewCellStyle19;
             this.EDescuento.HeaderText = "Descuento";
             this.EDescuento.Name = "EDescuento";
             this.EDescuento.ReadOnly = true;
@@ -282,9 +285,9 @@
             // 
             // ETotal
             // 
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ETotal.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle20.Format = "C2";
+            dataGridViewCellStyle20.NullValue = null;
+            this.ETotal.DefaultCellStyle = dataGridViewCellStyle20;
             this.ETotal.HeaderText = "Total";
             this.ETotal.Name = "ETotal";
             this.ETotal.ReadOnly = true;
@@ -550,16 +553,17 @@
             "Todas",
             "Con entradas",
             "Con vendidas"});
-            this.cbxCEntradas.Location = new System.Drawing.Point(458, 19);
+            this.cbxCEntradas.Location = new System.Drawing.Point(520, 81);
             this.cbxCEntradas.Name = "cbxCEntradas";
             this.cbxCEntradas.Size = new System.Drawing.Size(121, 24);
             this.cbxCEntradas.TabIndex = 219;
+            this.cbxCEntradas.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(380, 20);
+            this.label5.Location = new System.Drawing.Point(507, 38);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 17);
@@ -674,6 +678,8 @@
             this.tblCrDesc,
             this.tblCrCantidad,
             this.tblCrPrecio,
+            this.colSubtotal,
+            this.colDescuento,
             this.tblCrTotal,
             this.tblCrAbono,
             this.tblCrPendiente,
@@ -684,7 +690,7 @@
             this.tblCredito.Location = new System.Drawing.Point(19, 226);
             this.tblCredito.Margin = new System.Windows.Forms.Padding(4);
             this.tblCredito.Name = "tblCredito";
-            this.tblCredito.Size = new System.Drawing.Size(944, 277);
+            this.tblCredito.Size = new System.Drawing.Size(1049, 277);
             this.tblCredito.TabIndex = 222;
             this.tblCredito.Visible = false;
             this.tblCredito.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblCredito_CellEndEdit);
@@ -696,10 +702,10 @@
             // 
             // dataGridViewCheckBoxColumn1
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = "false";
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.NullValue = "false";
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewCheckBoxColumn1.HeaderText = "";
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.Width = 30;
@@ -727,20 +733,35 @@
             // 
             // tblCrPrecio
             // 
-            dataGridViewCellStyle9.Format = "C2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle22.Format = "C2";
+            dataGridViewCellStyle22.NullValue = null;
+            this.tblCrPrecio.DefaultCellStyle = dataGridViewCellStyle22;
             this.tblCrPrecio.HeaderText = "Precio";
             this.tblCrPrecio.MaxInputLength = 9;
             this.tblCrPrecio.Name = "tblCrPrecio";
             this.tblCrPrecio.ReadOnly = true;
             this.tblCrPrecio.Width = 80;
             // 
+            // colSubtotal
+            // 
+            dataGridViewCellStyle23.Format = "C2";
+            this.colSubtotal.DefaultCellStyle = dataGridViewCellStyle23;
+            this.colSubtotal.HeaderText = "SubTotal";
+            this.colSubtotal.Name = "colSubtotal";
+            this.colSubtotal.Width = 80;
+            // 
+            // colDescuento
+            // 
+            this.colDescuento.HeaderText = "Descuento";
+            this.colDescuento.Name = "colDescuento";
+            this.colDescuento.ReadOnly = true;
+            this.colDescuento.Width = 80;
+            // 
             // tblCrTotal
             // 
-            dataGridViewCellStyle10.Format = "C2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle24.Format = "C2";
+            dataGridViewCellStyle24.NullValue = null;
+            this.tblCrTotal.DefaultCellStyle = dataGridViewCellStyle24;
             this.tblCrTotal.HeaderText = "Total";
             this.tblCrTotal.MaxInputLength = 9;
             this.tblCrTotal.Name = "tblCrTotal";
@@ -749,9 +770,9 @@
             // 
             // tblCrAbono
             // 
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle25.Format = "C2";
+            dataGridViewCellStyle25.NullValue = null;
+            this.tblCrAbono.DefaultCellStyle = dataGridViewCellStyle25;
             this.tblCrAbono.HeaderText = "Abono";
             this.tblCrAbono.MaxInputLength = 8;
             this.tblCrAbono.Name = "tblCrAbono";
@@ -759,9 +780,9 @@
             // 
             // tblCrPendiente
             // 
-            dataGridViewCellStyle12.Format = "C2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle26.Format = "C2";
+            dataGridViewCellStyle26.NullValue = null;
+            this.tblCrPendiente.DefaultCellStyle = dataGridViewCellStyle26;
             this.tblCrPendiente.HeaderText = "Pendiente";
             this.tblCrPendiente.Name = "tblCrPendiente";
             this.tblCrPendiente.ReadOnly = true;
@@ -1068,8 +1089,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tblEntradas);
             this.Controls.Add(this.tblCredito);
+            this.Controls.Add(this.tblEntradas);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1081,6 +1102,7 @@
             this.Name = "VentasVendedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventas vendedor";
+            this.Load += new System.EventHandler(this.VentasVendedor_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VentasVendedor_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.tblEntradas)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -1144,18 +1166,6 @@
         private System.Windows.Forms.TextBox tbxSubtotal;
         private System.Drawing.Printing.PrintDocument printDocCredito;
         private System.Windows.Forms.PrintPreviewDialog printPrevCredito;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCodArt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrAbono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPendiente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecioProd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrInvAnterior;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblCridcategoria;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox tbxCreditoRestante;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -1184,5 +1194,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn PP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Eidcategoria;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCodArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSubtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrAbono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPendiente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrCEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrPrecioProd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCrInvAnterior;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblCridcategoria;
     }
 }
